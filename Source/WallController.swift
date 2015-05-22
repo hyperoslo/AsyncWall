@@ -6,13 +6,13 @@ public class WallController: UIViewController {
     var frame = self.view.bounds
     frame.origin.y += 20
 
-    var collectionView = UICollectionView(frame: frame, collectionViewLayout: self.flowLayout)
-    collectionView.delegate = self
-    collectionView.dataSource = self.dataSource
-    collectionView.bounces = true
+    let collectionView = UICollectionView(frame: frame, collectionViewLayout: self.flowLayout)
     collectionView.alwaysBounceVertical = true
     collectionView.autoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth
     collectionView.backgroundColor = .lightTextColor()
+    collectionView.bounces = true
+    collectionView.dataSource = self.dataSource
+    collectionView.delegate = self
 
     collectionView.registerClass(PostViewCell.self,
       forCellWithReuseIdentifier: WallDataSource.Constants.cellIdentifier)
@@ -43,7 +43,6 @@ public class WallController: UIViewController {
     super.viewDidLoad()
 
     view.backgroundColor = .lightGrayColor()
-
     view.addSubview(self.collectionView)
   }
 }
@@ -54,8 +53,8 @@ extension WallController: UICollectionViewDelegate {
     layout collectionViewLayout: UICollectionViewLayout,
     sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
 
-      let width:CGFloat = view.bounds.size.width * 0.98
-      let height:CGFloat = 150.0
+      let width: CGFloat = view.bounds.size.width * 0.98
+      let height: CGFloat = 150.0
 
       return CGSizeMake(width, height)
   }
