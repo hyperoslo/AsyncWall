@@ -6,12 +6,12 @@ class PostView: UIView {
 
   override init(frame: CGRect) {
     label = UILabel()
-    label.font = UIFont.systemFontOfSize(14)
-    label.textAlignment = NSTextAlignment.Center
+    label.font = .systemFontOfSize(14)
+    label.textAlignment = .Center
     super.init(frame: frame)
 
     addSubview(label)
-    backgroundColor = UIColor.whiteColor()
+    backgroundColor = .whiteColor()
   }
 
   required init(coder aDecoder: NSCoder) {

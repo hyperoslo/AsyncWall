@@ -29,7 +29,7 @@ public class WallController: UIViewController {
   public var posts: [AnyObject] = [] {
     willSet {
       dataSource.data = newValue
-      dispatch_async(dispatch_get_main_queue(), { () -> Void in
+      dispatch_async(dispatch_get_main_queue(), { _ in
         self.collectionView.reloadData()
       })
     }
@@ -50,11 +50,11 @@ public class WallController: UIViewController {
 
 extension WallController: UICollectionViewDelegate {
 
-  func collectionView(collectionView: UICollectionView,
+  public func collectionView(collectionView: UICollectionView,
     layout collectionViewLayout: UICollectionViewLayout,
     sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
 
-      let width:CGFloat = self.view.bounds.size.width * 0.98
+      let width:CGFloat = view.bounds.size.width * 0.98
       let height:CGFloat = 150.0
 
       return CGSizeMake(width, height)

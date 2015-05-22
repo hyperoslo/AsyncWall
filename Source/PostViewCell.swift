@@ -20,6 +20,6 @@ class PostViewCell: UICollectionViewCell {
   }
 
   override func layoutSubviews() {
-    postView.frame = self.bounds
+    postView.frame = bounds
   }
 }
