@@ -1,24 +1,33 @@
 import UIKit
 
-public class WallDataSource: NSObject, UITableViewDataSource {
+public class WallDataSource: NSObject {
+
+  struct Constants {
+    static let cellIdentifier = "PostCell"
+  }
 
   lazy public var data = { return [] }()
+}
 
-  public func tableView(tableView: UITableView,
-    cellForRowAtIndexPath
-    indexPath: NSIndexPath) -> UITableViewCell {
-      let cell = tableView.dequeueReusableCellWithIdentifier("Post", forIndexPath: indexPath) as! UITableViewCell
+
+extension WallDataSource: UICollectionViewDataSource {
+  public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return data.count
+  }
+
+  public func collectionView(collectionView: UICollectionView,
+    cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+      let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.cellIdentifier,
+        forIndexPath: indexPath) as! PostViewCell
 
       if let title = data[indexPath.row]["title"] as? String {
-        cell.textLabel?.text = title
+        cell.setTitle(title)
       }
 
       return cell
   }
 
-  public func tableView(tableView: UITableView,
-    numberOfRowsInSection section: Int) -> Int {
-      return data.count
+  public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    return 1
   }
-
 }
