@@ -4,18 +4,19 @@ import Wall
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-  var window: UIWindow?
+  lazy var window: UIWindow? = {
+    return UIWindow(frame: UIScreen.mainScreen().bounds)
+    }()
+  lazy var navigationController = {
+    return UINavigationController(rootViewController: ViewController())
+    }()
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-    self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+    window!.rootViewController = navigationController
+    window!.backgroundColor = UIColor.whiteColor()
+    window!.makeKeyAndVisible()
 
-    let vc = ViewController()
-    let nav = UINavigationController(rootViewController: vc)
-
-    self.window!.rootViewController = nav
-    self.window!.backgroundColor = UIColor.whiteColor()
-    self.window!.makeKeyAndVisible()
     return true
   }
 }

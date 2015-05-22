@@ -2,12 +2,15 @@ import UIKit
 
 class PostView: UIView {
 
-  var label: UILabel
-
-  override init(frame: CGRect) {
-    label = UILabel()
+  var label: UILabel = {
+    let label = UILabel()
     label.font = .systemFontOfSize(14)
     label.textAlignment = .Center
+
+    return label
+    }()
+
+  override init(frame: CGRect) {
     super.init(frame: frame)
 
     addSubview(label)
