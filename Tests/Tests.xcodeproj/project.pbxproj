@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD3236AB1B0FD5A700ADDFB0 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3236A91B0FD5A700ADDFB0 /* PostView.swift */; };
+		BD3236AC1B0FD5A700ADDFB0 /* PostViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3236AA1B0FD5A700ADDFB0 /* PostViewCell.swift */; };
 		BD63CE0E1AEC2C4A0052E95E /* Wall.podspec in Resources */ = {isa = PBXBuildFile; fileRef = BD63CE0D1AEC2C4A0052E95E /* Wall.podspec */; };
 		BD8E43DD1AEC2B7700BC0631 /* WallTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8E43DC1AEC2B7700BC0631 /* WallTests.swift */; };
 		BD8E43E51AEC2B8200BC0631 /* WallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8E43E21AEC2B8200BC0631 /* WallController.swift */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BD3236A91B0FD5A700ADDFB0 /* PostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		BD3236AA1B0FD5A700ADDFB0 /* PostViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewCell.swift; sourceTree = "<group>"; };
 		BD63CE0D1AEC2C4A0052E95E /* Wall.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Wall.podspec; path = ../Wall.podspec; sourceTree = "<group>"; };
 		BD8E43D71AEC2B7700BC0631 /* WallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WallTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD8E43DB1AEC2B7700BC0631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -73,6 +77,8 @@
 		BD8E43E11AEC2B8200BC0631 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				BD3236A91B0FD5A700ADDFB0 /* PostView.swift */,
+				BD3236AA1B0FD5A700ADDFB0 /* PostViewCell.swift */,
 				BD8E43E21AEC2B8200BC0631 /* WallController.swift */,
 				BD8E43E31AEC2B8200BC0631 /* WallDataSource.swift */,
 			);
@@ -148,7 +154,9 @@
 			files = (
 				BD8E43DD1AEC2B7700BC0631 /* WallTests.swift in Sources */,
 				BD8E43E51AEC2B8200BC0631 /* WallController.swift in Sources */,
+				BD3236AB1B0FD5A700ADDFB0 /* PostView.swift in Sources */,
 				BD8E43E61AEC2B8200BC0631 /* WallDataSource.swift in Sources */,
+				BD3236AC1B0FD5A700ADDFB0 /* PostViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
