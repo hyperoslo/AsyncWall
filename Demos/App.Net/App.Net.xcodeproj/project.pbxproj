@@ -14,6 +14,7 @@
 		BD8E43B51AEBDA0F00BC0631 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD8E43B41AEBDA0F00BC0631 /* Images.xcassets */; };
 		BDFA3DD21AEC307300F03397 /* Networking.swift in Resources */ = {isa = PBXBuildFile; fileRef = BDFA3DD11AEC307300F03397 /* Networking.swift */; };
 		BDFA3DD31AEC30A200F03397 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFA3DD11AEC307300F03397 /* Networking.swift */; };
+		D520B06E1B0F7590006CE9D3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D520B06D1B0F7590006CE9D3 /* LaunchScreen.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		BD8E43B41AEBDA0F00BC0631 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		BD8E43CB1AEBDAC600BC0631 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BDFA3DD11AEC307300F03397 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		D520B06D1B0F7590006CE9D3 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		F55885F39E7C54F9E76A2DD0 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,6 +90,7 @@
 		BD8E43A81AEBDA0F00BC0631 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D520B06D1B0F7590006CE9D3 /* LaunchScreen.xib */,
 				BD8E43A91AEBDA0F00BC0631 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -160,6 +163,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D520B06E1B0F7590006CE9D3 /* LaunchScreen.xib in Resources */,
 				BDFA3DD21AEC307300F03397 /* Networking.swift in Resources */,
 				BD8E43B51AEBDA0F00BC0631 /* Images.xcassets in Resources */,
 			);

@@ -1,5 +1,4 @@
 PODS:
-  - Alamofire (1.2.1)
   - DATAFilter (0.8.1):
     - DATAObjectIDs
   - DATAObjectIDs (0.5.0)
@@ -21,16 +20,14 @@ PODS:
   - Wall (0.1.0)
 
 DEPENDENCIES:
-  - Alamofire
   - Sync
   - Wall (from `../../`)
 
 EXTERNAL SOURCES:
   Wall:
-    :path: ../../
+    :path: "../../"
 
 SPEC CHECKSUMS:
-  Alamofire: 1acfdf179aff68b41a48dff70c1ac7fa263e2bcb
   DATAFilter: 3f89692f7c52dd3c3973287ee8c9bb2c0e76d344
   DATAObjectIDs: 472eae6d8d6b57109b973c837ec3dd5e78016ab6
   DATAStack: de58e278b0487ff5a508d158cc74dd8b5e302389
@@ -40,6 +37,6 @@ SPEC CHECKSUMS:
   NSObject-HYPTesting: fadde70c75061b731b313c390e20777aed0a914d
   NSString-HYPNetworking: f95766d4dc5693b45a0331ab8cf3a0b998f38cd7
   Sync: 307e990a240926e37a9fb8347aa703a0a82be9f7
-  Wall: e0110824c4a8dfee6aee206700d4d2b48cb657a9
+  Wall: 6c9de5f60cddc990f440060868349c9f5b47124c
 
-COCOAPODS: 0.36.3
+COCOAPODS: 0.37.1

@@ -1,12 +1,36 @@
 import UIKit
 
-public class WallController: UITableViewController {
+public class WallController: UIViewController {
+
+  public lazy var collectionView: UICollectionView = { [unowned self] in
+    var frame = self.view.bounds
+    frame.origin.y += 20
+
+    var collectionView = UICollectionView(frame: frame, collectionViewLayout: self.flowLayout)
+    collectionView.delegate = self
+    collectionView.dataSource = self.dataSource
+    collectionView.bounces = true
+    collectionView.alwaysBounceVertical = true
+    collectionView.autoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth
+    collectionView.backgroundColor = .lightTextColor()
+
+    collectionView.registerClass(PostViewCell.self,
+      forCellWithReuseIdentifier: WallDataSource.Constants.cellIdentifier)
+
+    return collectionView
+    }()
+
+  public lazy var flowLayout: UICollectionViewFlowLayout = {
+    var layout = UICollectionViewFlowLayout()
+    layout.sectionInset = UIEdgeInsetsMake(2.0, 2.0, 2.0, 2.0)
+    return layout
+    }()
 
   public var posts: [AnyObject] = [] {
     willSet {
       dataSource.data = newValue
-      dispatch_async(dispatch_get_main_queue(), { () -> Void in
-        self.tableView.reloadData()
+      dispatch_async(dispatch_get_main_queue(), { _ in
+        self.collectionView.reloadData()
       })
     }
   }
@@ -15,43 +39,24 @@ public class WallController: UITableViewController {
     return WallDataSource()
     }()
 
-  lazy var delegate: WallDelegate = {
-    return WallDelegate()
-    }()
-
-  public required init!(coder aDecoder: NSCoder!) {
-    super.init(coder: aDecoder)
-  }
-
-  override init!(nibName nibNameOrNil: String!,
-    bundle nibBundleOrNil: NSBundle!) {
-      super.init(nibName:
-        nibNameOrNil, bundle:
-        nibBundleOrNil)
-  }
-
   public  override func viewDidLoad() {
     super.viewDidLoad()
 
-    tableView.dataSource = dataSource
-    tableView.delegate = delegate
-  }
+    view.backgroundColor = .lightGrayColor()
 
+    view.addSubview(self.collectionView)
+  }
 }
 
-extension UITableViewController {
+extension WallController: UICollectionViewDelegate {
 
-  public override func viewDidLoad() {
-    super.viewDidLoad()
+  public func collectionView(collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
 
-    view.backgroundColor = UIColor(red:0.839,
-      green:0.859,
-      blue:0.902,
-      alpha: 1)
+      let width:CGFloat = view.bounds.size.width * 0.98
+      let height:CGFloat = 150.0
 
-    tableView.registerClass(UITableViewCell.classForCoder(),
-      forCellReuseIdentifier: "Post")
-    tableView.separatorStyle = .None
+      return CGSizeMake(width, height)
   }
-
 }

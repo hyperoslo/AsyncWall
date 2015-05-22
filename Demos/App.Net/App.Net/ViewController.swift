@@ -1,6 +1,5 @@
 import UIKit
 import Wall
-import DATAStack
 
 class ViewController: WallController {
 
