@@ -27,6 +27,6 @@ extension WallDataSource: ASCollectionViewDataSource {
       title = rowTitle
     }
 
-    return PostCellNode(title: title, width: collectionView.frame.width, row: indexPath.item)
+    return PostCellNode(title: title, width: collectionView.frame.width)
   }
 }

@@ -39,7 +39,6 @@ public class WallController: UIViewController {
   public  override func viewDidLoad() {
     super.viewDidLoad()
 
-    view.backgroundColor = .lightGrayColor()
     view.addSubview(self.collectionView)
   }
 
