@@ -20,9 +20,7 @@ public class WallController: UIViewController {
     }()
 
   public lazy var flowLayout: UICollectionViewFlowLayout = {
-    var layout = UICollectionViewFlowLayout()
-    layout.sectionInset = UIEdgeInsetsMake(2.0, 2.0, 2.0, 2.0)
-    return layout
+    return UICollectionViewFlowLayout()
     }()
 
   public var posts: [AnyObject] = [] {
