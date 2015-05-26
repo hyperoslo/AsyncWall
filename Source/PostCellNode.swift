@@ -11,23 +11,22 @@ class PostCellNode: ASCellNode {
 
   var width: CGFloat
   var contentWidth: CGFloat
-  var imageSize: CGSize
 
-  var titleNode: ASTextNode
-  var divider: ASDisplayNode
+  lazy var titleNode: ASTextNode = {
+    return ASTextNode()
+  }()
+
+  lazy var divider: ASDisplayNode = {
+    return ASDisplayNode()
+  }()
 
   init(title: String, width: CGFloat, row: Int) {
     self.row = row
-
     self.width = width
     contentWidth = width - 2.0 * Dimensions.padding
 
-    divider = ASDisplayNode()
-
     super.init()
 
-    // Title
-    titleNode = ASTextNode()
     let titleAttributes = [
       NSFontAttributeName: UIFont.systemFontOfSize(14),
       NSForegroundColorAttributeName: UIColor.lightGrayColor()
@@ -35,7 +34,6 @@ class PostCellNode: ASCellNode {
     titleNode.attributedString = NSAttributedString(string: title, attributes: titleAttributes)
     addSubnode(titleNode)
 
-    // Divider
     divider.backgroundColor = UIColor.lightTextColor()
     addSubnode(divider)
   }
