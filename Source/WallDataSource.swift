@@ -22,11 +22,12 @@ extension WallDataSource: ASCollectionViewDataSource {
   }
 
   public func collectionView(collectionView: ASCollectionView!, nodeForItemAtIndexPath indexPath: NSIndexPath!) -> ASCellNode! {
-    var title = ""
+    var cell: ASCellNode?
+
     if let rowTitle = data[indexPath.row]["title"] as? String {
-      title = rowTitle
+      cell = PostCellNode(title: rowTitle, width: collectionView.frame.width)
     }
 
-    return PostCellNode(title: title, width: collectionView.frame.width)
+    return cell
   }
 }
