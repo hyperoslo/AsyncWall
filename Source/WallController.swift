@@ -14,7 +14,7 @@ public class WallController: UIViewController {
     frame.origin.y += 20
 
     let collectionView = ASCollectionView(frame: CGRectZero,
-      collectionViewLayout: self.flowLayout, asyncDataFetching: false)
+      collectionViewLayout: self.flowLayout, asyncDataFetching: true)
     collectionView.alwaysBounceVertical = true
     collectionView.autoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth
     collectionView.backgroundColor = .whiteColor()
@@ -57,28 +57,17 @@ public class WallController: UIViewController {
   }
 }
 
-extension WallController {
-  public func scrollViewDidScroll(scrollView: UIScrollView) {
-    if delegate != nil && scrollingState != .Loading {
-      let contentHeight = scrollView.contentSize.height
-      let offsetTreshold = contentHeight - scrollView.bounds.size.height
-
-      if scrollView.contentOffset.y > offsetTreshold && scrollingState == .Stopped {
-        println("loading...")
-        scrollingState = .Loading
-        if let delegate = self.delegate,
-          delegateMethod = delegate.wallDidScrollToEnd {
-            delegateMethod() {
-              self.scrollingState = .Stopped
-            }
-        }
-      } else if scrollView.contentOffset.y < offsetTreshold && scrollingState != .Stopped {
-        println("stopped")
-        scrollingState = .Stopped
-      }
-    }
-  }
-}
-
 extension WallController: ASCollectionViewDelegate {
+
+  public func collectionView(collectionView: ASCollectionView!,
+    willBeginBatchFetchWithContext context: ASBatchContext!) {
+      scrollingState = .Loading
+      if let delegate = delegate,
+        delegateMethod = delegate.wallDidScrollToEnd {
+          delegateMethod() {
+            context.completeBatchFetching(true)
+            self.scrollingState = .Stopped
+          }
+      }
+  }
 }
