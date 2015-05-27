@@ -7,7 +7,13 @@
 
 ## Usage
 
-**Coming soon**
+### Working with Post's
+
+```swift
+let post = Post(author: user, date: NSDate(), text: "Hello World!")
+
+let postWithAttachments = Post(author: user, date: NSDate(), text: "Hello World!", [Attachment, Attachment])
+```
 
 ## Installation
 
