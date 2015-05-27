@@ -1,4 +1,4 @@
-![Wall logo](https://raw.githubusercontent.com/hyperoslo/Wall/feature/readme/Images/logo.png)
+![Wall logo](https://raw.githubusercontent.com/hyperoslo/Wall/master/Images/logo.png)
 
 [![CI Status](http://img.shields.io/travis/hyperoslo/Wall.svg?style=flat)](https://travis-ci.org/hyperoslo/Wall)
 [![Version](https://img.shields.io/cocoapods/v/Wall.svg?style=flat)](http://cocoadocs.org/docsets/Wall)
