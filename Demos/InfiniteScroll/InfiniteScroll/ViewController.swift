@@ -1,7 +1,7 @@
 import UIKit
 import Wall
 
-class ViewController: WallController {
+class ViewController: WallController, WallDelegate {
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -11,6 +11,7 @@ class ViewController: WallController {
     self.collectionView.reloadDataWithCompletion { () -> Void in
       self.posts = self.generatePosts(1, to: 20)
     }
+    self.delegate = self
   }
 
   func generatePosts(from: Int, to: Int) -> [AnyObject] {
@@ -20,4 +21,9 @@ class ViewController: WallController {
     }
     return posts
   }
+
+  func wallDidScrollToEnd() {
+    println("didScrollToEnd")
+  }
+
 }
