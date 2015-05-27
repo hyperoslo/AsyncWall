@@ -19,6 +19,8 @@ public class WallController: UIViewController {
     return collectionView
     }()
 
+  public var delegate: WallDelegate?
+
   public lazy var flowLayout: UICollectionViewFlowLayout = {
     return UICollectionViewFlowLayout()
     }()
