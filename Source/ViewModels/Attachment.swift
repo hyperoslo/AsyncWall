@@ -7,10 +7,10 @@ public struct Attachment {
   }
 
   public var type: Type
-  public var src: NSURL
+  public var source: NSURL
 
-  public init(type: Type, src: NSURL) {
+  public init(type: Type, source: NSURL) {
     self.type = type
-    self.src = src
+    self.source = source
   }
 }
