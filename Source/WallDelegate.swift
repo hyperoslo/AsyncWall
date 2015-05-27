@@ -2,6 +2,6 @@ import UIKit
 
 @objc public protocol WallDelegate {
 
-  optional func wallDidScrollToEnd()
+  optional func wallDidScrollToEnd(completion: () -> Void)
 
 }

@@ -3,12 +3,18 @@ import AsyncDisplayKit
 
 public class WallController: UIViewController {
 
+  private enum InfiniteScrolling {
+    case Triggered, Loading, Stopped
+  }
+
+  private var scrollingState: InfiniteScrolling = .Stopped
+
   public lazy var collectionView: ASCollectionView = { [unowned self] in
     var frame = self.view.bounds
     frame.origin.y += 20
 
     let collectionView = ASCollectionView(frame: CGRectZero,
-      collectionViewLayout: self.flowLayout, asyncDataFetching: true)
+      collectionViewLayout: self.flowLayout, asyncDataFetching: false)
     collectionView.alwaysBounceVertical = true
     collectionView.autoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth
     collectionView.backgroundColor = .whiteColor()
@@ -52,14 +58,26 @@ public class WallController: UIViewController {
 }
 
 extension WallController {
-    public func scrollViewDidScroll(scrollView: UIScrollView) {
-        let contentHeight = scrollView.contentSize.height
-        let offsetTreshold = contentHeight - scrollView.bounds.size.height
+  public func scrollViewDidScroll(scrollView: UIScrollView) {
+    if delegate != nil && scrollingState != .Loading {
+      let contentHeight = scrollView.contentSize.height
+      let offsetTreshold = contentHeight - scrollView.bounds.size.height
 
-        if scrollView.contentOffset.y > offsetTreshold {
-            delegate?.wallDidScrollToEnd?()
+      if scrollView.contentOffset.y > offsetTreshold && scrollingState == .Stopped {
+        println("loading...")
+        scrollingState = .Loading
+        if let delegate = self.delegate,
+          delegateMethod = delegate.wallDidScrollToEnd {
+            delegateMethod() {
+              self.scrollingState = .Stopped
+            }
         }
+      } else if scrollView.contentOffset.y < offsetTreshold && scrollingState != .Stopped {
+        println("stopped")
+        scrollingState = .Stopped
+      }
     }
+  }
 }
 
 extension WallController: ASCollectionViewDelegate {
