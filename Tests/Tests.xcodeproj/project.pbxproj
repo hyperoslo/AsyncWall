@@ -13,6 +13,7 @@
 		BD8E43DD1AEC2B7700BC0631 /* WallTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8E43DC1AEC2B7700BC0631 /* WallTests.swift */; };
 		BD8E43E51AEC2B8200BC0631 /* WallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8E43E21AEC2B8200BC0631 /* WallController.swift */; };
 		BD8E43E61AEC2B8200BC0631 /* WallDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8E43E31AEC2B8200BC0631 /* WallDataSource.swift */; };
+		BDC3958A1B15ACCD008A609D /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = BDC395891B15ACCD008A609D /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		BD8E43DC1AEC2B7700BC0631 /* WallTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallTests.swift; sourceTree = "<group>"; };
 		BD8E43E21AEC2B8200BC0631 /* WallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallController.swift; sourceTree = "<group>"; };
 		BD8E43E31AEC2B8200BC0631 /* WallDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallDataSource.swift; sourceTree = "<group>"; };
+		BDC395891B15ACCD008A609D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F2EED1A0EBE4A097B1FDD549 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,6 +62,7 @@
 		BD8E43CC1AEC2B5700BC0631 = {
 			isa = PBXGroup;
 			children = (
+				BDC395891B15ACCD008A609D /* README.md */,
 				BD63CE0D1AEC2C4A0052E95E /* Wall.podspec */,
 				BD8E43E11AEC2B8200BC0631 /* Source */,
 				BD8E43D91AEC2B7700BC0631 /* WallTests */,
@@ -226,6 +229,7 @@
 			files = (
 				BD8E43DD1AEC2B7700BC0631 /* WallTests.swift in Sources */,
 				BD8E43E51AEC2B8200BC0631 /* WallController.swift in Sources */,
+				BDC3958A1B15ACCD008A609D /* README.md in Sources */,
 				BD8E43E61AEC2B8200BC0631 /* WallDataSource.swift in Sources */,
 				BD3236AC1B0FD5A700ADDFB0 /* PostCellNode.swift in Sources */,
 			);
