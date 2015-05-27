@@ -14,6 +14,7 @@
 		BD8E43E51AEC2B8200BC0631 /* WallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8E43E21AEC2B8200BC0631 /* WallController.swift */; };
 		BD8E43E61AEC2B8200BC0631 /* WallDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8E43E31AEC2B8200BC0631 /* WallDataSource.swift */; };
 		BDC3958A1B15ACCD008A609D /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = BDC395891B15ACCD008A609D /* README.md */; };
+		BDF240F41B16379900D571F6 /* AttachmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF240F31B16379900D571F6 /* AttachmentTests.swift */; };
 		D54C428D1B15E28F00833D7D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54C428C1B15E28F00833D7D /* Post.swift */; };
 		D54C42911B15E2C700833D7D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54C42901B15E2C700833D7D /* User.swift */; };
 		D54C42931B15E41100833D7D /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54C42921B15E41100833D7D /* Attachment.swift */; };
@@ -30,6 +31,7 @@
 		BD8E43E21AEC2B8200BC0631 /* WallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallController.swift; sourceTree = "<group>"; };
 		BD8E43E31AEC2B8200BC0631 /* WallDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallDataSource.swift; sourceTree = "<group>"; };
 		BDC395891B15ACCD008A609D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		BDF240F31B16379900D571F6 /* AttachmentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentTests.swift; sourceTree = "<group>"; };
 		D54C428C1B15E28F00833D7D /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D54C42901B15E2C700833D7D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D54C42921B15E41100833D7D /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 		BD8E43D91AEC2B7700BC0631 /* WallTests */ = {
 			isa = PBXGroup;
 			children = (
+				BDF240F21B16378C00D571F6 /* ViewModels */,
 				BD8E43DC1AEC2B7700BC0631 /* WallTests.swift */,
 				BD8E43DA1AEC2B7700BC0631 /* Supporting Files */,
 			);
@@ -115,6 +118,14 @@
 			);
 			name = Source;
 			path = ../Source;
+			sourceTree = "<group>";
+		};
+		BDF240F21B16378C00D571F6 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				BDF240F31B16379900D571F6 /* AttachmentTests.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		D54C428B1B15E28600833D7D /* ViewModels */ = {
@@ -251,6 +262,7 @@
 				BDC3958A1B15ACCD008A609D /* README.md in Sources */,
 				BD8E43E61AEC2B8200BC0631 /* WallDataSource.swift in Sources */,
 				BD3236AC1B0FD5A700ADDFB0 /* PostCellNode.swift in Sources */,
+				BDF240F41B16379900D571F6 /* AttachmentTests.swift in Sources */,
 				D54C42911B15E2C700833D7D /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
