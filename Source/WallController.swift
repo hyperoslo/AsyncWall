@@ -3,7 +3,7 @@ import AsyncDisplayKit
 
 public class WallController: UIViewController {
 
-  public lazy var collectionView: UICollectionView = { [unowned self] in
+  public lazy var collectionView: ASCollectionView = { [unowned self] in
     var frame = self.view.bounds
     frame.origin.y += 20
 
