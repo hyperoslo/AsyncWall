@@ -3,7 +3,7 @@ import XCTest
 
 class AttachmentTests: XCTestCase {
 
-  func testURLConvertable() {
+  func testAttachmentCreation() {
     let source = "https://github.com/hyperoslo/Wall/blob/master/Images/logo-v2.png"
     let attachment = Attachment(source, .Image)
 

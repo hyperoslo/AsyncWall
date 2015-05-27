@@ -3,7 +3,7 @@ import XCTest
 
 class UserTests: XCTestCase {
 
-  func testURLConvertable() {
+  func testUserCreation() {
     let url = "https://avatars2.githubusercontent.com/u/1340892?v=3&s=200"
     let name = "John Hyperseed"
     let user = User(name: name, avatar: url)
