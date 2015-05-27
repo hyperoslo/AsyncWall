@@ -7,7 +7,7 @@
 
 ## Usage
 
-** Coming soon **
+**Coming soon**
 
 ## Installation
 
