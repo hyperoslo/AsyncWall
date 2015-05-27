@@ -7,7 +7,12 @@
 
 ## Usage
 
-**Coming soon**
+### Working with Attachment's
+
+```swift
+let url = "https://github.com/hyperoslo/Wall/blob/master/Images/logo-v2.png"
+let attachment = Attachment(url, .Image)
+```
 
 ## Installation
 
