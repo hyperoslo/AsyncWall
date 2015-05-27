@@ -14,6 +14,12 @@ let url = "https://github.com/hyperoslo/Wall/blob/master/Images/logo-v2.png"
 let attachment = Attachment(url, .Image)
 ```
 
+### Working with User's
+```swift
+let url = "https://avatars2.githubusercontent.com/u/1340892?v=3&s=200"
+let user = User(name: "John Hyperseed", avatar: url)
+```
+
 ## Installation
 
 **Wall** is available through [CocoaPods](http://cocoapods.org). To install
