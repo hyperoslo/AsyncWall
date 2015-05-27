@@ -1,4 +1,5 @@
 import UIKit
+import AsyncDisplayKit
 
 public class WallController: UIViewController {
 
@@ -6,24 +7,20 @@ public class WallController: UIViewController {
     var frame = self.view.bounds
     frame.origin.y += 20
 
-    let collectionView = UICollectionView(frame: frame, collectionViewLayout: self.flowLayout)
+    let collectionView = ASCollectionView(frame: CGRectZero,
+      collectionViewLayout: self.flowLayout, asyncDataFetching: true)
     collectionView.alwaysBounceVertical = true
     collectionView.autoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth
-    collectionView.backgroundColor = .lightTextColor()
+    collectionView.backgroundColor = .whiteColor()
     collectionView.bounces = true
-    collectionView.dataSource = self.dataSource
-    collectionView.delegate = self
-
-    collectionView.registerClass(PostViewCell.self,
-      forCellWithReuseIdentifier: WallDataSource.Constants.cellIdentifier)
+    collectionView.asyncDataSource = self.dataSource
+    collectionView.asyncDelegate = self
 
     return collectionView
     }()
 
   public lazy var flowLayout: UICollectionViewFlowLayout = {
-    var layout = UICollectionViewFlowLayout()
-    layout.sectionInset = UIEdgeInsetsMake(2.0, 2.0, 2.0, 2.0)
-    return layout
+    return UICollectionViewFlowLayout()
     }()
 
   public var posts: [AnyObject] = [] {
@@ -42,20 +39,15 @@ public class WallController: UIViewController {
   public  override func viewDidLoad() {
     super.viewDidLoad()
 
-    view.backgroundColor = .lightGrayColor()
     view.addSubview(self.collectionView)
+  }
+
+  public override func viewWillLayoutSubviews() {
+    super.viewWillLayoutSubviews()
+
+    collectionView.frame = view.bounds
   }
 }
 
-extension WallController: UICollectionViewDelegate {
-
-  public func collectionView(collectionView: UICollectionView,
-    layout collectionViewLayout: UICollectionViewLayout,
-    sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-
-      let width: CGFloat = view.bounds.size.width * 0.98
-      let height: CGFloat = 150.0
-
-      return CGSizeMake(width, height)
-  }
+extension WallController: ASCollectionViewDelegate {
 }

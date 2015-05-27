@@ -22,5 +22,7 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Source/*'
 
+  s.dependency 'AsyncDisplayKit', '~> 1.2'
+
   s.frameworks = 'Foundation'
 end

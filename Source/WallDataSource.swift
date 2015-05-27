@@ -1,4 +1,5 @@
 import UIKit
+import AsyncDisplayKit
 
 public class WallDataSource: NSObject {
 
@@ -10,24 +11,23 @@ public class WallDataSource: NSObject {
 }
 
 
-extension WallDataSource: UICollectionViewDataSource {
+extension WallDataSource: ASCollectionViewDataSource {
+
   public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return data.count
   }
 
-  public func collectionView(collectionView: UICollectionView,
-    cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-      let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Constants.cellIdentifier,
-        forIndexPath: indexPath) as! PostViewCell
-
-      if let title = data[indexPath.row]["title"] as? String {
-        cell.setTitle(title)
-      }
-
-      return cell
-  }
-
   public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
     return 1
+  }
+
+  public func collectionView(collectionView: ASCollectionView!, nodeForItemAtIndexPath indexPath: NSIndexPath!) -> ASCellNode! {
+    var cell: ASCellNode?
+
+    if let rowTitle = data[indexPath.row]["title"] as? String {
+      cell = PostCellNode(title: rowTitle, width: collectionView.frame.width)
+    }
+
+    return cell
   }
 }
