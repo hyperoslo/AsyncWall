@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Post {
+public class Post {
 
   var author: User
   var publishedAt: NSDate
