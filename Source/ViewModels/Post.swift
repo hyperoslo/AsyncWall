@@ -11,7 +11,7 @@ public class Post {
   var parent: Post?
   var comments = [Post]()
 
-  public init(author: User, publishedAt: NSDate, text: String) {
+  public init(author: User, publishedAt: NSDate, text: String, _ attachments: [Attachment]? = []) {
     self.author = author
     self.publishedAt = publishedAt
     self.text = text
