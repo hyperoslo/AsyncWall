@@ -51,5 +51,16 @@ public class WallController: UIViewController {
   }
 }
 
+extension WallController {
+    public func scrollViewDidScroll(scrollView: UIScrollView) {
+        let contentHeight = scrollView.contentSize.height
+        let offsetTreshold = contentHeight - scrollView.bounds.size.height
+
+        if scrollView.contentOffset.y > offsetTreshold {
+            delegate?.wallDidScrollToEnd?()
+        }
+    }
+}
+
 extension WallController: ASCollectionViewDelegate {
 }
