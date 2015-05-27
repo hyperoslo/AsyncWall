@@ -3,10 +3,10 @@ import Foundation
 public struct User {
 
   public var name: String
-  public var avatarURL: NSURL?
+  public var avatar: URLStringConvertible?
 
-  public init(name: String, avatarURL: NSURL? = nil) {
+  public init(name: String, avatar: URLStringConvertible? = nil) {
     self.name = name
-    self.avatarURL = avatarURL
+    self.avatar = avatar
   }
 }
