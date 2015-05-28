@@ -12,11 +12,11 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   Wall:
-    :path: "../../"
+    :path: ../../
 
 SPEC CHECKSUMS:
   AsyncDisplayKit: 32d5b9112b8c1b6644b54429e0cda4fbf6563781
   DateTools: b93a2c2017747329c6077c7d7e8a75106e23d0d7
   Wall: 25c65ceaeb5c2a36a0d645800b83fdf2423cf3cf
 
-COCOAPODS: 0.37.1
+COCOAPODS: 0.37.2
