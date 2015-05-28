@@ -10,11 +10,12 @@ class ViewController: WallController {
 
     Networking.fetchPosts { (json, error) -> Void in
       if (json != nil && error == nil) {
-        var posts: [AnyObject] = []
+        var posts = [Post]()
 
         for post in json! as Array {
           if let text = post["text"] as? String {
-            posts.append(["title": text])
+            let post = Post(text: text, date: NSDate())
+            posts.append(post)
           }
         }
 
