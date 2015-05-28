@@ -8,6 +8,8 @@ class ViewController: WallController, WallDelegate {
 
     title = "Infinite Scroll"
 
+    Config.Wall.TextAttributes.postText[NSForegroundColorAttributeName] = UIColor.orangeColor()
+
     self.delegate = self
     let delayTime = dispatch_time(DISPATCH_TIME_NOW,
       Int64(1 * Double(NSEC_PER_SEC)))
@@ -39,5 +41,4 @@ class ViewController: WallController, WallDelegate {
       completion()
     }
   }
-
 }
