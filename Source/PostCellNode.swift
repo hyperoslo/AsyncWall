@@ -4,14 +4,13 @@ import AsyncDisplayKit
 class PostCellNode: ASCellNode {
 
   struct Dimensions {
-    static let padding: CGFloat = 10
     static let dividerHeight: CGFloat = 1
   }
 
   let width: CGFloat
 
   var contentWidth: CGFloat {
-    return width - 2.0 * Dimensions.padding
+    return width - 2.0 * Config.Wall.padding
   }
 
   lazy var titleNode: ASTextNode = {
@@ -27,12 +26,8 @@ class PostCellNode: ASCellNode {
 
     super.init()
 
-    let titleAttributes = [
-      NSFontAttributeName: UIFont.systemFontOfSize(14),
-      NSForegroundColorAttributeName: UIColor.blackColor()
-    ]
     titleNode.attributedString = NSAttributedString(string: title,
-      attributes: titleAttributes)
+      attributes: Config.Wall.TextAttributes.postText)
     addSubnode(titleNode)
 
     divider.backgroundColor = .lightGrayColor()
@@ -40,26 +35,27 @@ class PostCellNode: ASCellNode {
   }
 
   override func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
-    var height = Dimensions.padding * 2
+    var height = Config.Wall.padding * 2
 
     let titleSize = titleNode.measure(CGSize(width: contentWidth,
       height: CGFloat(FLT_MAX)))
-    height += titleSize.height + Dimensions.padding + Dimensions.dividerHeight
+    height += titleSize.height + Config.Wall.padding + Dimensions.dividerHeight
 
     return CGSizeMake(width, height)
   }
 
   override func layout() {
-    var y = Dimensions.padding
+    let padding = Config.Wall.padding
+    var y = padding
 
     let titleSize = titleNode.calculatedSize
     titleNode.frame = CGRect(
-      origin: CGPoint(x: Dimensions.padding, y: y),
+      origin: CGPoint(x: padding, y: y),
       size: titleSize)
 
-    y += titleSize.height + Dimensions.padding
+    y += titleSize.height + padding
 
-    divider.frame = CGRect(x: Dimensions.padding, y: y,
+    divider.frame = CGRect(x: padding, y: y,
       width: contentWidth, height: Dimensions.dividerHeight)
   }
 }
