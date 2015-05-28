@@ -30,8 +30,10 @@ class PostCellNode: ASCellNode {
       attributes: Config.Wall.TextAttributes.postText)
     addSubnode(titleNode)
 
-    divider.backgroundColor = .lightGrayColor()
-    addSubnode(divider)
+    if Config.Wall.useDivider {
+      divider.backgroundColor = .lightGrayColor()
+      addSubnode(divider)
+    }
   }
 
   override func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
@@ -39,7 +41,11 @@ class PostCellNode: ASCellNode {
 
     let titleSize = titleNode.measure(CGSize(width: contentWidth,
       height: CGFloat(FLT_MAX)))
-    height += titleSize.height + Config.Wall.padding + Dimensions.dividerHeight
+    height += titleSize.height + Config.Wall.padding
+
+    if Config.Wall.useDivider {
+      height += Dimensions.dividerHeight
+    }
 
     return CGSizeMake(width, height)
   }
@@ -55,7 +61,9 @@ class PostCellNode: ASCellNode {
 
     y += titleSize.height + padding
 
-    divider.frame = CGRect(x: padding, y: y,
-      width: contentWidth, height: Dimensions.dividerHeight)
+    if Config.Wall.useDivider {
+      divider.frame = CGRect(x: padding, y: y,
+        width: contentWidth, height: Dimensions.dividerHeight)
+    }
   }
 }

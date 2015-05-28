@@ -5,6 +5,7 @@ public struct Config {
 
   public struct Wall {
 
+    public static var useDivider = true
     public static var padding: CGFloat = 10
     public static var authorImageSize = 64
 
