@@ -3,19 +3,18 @@ import AsyncDisplayKit
 
 public class PostCellNode: ASCellNode {
 
+  let width: CGFloat
+  var textNode: ASTextNode?
+  var divider: ASDisplayNode?
+  var delegate: AnyObject?
+
   struct Dimensions {
     static let dividerHeight: CGFloat = 1
   }
 
-  let width: CGFloat
-
   var contentWidth: CGFloat {
     return width - 2 * Config.Wall.padding
   }
-
-  var textNode: ASTextNode?
-
-  var divider: ASDisplayNode?
 
   public init(post: Post, width: CGFloat) {
     self.width = width
