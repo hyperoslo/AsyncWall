@@ -14,6 +14,4 @@ extension String: URLStringConvertible {
   public var string: String {
     return self
   }
-
-
 }
