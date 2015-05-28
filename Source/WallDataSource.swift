@@ -7,7 +7,7 @@ public class WallDataSource: NSObject, ASCollectionViewDataSource {
     static let cellIdentifier = "PostCell"
   }
 
-  lazy public var data = { return [] }()
+  lazy public var data = { return [Post]() }()
 }
 
 
@@ -22,12 +22,6 @@ extension WallDataSource: ASCollectionViewDataSource {
   }
 
   public func collectionView(collectionView: ASCollectionView!, nodeForItemAtIndexPath indexPath: NSIndexPath!) -> ASCellNode! {
-    var cell: ASCellNode?
-
-    if let rowTitle = data[indexPath.row]["title"] as? String {
-      cell = PostCellNode(title: rowTitle, width: collectionView.frame.width)
-    }
-
-    return cell
+    return PostCellNode(post: data[indexPath.row], width: collectionView.frame.width)
   }
 }
