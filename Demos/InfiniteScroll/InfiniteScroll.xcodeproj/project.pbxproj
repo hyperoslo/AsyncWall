@@ -11,6 +11,7 @@
 		BDF2410B1B16439D00D571F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF2410A1B16439D00D571F6 /* ViewController.swift */; };
 		BDF241101B16439D00D571F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDF2410F1B16439D00D571F6 /* Images.xcassets */; };
 		BDF241291B1643E000D571F6 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = BDF241281B1643E000D571F6 /* Podfile */; };
+		D5B7714C1B170310008CC3B3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B7714B1B170310008CC3B3 /* LaunchScreen.xib */; };
 		F19271B1F44F9A001FE0B74C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A589AF8E62EC4E167702DFC /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -24,6 +25,7 @@
 		BDF2410F1B16439D00D571F6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		BDF241281B1643E000D571F6 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
 		C9CA9B2940F1605E016CD681 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		D5B7714B1B170310008CC3B3 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 		BDF241061B16439D00D571F6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D5B7714B1B170310008CC3B3 /* LaunchScreen.xib */,
 				BDF241071B16439D00D571F6 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -156,6 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDF241291B1643E000D571F6 /* Podfile in Resources */,
+				D5B7714C1B170310008CC3B3 /* LaunchScreen.xib in Resources */,
 				BDF241101B16439D00D571F6 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
