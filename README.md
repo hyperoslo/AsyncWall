@@ -9,6 +9,13 @@
 
 ### View Models
 
+#### Post
+
+```swift
+let post = Post(author: user, date: NSDate(), text: "Hello World!")
+
+let postWithAttachments = Post(author: user, date: NSDate(), text: "Hello World!", [Attachment, Attachment])
+
 #### Attachment
 ```swift
 let url = "https://github.com/hyperoslo/Wall/blob/master/Images/logo-v2.png"

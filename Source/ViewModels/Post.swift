@@ -3,7 +3,7 @@ import Foundation
 public class Post {
 
   var author: User
-  var publishedAt: NSDate
+  var date: NSDate
   var text: String?
   var attachments: [Attachment]?
   var likes: Int = 0
@@ -11,9 +11,9 @@ public class Post {
   var parent: Post?
   var comments = [Post]()
 
-  public init(author: User, publishedAt: NSDate, text: String, _ attachments: [Attachment]? = []) {
+  public init(author: User, date: NSDate, text: String, _ attachments: [Attachment]? = []) {
     self.author = author
-    self.publishedAt = publishedAt
+    self.date = date
     self.text = text
   }
 }
