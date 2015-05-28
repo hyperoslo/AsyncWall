@@ -8,12 +8,12 @@ import UIKit
 
   // MARK: Touch
 
-  optional func wallPostAuthorWasTapped()
-  optional func wallPostDateWasTapped()
-  optional func wallPostTextWasTapped()
-  optional func wallPostAttachmentWasTapped()
-  optional func wallPostLikesWasTapped()
-  optional func wallPostViewsWasTapped()
-  optional func wallPostCommentsWasTapped()
+  optional func wallPostAuthorWasTapped(sender: AnyObject)
+  optional func wallPostDateWasTapped(sender: AnyObject)
+  optional func wallPostTextWasTapped(sender: AnyObject)
+  optional func wallPostAttachmentWasTapped(sender: AnyObject)
+  optional func wallPostLikesWasTapped(sender: AnyObject)
+  optional func wallPostViewsWasTapped(sender: AnyObject)
+  optional func wallPostCommentsWasTapped(sender: AnyObject)
 
 }

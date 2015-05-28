@@ -25,7 +25,11 @@ public class WallController: UIViewController {
     return collectionView
     }()
 
-  public var delegate: WallDelegate?
+    public var delegate: WallDelegate? {
+        didSet {
+            self.dataSource.delegate = delegate
+        }
+    }
 
   public lazy var flowLayout: UICollectionViewFlowLayout = {
     return UICollectionViewFlowLayout()

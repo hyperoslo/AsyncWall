@@ -26,6 +26,11 @@ public class PostCellNode: ASCellNode {
       textNode = ASTextNode()
       textNode!.attributedString = NSAttributedString(string: text,
         attributes: Config.Wall.TextAttributes.postText)
+      textNode!.userInteractionEnabled = true
+      textNode!.addTarget(delegate,
+        action: "textTapped:",
+        forControlEvents: ASControlNodeEvent.TouchUpInside)
+
       addSubnode(textNode)
     }
 

@@ -27,6 +27,10 @@ class ViewController: WallController, WallDelegate {
     return posts
   }
 
+  func wallPostTextWasTapped(sender: AnyObject) {
+    println("textWasTapped: \(sender)")
+  }
+
   func wallDidScrollToEnd(completion: () -> Void) {
     var newPosts = generatePosts(0, to: 20)
     var updatedPosts = self.posts
