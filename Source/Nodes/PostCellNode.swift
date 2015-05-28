@@ -16,8 +16,9 @@ public class PostCellNode: ASCellNode {
     return width - 2 * Config.Wall.padding
   }
 
-  public init(post: Post, width: CGFloat) {
+  public init(post: Post, width: CGFloat, _ delegate: AnyObject? = nil) {
     self.width = width
+    self.delegate = delegate
 
     super.init()
 
