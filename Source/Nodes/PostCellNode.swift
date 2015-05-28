@@ -1,7 +1,7 @@
 import UIKit
 import AsyncDisplayKit
 
-class PostCellNode: ASCellNode {
+public class PostCellNode: ASCellNode {
 
   struct Dimensions {
     static let dividerHeight: CGFloat = 1
@@ -13,35 +13,37 @@ class PostCellNode: ASCellNode {
     return width - 2 * Config.Wall.padding
   }
 
-  lazy var titleNode: ASTextNode = {
-    return ASTextNode()
-    }()
+  var textNode: ASTextNode?
 
-  lazy var divider: ASDisplayNode = {
-    return ASDisplayNode()
-    }()
+  var divider: ASDisplayNode?
 
-  init(title: String, width: CGFloat) {
+  public init(post: Post, width: CGFloat) {
     self.width = width
 
     super.init()
 
-    titleNode.attributedString = NSAttributedString(string: title,
-      attributes: Config.Wall.TextAttributes.postText)
-    addSubnode(titleNode)
+    if let text = post.text {
+      textNode = ASTextNode()
+      textNode!.attributedString = NSAttributedString(string: text,
+        attributes: Config.Wall.TextAttributes.postText)
+      addSubnode(textNode)
+    }
 
     if Config.Wall.useDivider {
-      divider.backgroundColor = .lightGrayColor()
+      divider = ASDisplayNode()
+      divider!.backgroundColor = .lightGrayColor()
       addSubnode(divider)
     }
   }
 
-  override func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
+  override public func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
     var height = Config.Wall.padding * 2
 
-    let titleSize = titleNode.measure(CGSize(width: contentWidth,
-      height: CGFloat(FLT_MAX)))
-    height += titleSize.height + Config.Wall.padding
+    if let textNode = textNode {
+      let textSize = textNode.measure(CGSize(width: contentWidth,
+        height: CGFloat(FLT_MAX)))
+      height += textSize.height + Config.Wall.padding
+    }
 
     if Config.Wall.useDivider {
       height += Dimensions.dividerHeight
@@ -50,18 +52,20 @@ class PostCellNode: ASCellNode {
     return CGSizeMake(width, height)
   }
 
-  override func layout() {
+  override public func layout() {
     let padding = Config.Wall.padding
     var y = padding
 
-    let titleSize = titleNode.calculatedSize
-    titleNode.frame = CGRect(
-      origin: CGPoint(x: padding, y: y),
-      size: titleSize)
+    if let textNode = textNode {
+      let textSize = textNode.calculatedSize
+      textNode.frame = CGRect(
+        origin: CGPoint(x: padding, y: y),
+        size: textSize)
 
-    y += titleSize.height + padding
+      y += textSize.height + padding
+    }
 
-    if Config.Wall.useDivider {
+    if let divider = divider {
       divider.frame = CGRect(x: padding, y: y,
         width: contentWidth, height: Dimensions.dividerHeight)
     }
