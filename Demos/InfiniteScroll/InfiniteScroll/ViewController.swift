@@ -18,11 +18,11 @@ class ViewController: WallController, WallDelegate {
     }
   }
 
-  func generatePosts(from: Int, to: Int) -> [AnyObject] {
-    var posts: [AnyObject] = []
+  func generatePosts(from: Int, to: Int) -> [Post] {
+    var posts = [Post]()
     var startFrom = self.posts.count
     for i in from...to {
-      posts.append(["title":"Hello world -> \(i+startFrom)"])
+      posts.append(Post(text: "Hello world -> \(i+startFrom)", date: NSDate()))
     }
     return posts
   }
@@ -33,7 +33,6 @@ class ViewController: WallController, WallDelegate {
     updatedPosts.extend(newPosts)
 
     self.posts = updatedPosts
-    println("update")
 
     let delayTime = dispatch_time(DISPATCH_TIME_NOW,
       Int64(1 * Double(NSEC_PER_SEC)))
