@@ -2,7 +2,7 @@ import Foundation
 
 public class Post {
 
-  var author: User
+  var author: User?
   var date: NSDate
   var text: String?
   var attachments: [Attachment]?
@@ -11,9 +11,10 @@ public class Post {
   var parent: Post?
   var comments = [Post]()
 
-  public init(author: User, date: NSDate, text: String, _ attachments: [Attachment]? = []) {
-    self.author = author
-    self.date = date
+  public init(text: String, date: NSDate, _ author: User? = nil, _ attachments: [Attachment]? = []) {
     self.text = text
+    self.date = date
+    self.author = author
+    self.attachments = attachments
   }
 }
