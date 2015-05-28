@@ -10,7 +10,7 @@ class PostCellNode: ASCellNode {
   let width: CGFloat
 
   var contentWidth: CGFloat {
-    return width - 2.0 * Config.Wall.padding
+    return width - 2 * Config.Wall.padding
   }
 
   lazy var titleNode: ASTextNode = {
