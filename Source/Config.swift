@@ -42,8 +42,4 @@ public struct Config {
       ]
     }
   }
-
-  public struct Detail {
-
-  }
 }
