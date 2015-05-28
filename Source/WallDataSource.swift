@@ -22,6 +22,9 @@ extension WallDataSource: ASCollectionViewDataSource {
   }
 
   public func collectionView(collectionView: ASCollectionView!, nodeForItemAtIndexPath indexPath: NSIndexPath!) -> ASCellNode! {
-    return PostCellNode(post: data[indexPath.row], width: collectionView.frame.width)
+    let cellNode = PostCellNode(post: data[indexPath.row],
+        width: collectionView.frame.width)
+
+    return cellNode
   }
 }
