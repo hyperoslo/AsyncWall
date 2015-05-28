@@ -20,9 +20,10 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = "10.10"
   s.requires_arc = true
 
-  s.source_files = 'Source/*'
+  s.source_files = 'Source/**/*'
 
   s.dependency 'AsyncDisplayKit', '~> 1.2'
+  s.dependency 'DateTools', '~> 1.5.0'
 
   s.frameworks = 'Foundation'
 end
