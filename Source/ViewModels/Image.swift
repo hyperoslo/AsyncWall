@@ -2,9 +2,9 @@ import Foundation
 
 public class Image: Attachment {
 
-  public var source: URLStringConvertible
+  public var thumbnail: URLStringConvertible
 
-  public init(_ source: URLStringConvertible) {
-    self.source = source
+  public init(_ thumbnail: URLStringConvertible) {
+    self.thumbnail = thumbnail
   }
 }

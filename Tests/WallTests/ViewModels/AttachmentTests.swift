@@ -5,12 +5,10 @@ class AttachmentTests: XCTestCase {
 
   func testAttachmentCreation() {
     let source = "https://github.com/hyperoslo/Wall/blob/master/Images/logo-v2.png"
-    let attachment = Attachment(source, .Image)
+    let attachment = Image(source)
 
-    XCTAssertEqual(attachment.source.string, source)
-    XCTAssertEqual(attachment.source.url, source.url)
-    XCTAssertEqual(attachment.type, .Image)
-    XCTAssertTrue(attachment.source.url.isKindOfClass(NSURL.classForCoder()))
+    XCTAssertEqual(attachment.thumbnail.string, source)
+    XCTAssertEqual(attachment.thumbnail.url, source.url)
+    XCTAssertTrue(attachment.thumbnail.url.isKindOfClass(NSURL.classForCoder()))
   }
-
 }
