@@ -2,7 +2,11 @@ import UIKit
 
 @objc public protocol WallDelegate {
 
+  // MARK: Scrolling
+
   optional func wallDidScrollToEnd(completion: () -> Void)
+
+  // MARK: Touch
 
   optional func wallPostAuthorWasTapped()
   optional func wallPostDateWasTapped()
