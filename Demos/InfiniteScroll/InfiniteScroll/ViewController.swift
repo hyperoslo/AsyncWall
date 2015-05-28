@@ -40,4 +40,7 @@ class ViewController: WallController, WallDelegate {
       completion()
     }
   }
+
+  func wallPostWasTapped(index: NSIndexPath) {
+  }
 }

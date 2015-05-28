@@ -57,6 +57,15 @@ public class WallController: UIViewController {
   }
 }
 
+extension WallController {
+  public func collectionView(collectionView: UICollectionView!, didDeselectItemAtIndexPath indexPath: NSIndexPath!) {
+    if let delegate = delegate,
+      delegateMethod = delegate.wallPostWasTapped {
+        delegate.wallPostWasTapped?(indexPath)
+    }
+  }
+}
+
 extension WallController: ASCollectionViewDelegate {
 
   public func collectionView(collectionView: ASCollectionView!,
@@ -70,4 +79,5 @@ extension WallController: ASCollectionViewDelegate {
           }
       }
   }
+
 }
