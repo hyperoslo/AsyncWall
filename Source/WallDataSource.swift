@@ -1,7 +1,7 @@
 import UIKit
 import AsyncDisplayKit
 
-public class WallDataSource: NSObject {
+public class WallDataSource: NSObject, ASCollectionViewDataSource {
 
   struct Constants {
     static let cellIdentifier = "PostCell"

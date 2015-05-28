@@ -3,7 +3,13 @@ import AsyncDisplayKit
 
 public class WallController: UIViewController {
 
-  public lazy var collectionView: UICollectionView = { [unowned self] in
+  private enum InfiniteScrolling {
+    case Triggered, Loading, Stopped
+  }
+
+  private var scrollingState: InfiniteScrolling = .Stopped
+
+  public lazy var collectionView: ASCollectionView = { [unowned self] in
     var frame = self.view.bounds
     frame.origin.y += 20
 
@@ -18,6 +24,8 @@ public class WallController: UIViewController {
 
     return collectionView
     }()
+
+  public var delegate: WallDelegate?
 
   public lazy var flowLayout: UICollectionViewFlowLayout = {
     return UICollectionViewFlowLayout()
@@ -50,4 +58,16 @@ public class WallController: UIViewController {
 }
 
 extension WallController: ASCollectionViewDelegate {
+
+  public func collectionView(collectionView: ASCollectionView!,
+    willBeginBatchFetchWithContext context: ASBatchContext!) {
+      scrollingState = .Loading
+      if let delegate = delegate,
+        delegateMethod = delegate.wallDidScrollToEnd {
+          delegateMethod() {
+            context.completeBatchFetching(true)
+            self.scrollingState = .Stopped
+          }
+      }
+  }
 }
