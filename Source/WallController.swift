@@ -31,7 +31,7 @@ public class WallController: UIViewController {
     return UICollectionViewFlowLayout()
     }()
 
-  public var posts: [AnyObject] = [] {
+  public var posts: [Post] = [] {
     willSet {
       dataSource.data = newValue
       dispatch_async(dispatch_get_main_queue(), { _ in
