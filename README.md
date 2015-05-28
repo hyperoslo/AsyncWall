@@ -7,7 +7,26 @@
 
 ## Usage
 
-**Coming soon**
+### View Models
+
+#### Post
+
+```swift
+let post = Post(author: user, date: NSDate(), text: "Hello World!")
+
+let postWithAttachments = Post(author: user, date: NSDate(), text: "Hello World!", [Attachment, Attachment])
+
+#### Attachment
+```swift
+let url = "https://github.com/hyperoslo/Wall/blob/master/Images/logo-v2.png"
+let attachment = Attachment(url, .Image)
+```
+
+#### User
+```swift
+let url = "https://avatars2.githubusercontent.com/u/1340892?v=3&s=200"
+let user = User(name: "John Hyperseed", avatar: url)
+```
 
 ## Installation
 
