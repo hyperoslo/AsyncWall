@@ -5,10 +5,6 @@ public class WallDataSource: NSObject, ASCollectionViewDataSource {
 
   var delegate: AnyObject?
 
-  struct Constants {
-    static let cellIdentifier = "PostCell"
-  }
-
   lazy public var data = { return [Post]() }()
 }
 
