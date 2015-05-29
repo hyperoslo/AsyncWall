@@ -22,7 +22,7 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
     var posts = [Post]()
     var startFrom = self.posts.count
     for i in from...to {
-      posts.append(Post(text: "Hello world -> \(i+startFrom)", date: NSDate()))
+      posts.append(Post(text: "Post -> \(i+startFrom)", date: NSDate()))
     }
     return posts
   }
