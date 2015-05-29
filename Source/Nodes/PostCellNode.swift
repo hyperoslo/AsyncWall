@@ -36,7 +36,6 @@ public class PostCellNode: ASCellNode {
         authorAvatarNode = ASImageNode()
         authorAvatarNode?.backgroundColor = UIColor.grayColor()
         addSubnode(authorAvatarNode)
-        authorAvatarNode?.fetchImage(Config.)
       }
     }
 
