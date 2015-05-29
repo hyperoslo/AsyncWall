@@ -12,9 +12,8 @@ public class WallDataSource: NSObject, ASCollectionViewDataSource {
   lazy public var data = { return [Post]() }()
 
   func textTapped(sender: AnyObject) {
-    if let delegate = delegate as? WallTapDelegate,
-      delegateMethod = delegate.wallPostTextWasTapped {
-        delegateMethod(sender)
+    if let delegate = delegate as? WallTapDelegate {
+        delegate.wallPostWasTapped(.Text, sender: sender)
     }
   }
 }
