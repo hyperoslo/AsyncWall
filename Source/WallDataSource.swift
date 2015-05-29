@@ -3,7 +3,7 @@ import AsyncDisplayKit
 
 public class WallDataSource: NSObject, ASCollectionViewDataSource {
 
-  var delegate: WallDelegate?
+  var delegate: AnyObject?
 
   struct Constants {
     static let cellIdentifier = "PostCell"
@@ -12,7 +12,7 @@ public class WallDataSource: NSObject, ASCollectionViewDataSource {
   lazy public var data = { return [Post]() }()
 
   func textTapped(sender: AnyObject) {
-    if let delegate = delegate,
+    if let delegate = delegate as? WallTapDelegate,
       delegateMethod = delegate.wallPostTextWasTapped {
         delegateMethod(sender)
     }

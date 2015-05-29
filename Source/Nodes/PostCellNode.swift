@@ -6,7 +6,7 @@ public class PostCellNode: ASCellNode {
   let width: CGFloat
   var textNode: ASTextNode?
   var divider: ASDisplayNode?
-  var delegate: WallDelegate?
+  var delegate: WallTapDelegate?
 
   struct Dimensions {
     static let dividerHeight: CGFloat = 1
@@ -16,9 +16,9 @@ public class PostCellNode: ASCellNode {
     return width - 2 * Config.Wall.padding
   }
 
-  public init(post: Post, width: CGFloat, _ delegate: WallDelegate? = nil) {
+  public init(post: Post, width: CGFloat, _ delegate: AnyObject? = nil) {
     self.width = width
-    self.delegate = delegate
+    self.delegate = delegate as? WallTapDelegate
 
     super.init()
 
