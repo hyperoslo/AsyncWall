@@ -8,7 +8,7 @@ public class WallController: UIViewController, PostCellNodeDelegate {
   }
 
   private var scrollingState: InfiniteScrolling = .Stopped
-  private var post: Post?
+  public var post: Post?
 
   public lazy var collectionView: ASCollectionView = { [unowned self] in
     var frame = self.view.bounds
