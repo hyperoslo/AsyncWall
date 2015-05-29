@@ -1,7 +1,7 @@
 import UIKit
 import Wall
 
-class ViewController: WallController, WallDelegate {
+class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -25,6 +25,10 @@ class ViewController: WallController, WallDelegate {
       posts.append(Post(text: "Hello world -> \(i+startFrom)", date: NSDate()))
     }
     return posts
+  }
+
+  func wallPostWasTapped(element: TappedElement, index: Int?) {
+    println("\(element): \(index), \(self.postAtIndex(index!))")
   }
 
   func wallDidScrollToEnd(completion: () -> Void) {
