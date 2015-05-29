@@ -37,7 +37,12 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
   }
 
   func wallPostWasTapped(element: TappedElement, index: Int?) {
-    println("\(element): \(index), \(self.postAtIndex(index!))")
+    let post = self.postAtIndex(index!)
+
+    if element == .Text {
+      let detailView = DetailViewController(post: post!)
+      self.navigationController?.pushViewController(detailView, animated: true)
+    }
   }
 
   func wallDidScrollToEnd(completion: () -> Void) {
