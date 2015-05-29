@@ -7,7 +7,10 @@ public struct Config {
 
     public static var useDivider = true
     public static var padding: CGFloat = 10
-    public static var authorImageSize = 64
+    public static var headerHeight: CGFloat = 70
+    public static var authorImageSize: CGFloat = 64
+
+    public static var showDate = true
 
     public static var thumbnailForAttachment: (attachment: Attachment, size: CGSize) -> URLStringConvertible = {
       (attachment: Attachment, size: CGSize) -> URLStringConvertible in

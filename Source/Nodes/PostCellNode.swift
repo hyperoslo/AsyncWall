@@ -1,5 +1,6 @@
 import UIKit
 import AsyncDisplayKit
+import DateTools
 
 public class PostCellNode: ASCellNode {
 
@@ -10,13 +11,15 @@ public class PostCellNode: ASCellNode {
   let width: CGFloat
   var delegate: PostCellNodeDelegate?
   var post: Post
+  var hasHeader = false
+  var hasFooter = false
 
   var authorNameNode: ASTextNode?
   var authorAvatarNode: ASImageNode?
-  var dateTextNode: ASTextNode?
+  var dateNode: ASTextNode?
   var textNode: ASTextNode?
-  var likesTextNode: ASTextNode?
-  var commentsTextNode: ASTextNode?
+  var likesNode: ASTextNode?
+  var commentsNode: ASTextNode?
   var divider: ASDisplayNode?
 
   var contentWidth: CGFloat {
@@ -31,6 +34,7 @@ public class PostCellNode: ASCellNode {
     super.init()
 
     if let author = post.author {
+      hasHeader = true
       authorNameNode = ASTextNode()
       authorNameNode!.attributedString = NSAttributedString(string: author.name,
         attributes: Config.Wall.TextAttributes.authorName)
@@ -39,8 +43,17 @@ public class PostCellNode: ASCellNode {
       if let avatar = author.avatar {
         authorAvatarNode = ASImageNode()
         authorAvatarNode?.backgroundColor = UIColor.grayColor()
+        authorAvatarNode?.fetchImage(Config.Wall.thumbnailForAttachment(attachment: avatar,
+          size: CGSize(width: Config.Wall.authorImageSize, height: Config.Wall.authorImageSize)).url)
         addSubnode(authorAvatarNode)
       }
+    }
+
+    if Config.Wall.showDate {
+      hasHeader = true
+      dateNode = ASTextNode()
+      dateNode!.attributedString = NSAttributedString(string: post.date.timeAgoSinceNow(),
+        attributes: Config.Wall.TextAttributes.date)
     }
 
     if let text = post.text {
@@ -73,6 +86,15 @@ public class PostCellNode: ASCellNode {
   override public func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
     var height = Config.Wall.padding * 2
 
+    if let authorNameNode = authorNameNode {
+      authorNameNode.measure(CGSize(width: CGFloat(FLT_MAX),
+        height: Config.Wall.headerHeight))
+    }
+    if let dateNode = dateNode {
+      dateNode.measure(CGSize(width: CGFloat(FLT_MAX),
+        height: Config.Wall.headerHeight))
+    }
+
     if let textNode = textNode {
       let textSize = textNode.measure(CGSize(width: contentWidth,
         height: CGFloat(FLT_MAX)))
@@ -83,12 +105,41 @@ public class PostCellNode: ASCellNode {
       height += Dimensions.dividerHeight
     }
 
+    if hasHeader {
+      height += Config.Wall.headerHeight
+    }
+
     return CGSizeMake(width, height)
   }
 
   override public func layout() {
     let padding = Config.Wall.padding
     var y = padding
+
+    var headerX = padding
+    if let authorAvatarNode = authorAvatarNode {
+      authorAvatarNode.frame = CGRect(x: headerX, y: y,
+        width: Config.Wall.authorImageSize, height: Config.Wall.authorImageSize)
+      headerX += CGRectGetMaxX(authorAvatarNode.frame) + Config.Wall.padding
+    }
+
+    if let authorNameNode = authorNameNode {
+      let size = authorNameNode.calculatedSize
+      authorNameNode.frame = CGRect(
+        origin: CGPoint(x: headerX, y: y),
+        size: size)
+    }
+
+    if let dateNode = dateNode {
+      let size = dateNode.calculatedSize
+      dateNode.frame = CGRect(
+        origin: CGPoint(x: contentWidth - size.width, y: y),
+        size: size)
+    }
+
+    if hasHeader {
+      y += Config.Wall.headerHeight
+    }
 
     if let textNode = textNode {
       let textSize = textNode.calculatedSize
