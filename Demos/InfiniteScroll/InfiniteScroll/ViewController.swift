@@ -1,7 +1,7 @@
 import UIKit
 import Wall
 
-class ViewController: WallController, WallDelegate {
+class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -28,7 +28,7 @@ class ViewController: WallController, WallDelegate {
   }
 
   func wallPostWasTapped(element: TappedElement, sender: AnyObject) {
-    println("textWasTapped: \(sender)")
+    println("\(element): \(sender)")
   }
 
   func wallDidScrollToEnd(completion: () -> Void) {
