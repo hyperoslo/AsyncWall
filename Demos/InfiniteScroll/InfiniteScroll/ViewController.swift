@@ -27,7 +27,7 @@ class ViewController: WallController, WallDelegate {
     return posts
   }
 
-  func wallPostTextWasTapped(sender: AnyObject) {
+  func wallPostWasTapped(element: TappedElement ,sender: AnyObject) {
     println("textWasTapped: \(sender)")
   }
 
