@@ -27,8 +27,8 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
     return posts
   }
 
-  func wallPostWasTapped(element: TappedElement, sender: AnyObject) {
-    println("\(element): \(sender)")
+  func wallPostWasTapped(element: TappedElement, index: Int?) {
+    println("\(element): \(index), \(self.postAtIndex(index!))")
   }
 
   func wallDidScrollToEnd(completion: () -> Void) {
