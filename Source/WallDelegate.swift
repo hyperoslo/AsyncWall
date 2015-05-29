@@ -1,13 +1,17 @@
 import UIKit
 
-@objc public protocol WallTapDelegate {
+public enum TappedElement {
+  case Author, Date, Text, Attachment, Likes, Views, Comments
+}
 
-  optional func wallPostWasTapped(element: TappedElement, sender: AnyObject)
+public protocol WallTapDelegate {
+
+  func wallPostWasTapped(element: TappedElement, sender: AnyObject)
 
 }
 
-@objc public protocol WallScrollDelegate {
+public protocol WallScrollDelegate {
 
-	func wallDidScrollToEnd(completion: () -> Void)
+  func wallDidScrollToEnd(completion: () -> Void)
 
 }
