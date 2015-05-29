@@ -43,7 +43,7 @@ public class PostCellNode: ASCellNode {
 
   func tapAction(sender: AnyObject) {
     if let delegate = delegate {
-
+        delegate.wallPostWasTapped(.Text, sender: sender)
     }
   }
 
