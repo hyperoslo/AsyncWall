@@ -25,7 +25,7 @@ public class WallController: UIViewController {
     return collectionView
     }()
 
-    public var delegate: WallDelegate? {
+    public var delegate: AnyObject? {
         didSet {
             self.dataSource.delegate = delegate
         }
@@ -66,9 +66,8 @@ extension WallController: ASCollectionViewDelegate {
   public func collectionView(collectionView: ASCollectionView!,
     willBeginBatchFetchWithContext context: ASBatchContext!) {
       scrollingState = .Loading
-      if let delegate = delegate,
-        delegateMethod = delegate.wallDidScrollToEnd {
-          delegateMethod() {
+      if let delegate = delegate as? WallScrollDelegate {
+          delegate.wallDidScrollToEnd {
             context.completeBatchFetching(true)
             self.scrollingState = .Stopped
           }

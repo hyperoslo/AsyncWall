@@ -3,7 +3,7 @@ import AsyncDisplayKit
 
 public class WallDataSource: NSObject, ASCollectionViewDataSource {
 
-  var delegate: WallDelegate?
+  var delegate: AnyObject?
 
   struct Constants {
     static let cellIdentifier = "PostCell"
@@ -12,9 +12,8 @@ public class WallDataSource: NSObject, ASCollectionViewDataSource {
   lazy public var data = { return [Post]() }()
 
   func textTapped(sender: AnyObject) {
-    if let delegate = delegate,
-      delegateMethod = delegate.wallPostTextWasTapped {
-        delegateMethod(sender)
+    if let delegate = delegate as? WallTapDelegate {
+        delegate.wallPostWasTapped(.Text, sender: sender)
     }
   }
 }
@@ -31,7 +30,7 @@ extension WallDataSource: ASCollectionViewDataSource {
 
   public func collectionView(collectionView: ASCollectionView!, nodeForItemAtIndexPath indexPath: NSIndexPath!) -> ASCellNode! {
     let cellNode = PostCellNode(post: data[indexPath.row],
-        width: collectionView.frame.width, self)
+        width: collectionView.frame.width, delegate)
 
     return cellNode
   }

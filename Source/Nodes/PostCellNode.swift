@@ -6,7 +6,7 @@ public class PostCellNode: ASCellNode {
   let width: CGFloat
   var textNode: ASTextNode?
   var divider: ASDisplayNode?
-  var delegate: AnyObject?
+  var delegate: WallTapDelegate?
 
   struct Dimensions {
     static let dividerHeight: CGFloat = 1
@@ -18,7 +18,7 @@ public class PostCellNode: ASCellNode {
 
   public init(post: Post, width: CGFloat, _ delegate: AnyObject? = nil) {
     self.width = width
-    self.delegate = delegate
+    self.delegate = delegate as? WallTapDelegate
 
     super.init()
 
@@ -27,8 +27,8 @@ public class PostCellNode: ASCellNode {
       textNode!.attributedString = NSAttributedString(string: text,
         attributes: Config.Wall.TextAttributes.postText)
       textNode!.userInteractionEnabled = true
-      textNode!.addTarget(delegate,
-        action: "textTapped:",
+      textNode!.addTarget(self,
+        action: "tapAction:",
         forControlEvents: ASControlNodeEvent.TouchUpInside)
 
       addSubnode(textNode)
@@ -38,6 +38,12 @@ public class PostCellNode: ASCellNode {
       divider = ASDisplayNode()
       divider!.backgroundColor = .lightGrayColor()
       addSubnode(divider)
+    }
+  }
+
+  func tapAction(sender: AnyObject) {
+    if let delegate = delegate {
+        delegate.wallPostWasTapped(.Text, sender: sender)
     }
   }
 
