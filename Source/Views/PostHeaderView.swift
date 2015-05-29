@@ -5,7 +5,7 @@ public class PostHeaderView: UICollectionReusableView {
   override init(frame: CGRect) {
     super.init(frame: frame)
 
-    self.backgroundColor = UIColor.redColor()
+    self.backgroundColor = UIColor.lightGrayColor()
   }
 
   public required init(coder aDecoder: NSCoder) {
