@@ -9,7 +9,8 @@ public struct Config {
     public static var padding: CGFloat = 10
     public static var authorImageSize = 64
 
-    public static func getThumbnailForAttachment(attachment: Attachment, size: CGSize) -> URLStringConvertible {
+    public static var thumbnailForAttachment: (attachment: Attachment, size: CGSize) -> URLStringConvertible = {
+      (attachment: Attachment, size: CGSize) -> URLStringConvertible in
       return attachment.thumbnail
     }
 
