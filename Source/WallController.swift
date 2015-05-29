@@ -1,7 +1,7 @@
 import UIKit
 import AsyncDisplayKit
 
-public class WallController: UIViewController {
+public class WallController: UIViewController, PostCellNodeDelegate {
 
   private enum InfiniteScrolling {
     case Triggered, Loading, Stopped
@@ -25,7 +25,7 @@ public class WallController: UIViewController {
     return collectionView
     }()
 
-  public var delegate: WallDelegate?
+  public var delegate: AnyObject?
 
   public lazy var flowLayout: UICollectionViewFlowLayout = {
     return UICollectionViewFlowLayout()
@@ -41,7 +41,9 @@ public class WallController: UIViewController {
   }
 
   public lazy var dataSource: WallDataSource = {
-    return WallDataSource()
+    let dataSource = WallDataSource()
+    dataSource.delegate = self
+    return dataSource
     }()
 
   public  override func viewDidLoad() {
@@ -55,6 +57,17 @@ public class WallController: UIViewController {
 
     collectionView.frame = view.bounds
   }
+
+  public func cellNodeElementWasTapped(elementType: TappedElement, sender: PostCellNode) {
+    if let delegate = delegate as? WallTapDelegate {
+      let index = find(dataSource.data, sender.post)
+      delegate.wallPostWasTapped(elementType, index: index)
+    }
+  }
+
+  public func postAtIndex(index: Int) -> Post? {
+    return dataSource.data[index]
+  }
 }
 
 extension WallController: ASCollectionViewDelegate {
@@ -62,12 +75,11 @@ extension WallController: ASCollectionViewDelegate {
   public func collectionView(collectionView: ASCollectionView!,
     willBeginBatchFetchWithContext context: ASBatchContext!) {
       scrollingState = .Loading
-      if let delegate = delegate,
-        delegateMethod = delegate.wallDidScrollToEnd {
-          delegateMethod() {
-            context.completeBatchFetching(true)
-            self.scrollingState = .Stopped
-          }
+      if let delegate = delegate as? WallScrollDelegate {
+        delegate.wallDidScrollToEnd {
+          context.completeBatchFetching(true)
+          self.scrollingState = .Stopped
+        }
       }
   }
 }
