@@ -31,7 +31,7 @@ extension WallDataSource: ASCollectionViewDataSource {
 
   public func collectionView(collectionView: ASCollectionView!, nodeForItemAtIndexPath indexPath: NSIndexPath!) -> ASCellNode! {
     let cellNode = PostCellNode(post: data[indexPath.row],
-        width: collectionView.frame.width, self)
+        width: collectionView.frame.width, delegate)
 
     return cellNode
   }
