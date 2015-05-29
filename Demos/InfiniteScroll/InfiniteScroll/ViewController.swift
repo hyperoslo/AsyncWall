@@ -9,6 +9,10 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
     title = "Infinite Scroll"
 
     Config.Wall.TextAttributes.postText[NSForegroundColorAttributeName] = UIColor.orangeColor()
+    Config.Wall.thumbnailForAttachment = {
+      (attachment: Attachment, size: CGSize) -> URLStringConvertible in
+      return String(format: attachment.thumbnail.string, Int(size.width), Int(size.height))
+    }
 
     self.delegate = self
     let delayTime = dispatch_time(DISPATCH_TIME_NOW,
@@ -22,7 +26,12 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
     var posts = [Post]()
     var startFrom = self.posts.count
     for i in from...to {
-      posts.append(Post(text: "Hello world -> \(i+startFrom)", date: NSDate()))
+      let post = Post(
+        text: "Hello world -> \(i+startFrom)",
+        date: NSDate(timeIntervalSinceNow: -4),
+        author: User(name: "Author \(i+startFrom)", avatar: Image("http://lorempixel.com/%d/%d/")))
+
+      posts.append(post)
     }
     return posts
   }
