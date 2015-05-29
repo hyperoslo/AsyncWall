@@ -13,14 +13,32 @@ public class PostCellNode: ASCellNode {
     return width - 2 * Config.Wall.padding
   }
 
+  var authorNameNode: ASTextNode?
+  var authorAvatarNode: ASImageNode?
+  var dateTextNode: ASTextNode?
   var textNode: ASTextNode?
-
+  var likesTextNode: ASTextNode?
+  var commentsTextNode: ASTextNode?
   var divider: ASDisplayNode?
 
   public init(post: Post, width: CGFloat) {
     self.width = width
 
     super.init()
+
+    if let author = post.author {
+      authorNameNode = ASTextNode()
+      authorNameNode!.attributedString = NSAttributedString(string: author.name,
+        attributes: Config.Wall.TextAttributes.authorName)
+      addSubnode(authorNameNode)
+
+      if let avatar = author.avatar {
+        authorAvatarNode = ASImageNode()
+        authorAvatarNode?.backgroundColor = UIColor.grayColor()
+        addSubnode(authorAvatarNode)
+        authorAvatarNode?.fetchImage(Config.)
+      }
+    }
 
     if let text = post.text {
       textNode = ASTextNode()

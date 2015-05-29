@@ -1,9 +1,20 @@
-//
-//  ASCellNodeExtension.swift
-//  Tests
-//
-//  Created by Vadym Markov on 29/05/15.
-//
-//
+import UIKit
+import AsyncDisplayKit
 
-import Foundation
+extension ASImageNode {
+
+  func fetchImage(imageURL: NSURL) {
+    let queue = NSOperationQueue()
+    NSURLConnection.sendAsynchronousRequest(NSURLRequest(URL: imageURL),
+      queue: queue,
+      completionHandler:{ (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+        if error != nil || data == nil || data.length == 0 {
+          return
+        }
+
+        if let image = UIImage(data: data) {
+          self.image = image
+        }
+    })
+  }
+}
