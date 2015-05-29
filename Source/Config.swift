@@ -3,14 +3,30 @@ import UIKit
 
 public struct Config {
 
+  private static var dateFormatter: NSDateFormatter = {
+    let dateFormatter = NSDateFormatter()
+    dateFormatter.dateFormat = "MM-dd"
+    return dateFormatter
+    }()
+
   public struct Wall {
 
     public static var useDivider = true
     public static var padding: CGFloat = 10
-    public static var authorImageSize = 64
+    public static var headerHeight: CGFloat = 40
+    public static var authorImageSize: CGFloat = 32
 
-    public static func getThumbnailForAttachment(attachment: Attachment, size: CGSize) -> URLStringConvertible {
+    public static var roundedAuthorImage = true
+    public static var showDate = true
+
+    public static var thumbnailForAttachment: (attachment: Attachment, size: CGSize) -> URLStringConvertible = {
+      (attachment: Attachment, size: CGSize) -> URLStringConvertible in
       return attachment.thumbnail
+    }
+
+    public static var stringFromPostDate: (date: NSDate) -> String = {
+      (date: NSDate) -> String in
+      return Config.dateFormatter.stringFromDate(date)
     }
 
     public struct TextAttributes {
