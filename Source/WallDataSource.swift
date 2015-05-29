@@ -35,10 +35,14 @@ extension WallDataSource: ASCollectionViewDataSource {
 
     return cellNode
   }
+}
+
+extension WallDataSource {
 
   convenience init(type: NodeType) {
     self.init()
 
     dataSourceNodeType = type
   }
+
 }
