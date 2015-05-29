@@ -9,6 +9,8 @@ public class WallController: UIViewController, PostCellNodeDelegate {
 
   private var scrollingState: InfiniteScrolling = .Stopped
 
+  private var post: Post?
+
   public lazy var collectionView: ASCollectionView = { [unowned self] in
     var frame = self.view.bounds
     frame.origin.y += 20
@@ -67,6 +69,12 @@ public class WallController: UIViewController, PostCellNodeDelegate {
 
   public func postAtIndex(index: Int) -> Post? {
     return dataSource.data[index]
+  }
+
+  public convenience init(post: Post) {
+    self.init()
+
+    self.post = post
   }
 }
 
