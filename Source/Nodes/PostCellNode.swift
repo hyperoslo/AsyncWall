@@ -6,7 +6,7 @@ public class PostCellNode: ASCellNode {
   let width: CGFloat
   var textNode: ASTextNode?
   var divider: ASDisplayNode?
-  var delegate: WallController?
+  var delegate: PostCellNodeDelegate?
   var post: Post
 
   struct Dimensions {
@@ -20,7 +20,7 @@ public class PostCellNode: ASCellNode {
   public init(post: Post, width: CGFloat, _ delegate: AnyObject? = nil) {
     self.post = post
     self.width = width
-    self.delegate = delegate as? WallController
+    self.delegate = delegate as? PostCellNodeDelegate
 
     super.init()
 
