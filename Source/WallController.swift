@@ -3,10 +3,6 @@ import AsyncDisplayKit
 
 public class WallController: UIViewController {
 
-  public enum TappedElement {
-    case Author, Date, Text, Attachment, Likes, Views, Comments
-  }
-
   private enum InfiniteScrolling {
     case Triggered, Loading, Stopped
   }
