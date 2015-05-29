@@ -1,9 +1,12 @@
 import UIKit
 import AsyncDisplayKit
 
+public enum NodeType { case Post, Comment }
+
 public class WallDataSource: NSObject, ASCollectionViewDataSource {
 
   var delegate: AnyObject?
+  var dataSourceNodeType: NodeType = .Post
 
   lazy public var data = { return [Post]() }()
 }
@@ -19,9 +22,23 @@ extension WallDataSource: ASCollectionViewDataSource {
   }
 
   public func collectionView(collectionView: ASCollectionView!, nodeForItemAtIndexPath indexPath: NSIndexPath!) -> ASCellNode! {
-    let cellNode = PostCellNode(post: data[indexPath.row],
+    let cellNode: ASCellNode
+
+    switch dataSourceNodeType {
+    case .Post:
+      cellNode = PostCellNode(post: data[indexPath.row],
         width: collectionView.frame.width, delegate)
+    case .Comment:
+      cellNode = CommentCellNode(post: data[indexPath.row],
+        width: collectionView.frame.width, delegate)
+    }
 
     return cellNode
+  }
+
+  convenience init(type: NodeType) {
+    self.init()
+
+    dataSourceNodeType = type
   }
 }
