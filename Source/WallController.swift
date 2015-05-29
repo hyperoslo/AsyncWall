@@ -1,7 +1,7 @@
 import UIKit
 import AsyncDisplayKit
 
-public class WallController: UIViewController {
+public class WallController: UIViewController, PostCellNodeDelegate {
 
   private enum InfiniteScrolling {
     case Triggered, Loading, Stopped
