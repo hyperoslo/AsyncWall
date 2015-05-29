@@ -11,7 +11,7 @@ public class Post: NSObject {
   var parent: Post?
   var comments = [Post]()
 
-  public init(text: String, date: NSDate, _ author: User? = nil, _ attachments: [Attachment]? = []) {
+  public init(text: String, date: NSDate, author: User? = nil, attachments: [Attachment]? = []) {
     self.text = text
     self.date = date
     self.author = author

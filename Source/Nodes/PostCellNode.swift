@@ -3,15 +3,24 @@ import AsyncDisplayKit
 
 public class PostCellNode: ASCellNode {
 
-  let width: CGFloat
-  var textNode: ASTextNode?
-  var divider: ASDisplayNode?
-  var delegate: PostCellNodeDelegate?
-  var post: Post
-
   struct Dimensions {
     static let dividerHeight: CGFloat = 1
+    static let headerAvatarPadding: CGFloat = 5
   }
+
+  let width: CGFloat
+  var delegate: PostCellNodeDelegate?
+  var post: Post
+  var hasHeader = false
+  var hasFooter = false
+
+  var authorNameNode: ASTextNode?
+  var authorAvatarNode: ASImageNode?
+  var dateNode: ASTextNode?
+  var textNode: ASTextNode?
+  var likesNode: ASTextNode?
+  var commentsNode: ASTextNode?
+  var divider: ASDisplayNode?
 
   var contentWidth: CGFloat {
     return width - 2 * Config.Wall.padding
@@ -23,6 +32,35 @@ public class PostCellNode: ASCellNode {
     self.delegate = delegate as? PostCellNodeDelegate
 
     super.init()
+
+    if let author = post.author {
+      hasHeader = true
+      authorNameNode = ASTextNode()
+      authorNameNode!.attributedString = NSAttributedString(string: author.name,
+        attributes: Config.Wall.TextAttributes.authorName)
+      addSubnode(authorNameNode)
+
+      if let avatar = author.avatar {
+        authorAvatarNode = ASImageNode()
+        authorAvatarNode?.backgroundColor = UIColor.grayColor()
+        if Config.Wall.roundedAuthorImage {
+          authorAvatarNode?.cornerRadius = Config.Wall.authorImageSize / 2
+          authorAvatarNode?.clipsToBounds = true
+        }
+        authorAvatarNode?.fetchImage(Config.Wall.thumbnailForAttachment(attachment: avatar,
+          size: CGSize(width: Config.Wall.authorImageSize, height: Config.Wall.authorImageSize)).url)
+        addSubnode(authorAvatarNode)
+      }
+    }
+
+    if Config.Wall.showDate {
+      hasHeader = true
+      dateNode = ASTextNode()
+      dateNode!.attributedString = NSAttributedString(string: Config.Wall.stringFromPostDate(date: post.date),
+        attributes: Config.Wall.TextAttributes.date)
+
+      addSubnode(dateNode)
+    }
 
     if let text = post.text {
       textNode = ASTextNode()
@@ -52,7 +90,16 @@ public class PostCellNode: ASCellNode {
   }
 
   override public func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
-    var height = Config.Wall.padding * 2
+    var height: CGFloat = 0.0
+
+    if let authorNameNode = authorNameNode {
+      authorNameNode.measure(CGSize(width: CGFloat(FLT_MAX),
+        height: Config.Wall.headerHeight))
+    }
+    if let dateNode = dateNode {
+      dateNode.measure(CGSize(width: CGFloat(FLT_MAX),
+        height: Config.Wall.headerHeight))
+    }
 
     if let textNode = textNode {
       let textSize = textNode.measure(CGSize(width: contentWidth,
@@ -64,6 +111,10 @@ public class PostCellNode: ASCellNode {
       height += Dimensions.dividerHeight
     }
 
+    if hasHeader {
+      height += Config.Wall.headerHeight
+    }
+
     return CGSizeMake(width, height)
   }
 
@@ -71,13 +122,45 @@ public class PostCellNode: ASCellNode {
     let padding = Config.Wall.padding
     var y = padding
 
+    var headerX = padding
+    let headerY: (height: CGFloat) -> CGFloat = { (height: CGFloat) -> CGFloat in
+      return (Config.Wall.headerHeight - height) / 2
+    }
+
+    if let authorAvatarNode = authorAvatarNode {
+      authorAvatarNode.frame = CGRect(
+        x: headerX,
+        y: y + headerY(height: Config.Wall.authorImageSize),
+        width: Config.Wall.authorImageSize,
+        height: Config.Wall.authorImageSize)
+      headerX += CGRectGetMaxX(authorAvatarNode.frame) + Dimensions.headerAvatarPadding
+    }
+
+    if let authorNameNode = authorNameNode {
+      let size = authorNameNode.calculatedSize
+      authorNameNode.frame = CGRect(
+        origin: CGPoint(x: headerX, y: y + headerY(height: size.height)),
+        size: size)
+    }
+
+    if let dateNode = dateNode {
+      let size = dateNode.calculatedSize
+      dateNode.frame = CGRect(
+        origin: CGPoint(x: contentWidth - size.width, y: y + headerY(height: size.height)),
+        size: size)
+    }
+
+    if hasHeader {
+      y += Config.Wall.headerHeight
+    }
+
     if let textNode = textNode {
-      let textSize = textNode.calculatedSize
+      let size = textNode.calculatedSize
       textNode.frame = CGRect(
         origin: CGPoint(x: padding, y: y),
-        size: textSize)
+        size: size)
 
-      y += textSize.height + padding
+      y += size.height + padding
     }
 
     if let divider = divider {
