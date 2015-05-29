@@ -35,6 +35,18 @@ extension WallDataSource: ASCollectionViewDataSource {
 
     return cellNode
   }
+
+  public func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView? {
+
+    var reusableView: UICollectionReusableView? = nil
+
+    if kind == UICollectionElementKindSectionHeader {
+      reusableView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "PostHeaderView", forIndexPath: indexPath) as? UICollectionReusableView
+    }
+
+    return reusableView
+  }
+
 }
 
 extension WallDataSource {
