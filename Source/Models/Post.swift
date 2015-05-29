@@ -1,6 +1,6 @@
 import Foundation
 
-public class Post {
+public class Post: NSObject {
 
   var author: User?
   var date: NSDate
@@ -17,4 +17,5 @@ public class Post {
     self.author = author
     self.attachments = attachments
   }
+
 }
