@@ -6,7 +6,7 @@ public enum TappedElement {
 
 public protocol WallTapDelegate {
 
-  func wallPostWasTapped(element: TappedElement, sender: AnyObject)
+  func wallPostWasTapped(element: TappedElement, index: Int?)
 
 }
 

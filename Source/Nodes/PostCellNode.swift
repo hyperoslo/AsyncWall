@@ -6,7 +6,8 @@ public class PostCellNode: ASCellNode {
   let width: CGFloat
   var textNode: ASTextNode?
   var divider: ASDisplayNode?
-  var delegate: WallTapDelegate?
+  var delegate: WallController?
+  var post: Post
 
   struct Dimensions {
     static let dividerHeight: CGFloat = 1
@@ -17,8 +18,9 @@ public class PostCellNode: ASCellNode {
   }
 
   public init(post: Post, width: CGFloat, _ delegate: AnyObject? = nil) {
+    self.post = post
     self.width = width
-    self.delegate = delegate as? WallTapDelegate
+    self.delegate = delegate as? WallController
 
     super.init()
 
@@ -43,7 +45,9 @@ public class PostCellNode: ASCellNode {
 
   func tapAction(sender: AnyObject) {
     if let delegate = delegate {
-        delegate.wallPostWasTapped(.Text, sender: sender)
+      if sender.isEqual(textNode) {
+        delegate.cellNodeElementWasTapped(.Text, sender: self)
+      }
     }
   }
 
