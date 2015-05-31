@@ -3,20 +3,20 @@ import AsyncDisplayKit
 
 public class AttachmentGridNode: ASDisplayNode {
 
-  let width: CGFloat
-  var attachments: [Attachment]
+  public let width: CGFloat
+  public let attachments: [Attachment]
 
   var imageNodes = [ASImageNode]()
 
-  var height: CGFloat {
+  public var height: CGFloat {
     return width / Config.Wall.thumbnailRatio
   }
 
-  var contentWidth: CGFloat {
+  public var contentWidth: CGFloat {
     return width - Config.Wall.thumbnailPadding
   }
 
-  var contentHeight: CGFloat {
+  public var contentHeight: CGFloat {
     return height - Config.Wall.thumbnailPadding
   }
 
