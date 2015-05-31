@@ -17,6 +17,7 @@ public class PostCellNode: ASCellNode {
   var authorNameNode: ASTextNode?
   var authorAvatarNode: ASImageNode?
   var dateNode: ASTextNode?
+  var attachmentGridNode: AttachmentGridNode?
   var textNode: ASTextNode?
   var likesNode: ASTextNode?
   var commentsNode: ASTextNode?
@@ -62,6 +63,16 @@ public class PostCellNode: ASCellNode {
       addSubnode(dateNode)
     }
 
+    if let attachments = post.attachments {
+      attachmentGridNode = AttachmentGridNode(attachments: attachments, width: contentWidth)
+      attachmentGridNode!.userInteractionEnabled = true
+      attachmentGridNode!.addTarget(self,
+        action: "tapAction:",
+        forControlEvents: ASControlNodeEvent.TouchUpInside)
+
+      addSubnode(attachmentGridNode)
+    }
+
     if let text = post.text {
       textNode = ASTextNode()
       textNode!.attributedString = NSAttributedString(string: text,
@@ -85,6 +96,8 @@ public class PostCellNode: ASCellNode {
     if let delegate = delegate {
       if sender.isEqual(textNode) {
         delegate.cellNodeElementWasTapped(.Text, sender: self)
+      } else if sender.isEqual(attachmentGridNode) {
+        delegate.cellNodeElementWasTapped(.Attachment, sender: self)
       }
     }
   }
@@ -96,9 +109,14 @@ public class PostCellNode: ASCellNode {
       authorNameNode.measure(CGSize(width: CGFloat(FLT_MAX),
         height: Config.Wall.headerHeight))
     }
+
     if let dateNode = dateNode {
       dateNode.measure(CGSize(width: CGFloat(FLT_MAX),
         height: Config.Wall.headerHeight))
+    }
+
+    if let attachmentGridNode = attachmentGridNode {
+      height += attachmentGridNode.height + 2 * Config.Wall.padding
     }
 
     if let textNode = textNode {
@@ -152,6 +170,16 @@ public class PostCellNode: ASCellNode {
 
     if hasHeader {
       y += Config.Wall.headerHeight
+    }
+
+    if let attachmentGridNode = attachmentGridNode {
+      attachmentGridNode.frame = CGRect(
+        x: Config.Wall.padding,
+        y: y + Config.Wall.padding,
+        width: attachmentGridNode.width,
+        height: attachmentGridNode.height)
+
+      y += attachmentGridNode.height + Config.Wall.padding * 2
     }
 
     if let textNode = textNode {
