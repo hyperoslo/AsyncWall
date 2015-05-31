@@ -60,7 +60,7 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
   func wallPostWasTapped(element: TappedElement, index: Int?) {
     let post = self.postAtIndex(index!)
 
-    if element == .Text {
+    if element == .Text || element == .Attachment {
       let detailView = DetailViewController(post: post!)
       self.navigationController?.pushViewController(detailView, animated: true)
     }
