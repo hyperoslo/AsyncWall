@@ -15,6 +15,8 @@ public struct Config {
     public static var padding: CGFloat = 10
     public static var headerHeight: CGFloat = 40
     public static var authorImageSize: CGFloat = 32
+    public static var thumbnailRatio: CGFloat = 3/2
+    public static var thumbnailPadding: CGFloat = 10
 
     public static var roundedAuthorImage = true
     public static var showDate = true
