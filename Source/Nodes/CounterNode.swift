@@ -1,7 +1,7 @@
 import UIKit
 import AsyncDisplayKit
 
-public class AttachmentCounterNode: ASCellNode {
+public class CounterNode: ASCellNode {
 
   struct Dimensions {
     static let boxSize = CGSize(width: 40.0, height: 30.0)
