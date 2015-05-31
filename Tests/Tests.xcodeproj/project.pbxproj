@@ -15,7 +15,6 @@
 		BDF240F41B16379900D571F6 /* AttachmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF240F31B16379900D571F6 /* AttachmentTests.swift */; };
 		BDF240F71B163D7E00D571F6 /* URLStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF240F61B163D7E00D571F6 /* URLStringConvertible.swift */; };
 		BDF240F91B163E3D00D571F6 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF240F81B163E3D00D571F6 /* UserTests.swift */; };
-		D50E912F1B1B656E004334D9 /* AttachmentCounterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50E912E1B1B656E004334D9 /* AttachmentCounterNode.swift */; };
 		D52CF6C31B17090A002B4A5A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CF6C21B17090A002B4A5A /* Config.swift */; };
 		D52CF6C51B170B06002B4A5A /* WallDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CF6C41B170B06002B4A5A /* WallDelegate.swift */; };
 		D54B81D81B17147700FB0197 /* PostCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B81D71B17147700FB0197 /* PostCellNode.swift */; };
@@ -28,6 +27,7 @@
 		D54B820E1B1868B400FB0197 /* PostCellNodeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B820D1B1868B400FB0197 /* PostCellNodeDelegate.swift */; };
 		D558ECA51B1B48B00072D719 /* AttachmentGridNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D558ECA41B1B48B00072D719 /* AttachmentGridNode.swift */; };
 		D558ECA71B1B48C50072D719 /* CommentCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D558ECA61B1B48C50072D719 /* CommentCellNode.swift */; };
+		D577C33A1B1B83C1002D8C3B /* CounterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D577C3391B1B83C1002D8C3B /* CounterNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +42,6 @@
 		BDF240F31B16379900D571F6 /* AttachmentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentTests.swift; sourceTree = "<group>"; };
 		BDF240F61B163D7E00D571F6 /* URLStringConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLStringConvertible.swift; sourceTree = "<group>"; };
 		BDF240F81B163E3D00D571F6 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
-		D50E912E1B1B656E004334D9 /* AttachmentCounterNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentCounterNode.swift; sourceTree = "<group>"; };
 		D52CF6C21B17090A002B4A5A /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		D52CF6C41B170B06002B4A5A /* WallDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallDelegate.swift; sourceTree = "<group>"; };
 		D54B81D71B17147700FB0197 /* PostCellNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCellNode.swift; sourceTree = "<group>"; };
@@ -55,6 +54,7 @@
 		D54B820D1B1868B400FB0197 /* PostCellNodeDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCellNodeDelegate.swift; sourceTree = "<group>"; };
 		D558ECA41B1B48B00072D719 /* AttachmentGridNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentGridNode.swift; sourceTree = "<group>"; };
 		D558ECA61B1B48C50072D719 /* CommentCellNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCellNode.swift; sourceTree = "<group>"; };
+		D577C3391B1B83C1002D8C3B /* CounterNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterNode.swift; sourceTree = "<group>"; };
 		F2EED1A0EBE4A097B1FDD549 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -163,7 +163,7 @@
 		D54B81D61B17147700FB0197 /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
-				D50E912E1B1B656E004334D9 /* AttachmentCounterNode.swift */,
+				D577C3391B1B83C1002D8C3B /* CounterNode.swift */,
 				D558ECA41B1B48B00072D719 /* AttachmentGridNode.swift */,
 				D558ECA61B1B48C50072D719 /* CommentCellNode.swift */,
 				D54B820D1B1868B400FB0197 /* PostCellNodeDelegate.swift */,
@@ -304,7 +304,6 @@
 				D54B82091B175FCE00FB0197 /* User.swift in Sources */,
 				BDF240F71B163D7E00D571F6 /* URLStringConvertible.swift in Sources */,
 				BD8E43DD1AEC2B7700BC0631 /* WallTests.swift in Sources */,
-				D50E912F1B1B656E004334D9 /* AttachmentCounterNode.swift in Sources */,
 				BD8E43E51AEC2B8200BC0631 /* WallController.swift in Sources */,
 				D54B82081B175FCE00FB0197 /* Post.swift in Sources */,
 				D54B820A1B175FCE00FB0197 /* Video.swift in Sources */,
@@ -319,6 +318,7 @@
 				D52CF6C51B170B06002B4A5A /* WallDelegate.swift in Sources */,
 				D54B82071B175FCE00FB0197 /* Image.swift in Sources */,
 				BDF240F41B16379900D571F6 /* AttachmentTests.swift in Sources */,
+				D577C33A1B1B83C1002D8C3B /* CounterNode.swift in Sources */,
 				D558ECA71B1B48C50072D719 /* CommentCellNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
