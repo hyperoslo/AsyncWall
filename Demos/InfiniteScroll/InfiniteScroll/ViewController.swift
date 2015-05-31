@@ -26,10 +26,31 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
     var posts = [Post]()
     var startFrom = self.posts.count
     for i in from...to {
+      let user = User(
+        name: "Author \(i+startFrom)",
+        avatar: Image("http://lorempixel.com/%d/%d/"))
+      var attachments: [Attachment]?
+
+      if i % 4 == 0 {
+        attachments = [
+          Image("http://lorempixel.com/%d/%d/"),
+          Image("http://lorempixel.com/%d/%d/"),
+          Image("http://lorempixel.com/%d/%d/"),
+          Image("http://lorempixel.com/%d/%d/")]
+      } else if i % 3 == 0 {
+        attachments = [
+          Image("http://lorempixel.com/%d/%d/"),
+          Image("http://lorempixel.com/%d/%d/")]
+      } else if i % 2 == 0 {
+        attachments = [Image("http://lorempixel.com/%d/%d/")]
+      }
+
       let post = Post(
         text: "Hello world -> \(i+startFrom)",
         date: NSDate(timeIntervalSinceNow: -4),
-        author: User(name: "Author \(i+startFrom)", avatar: Image("http://lorempixel.com/%d/%d/")))
+        author: user,
+        attachments: attachments
+      )
 
       posts.append(post)
     }
