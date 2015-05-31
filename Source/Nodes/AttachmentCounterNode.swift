@@ -3,22 +3,20 @@ import AsyncDisplayKit
 
 public class AttachmentCounterNode: ASCellNode {
 
-  var textNode: ASTextNode
-  var boxNode: ASDisplayNode
-  var backBoxNode: ASDisplayNode
-
-  var size: CGFloat {
-    return Dimensions.boxSize + Dimensions.padding * 2
-  }
-
   struct Dimensions {
     static let boxSize: CGFloat = 40
     static let padding: CGFloat = 10
   }
 
-  public init(count: Int, totalCount: Int) {
-    super.init()
+  var textNode: ASTextNode
+  var boxNode: ASDisplayNode
+  var backBoxNode: ASDisplayNode
 
+  public var size: CGFloat {
+    return Dimensions.boxSize + Dimensions.padding * 2
+  }
+
+  public init(count: Int, totalCount: Int) {
     backBoxNode = ASDisplayNode()
     backBoxNode.backgroundColor = .whiteColor()
     backBoxNode.alpha = 0.4
@@ -31,6 +29,11 @@ public class AttachmentCounterNode: ASCellNode {
     textNode = ASTextNode()
     textNode.attributedString = NSAttributedString(string: text,
       attributes: Config.Wall.TextAttributes.postText)
+
+    super.init()
+
+    addSubnode(backBoxNode)
+    addSubnode(boxNode)
     addSubnode(textNode)
   }
 

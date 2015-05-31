@@ -7,6 +7,7 @@ public class AttachmentGridNode: ASDisplayNode {
   public let attachments: [Attachment]
 
   var imageNodes = [ASImageNode]()
+  var counterNode: AttachmentCounterNode?
 
   public var height: CGFloat {
     return width / Config.Wall.thumbnailRatio
@@ -21,12 +22,13 @@ public class AttachmentGridNode: ASDisplayNode {
   }
 
   public init(attachments: [Attachment], width: CGFloat) {
-    self.attachments = attachments.count < 4 ? attachments : Array(attachments[0..<3])
+    let totalCount = attachments.count
+    self.attachments = totalCount < 4 ? attachments : Array(attachments[0..<3])
     self.width = width
 
     super.init()
 
-    for (index, attachment) in enumerate(attachments) {
+    for (index, attachment) in enumerate(self.attachments) {
       let imageNode = ASImageNode()
       imageNode.backgroundColor = .grayColor()
       let imageSize = sizeForThumbnailAtIndex(index)
@@ -34,6 +36,11 @@ public class AttachmentGridNode: ASDisplayNode {
         size: CGSize(width: imageSize.width, height: imageSize.height)).url)
       imageNodes.append(imageNode)
       addSubnode(imageNode)
+    }
+
+    if Config.Wall.showAttachmentsCounter {
+      counterNode = AttachmentCounterNode(count: imageNodes.count, totalCount: totalCount)
+      addSubnode(counterNode)
     }
   }
 
@@ -57,6 +64,15 @@ public class AttachmentGridNode: ASDisplayNode {
       } else if index == 1 {
         y += imageSize.height + Config.Wall.thumbnailPadding
       }
+    }
+
+    if let counterNode = counterNode {
+      let size = counterNode.calculatedSize
+      counterNode.frame = CGRect(
+        x: width - size.width,
+        y: height - size.height,
+        width: size.width,
+        height: size.height)
     }
   }
 
