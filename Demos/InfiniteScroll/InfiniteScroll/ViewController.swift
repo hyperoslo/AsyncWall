@@ -1,14 +1,17 @@
 import UIKit
 import Wall
+import Faker
 
 class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
+
+  let faker = Faker()
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     title = "Infinite Scroll"
 
-    Config.Wall.TextAttributes.postText[NSForegroundColorAttributeName] = UIColor.orangeColor()
+    Config.Wall.TextAttributes.postText[NSForegroundColorAttributeName] = UIColor.darkTextColor()
     Config.Wall.thumbnailForAttachment = {
       (attachment: Attachment, size: CGSize) -> URLStringConvertible in
       return String(format: attachment.thumbnail.string, Int(size.width), Int(size.height))
@@ -27,7 +30,7 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
     var startFrom = self.posts.count
     for i in from...to {
       let user = User(
-        name: "Author \(i+startFrom)",
+        name: faker.name.name(),
         avatar: Image("http://lorempixel.com/%d/%d/"))
       var attachments: [Attachment]?
 
@@ -45,8 +48,9 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
         attachments = [Image("http://lorempixel.com/%d/%d/")]
       }
 
+      let sencenceCount = Int(arc4random_uniform(8) + 1)
       let post = Post(
-        text: "Hello world -> \(i+startFrom)",
+        text: faker.lorem.sentences(amount: sencenceCount),
         date: NSDate(timeIntervalSinceNow: -4),
         author: user,
         attachments: attachments
