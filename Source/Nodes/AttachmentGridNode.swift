@@ -32,6 +32,7 @@ public class AttachmentGridNode: ASDisplayNode {
       let imageSize = sizeForThumbnailAtIndex(index)
       imageNode.fetchImage(Config.Wall.thumbnailForAttachment(attachment: attachment,
         size: CGSize(width: imageSize.width, height: imageSize.height)).url)
+      imageNodes.append(imageNode)
       addSubnode(imageNode)
     }
   }
@@ -64,12 +65,15 @@ public class AttachmentGridNode: ASDisplayNode {
 
     switch index {
     case 0:
-      if attachments.count > 1 {
+      if attachments.count == 2 {
+        size.width = contentWidth * 1 / 2
+      } else if attachments.count > 2 {
         size.width = contentWidth * 2 / 3
       }
     case 1:
-      size.width = contentWidth * 1 / 3
+      size.width = contentWidth * 1 / 2
       if attachments.count > 2 {
+        size.width = contentWidth * 1 / 3
         size.height = contentHeight / 2
       }
     default:

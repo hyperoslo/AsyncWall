@@ -65,7 +65,6 @@ public class PostCellNode: ASCellNode {
 
     if let attachments = post.attachments {
       attachmentGridNode = AttachmentGridNode(attachments: attachments, width: contentWidth)
-      attachmentGridNode?.backgroundColor = UIColor.redColor()
       addSubnode(attachmentGridNode)
     }
 
@@ -172,6 +171,7 @@ public class PostCellNode: ASCellNode {
         y: y + Config.Wall.padding,
         width: attachmentGridNode.width,
         height: attachmentGridNode.height)
+      //attachmentGridNode.layout()
 
       y += attachmentGridNode.height + Config.Wall.padding * 2
     }
