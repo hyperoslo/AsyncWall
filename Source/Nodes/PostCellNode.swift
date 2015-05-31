@@ -17,6 +17,7 @@ public class PostCellNode: ASCellNode {
   var authorNameNode: ASTextNode?
   var authorAvatarNode: ASImageNode?
   var dateNode: ASTextNode?
+  var attachmentGridNode: AttachmentGridNode?
   var textNode: ASTextNode?
   var likesNode: ASTextNode?
   var commentsNode: ASTextNode?
@@ -62,6 +63,10 @@ public class PostCellNode: ASCellNode {
       addSubnode(dateNode)
     }
 
+    if let attachments = post.attachments {
+      attachmentGridNode = AttachmentGridNode(attachments: attachments, width: contentWidth)
+    }
+
     if let text = post.text {
       textNode = ASTextNode()
       textNode!.attributedString = NSAttributedString(string: text,
@@ -96,9 +101,14 @@ public class PostCellNode: ASCellNode {
       authorNameNode.measure(CGSize(width: CGFloat(FLT_MAX),
         height: Config.Wall.headerHeight))
     }
+
     if let dateNode = dateNode {
       dateNode.measure(CGSize(width: CGFloat(FLT_MAX),
         height: Config.Wall.headerHeight))
+    }
+
+    if let attachmentGridNode = attachmentGridNode {
+      height += attachmentGridNode.height
     }
 
     if let textNode = textNode {
@@ -152,6 +162,14 @@ public class PostCellNode: ASCellNode {
 
     if hasHeader {
       y += Config.Wall.headerHeight
+    }
+
+    if let attachmentGridNode = attachmentGridNode {
+      attachmentGridNode.frame = CGRect(
+        x: Config.Wall.padding,
+        y: Config.Wall.padding,
+        width: attachmentGridNode.width,
+        height: attachmentGridNode.height)
     }
 
     if let textNode = textNode {
