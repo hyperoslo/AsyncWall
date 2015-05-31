@@ -35,6 +35,7 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
         attachments = [
           Image("http://lorempixel.com/%d/%d/"),
           Image("http://lorempixel.com/%d/%d/"),
+          Image("http://lorempixel.com/%d/%d/"),
           Image("http://lorempixel.com/%d/%d/")]
       } else if i % 3 == 0 {
         attachments = [

@@ -7,7 +7,7 @@ public class AttachmentGridNode: ASDisplayNode {
   public let attachments: [Attachment]
 
   var imageNodes = [ASImageNode]()
-  var counterNode: AttachmentCounterNode?
+  var counterNode: CounterNode?
 
   public var height: CGFloat {
     return width / Config.Wall.thumbnailRatio
@@ -38,8 +38,8 @@ public class AttachmentGridNode: ASDisplayNode {
       addSubnode(imageNode)
     }
 
-    if Config.Wall.showAttachmentsCounter {
-      counterNode = AttachmentCounterNode(count: imageNodes.count, totalCount: totalCount)
+    if Config.Wall.showAttachmentsCounter && totalCount > 3 {
+      counterNode = CounterNode(count: imageNodes.count, totalCount: totalCount)
       addSubnode(counterNode)
     }
   }
