@@ -67,7 +67,7 @@ public class AttachmentGridNode: ASDisplayNode {
     }
 
     if let counterNode = counterNode {
-      let size = counterNode.calculatedSize
+      let size = counterNode.calculateSizeThatFits(counterNode.size)
       counterNode.frame = CGRect(
         x: width - size.width,
         y: height - size.height,

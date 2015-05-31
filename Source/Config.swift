@@ -44,6 +44,11 @@ public struct Config {
         NSForegroundColorAttributeName: UIColor.grayColor()
       ]
 
+      public static var attachmentCounter = [
+        NSFontAttributeName: UIFont.systemFontOfSize(14),
+        NSForegroundColorAttributeName: UIColor.grayColor()
+      ]
+
       public static var postText = [
         NSFontAttributeName: UIFont.systemFontOfSize(14),
         NSForegroundColorAttributeName: UIColor.grayColor()

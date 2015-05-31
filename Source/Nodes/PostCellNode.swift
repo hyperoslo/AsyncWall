@@ -171,7 +171,6 @@ public class PostCellNode: ASCellNode {
         y: y + Config.Wall.padding,
         width: attachmentGridNode.width,
         height: attachmentGridNode.height)
-      //attachmentGridNode.layout()
 
       y += attachmentGridNode.height + Config.Wall.padding * 2
     }
