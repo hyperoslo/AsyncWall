@@ -65,6 +65,11 @@ public class PostCellNode: ASCellNode {
 
     if let attachments = post.attachments {
       attachmentGridNode = AttachmentGridNode(attachments: attachments, width: contentWidth)
+      attachmentGridNode!.userInteractionEnabled = true
+      attachmentGridNode!.addTarget(self,
+        action: "tapAction:",
+        forControlEvents: ASControlNodeEvent.TouchUpInside)
+
       addSubnode(attachmentGridNode)
     }
 
@@ -91,6 +96,8 @@ public class PostCellNode: ASCellNode {
     if let delegate = delegate {
       if sender.isEqual(textNode) {
         delegate.cellNodeElementWasTapped(.Text, sender: self)
+      } else if sender.isEqual(attachmentGridNode) {
+        delegate.cellNodeElementWasTapped(.Attachment, sender: self)
       }
     }
   }

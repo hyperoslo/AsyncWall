@@ -1,7 +1,7 @@
 import UIKit
 import AsyncDisplayKit
 
-public class AttachmentGridNode: ASDisplayNode {
+public class AttachmentGridNode: ASControlNode {
 
   public let width: CGFloat
   public let attachments: [Attachment]
