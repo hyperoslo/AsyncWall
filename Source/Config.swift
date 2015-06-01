@@ -11,7 +11,6 @@ public struct Config {
 
   public struct Wall {
 
-    public static var useDivider = true
     public static var padding: CGFloat = 10
     public static var headerHeight: CGFloat = 40
     public static var authorImageSize: CGFloat = 32
@@ -30,6 +29,24 @@ public struct Config {
     public static var stringFromPostDate: (date: NSDate) -> String = {
       (date: NSDate) -> String in
       return Config.dateFormatter.stringFromDate(date)
+    }
+
+    public struct Post {
+        public static var backgroundColor = UIColor.whiteColor()
+
+        public struct Divider {
+            public static var enabled = true
+            public static var backgroundColor = UIColor.lightGrayColor()
+        }
+    }
+
+    public struct Comment {
+        public static var backgroundColor =  UIColor(red:0.969, green:0.973, blue:0.976, alpha: 1)
+
+        public struct Divider {
+            public static var enabled = true
+            public static var backgroundColor = UIColor(red:0.925, green:0.933, blue:0.941, alpha: 1)
+        }
     }
 
     public struct TextAttributes {

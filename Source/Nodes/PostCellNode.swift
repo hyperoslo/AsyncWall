@@ -34,6 +34,8 @@ public class PostCellNode: ASCellNode {
 
     super.init()
 
+    self.backgroundColor = Config.Wall.Post.backgroundColor
+
     if let author = post.author {
       hasHeader = true
       authorNameNode = ASTextNode()
@@ -85,9 +87,9 @@ public class PostCellNode: ASCellNode {
       addSubnode(textNode)
     }
 
-    if Config.Wall.useDivider {
+    if Config.Wall.Post.Divider.enabled {
       divider = ASDisplayNode()
-      divider!.backgroundColor = .lightGrayColor()
+      divider!.backgroundColor = Config.Wall.Post.Divider.backgroundColor
       addSubnode(divider)
     }
   }
@@ -125,7 +127,7 @@ public class PostCellNode: ASCellNode {
       height += textSize.height + Config.Wall.padding
     }
 
-    if Config.Wall.useDivider {
+    if Config.Wall.Post.Divider.enabled {
       height += Dimensions.dividerHeight
     }
 
