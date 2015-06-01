@@ -10,10 +10,10 @@ public class PostHeaderNode: ASCellNode {
   var dateNode: ASTextNode?
 
   var height: CGFloat {
-    return config.height
+    return HeaderConfig.height
   }
 
-  private var config: Config.Wall.Post.Header.Type {
+  private var HeaderConfig: Config.Wall.Post.Header.Type {
     return Config.Wall.Post.Header.self
   }
 
@@ -24,17 +24,17 @@ public class PostHeaderNode: ASCellNode {
 
     super.init()
 
-    if config.Author.enabled {
+    if HeaderConfig.Author.enabled {
       if let author = post.author {
         authorNameNode = ASTextNode()
         authorNameNode!.attributedString = NSAttributedString(
           string: author.name,
-          attributes: config.Author.textAttributes)
+          attributes: HeaderConfig.Author.textAttributes)
         addSubnode(authorNameNode)
 
-        if config.Author.Avatar.enabled {
+        if HeaderConfig.Author.Avatar.enabled {
           if let avatar = author.avatar {
-            let avatarConfig = config.Author.Avatar.self
+            let avatarConfig = HeaderConfig.Author.Avatar.self
             let imageSize = avatarConfig.size
 
             authorAvatarNode = ASImageNode()
@@ -55,11 +55,11 @@ public class PostHeaderNode: ASCellNode {
       }
     }
 
-    if config.Date.enabled {
+    if HeaderConfig.Date.enabled {
       dateNode = ASTextNode()
       dateNode!.attributedString = NSAttributedString(
         string: Config.Wall.stringFromPostDate(date: post.date),
-        attributes: config.Date.textAttributes)
+        attributes: HeaderConfig.Date.textAttributes)
 
       addSubnode(dateNode)
     }
@@ -80,7 +80,7 @@ public class PostHeaderNode: ASCellNode {
     }
 
     if let authorAvatarNode = authorAvatarNode {
-      let avatarConfig = config.Author.Avatar.self
+      let avatarConfig = HeaderConfig.Author.Avatar.self
       authorAvatarNode.frame = CGRect(
         x: x,
         y: y + headerY(height: avatarConfig.size),
