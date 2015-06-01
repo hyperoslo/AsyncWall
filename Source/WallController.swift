@@ -42,16 +42,16 @@ public class WallController: UIViewController, PostCellNodeDelegate {
   }
 
   public lazy var dataSource: WallDataSource = {
-    let nodeType: NodeType = self.post != nil ? .Comment : .Post
-    let dataSource = WallDataSource(type: nodeType)
+    let dataSource = WallDataSource()
     dataSource.delegate = self
+
     return dataSource
     }()
 
   public  override func viewDidLoad() {
     super.viewDidLoad()
 
-    view.addSubview(self.collectionView)
+    view.addSubview(collectionView)
   }
 
   public override func viewWillLayoutSubviews() {

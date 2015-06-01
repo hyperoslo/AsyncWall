@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hyper Interaktiv AS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hyper" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
                     <rect key="frame" x="20" y="439" width="441" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -23,19 +23,52 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="aYU-tW-axI">
+                    <rect key="frame" x="142" y="210" width="196" height="196"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="196" id="D7x-6Q-eeh"/>
+                        <constraint firstAttribute="height" constant="196" id="KcK-zl-D1f"/>
+                        <constraint firstAttribute="width" constant="196" id="Y27-Qi-aER"/>
+                        <constraint firstAttribute="height" constant="196" id="trr-88-BoI"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Y27-Qi-aER"/>
+                            <exclude reference="trr-88-BoI"/>
+                        </mask>
+                    </variation>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="kId-c2-rCX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="bottom" multiplier="1/3" constant="1" id="5cJ-9S-tgC"/>
+                <constraint firstItem="aYU-tW-axI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="142" id="EVy-V2-BsJ"/>
                 <constraint firstAttribute="centerX" secondItem="kId-c2-rCX" secondAttribute="centerX" id="Koa-jz-hwk"/>
                 <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="20" id="Kzo-t9-V3l"/>
                 <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="MfP-vx-nX0"/>
+                <constraint firstItem="aYU-tW-axI" firstAttribute="top" secondItem="kId-c2-rCX" secondAttribute="bottom" constant="27" id="YwS-w1-U4i"/>
                 <constraint firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="ZEH-qu-HZ9"/>
                 <constraint firstItem="kId-c2-rCX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="fvb-Df-36g"/>
+                <constraint firstAttribute="trailing" secondItem="aYU-tW-axI" secondAttribute="trailing" constant="142" id="lIP-7X-uYZ"/>
+                <constraint firstItem="aYU-tW-axI" firstAttribute="top" secondItem="kId-c2-rCX" secondAttribute="bottom" constant="27" id="n3d-DG-Huh"/>
+                <constraint firstItem="8ie-xW-0ye" firstAttribute="top" secondItem="aYU-tW-axI" secondAttribute="bottom" constant="33" id="oDg-oA-onM"/>
+                <constraint firstItem="8ie-xW-0ye" firstAttribute="top" secondItem="aYU-tW-axI" secondAttribute="bottom" constant="33" id="sZa-xI-beb"/>
+                <constraint firstItem="aYU-tW-axI" firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="tXb-9g-ncP"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="EVy-V2-BsJ"/>
+                    <exclude reference="YwS-w1-U4i"/>
+                    <exclude reference="lIP-7X-uYZ"/>
+                    <exclude reference="sZa-xI-beb"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon.png" width="655" height="656"/>
+    </resources>
 </document>
