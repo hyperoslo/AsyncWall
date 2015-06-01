@@ -32,20 +32,19 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
       let user = User(
         name: faker.name.name(),
         avatar: Image("http://lorempixel.com/%d/%d/"))
-      var attachments: [Attachment]?
+      var attachments = [Attachment]()
+      var attachmentCount = 0;
 
       if i % 4 == 0 {
-        attachments = [
-          Image("http://lorempixel.com/%d/%d/"),
-          Image("http://lorempixel.com/%d/%d/"),
-          Image("http://lorempixel.com/%d/%d/"),
-          Image("http://lorempixel.com/%d/%d/")]
+        attachmentCount = 4
       } else if i % 3 == 0 {
-        attachments = [
-          Image("http://lorempixel.com/%d/%d/"),
-          Image("http://lorempixel.com/%d/%d/")]
+        attachmentCount = 2
       } else if i % 2 == 0 {
-        attachments = [Image("http://lorempixel.com/%d/%d/")]
+        attachmentCount = 1
+      }
+
+      for x in 0..<attachmentCount {
+        attachments.append(Image("http://lorempixel.com/%d/%d/"))
       }
 
       let sencenceCount = Int(arc4random_uniform(8) + 1)
