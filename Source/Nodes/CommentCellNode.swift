@@ -36,7 +36,7 @@ public class CommentCellNode: ASCellNode {
       addSubnode(textNode)
     }
 
-    if Config.Wall.useDivider {
+    if Config.Wall.Comment.Divider.enabled {
       divider = ASDisplayNode()
       divider!.backgroundColor = .lightGrayColor()
       addSubnode(divider)
@@ -59,7 +59,7 @@ public class CommentCellNode: ASCellNode {
       height += textSize.height + Config.Wall.padding
     }
 
-    if Config.Wall.useDivider {
+    if Config.Wall.Comment.Divider.enabled {
       height += Dimensions.dividerHeight
     }
 
