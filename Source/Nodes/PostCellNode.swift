@@ -40,27 +40,29 @@ public class PostCellNode: ASCellNode {
       hasHeader = true
       authorNameNode = ASTextNode()
       authorNameNode!.attributedString = NSAttributedString(string: author.name,
-        attributes: Config.Wall.TextAttributes.authorName)
+        attributes: Config.Wall.Post.Header.Author.textAttributes)
       addSubnode(authorNameNode)
 
       if let avatar = author.avatar {
+        let avatarConfig = Config.Wall.Post.Header.Author.Avatar.self
+        let imageSize = avatarConfig.size
         authorAvatarNode = ASImageNode()
         authorAvatarNode?.backgroundColor = UIColor.grayColor()
-        if Config.Wall.roundedAuthorImage {
-          authorAvatarNode?.cornerRadius = Config.Wall.authorImageSize / 2
+        if avatarConfig.rounded {
+          authorAvatarNode?.cornerRadius = imageSize / 2
           authorAvatarNode?.clipsToBounds = true
         }
         authorAvatarNode?.fetchImage(Config.Wall.thumbnailForAttachment(attachment: avatar,
-          size: CGSize(width: Config.Wall.authorImageSize, height: Config.Wall.authorImageSize)).url)
+          size: CGSize(width: imageSize, height: imageSize)).url)
         addSubnode(authorAvatarNode)
       }
     }
 
-    if Config.Wall.showDate {
+    if Config.Wall.Post.Header.Date.enabled {
       hasHeader = true
       dateNode = ASTextNode()
       dateNode!.attributedString = NSAttributedString(string: Config.Wall.stringFromPostDate(date: post.date),
-        attributes: Config.Wall.TextAttributes.date)
+        attributes: Config.Wall.Post.Header.Date.textAttributes)
 
       addSubnode(dateNode)
     }
@@ -78,7 +80,7 @@ public class PostCellNode: ASCellNode {
     if let text = post.text {
       textNode = ASTextNode()
       textNode!.attributedString = NSAttributedString(string: text,
-        attributes: Config.Wall.TextAttributes.postText)
+        attributes: Config.Wall.Post.Text.textAttributes)
       textNode!.userInteractionEnabled = true
       textNode!.addTarget(self,
         action: "tapAction:",
@@ -109,12 +111,12 @@ public class PostCellNode: ASCellNode {
 
     if let authorNameNode = authorNameNode {
       authorNameNode.measure(CGSize(width: CGFloat(FLT_MAX),
-        height: Config.Wall.headerHeight))
+        height: Config.Wall.Post.Header.height))
     }
 
     if let dateNode = dateNode {
       dateNode.measure(CGSize(width: CGFloat(FLT_MAX),
-        height: Config.Wall.headerHeight))
+        height: Config.Wall.Post.Header.height))
     }
 
     if let attachmentGridNode = attachmentGridNode {
@@ -132,7 +134,7 @@ public class PostCellNode: ASCellNode {
     }
 
     if hasHeader {
-      height += Config.Wall.headerHeight
+      height += Config.Wall.Post.Header.height
     }
 
     return CGSizeMake(width, height)
@@ -144,15 +146,16 @@ public class PostCellNode: ASCellNode {
 
     var headerX = padding
     let headerY: (height: CGFloat) -> CGFloat = { (height: CGFloat) -> CGFloat in
-      return (Config.Wall.headerHeight - height) / 2
+      return (Config.Wall.Post.Header.height - height) / 2
     }
 
     if let authorAvatarNode = authorAvatarNode {
+      let avatarConfig = Config.Wall.Post.Header.Author.Avatar.self
       authorAvatarNode.frame = CGRect(
         x: headerX,
-        y: y + headerY(height: Config.Wall.authorImageSize),
-        width: Config.Wall.authorImageSize,
-        height: Config.Wall.authorImageSize)
+        y: y + headerY(height: avatarConfig.size),
+        width: avatarConfig.size,
+        height: avatarConfig.size)
       headerX += CGRectGetMaxX(authorAvatarNode.frame) + Dimensions.headerAvatarPadding
     }
 
@@ -171,7 +174,7 @@ public class PostCellNode: ASCellNode {
     }
 
     if hasHeader {
-      y += Config.Wall.headerHeight
+      y += Config.Wall.Post.Header.height
     }
 
     if let attachmentGridNode = attachmentGridNode {
