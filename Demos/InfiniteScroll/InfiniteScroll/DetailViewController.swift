@@ -24,7 +24,8 @@ class DetailViewController: WallController {
 
     for i in from...to {
       let sencenceCount = Int(arc4random_uniform(8) + 1)
-      posts.append(Post(text: faker.lorem.sentences(amount: sencenceCount), date: NSDate()))
+      posts.append(Post(text: faker.lorem.sentences(amount: sencenceCount),
+        date: NSDate()))
     }
     return posts
   }
