@@ -41,6 +41,7 @@ public struct Config {
       public static var backgroundColor = UIColor.whiteColor()
 
       public struct Header {
+        public static var enabled = true
         public static var height: CGFloat = 40
         public static var showDate = true
 
@@ -56,6 +57,7 @@ public struct Config {
             public static var padding: CGFloat = 5
             public static var size: CGFloat = 32
             public static var rounded = true
+            public static var placeholderColor = UIColor.lightGrayColor()
           }
         }
 

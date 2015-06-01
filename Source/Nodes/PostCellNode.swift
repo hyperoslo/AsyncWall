@@ -3,20 +3,11 @@ import AsyncDisplayKit
 
 public class PostCellNode: ASCellNode {
 
-  struct Dimensions {
-    static let dividerHeight: CGFloat = 1
-    static let headerAvatarPadding: CGFloat = 5
-  }
-
   let width: CGFloat
   var delegate: PostCellNodeDelegate?
   var post: Post
-  var hasHeader = false
-  var hasFooter = false
 
-  var authorNameNode: ASTextNode?
-  var authorAvatarNode: ASImageNode?
-  var dateNode: ASTextNode?
+  var headerNode: PostHeaderNode?
   var attachmentGridNode: AttachmentGridNode?
   var textNode: ASTextNode?
   var likesNode: ASTextNode?
@@ -27,6 +18,10 @@ public class PostCellNode: ASCellNode {
     return width - 2 * Config.Wall.padding
   }
 
+  private var PostConfig: Config.Wall.Post.Type {
+    return Config.Wall.Post.self
+  }
+
   public init(post: Post, width: CGFloat, _ delegate: AnyObject? = nil) {
     self.post = post
     self.width = width
@@ -34,37 +29,13 @@ public class PostCellNode: ASCellNode {
 
     super.init()
 
-    self.backgroundColor = Config.Wall.Post.backgroundColor
+    self.backgroundColor = PostConfig.backgroundColor
 
-    if let author = post.author {
-      hasHeader = true
-      authorNameNode = ASTextNode()
-      authorNameNode!.attributedString = NSAttributedString(string: author.name,
-        attributes: Config.Wall.Post.Header.Author.textAttributes)
-      addSubnode(authorNameNode)
+    if PostConfig.Header.enabled {
+      headerNode = PostHeaderNode(post: post, width: contentWidth)
+      headerNode!.userInteractionEnabled = true
 
-      if let avatar = author.avatar {
-        let avatarConfig = Config.Wall.Post.Header.Author.Avatar.self
-        let imageSize = avatarConfig.size
-        authorAvatarNode = ASImageNode()
-        authorAvatarNode?.backgroundColor = UIColor.grayColor()
-        if avatarConfig.rounded {
-          authorAvatarNode?.cornerRadius = imageSize / 2
-          authorAvatarNode?.clipsToBounds = true
-        }
-        authorAvatarNode?.fetchImage(Config.Wall.thumbnailForAttachment(attachment: avatar,
-          size: CGSize(width: imageSize, height: imageSize)).url)
-        addSubnode(authorAvatarNode)
-      }
-    }
-
-    if Config.Wall.Post.Header.Date.enabled {
-      hasHeader = true
-      dateNode = ASTextNode()
-      dateNode!.attributedString = NSAttributedString(string: Config.Wall.stringFromPostDate(date: post.date),
-        attributes: Config.Wall.Post.Header.Date.textAttributes)
-
-      addSubnode(dateNode)
+      addSubnode(headerNode)
     }
 
     if let attachments = post.attachments where attachments.count > 0 {
@@ -91,7 +62,7 @@ public class PostCellNode: ASCellNode {
 
     if Config.Wall.Post.Divider.enabled {
       divider = ASDisplayNode()
-      divider!.backgroundColor = Config.Wall.Post.Divider.backgroundColor
+      divider!.backgroundColor = PostConfig.Divider.backgroundColor
       addSubnode(divider)
     }
   }
@@ -109,14 +80,8 @@ public class PostCellNode: ASCellNode {
   override public func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
     var height: CGFloat = 0.0
 
-    if let authorNameNode = authorNameNode {
-      authorNameNode.measure(CGSize(width: CGFloat(FLT_MAX),
-        height: Config.Wall.Post.Header.height))
-    }
-
-    if let dateNode = dateNode {
-      dateNode.measure(CGSize(width: CGFloat(FLT_MAX),
-        height: Config.Wall.Post.Header.height))
+    if let headerNode = headerNode {
+      height += headerNode.height
     }
 
     if let attachmentGridNode = attachmentGridNode {
@@ -129,12 +94,8 @@ public class PostCellNode: ASCellNode {
       height += textSize.height + Config.Wall.padding
     }
 
-    if Config.Wall.Post.Divider.enabled {
-      height += Dimensions.dividerHeight
-    }
-
-    if hasHeader {
-      height += Config.Wall.Post.Header.height
+    if PostConfig.Divider.enabled {
+      height += PostConfig.Divider.height
     }
 
     return CGSizeMake(width, height)
@@ -144,47 +105,23 @@ public class PostCellNode: ASCellNode {
     let padding = Config.Wall.padding
     var y = padding
 
-    var headerX = padding
-    let headerY: (height: CGFloat) -> CGFloat = { (height: CGFloat) -> CGFloat in
-      return (Config.Wall.Post.Header.height - height) / 2
-    }
-
-    if let authorAvatarNode = authorAvatarNode {
-      let avatarConfig = Config.Wall.Post.Header.Author.Avatar.self
-      authorAvatarNode.frame = CGRect(
-        x: headerX,
-        y: y + headerY(height: avatarConfig.size),
-        width: avatarConfig.size,
-        height: avatarConfig.size)
-      headerX += CGRectGetMaxX(authorAvatarNode.frame) + Dimensions.headerAvatarPadding
-    }
-
-    if let authorNameNode = authorNameNode {
-      let size = authorNameNode.calculatedSize
-      authorNameNode.frame = CGRect(
-        origin: CGPoint(x: headerX, y: y + headerY(height: size.height)),
-        size: size)
-    }
-
-    if let dateNode = dateNode {
-      let size = dateNode.calculatedSize
-      dateNode.frame = CGRect(
-        origin: CGPoint(x: contentWidth - size.width, y: y + headerY(height: size.height)),
-        size: size)
-    }
-
-    if hasHeader {
-      y += Config.Wall.Post.Header.height
+    if let headerNode = headerNode {
+      headerNode.frame = CGRect(
+        x: padding,
+        y: y,
+        width: headerNode.width,
+        height: headerNode.height)
+      y += headerNode.height
     }
 
     if let attachmentGridNode = attachmentGridNode {
       attachmentGridNode.frame = CGRect(
-        x: Config.Wall.padding,
-        y: y + Config.Wall.padding,
+        x: padding,
+        y: y + padding,
         width: attachmentGridNode.width,
         height: attachmentGridNode.height)
 
-      y += attachmentGridNode.height + Config.Wall.padding * 2
+      y += attachmentGridNode.height + padding * 2
     }
 
     if let textNode = textNode {
@@ -198,7 +135,7 @@ public class PostCellNode: ASCellNode {
 
     if let divider = divider {
       divider.frame = CGRect(x: padding, y: y,
-        width: contentWidth, height: Dimensions.dividerHeight)
+        width: contentWidth, height: PostConfig.Divider.height)
     }
   }
 }
