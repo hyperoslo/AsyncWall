@@ -15,7 +15,10 @@ class DetailViewController: WallController {
       let delayTime = dispatch_time(DISPATCH_TIME_NOW,
         Int64(0.1 * Double(NSEC_PER_SEC)))
       dispatch_after(delayTime, dispatch_get_main_queue()) {
-        self.posts = comments
+        var posts = [Post]()
+        posts.append(self.post!)
+        comments.map { posts.append($0) }
+        self.posts = posts
       }
     }
   }

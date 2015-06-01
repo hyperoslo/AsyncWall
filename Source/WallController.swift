@@ -29,13 +29,7 @@ public class WallController: UIViewController, PostCellNodeDelegate {
   public var delegate: AnyObject?
 
   public lazy var flowLayout: UICollectionViewFlowLayout = {
-    let flowLayout = UICollectionViewFlowLayout()
-
-    if self.post != nil {
-      flowLayout.headerReferenceSize = CGSizeMake(100, 200)
-    }
-
-    return flowLayout
+    return UICollectionViewFlowLayout()
     }()
 
   public var posts: [Post] = [] {
@@ -48,8 +42,7 @@ public class WallController: UIViewController, PostCellNodeDelegate {
   }
 
   public lazy var dataSource: WallDataSource = {
-    let nodeType: NodeType = self.post != nil ? .Comment : .Post
-    let dataSource = WallDataSource(type: nodeType)
+    let dataSource = WallDataSource()
     dataSource.delegate = self
 
     return dataSource
