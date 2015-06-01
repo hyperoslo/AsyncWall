@@ -10,6 +10,7 @@ class DetailViewController: WallController {
     super.viewDidLoad()
 
     title = post!.text
+    collectionView.backgroundColor = Config.Wall.Comment.backgroundColor
 
     if let comments = post?.comments {
       let delayTime = dispatch_time(DISPATCH_TIME_NOW,
