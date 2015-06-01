@@ -31,7 +31,7 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
     for i in from...to {
       let user = User(
         name: faker.name.name(),
-        avatar: Image("http://lorempixel.com/%d/%d/"))
+        avatar: Image("http://lorempixel.com/%d/%d?type=avatar&id=\(i)"))
       var attachments = [Attachment]()
       var comments = [Post]()
       var attachmentCount = 0;
@@ -49,7 +49,7 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
       }
 
       for x in 0..<attachmentCount {
-        attachments.append(Image("http://lorempixel.com/%d/%d/"))
+        attachments.append(Image("http://lorempixel.com/%d/%d/?type=attachment&id=\(i)\(x)"))
       }
 
       let sencenceCount = Int(arc4random_uniform(8) + 1)
@@ -63,7 +63,7 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
       for x in 0..<commentCount {
         let commentUser = User(
           name: faker.name.name(),
-          avatar: Image("http://lorempixel.com/%d/%d/"))
+          avatar: Image("http://lorempixel.com/%d/%d/?type=avatar&id=\(i)\(x)"))
         var comment = Post(
           text: faker.lorem.sentences(amount: sencenceCount),
           date: NSDate(timeIntervalSinceNow: -4),
