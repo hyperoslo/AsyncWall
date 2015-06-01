@@ -23,9 +23,13 @@ class DetailViewController: WallController {
     var startFrom = self.posts.count
 
     for i in from...to {
+      let user = User(
+        name: faker.name.name(),
+        avatar: Image("http://lorempixel.com/%d/%d/"))
+
       let sencenceCount = Int(arc4random_uniform(8) + 1)
       posts.append(Post(text: faker.lorem.sentences(amount: sencenceCount),
-        date: NSDate()))
+        date: NSDate(), author: user))
     }
     return posts
   }
