@@ -3,13 +3,13 @@ import AsyncDisplayKit
 
 public class PostHeaderNode: ASCellNode {
 
-  public let width: CGFloat
+  let width: CGFloat
 
   var authorNameNode: ASTextNode?
   var authorAvatarNode: ASImageNode?
   var dateNode: ASTextNode?
 
-  public var height: CGFloat {
+  var height: CGFloat {
     return config.height
   }
 

@@ -3,26 +3,26 @@ import AsyncDisplayKit
 
 public class AttachmentGridNode: ASControlNode {
 
-  public let width: CGFloat
-  public let attachments: [Attachment]
+  let width: CGFloat
+  let attachments: [Attachment]
 
   var imageNodes = [ASImageNode]()
   var counterNode: CounterNode?
 
-  private var config: Config.Wall.Post.Attachments.Type {
-    return Config.Wall.Post.Attachments.self
-  }
-
-  public var height: CGFloat {
+  var height: CGFloat {
     return width / config.ratio
   }
 
-  public var contentWidth: CGFloat {
+  var contentWidth: CGFloat {
     return width - config.padding
   }
 
-  public var contentHeight: CGFloat {
+  var contentHeight: CGFloat {
     return height - config.padding
+  }
+
+  private var config: Config.Wall.Post.Attachments.Type {
+    return Config.Wall.Post.Attachments.self
   }
 
   // MARK: - Initialization
@@ -38,8 +38,11 @@ public class AttachmentGridNode: ASControlNode {
       let imageNode = ASImageNode()
       imageNode.backgroundColor = .grayColor()
       let imageSize = sizeForThumbnailAtIndex(index)
-      imageNode.fetchImage(Config.Wall.thumbnailForAttachment(attachment: attachment,
-        size: CGSize(width: imageSize.width, height: imageSize.height)).url)
+      imageNode.fetchImage(Config.Wall.thumbnailForAttachment(
+        attachment: attachment,
+        size: CGSize(
+          width: imageSize.width,
+          height: imageSize.height)).url)
       imageNodes.append(imageNode)
       addSubnode(imageNode)
     }

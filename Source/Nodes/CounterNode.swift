@@ -11,7 +11,7 @@ public class CounterNode: ASCellNode {
     return Config.Wall.Post.Attachments.Counter.self
   }
 
-  public var size: CGSize {
+  var size: CGSize {
     let width = config.boxSize.width + config.padding * 2
     let height = config.boxSize.height + config.padding * 2
     return CGSize(width: width, height: height)

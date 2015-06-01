@@ -95,7 +95,8 @@ public class PostCellNode: ASCellNode {
     }
 
     if let textNode = textNode {
-      let textSize = textNode.measure(CGSize(width: contentWidth,
+      let textSize = textNode.measure(CGSize(
+        width: contentWidth,
         height: CGFloat(FLT_MAX)))
       height += textSize.height + Config.Wall.padding
     }
@@ -140,8 +141,11 @@ public class PostCellNode: ASCellNode {
     }
 
     if let divider = divider {
-      divider.frame = CGRect(x: padding, y: y,
-        width: contentWidth, height: PostConfig.Divider.height)
+      divider.frame = CGRect(
+        x: padding,
+        y: y,
+        width: contentWidth,
+        height: PostConfig.Divider.height)
     }
   }
 }
