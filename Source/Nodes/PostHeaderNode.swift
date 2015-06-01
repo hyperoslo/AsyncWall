@@ -17,6 +17,8 @@ public class PostHeaderNode: ASCellNode {
     return Config.Wall.Post.Header.self
   }
 
+  // MARK: - Initialization
+
   public init(post: Post, width: CGFloat) {
     self.width = width
 
@@ -62,6 +64,8 @@ public class PostHeaderNode: ASCellNode {
       addSubnode(dateNode)
     }
   }
+
+  // MARK: - Layout
 
   override public func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
     return CGSizeMake(width, height)

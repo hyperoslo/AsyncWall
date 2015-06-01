@@ -17,6 +17,8 @@ public class CounterNode: ASCellNode {
     return CGSize(width: width, height: height)
   }
 
+  // MARK: - Initialization
+
   public init(count: Int, totalCount: Int) {
     backBoxNode = ASDisplayNode()
     backBoxNode.backgroundColor = .whiteColor()
@@ -44,6 +46,8 @@ public class CounterNode: ASCellNode {
     addSubnode(boxNode)
     addSubnode(textNode)
   }
+
+  // MARK: - Layout
 
   override public func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
     textNode.measure(CGSize(width: config.boxSize.width,

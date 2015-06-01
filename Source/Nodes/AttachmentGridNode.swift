@@ -25,6 +25,8 @@ public class AttachmentGridNode: ASControlNode {
     return height - config.padding
   }
 
+  // MARK: - Initialization
+
   public init(attachments: [Attachment], width: CGFloat) {
     let totalCount = attachments.count
     self.attachments = totalCount < 4 ? attachments : Array(attachments[0..<3])
@@ -47,6 +49,8 @@ public class AttachmentGridNode: ASControlNode {
       addSubnode(counterNode)
     }
   }
+
+  // MARK: - Layout
 
   override public func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
     return CGSizeMake(width, height)
@@ -79,6 +83,8 @@ public class AttachmentGridNode: ASControlNode {
         height: size.height)
     }
   }
+
+  // MARK: - Private Methods
 
   func sizeForThumbnailAtIndex(index: Int) -> CGSize {
     var size = CGSize(width: width, height: height)
