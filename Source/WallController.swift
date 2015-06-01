@@ -51,6 +51,7 @@ public class WallController: UIViewController, PostCellNodeDelegate {
     let nodeType: NodeType = self.post != nil ? .Comment : .Post
     let dataSource = WallDataSource(type: nodeType)
     dataSource.delegate = self
+
     return dataSource
     }()
 
