@@ -32,7 +32,7 @@ public struct Config {
     }
 
     public struct Post {
-        public static var backgroundColor = UIColor.clearColor()
+        public static var backgroundColor = UIColor.whiteColor()
 
         public struct Divider {
             public static var enabled = true
@@ -41,11 +41,11 @@ public struct Config {
     }
 
     public struct Comment {
-        public static var backgroundColor = UIColor.lightGrayColor()
+        public static var backgroundColor =  UIColor(red:0.969, green:0.973, blue:0.976, alpha: 1)
 
         public struct Divider {
             public static var enabled = true
-            public static var backgroundColor = UIColor.lightGrayColor()
+            public static var backgroundColor = UIColor(red:0.925, green:0.933, blue:0.941, alpha: 1)
         }
     }
 
