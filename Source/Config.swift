@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import Haneke
 
 public struct Config {
 
@@ -8,6 +9,22 @@ public struct Config {
     dateFormatter.dateFormat = "MM-dd"
     return dateFormatter
     }()
+
+  public struct Cache {
+
+    public struct Thumbnails {
+
+      public static var format = "wall-thumbnails"
+
+      public static var storage: Haneke.Cache<UIImage> {
+        let cache = Shared.imageCache
+        let format = Format<UIImage>(name: Cache.Thumbnails.format, diskCapacity: 20 * 1024 * 1024)
+        cache.addFormat(format)
+
+        return cache
+      }
+    }
+  }
 
   public struct Wall {
 

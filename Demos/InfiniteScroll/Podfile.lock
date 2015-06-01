@@ -2,13 +2,13 @@ PODS:
   - AsyncDisplayKit (1.2):
     - AsyncDisplayKit/ASDealloc2MainObject (= 1.2)
   - AsyncDisplayKit/ASDealloc2MainObject (1.2)
-  - DateTools (1.5.0)
   - Faker (0.1.0):
     - SwiftyJSON (~> 2.2.0)
+  - HanekeSwift (0.9.1)
   - SwiftyJSON (2.2.0)
   - Wall (0.1.0):
     - AsyncDisplayKit (~> 1.2)
-    - DateTools (~> 1.5.0)
+    - HanekeSwift (~> 0.9.1)
 
 DEPENDENCIES:
   - Faker (from `https://github.com/vadymmarkov/Faker`)
@@ -27,9 +27,9 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AsyncDisplayKit: 32d5b9112b8c1b6644b54429e0cda4fbf6563781
-  DateTools: b93a2c2017747329c6077c7d7e8a75106e23d0d7
   Faker: ec2361307c261ae4b26c8da20b127d416faf0ebd
+  HanekeSwift: 50d37bfbc4432edc649167e538c259feccb4a2bb
   SwiftyJSON: 0b3e6c07af17ff745e77e8e9984097b55c956e5c
-  Wall: 25c65ceaeb5c2a36a0d645800b83fdf2423cf3cf
+  Wall: 18d79fd91eddf056dd19c43e5b45b7f671231d06
 
 COCOAPODS: 0.37.2

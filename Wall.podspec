@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   s.source_files = 'Source/**/*'
 
   s.dependency 'AsyncDisplayKit', '~> 1.2'
-  s.dependency 'DateTools', '~> 1.5.0'
+  s.dependency 'HanekeSwift', '~> 0.9.1'
 
   s.frameworks = 'Foundation'
 end

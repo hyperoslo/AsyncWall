@@ -1,20 +1,13 @@
 import UIKit
 import AsyncDisplayKit
+import Haneke
 
 extension ASImageNode {
 
   func fetchImage(imageURL: NSURL) {
-    let queue = NSOperationQueue()
-    NSURLConnection.sendAsynchronousRequest(NSURLRequest(URL: imageURL),
-      queue: queue,
-      completionHandler:{ (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-        if error != nil || data == nil || data.length == 0 {
-          return
-        }
-
-        if let image = UIImage(data: data) {
-          self.image = image
-        }
-    })
+    let cache = Config.Cache.Thumbnails.storage
+    cache.fetch(URL: imageURL, formatName: Config.Cache.Thumbnails.format).onSuccess { image in
+      self.image = image
+    }
   }
 }
