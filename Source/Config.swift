@@ -32,6 +32,24 @@ public struct Config {
       return Config.dateFormatter.stringFromDate(date)
     }
 
+    public struct Post {
+        public static var backgroundColor = UIColor.clearColor()
+
+        public struct Divider {
+            public static var enabled = true
+            public static var backgroundColor = UIColor.lightGrayColor()
+        }
+    }
+
+    public struct Comment {
+        public static var backgroundColor = UIColor.lightGrayColor()
+
+        public struct Divider {
+            public static var enabled = true
+            public static var backgroundColor = UIColor.lightGrayColor()
+        }
+    }
+
     public struct TextAttributes {
 
       public static var authorName = [
