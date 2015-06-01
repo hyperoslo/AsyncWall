@@ -51,10 +51,6 @@ public class WallController: UIViewController, PostCellNodeDelegate {
   public  override func viewDidLoad() {
     super.viewDidLoad()
 
-    collectionView.registerClass(PostHeaderView.classForCoder(),
-      forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-      withReuseIdentifier: "PostHeaderView")
-
     view.addSubview(collectionView)
   }
 
