@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD2ED3D31B1B8D1700FC0034 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BD2ED3D21B1B8D1700FC0034 /* icon.png */; };
 		BDF241091B16439D00D571F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF241081B16439D00D571F6 /* AppDelegate.swift */; };
 		BDF2410B1B16439D00D571F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF2410A1B16439D00D571F6 /* ViewController.swift */; };
 		BDF241101B16439D00D571F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDF2410F1B16439D00D571F6 /* Images.xcassets */; };
@@ -19,6 +20,7 @@
 /* Begin PBXFileReference section */
 		4445859C2DFFDE1F2F93C359 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4A589AF8E62EC4E167702DFC /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD2ED3D21B1B8D1700FC0034 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../../../Images/icon.png; sourceTree = "<group>"; };
 		BDF241031B16439D00D571F6 /* InfiniteScroll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InfiniteScroll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDF241071B16439D00D571F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BDF241081B16439D00D571F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 		BDF241061B16439D00D571F6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BD2ED3D21B1B8D1700FC0034 /* icon.png */,
 				D5B7714B1B170310008CC3B3 /* LaunchScreen.xib */,
 				BDF241071B16439D00D571F6 /* Info.plist */,
 			);
@@ -161,6 +164,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD2ED3D31B1B8D1700FC0034 /* icon.png in Resources */,
 				BDF241291B1643E000D571F6 /* Podfile in Resources */,
 				D5B7714C1B170310008CC3B3 /* LaunchScreen.xib in Resources */,
 				BDF241101B16439D00D571F6 /* Images.xcassets in Resources */,

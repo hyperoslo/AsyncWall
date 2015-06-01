@@ -63,7 +63,7 @@ public class PostCellNode: ASCellNode {
       addSubnode(dateNode)
     }
 
-    if let attachments = post.attachments {
+    if let attachments = post.attachments where attachments.count > 0 {
       attachmentGridNode = AttachmentGridNode(attachments: attachments, width: contentWidth)
       attachmentGridNode!.userInteractionEnabled = true
       attachmentGridNode!.addTarget(self,
