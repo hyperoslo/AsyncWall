@@ -7,15 +7,17 @@ public class CounterNode: ASCellNode {
   var boxNode: ASDisplayNode
   var backBoxNode: ASDisplayNode
 
-  private var config: Config.Wall.Post.Attachments.Counter.Type {
+  private var CounterConfig: Config.Wall.Post.Attachments.Counter.Type {
     return Config.Wall.Post.Attachments.Counter.self
   }
 
-  public var size: CGSize {
-    let width = config.boxSize.width + config.padding * 2
-    let height = config.boxSize.height + config.padding * 2
+  var size: CGSize {
+    let width = CounterConfig.boxSize.width + CounterConfig.padding * 2
+    let height = CounterConfig.boxSize.height + CounterConfig.padding * 2
     return CGSize(width: width, height: height)
   }
+
+  // MARK: - Initialization
 
   public init(count: Int, totalCount: Int) {
     backBoxNode = ASDisplayNode()
@@ -33,7 +35,7 @@ public class CounterNode: ASCellNode {
 
     let paragraphStyle = NSMutableParagraphStyle()
     paragraphStyle.alignment = .Center
-    var attributes = config.textAttributes
+    var attributes = CounterConfig.textAttributes
     attributes[NSParagraphStyleAttributeName] = paragraphStyle
     let text = "\(count)/\(totalCount)"
 
@@ -45,8 +47,10 @@ public class CounterNode: ASCellNode {
     addSubnode(textNode)
   }
 
+  // MARK: - Layout
+
   override public func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
-    textNode.measure(CGSize(width: config.boxSize.width,
+    textNode.measure(CGSize(width: CounterConfig.boxSize.width,
       height: CGFloat(FLT_MAX)))
 
     return CGSizeMake(size.width, size.height)
@@ -54,12 +58,12 @@ public class CounterNode: ASCellNode {
 
   override public func layout() {
     backBoxNode.frame = CGRect(
-      origin: CGPoint(x: config.boxGap, y: config.boxGap),
-      size: config.boxSize)
+      origin: CGPoint(x: CounterConfig.boxGap, y: CounterConfig.boxGap),
+      size: CounterConfig.boxSize)
 
     boxNode.frame = CGRect(
       origin: CGPoint(x: 0, y: 0),
-      size: config.boxSize)
+      size: CounterConfig.boxSize)
 
     let textSize = textNode.calculatedSize
     let textOrigin = CGPoint(

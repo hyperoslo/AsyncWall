@@ -3,27 +3,29 @@ import AsyncDisplayKit
 
 public class AttachmentGridNode: ASControlNode {
 
-  public let width: CGFloat
-  public let attachments: [Attachment]
+  let width: CGFloat
+  let attachments: [Attachment]
 
   var imageNodes = [ASImageNode]()
   var counterNode: CounterNode?
 
-  private var config: Config.Wall.Post.Attachments.Type {
+  var height: CGFloat {
+    return width / AttachmentsConfig.ratio
+  }
+
+  var contentWidth: CGFloat {
+    return width - AttachmentsConfig.padding
+  }
+
+  var contentHeight: CGFloat {
+    return height - AttachmentsConfig.padding
+  }
+
+  private var AttachmentsConfig: Config.Wall.Post.Attachments.Type {
     return Config.Wall.Post.Attachments.self
   }
 
-  public var height: CGFloat {
-    return width / config.ratio
-  }
-
-  public var contentWidth: CGFloat {
-    return width - config.padding
-  }
-
-  public var contentHeight: CGFloat {
-    return height - config.padding
-  }
+  // MARK: - Initialization
 
   public init(attachments: [Attachment], width: CGFloat) {
     let totalCount = attachments.count
@@ -36,17 +38,22 @@ public class AttachmentGridNode: ASControlNode {
       let imageNode = ASImageNode()
       imageNode.backgroundColor = .grayColor()
       let imageSize = sizeForThumbnailAtIndex(index)
-      imageNode.fetchImage(Config.Wall.thumbnailForAttachment(attachment: attachment,
-        size: CGSize(width: imageSize.width, height: imageSize.height)).url)
+      imageNode.fetchImage(Config.Wall.thumbnailForAttachment(
+        attachment: attachment,
+        size: CGSize(
+          width: imageSize.width,
+          height: imageSize.height)).url)
       imageNodes.append(imageNode)
       addSubnode(imageNode)
     }
 
-    if config.Counter.enabled && totalCount > 3 {
+    if AttachmentsConfig.Counter.enabled && totalCount > 3 {
       counterNode = CounterNode(count: imageNodes.count, totalCount: totalCount)
       addSubnode(counterNode)
     }
   }
+
+  // MARK: - Layout
 
   override public func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
     return CGSizeMake(width, height)
@@ -64,9 +71,9 @@ public class AttachmentGridNode: ASControlNode {
         width: imageSize.width,
         height: imageSize.height)
       if index == 0 {
-        x += imageSize.width + config.padding
+        x += imageSize.width + AttachmentsConfig.padding
       } else if index == 1 {
-        y += imageSize.height + config.padding
+        y += imageSize.height + AttachmentsConfig.padding
       }
     }
 
@@ -79,6 +86,8 @@ public class AttachmentGridNode: ASControlNode {
         height: size.height)
     }
   }
+
+  // MARK: - Private Methods
 
   func sizeForThumbnailAtIndex(index: Int) -> CGSize {
     var size = CGSize(width: width, height: height)

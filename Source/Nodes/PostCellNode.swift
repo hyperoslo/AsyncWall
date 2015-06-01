@@ -22,6 +22,8 @@ public class PostCellNode: ASCellNode {
     return Config.Wall.Post.self
   }
 
+  // MARK: - Initialization
+
   public init(post: Post, width: CGFloat, _ delegate: AnyObject? = nil) {
     self.post = post
     self.width = width
@@ -67,6 +69,8 @@ public class PostCellNode: ASCellNode {
     }
   }
 
+  // MARK: - Actions
+
   func tapAction(sender: AnyObject) {
     if let delegate = delegate {
       if sender.isEqual(textNode) {
@@ -76,6 +80,8 @@ public class PostCellNode: ASCellNode {
       }
     }
   }
+
+  // MARK: - Layout
 
   override public func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
     var height: CGFloat = 0.0
@@ -89,7 +95,8 @@ public class PostCellNode: ASCellNode {
     }
 
     if let textNode = textNode {
-      let textSize = textNode.measure(CGSize(width: contentWidth,
+      let textSize = textNode.measure(CGSize(
+        width: contentWidth,
         height: CGFloat(FLT_MAX)))
       height += textSize.height + Config.Wall.padding
     }
@@ -134,8 +141,11 @@ public class PostCellNode: ASCellNode {
     }
 
     if let divider = divider {
-      divider.frame = CGRect(x: padding, y: y,
-        width: contentWidth, height: PostConfig.Divider.height)
+      divider.frame = CGRect(
+        x: padding,
+        y: y,
+        width: contentWidth,
+        height: PostConfig.Divider.height)
     }
   }
 }

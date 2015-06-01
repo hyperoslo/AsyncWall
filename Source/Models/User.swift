@@ -1,5 +1,3 @@
-import Foundation
-
 public struct User {
 
   public var name: String

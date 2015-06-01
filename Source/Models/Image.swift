@@ -1,5 +1,3 @@
-import Foundation
-
 public class Image: Attachment {
 
   public var thumbnail: URLStringConvertible

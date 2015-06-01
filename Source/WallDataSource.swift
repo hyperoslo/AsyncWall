@@ -1,14 +1,14 @@
 import UIKit
 import AsyncDisplayKit
 
-public enum NodeType { case Post, Comment }
-
 public class WallDataSource: NSObject, ASCollectionViewDataSource {
 
   var delegate: AnyObject?
 
   lazy public var data = { return [Post]() }()
 }
+
+// MARK: - ASCollectionViewDataSource
 
 extension WallDataSource: ASCollectionViewDataSource {
 
@@ -39,5 +39,4 @@ extension WallDataSource: ASCollectionViewDataSource {
 
     return cellNode
   }
-
 }

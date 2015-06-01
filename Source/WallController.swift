@@ -1,13 +1,14 @@
 import UIKit
 import AsyncDisplayKit
 
-public class WallController: UIViewController, PostCellNodeDelegate {
+public class WallController: UIViewController {
 
   private enum InfiniteScrolling {
     case Triggered, Loading, Stopped
   }
 
   private var scrollingState: InfiniteScrolling = .Stopped
+
   public var post: Post?
 
   public lazy var collectionView: ASCollectionView = { [unowned self] in
@@ -48,6 +49,16 @@ public class WallController: UIViewController, PostCellNodeDelegate {
     return dataSource
     }()
 
+  // MARK: - Initialization
+
+  public convenience init(post: Post) {
+    self.init()
+
+    self.post = post
+  }
+
+  // MARK: - View lifecycle
+
   public  override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -60,23 +71,26 @@ public class WallController: UIViewController, PostCellNodeDelegate {
     collectionView.frame = view.bounds
   }
 
+  // MARK: - Public Methods
+
+  public func postAtIndex(index: Int) -> Post? {
+    return dataSource.data[index]
+  }
+}
+
+// MARK: - PostCellNodeDelegate
+
+extension WallController: PostCellNodeDelegate {
+
   public func cellNodeElementWasTapped(elementType: TappedElement, sender: PostCellNode) {
     if let delegate = delegate as? WallTapDelegate {
       let index = find(dataSource.data, sender.post)
       delegate.wallPostWasTapped(elementType, index: index)
     }
   }
-
-  public func postAtIndex(index: Int) -> Post? {
-    return dataSource.data[index]
-  }
-
-  public convenience init(post: Post) {
-    self.init()
-
-    self.post = post
-  }
 }
+
+// MARK: - ASCollectionViewDelegate
 
 extension WallController: ASCollectionViewDelegate {
 

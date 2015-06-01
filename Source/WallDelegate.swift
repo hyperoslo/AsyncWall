@@ -7,11 +7,9 @@ public enum TappedElement {
 public protocol WallTapDelegate {
 
   func wallPostWasTapped(element: TappedElement, index: Int?)
-
 }
 
 public protocol WallScrollDelegate {
 
   func wallDidScrollToEnd(completion: () -> Void)
-
 }
