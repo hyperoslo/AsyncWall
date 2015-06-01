@@ -19,7 +19,7 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
 
     self.delegate = self
     let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-      Int64(1 * Double(NSEC_PER_SEC)))
+      Int64(0.1 * Double(NSEC_PER_SEC)))
     dispatch_after(delayTime, dispatch_get_main_queue()) {
       self.posts = self.generatePosts(1, to: 50)
     }
@@ -33,14 +33,19 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
         name: faker.name.name(),
         avatar: Image("http://lorempixel.com/%d/%d/"))
       var attachments = [Attachment]()
+      var comments = [Post]()
       var attachmentCount = 0;
+      var commentCount = 0;
 
       if i % 4 == 0 {
         attachmentCount = 4
+        commentCount = 3
       } else if i % 3 == 0 {
         attachmentCount = 2
+        commentCount = 1
       } else if i % 2 == 0 {
         attachmentCount = 1
+        commentCount = 4
       }
 
       for x in 0..<attachmentCount {
@@ -55,8 +60,21 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
         attachments: attachments
       )
 
+      for x in 0..<commentCount {
+        let commentUser = User(
+          name: faker.name.name(),
+          avatar: Image("http://lorempixel.com/%d/%d/"))
+        var comment = Post(
+          text: faker.lorem.sentences(amount: sencenceCount),
+          date: NSDate(timeIntervalSinceNow: -4),
+          author: commentUser
+        )
+        post.comments.append(comment)
+      }
+
       posts.append(post)
     }
+
     return posts
   }
 
