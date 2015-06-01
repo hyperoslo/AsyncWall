@@ -11,7 +11,7 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
 
     title = "Infinite Scroll"
 
-    Config.Wall.TextAttributes.postText[NSForegroundColorAttributeName] = UIColor.darkTextColor()
+    Config.Wall.Post.Text.textAttributes[NSForegroundColorAttributeName] = UIColor.darkTextColor()
     Config.Wall.thumbnailForAttachment = {
       (attachment: Attachment, size: CGSize) -> URLStringConvertible in
       return String(format: attachment.thumbnail.string, Int(size.width), Int(size.height))

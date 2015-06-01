@@ -9,16 +9,20 @@ public class AttachmentGridNode: ASControlNode {
   var imageNodes = [ASImageNode]()
   var counterNode: CounterNode?
 
+  private var config: Config.Wall.Post.Attachments.Type {
+    return Config.Wall.Post.Attachments.self
+  }
+
   public var height: CGFloat {
-    return width / Config.Wall.thumbnailRatio
+    return width / config.ratio
   }
 
   public var contentWidth: CGFloat {
-    return width - Config.Wall.thumbnailPadding
+    return width - config.padding
   }
 
   public var contentHeight: CGFloat {
-    return height - Config.Wall.thumbnailPadding
+    return height - config.padding
   }
 
   public init(attachments: [Attachment], width: CGFloat) {
@@ -38,7 +42,7 @@ public class AttachmentGridNode: ASControlNode {
       addSubnode(imageNode)
     }
 
-    if Config.Wall.showAttachmentsCounter && totalCount > 3 {
+    if config.Counter.enabled && totalCount > 3 {
       counterNode = CounterNode(count: imageNodes.count, totalCount: totalCount)
       addSubnode(counterNode)
     }
@@ -60,9 +64,9 @@ public class AttachmentGridNode: ASControlNode {
         width: imageSize.width,
         height: imageSize.height)
       if index == 0 {
-        x += imageSize.width + Config.Wall.thumbnailPadding
+        x += imageSize.width + config.padding
       } else if index == 1 {
-        y += imageSize.height + Config.Wall.thumbnailPadding
+        y += imageSize.height + config.padding
       }
     }
 

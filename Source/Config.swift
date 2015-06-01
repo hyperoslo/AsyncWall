@@ -13,9 +13,7 @@ public struct Config {
   public struct Cache {
 
     public struct Thumbnails {
-
       public static var format = "wall-thumbnails"
-
       public static var storage: Haneke.Cache<UIImage> {
         let cache = Shared.imageCache
         let format = Format<UIImage>(name: Cache.Thumbnails.format, diskCapacity: 20 * 1024 * 1024)
@@ -27,16 +25,7 @@ public struct Config {
   }
 
   public struct Wall {
-
     public static var padding: CGFloat = 10
-    public static var headerHeight: CGFloat = 40
-    public static var authorImageSize: CGFloat = 32
-    public static var thumbnailRatio: CGFloat = 3 / 2
-    public static var thumbnailPadding: CGFloat = 10
-    public static var showAttachmentsCounter = true
-
-    public static var roundedAuthorImage = true
-    public static var showDate = true
 
     public static var thumbnailForAttachment: (attachment: Attachment, size: CGSize) -> URLStringConvertible = {
       (attachment: Attachment, size: CGSize) -> URLStringConvertible in
@@ -49,59 +38,101 @@ public struct Config {
     }
 
     public struct Post {
-        public static var backgroundColor = UIColor.whiteColor()
+      public static var backgroundColor = UIColor.whiteColor()
 
-        public struct Divider {
+      public struct Header {
+        public static var enabled = true
+        public static var height: CGFloat = 40
+        public static var showDate = true
+
+        public struct Author {
+          public static var enabled = true
+          public static var textAttributes = [
+            NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
+            NSForegroundColorAttributeName: UIColor.blackColor()
+          ]
+
+          public struct Avatar {
             public static var enabled = true
-            public static var backgroundColor = UIColor.lightGrayColor()
+            public static var padding: CGFloat = 5
+            public static var size: CGFloat = 32
+            public static var rounded = true
+            public static var placeholderColor = UIColor.lightGrayColor()
+          }
         }
+
+        public struct Date {
+          public static var enabled = true
+          public static var textAttributes = [
+            NSFontAttributeName: UIFont.italicSystemFontOfSize(12),
+            NSForegroundColorAttributeName: UIColor.grayColor()
+          ]
+        }
+      }
+
+      public struct Attachments {
+        public static var ratio: CGFloat = 3 / 2
+        public static var padding: CGFloat = 10
+
+        public struct Counter {
+          public static var enabled = true
+          public static var padding: CGFloat = 3
+          public static var boxSize = CGSize(width: 40.0, height: 30.0)
+          public static var boxGap: CGFloat = 3
+          public static var textAttributes = [
+            NSFontAttributeName: UIFont.systemFontOfSize(14),
+            NSForegroundColorAttributeName: UIColor.grayColor()
+          ]
+        }
+      }
+
+      public struct Text {
+        public static var textAttributes = [
+          NSFontAttributeName: UIFont.systemFontOfSize(14),
+          NSForegroundColorAttributeName: UIColor.grayColor()
+        ]
+      }
+
+      public struct Footer {
+        public struct Likes {
+          public static var enabled = true
+          public static var textAttributes = [
+            NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
+            NSForegroundColorAttributeName: UIColor.blackColor()
+          ]
+        }
+
+        public struct Comments {
+          public static var enabled = true
+          public static var textAttributes = [
+            NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
+            NSForegroundColorAttributeName: UIColor.blackColor()
+          ]
+        }
+
+        public struct Views {
+          public static var enabled = true
+          public static var textAttributes = [
+            NSFontAttributeName: UIFont.italicSystemFontOfSize(12),
+            NSForegroundColorAttributeName: UIColor.grayColor()
+          ]
+        }
+      }
+
+      public struct Divider {
+        public static var enabled = true
+        public static var height: CGFloat = 1
+        public static var backgroundColor = UIColor.lightGrayColor()
+      }
     }
 
     public struct Comment {
-        public static var backgroundColor =  UIColor(red:0.969, green:0.973, blue:0.976, alpha: 1)
+      public static var backgroundColor =  UIColor(red:0.969, green:0.973, blue:0.976, alpha: 1)
 
-        public struct Divider {
-            public static var enabled = true
-            public static var backgroundColor = UIColor(red:0.925, green:0.933, blue:0.941, alpha: 1)
-        }
-    }
-
-    public struct TextAttributes {
-
-      public static var authorName = [
-        NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
-        NSForegroundColorAttributeName: UIColor.blackColor()
-      ]
-
-      public static var date = [
-        NSFontAttributeName: UIFont.italicSystemFontOfSize(12),
-        NSForegroundColorAttributeName: UIColor.grayColor()
-      ]
-
-      public static var attachmentCounter = [
-        NSFontAttributeName: UIFont.systemFontOfSize(14),
-        NSForegroundColorAttributeName: UIColor.grayColor()
-      ]
-
-      public static var postText = [
-        NSFontAttributeName: UIFont.systemFontOfSize(14),
-        NSForegroundColorAttributeName: UIColor.grayColor()
-      ]
-
-      public static var likes = [
-        NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
-        NSForegroundColorAttributeName: UIColor.blackColor()
-      ]
-
-      public static var comments = [
-        NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
-        NSForegroundColorAttributeName: UIColor.blackColor()
-      ]
-
-      public static var views = [
-        NSFontAttributeName: UIFont.italicSystemFontOfSize(12),
-        NSForegroundColorAttributeName: UIColor.grayColor()
-      ]
+      public struct Divider {
+        public static var enabled = true
+        public static var backgroundColor = UIColor(red:0.925, green:0.933, blue:0.941, alpha: 1)
+      }
     }
   }
 }

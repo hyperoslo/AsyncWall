@@ -3,19 +3,17 @@ import AsyncDisplayKit
 
 public class CounterNode: ASCellNode {
 
-  struct Dimensions {
-    static let boxSize = CGSize(width: 40.0, height: 30.0)
-    static let padding: CGFloat = 3
-    static let boxGap: CGFloat = 3
-  }
-
   var textNode: ASTextNode
   var boxNode: ASDisplayNode
   var backBoxNode: ASDisplayNode
 
+  private var config: Config.Wall.Post.Attachments.Counter.Type {
+    return Config.Wall.Post.Attachments.Counter.self
+  }
+
   public var size: CGSize {
-    let width = Dimensions.boxSize.width + Dimensions.padding * 2
-    let height = Dimensions.boxSize.height + Dimensions.padding * 2
+    let width = config.boxSize.width + config.padding * 2
+    let height = config.boxSize.height + config.padding * 2
     return CGSize(width: width, height: height)
   }
 
@@ -30,16 +28,17 @@ public class CounterNode: ASCellNode {
     boxNode.alpha = 0.9
     boxNode.cornerRadius = 2
 
+    textNode = ASTextNode()
+    super.init()
+
     let paragraphStyle = NSMutableParagraphStyle()
     paragraphStyle.alignment = .Center
-    var attributes = Config.Wall.TextAttributes.attachmentCounter
+    var attributes = config.textAttributes
     attributes[NSParagraphStyleAttributeName] = paragraphStyle
-
     let text = "\(count)/\(totalCount)"
-    textNode = ASTextNode()
+
     textNode.attributedString = NSAttributedString(string: text,
       attributes: attributes)
-    super.init()
 
     addSubnode(backBoxNode)
     addSubnode(boxNode)
@@ -47,7 +46,7 @@ public class CounterNode: ASCellNode {
   }
 
   override public func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
-    textNode.measure(CGSize(width: Dimensions.boxSize.width,
+    textNode.measure(CGSize(width: config.boxSize.width,
       height: CGFloat(FLT_MAX)))
 
     return CGSizeMake(size.width, size.height)
@@ -55,12 +54,12 @@ public class CounterNode: ASCellNode {
 
   override public func layout() {
     backBoxNode.frame = CGRect(
-      origin: CGPoint(x: Dimensions.boxGap, y: Dimensions.boxGap),
-      size: Dimensions.boxSize)
+      origin: CGPoint(x: config.boxGap, y: config.boxGap),
+      size: config.boxSize)
 
     boxNode.frame = CGRect(
       origin: CGPoint(x: 0, y: 0),
-      size: Dimensions.boxSize)
+      size: config.boxSize)
 
     let textSize = textNode.calculatedSize
     let textOrigin = CGPoint(
