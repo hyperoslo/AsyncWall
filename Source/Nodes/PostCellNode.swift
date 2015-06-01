@@ -34,6 +34,8 @@ public class PostCellNode: ASCellNode {
 
     super.init()
 
+    self.backgroundColor = Config.Wall.Post.backgroundColor
+
     if let author = post.author {
       hasHeader = true
       authorNameNode = ASTextNode()
