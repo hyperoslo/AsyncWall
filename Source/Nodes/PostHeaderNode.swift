@@ -7,6 +7,8 @@ public class PostHeaderNode: ASCellNode {
 
   var authorNameNode: ASTextNode?
   var authorAvatarNode: ASImageNode?
+  var groupNode: ASTextNode?
+  var locationNode: ASTextNode?
   var dateNode: ASTextNode?
 
   var height: CGFloat {
@@ -55,6 +57,28 @@ public class PostHeaderNode: ASCellNode {
       }
     }
 
+    if HeaderConfig.Group.enabled {
+      if let group = post.group {
+        groupNode = ASTextNode()
+        groupNode!.attributedString = NSAttributedString(
+          string: group,
+          attributes: HeaderConfig.Group.textAttributes)
+
+        addSubnode(groupNode)
+      }
+    }
+
+    if HeaderConfig.Location.enabled {
+      if let location = post.location {
+        locationNode = ASTextNode()
+        locationNode!.attributedString = NSAttributedString(
+          string: location,
+          attributes: HeaderConfig.Location.textAttributes)
+
+        addSubnode(locationNode)
+      }
+    }
+
     if HeaderConfig.Date.enabled {
       dateNode = ASTextNode()
       dateNode!.attributedString = NSAttributedString(
@@ -75,28 +99,49 @@ public class PostHeaderNode: ASCellNode {
     var x: CGFloat = 0
     var y: CGFloat = 0
 
-    let headerY: (height: CGFloat) -> CGFloat = { (height: CGFloat) -> CGFloat in
-      return (self.height - height) / 2
+    let avatarConfig = HeaderConfig.Author.Avatar.self
+    let authorConfig = HeaderConfig.Author.self
+
+    let centerY: (height: CGFloat) -> CGFloat = { (height: CGFloat) -> CGFloat in
+      return y + (self.height - height) / 2
+    }
+
+    let firstRowY: (height: CGFloat) -> CGFloat = { (height: CGFloat) -> CGFloat in
+      let itemY = self.locationNode != nil ?
+        self.height / 2 - height - authorConfig.verticalPadding :
+        centerY(height: height)
+      return y + itemY
+    }
+
+    let secondRowY: (height: CGFloat) -> CGFloat = { (height: CGFloat) -> CGFloat in
+      let itemY = self.authorNameNode != nil ?
+        self.height / 2 + authorConfig.verticalPadding :
+        centerY(height: height)
+      return y + itemY
     }
 
     if let authorAvatarNode = authorAvatarNode {
-      let avatarConfig = HeaderConfig.Author.Avatar.self
       authorAvatarNode.frame = CGRect(
         x: x,
-        y: y + headerY(height: avatarConfig.size),
+        y: centerY(height: avatarConfig.size),
         width: avatarConfig.size,
         height: avatarConfig.size)
-      x += CGRectGetMaxX(authorAvatarNode.frame) + avatarConfig.padding
+      x += avatarConfig.size + authorConfig.horizontalPadding
     }
 
+    var maxWidth = width
+    var authorNameX = x
     if let authorNameNode = authorNameNode {
       let size = authorNameNode.measure(
         CGSize(
           width: CGFloat(FLT_MAX),
           height: height))
+
       authorNameNode.frame = CGRect(
-        origin: CGPoint(x: x, y: y + headerY(height: size.height)),
+        origin: CGPoint(x: x, y: firstRowY(height: size.height)),
         size: size)
+      maxWidth -= size.width
+      x += size.width + authorConfig.horizontalPadding
     }
 
     if let dateNode = dateNode {
@@ -105,7 +150,30 @@ public class PostHeaderNode: ASCellNode {
           width: CGFloat(FLT_MAX),
           height: height))
       dateNode.frame = CGRect(
-        origin: CGPoint(x: width - size.width, y: y + headerY(height: size.height)),
+        origin: CGPoint(x: width - size.width, y: centerY(height: size.height)),
+        size: size)
+      maxWidth -= size.width
+    }
+
+    if let groupNode = groupNode {
+      let size = groupNode.measure(
+        CGSize(
+          width: maxWidth,
+          height: height))
+
+      groupNode.frame = CGRect(
+        origin: CGPoint(x: x, y: firstRowY(height: size.height)),
+        size: size)
+    }
+
+    if let locationNode = locationNode {
+      let size = locationNode.measure(
+        CGSize(
+          width: CGFloat(FLT_MAX),
+          height: height))
+
+      locationNode.frame = CGRect(
+        origin: CGPoint(x: authorNameX, y: secondRowY(height: size.height)),
         size: size)
     }
   }
