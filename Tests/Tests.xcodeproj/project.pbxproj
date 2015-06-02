@@ -9,12 +9,9 @@
 /* Begin PBXBuildFile section */
 		5ACF8A7971C5B87C7B884888 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2A4CC45790E28F0A49281E /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		BD63CE0E1AEC2C4A0052E95E /* Wall.podspec in Resources */ = {isa = PBXBuildFile; fileRef = BD63CE0D1AEC2C4A0052E95E /* Wall.podspec */; };
-		BD8E43DD1AEC2B7700BC0631 /* WallTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8E43DC1AEC2B7700BC0631 /* WallTests.swift */; };
 		BD8E43E51AEC2B8200BC0631 /* WallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8E43E21AEC2B8200BC0631 /* WallController.swift */; };
 		BD8E43E61AEC2B8200BC0631 /* WallDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8E43E31AEC2B8200BC0631 /* WallDataSource.swift */; };
-		BDF240F41B16379900D571F6 /* AttachmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF240F31B16379900D571F6 /* AttachmentTests.swift */; };
 		BDF240F71B163D7E00D571F6 /* URLStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF240F61B163D7E00D571F6 /* URLStringConvertible.swift */; };
-		BDF240F91B163E3D00D571F6 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF240F81B163E3D00D571F6 /* UserTests.swift */; };
 		D52CF6C31B17090A002B4A5A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CF6C21B17090A002B4A5A /* Config.swift */; };
 		D52CF6C51B170B06002B4A5A /* WallDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CF6C41B170B06002B4A5A /* WallDelegate.swift */; };
 		D54B81D81B17147700FB0197 /* PostCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B81D71B17147700FB0197 /* PostCellNode.swift */; };
@@ -29,6 +26,8 @@
 		D558ECA71B1B48C50072D719 /* CommentCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D558ECA61B1B48C50072D719 /* CommentCellNode.swift */; };
 		D577C33A1B1B83C1002D8C3B /* CounterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D577C3391B1B83C1002D8C3B /* CounterNode.swift */; };
 		D5FE39CA1B1C80A20034CD25 /* PostHeaderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FE39C91B1C80A20034CD25 /* PostHeaderNode.swift */; };
+		D5FE39CE1B1DA2FE0034CD25 /* ImageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FE39CC1B1DA2FE0034CD25 /* ImageSpec.swift */; };
+		D5FE39CF1B1DA2FE0034CD25 /* UserSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FE39CD1B1DA2FE0034CD25 /* UserSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,12 +36,9 @@
 		BD63CE0D1AEC2C4A0052E95E /* Wall.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Wall.podspec; path = ../Wall.podspec; sourceTree = "<group>"; };
 		BD8E43D71AEC2B7700BC0631 /* WallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WallTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD8E43DB1AEC2B7700BC0631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BD8E43DC1AEC2B7700BC0631 /* WallTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallTests.swift; sourceTree = "<group>"; };
 		BD8E43E21AEC2B8200BC0631 /* WallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallController.swift; sourceTree = "<group>"; };
 		BD8E43E31AEC2B8200BC0631 /* WallDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallDataSource.swift; sourceTree = "<group>"; };
-		BDF240F31B16379900D571F6 /* AttachmentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentTests.swift; sourceTree = "<group>"; };
 		BDF240F61B163D7E00D571F6 /* URLStringConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLStringConvertible.swift; sourceTree = "<group>"; };
-		BDF240F81B163E3D00D571F6 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		D52CF6C21B17090A002B4A5A /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		D52CF6C41B170B06002B4A5A /* WallDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallDelegate.swift; sourceTree = "<group>"; };
 		D54B81D71B17147700FB0197 /* PostCellNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCellNode.swift; sourceTree = "<group>"; };
@@ -57,6 +53,8 @@
 		D558ECA61B1B48C50072D719 /* CommentCellNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCellNode.swift; sourceTree = "<group>"; };
 		D577C3391B1B83C1002D8C3B /* CounterNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterNode.swift; sourceTree = "<group>"; };
 		D5FE39C91B1C80A20034CD25 /* PostHeaderNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostHeaderNode.swift; sourceTree = "<group>"; };
+		D5FE39CC1B1DA2FE0034CD25 /* ImageSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSpec.swift; sourceTree = "<group>"; };
+		D5FE39CD1B1DA2FE0034CD25 /* UserSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSpec.swift; sourceTree = "<group>"; };
 		F2EED1A0EBE4A097B1FDD549 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,8 +112,7 @@
 		BD8E43D91AEC2B7700BC0631 /* WallTests */ = {
 			isa = PBXGroup;
 			children = (
-				BDF240F21B16378C00D571F6 /* ViewModels */,
-				BD8E43DC1AEC2B7700BC0631 /* WallTests.swift */,
+				D5FE39CB1B1DA2FE0034CD25 /* Models */,
 				BD8E43DA1AEC2B7700BC0631 /* Supporting Files */,
 			);
 			path = WallTests;
@@ -142,15 +139,6 @@
 			);
 			name = Source;
 			path = ../Source;
-			sourceTree = "<group>";
-		};
-		BDF240F21B16378C00D571F6 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				BDF240F31B16379900D571F6 /* AttachmentTests.swift */,
-				BDF240F81B163E3D00D571F6 /* UserTests.swift */,
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		BDF240F51B163D7300D571F6 /* Extensions */ = {
@@ -183,6 +171,15 @@
 				D54B82031B175FCE00FB0197 /* Post.swift */,
 				D54B82041B175FCE00FB0197 /* User.swift */,
 				D54B82051B175FCE00FB0197 /* Video.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D5FE39CB1B1DA2FE0034CD25 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D5FE39CC1B1DA2FE0034CD25 /* ImageSpec.swift */,
+				D5FE39CD1B1DA2FE0034CD25 /* UserSpec.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -306,7 +303,7 @@
 			files = (
 				D54B82091B175FCE00FB0197 /* User.swift in Sources */,
 				BDF240F71B163D7E00D571F6 /* URLStringConvertible.swift in Sources */,
-				BD8E43DD1AEC2B7700BC0631 /* WallTests.swift in Sources */,
+				D5FE39CF1B1DA2FE0034CD25 /* UserSpec.swift in Sources */,
 				BD8E43E51AEC2B8200BC0631 /* WallController.swift in Sources */,
 				D54B82081B175FCE00FB0197 /* Post.swift in Sources */,
 				D54B820A1B175FCE00FB0197 /* Video.swift in Sources */,
@@ -314,15 +311,14 @@
 				D54B82061B175FCE00FB0197 /* Attachment.swift in Sources */,
 				D52CF6C31B17090A002B4A5A /* Config.swift in Sources */,
 				D54B820C1B18647500FB0197 /* ASCellNodeExtension.swift in Sources */,
-				BDF240F91B163E3D00D571F6 /* UserTests.swift in Sources */,
 				BD8E43E61AEC2B8200BC0631 /* WallDataSource.swift in Sources */,
 				D54B820E1B1868B400FB0197 /* PostCellNodeDelegate.swift in Sources */,
 				D558ECA51B1B48B00072D719 /* AttachmentGridNode.swift in Sources */,
 				D52CF6C51B170B06002B4A5A /* WallDelegate.swift in Sources */,
 				D54B82071B175FCE00FB0197 /* Image.swift in Sources */,
 				D5FE39CA1B1C80A20034CD25 /* PostHeaderNode.swift in Sources */,
-				BDF240F41B16379900D571F6 /* AttachmentTests.swift in Sources */,
 				D577C33A1B1B83C1002D8C3B /* CounterNode.swift in Sources */,
+				D5FE39CE1B1DA2FE0034CD25 /* ImageSpec.swift in Sources */,
 				D558ECA71B1B48C50072D719 /* CommentCellNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
