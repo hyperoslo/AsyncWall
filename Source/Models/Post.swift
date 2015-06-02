@@ -13,13 +13,10 @@ public class Post: NSObject {
   public var parent: Post?
   public var comments = [Post]()
 
-  public init(text: String, date: NSDate, author: User? = nil,
-    group: String? = nil, location: String? = nil, attachments: [Attachment]? = nil) {
+  public init(text: String, date: NSDate, author: User? = nil, attachments: [Attachment]? = nil) {
       self.text = text
       self.date = date
       self.author = author
-      self.group = group
-      self.location = location
       self.attachments = attachments
   }
 }

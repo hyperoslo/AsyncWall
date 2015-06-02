@@ -17,8 +17,7 @@ class PostSpec: QuickSpec {
       var post: Post!
 
       beforeEach {
-        post = Post(text: text, date: date, author: user,
-          group: group, location: location, attachments: attachments)
+        post = Post(text: text, date: date, author: user, attachments: attachments)
       }
 
       describe("#init") {
@@ -30,32 +29,32 @@ class PostSpec: QuickSpec {
           expect(post.date).to(equal(date))
         }
 
-        it("sets author") {
-          expect(post.author).notTo(beNil())
-          expect(post.author?.name).to(equal(user.name))
-          expect(post.author?.avatar?.thumbnail.string).to(
-            equal(user.avatar?.thumbnail.string))
+        it("sets default values") {
+          expect(post.group).to(beNil())
+          expect(post.location).to(beNil())
+          expect(post.likes).to(equal(0))
+          expect(post.views).to(equal(0))
+          expect(post.parent).to(beNil())
+          expect(post.comments.count).to(equal(0))
         }
 
         context("with required parameters") {
           beforeEach {
-            post = Post(text: text, date: date, author: user)
+            post = Post(text: text, date: date)
           }
 
           it("sets default values") {
-            expect(post.group).to(beNil())
-            expect(post.location).to(beNil())
+            expect(post.author).to(beNil())
             expect(post.attachments).to(beNil())
           }
         }
 
         context("with all parameters") {
-          it("sets group") {
-            expect(post.group).to(equal(group))
-          }
-
-          it("sets location") {
-            expect(post.location).to(equal(location))
+          it("sets author") {
+            expect(post.author).notTo(beNil())
+            expect(post.author?.name).to(equal(user.name))
+            expect(post.author?.avatar?.thumbnail.string).to(
+              equal(user.avatar?.thumbnail.string))
           }
 
           it("sets attachments") {
