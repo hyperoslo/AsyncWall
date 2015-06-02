@@ -9,6 +9,7 @@ public class WallDataSource: NSObject, ASCollectionViewDataSource {
 
   convenience init(delegate: AnyObject?) {
     self.init()
+
     self.delegate = delegate
   }
 }
