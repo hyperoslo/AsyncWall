@@ -43,7 +43,6 @@ public struct Config {
       public struct Header {
         public static var enabled = true
         public static var height: CGFloat = 40
-        public static var showDate = true
 
         public struct Author {
           public static var enabled = true
@@ -61,10 +60,26 @@ public struct Config {
           }
         }
 
+        public struct Group {
+          public static var enabled = true
+          public static var textAttributes = [
+            NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
+            NSForegroundColorAttributeName: UIColor.blackColor()
+          ]
+        }
+
+        public struct Location {
+          public static var enabled = true
+          public static var textAttributes = [
+            NSFontAttributeName: UIFont.systemFontOfSize(12),
+            NSForegroundColorAttributeName: UIColor.grayColor()
+          ]
+        }
+
         public struct Date {
           public static var enabled = true
           public static var textAttributes = [
-            NSFontAttributeName: UIFont.italicSystemFontOfSize(12),
+            NSFontAttributeName: UIFont.systemFontOfSize(12),
             NSForegroundColorAttributeName: UIColor.grayColor()
           ]
         }
