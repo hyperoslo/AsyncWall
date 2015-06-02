@@ -43,10 +43,7 @@ public class WallController: UIViewController {
   }
 
   public lazy var dataSource: WallDataSource = {
-    let dataSource = WallDataSource()
-    dataSource.delegate = self
-
-    return dataSource
+    return WallDataSource(delegate: self)
     }()
 
   // MARK: - Initialization
