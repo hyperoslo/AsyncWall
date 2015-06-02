@@ -10,6 +10,7 @@ public class WallController: UIViewController {
   private var scrollingState: InfiniteScrolling = .Stopped
 
   public var post: Post?
+  public var delegate: AnyObject?
 
   public lazy var collectionView: ASCollectionView = { [unowned self] in
     var frame = self.view.bounds
@@ -26,8 +27,6 @@ public class WallController: UIViewController {
 
     return collectionView
     }()
-
-  public var delegate: AnyObject?
 
   public lazy var flowLayout: UICollectionViewFlowLayout = {
     return UICollectionViewFlowLayout()
