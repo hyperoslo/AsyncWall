@@ -10,6 +10,7 @@ public class WallController: UIViewController {
   private var scrollingState: InfiniteScrolling = .Stopped
 
   public var post: Post?
+  public var delegate: AnyObject?
 
   public lazy var collectionView: ASCollectionView = { [unowned self] in
     var frame = self.view.bounds
@@ -27,8 +28,6 @@ public class WallController: UIViewController {
     return collectionView
     }()
 
-  public var delegate: AnyObject?
-
   public lazy var flowLayout: UICollectionViewFlowLayout = {
     return UICollectionViewFlowLayout()
     }()
@@ -43,10 +42,7 @@ public class WallController: UIViewController {
   }
 
   public lazy var dataSource: WallDataSource = {
-    let dataSource = WallDataSource()
-    dataSource.delegate = self
-
-    return dataSource
+    return WallDataSource(delegate: self)
     }()
 
   // MARK: - Initialization
@@ -59,7 +55,7 @@ public class WallController: UIViewController {
 
   // MARK: - View lifecycle
 
-  public  override func viewDidLoad() {
+  public override func viewDidLoad() {
     super.viewDidLoad()
 
     view.addSubview(collectionView)
@@ -83,9 +79,9 @@ public class WallController: UIViewController {
 extension WallController: PostCellNodeDelegate {
 
   public func cellNodeElementWasTapped(elementType: TappedElement, sender: PostCellNode) {
-    if let delegate = delegate as? WallTapDelegate {
-      let index = find(dataSource.data, sender.post)
-      delegate.wallPostWasTapped(elementType, index: index)
+    if let delegate = delegate as? WallTapDelegate,
+      index = find(dataSource.data, sender.post) {
+        delegate.wallPostWasTapped(elementType, index: index)
     }
   }
 }

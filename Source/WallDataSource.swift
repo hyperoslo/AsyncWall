@@ -6,6 +6,12 @@ public class WallDataSource: NSObject, ASCollectionViewDataSource {
   var delegate: AnyObject?
 
   lazy public var data = { return [Post]() }()
+
+  convenience init(delegate: AnyObject?) {
+    self.init()
+
+    self.delegate = delegate
+  }
 }
 
 // MARK: - ASCollectionViewDataSource
