@@ -67,6 +67,15 @@ public struct Config {
             NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
             NSForegroundColorAttributeName: UIColor.blackColor()
           ]
+
+          public struct Divider {
+            public static var enabled = true
+            public static var textAttributes = [
+              NSFontAttributeName: UIFont.systemFontOfSize(12),
+              NSForegroundColorAttributeName: UIColor.grayColor()
+            ]
+            public static var text = ">"
+          }
         }
 
         public struct Location {

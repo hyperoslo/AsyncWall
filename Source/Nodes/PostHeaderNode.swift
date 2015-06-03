@@ -8,6 +8,7 @@ public class PostHeaderNode: ASCellNode {
   var authorNameNode: ASTextNode?
   var authorAvatarNode: ASImageNode?
   var groupNode: ASTextNode?
+  var groupDivider: ASTextNode?
   var locationIconNode: ASImageNode?
   var locationNode: ASTextNode?
   var dateNode: ASTextNode?
@@ -66,6 +67,16 @@ public class PostHeaderNode: ASCellNode {
           attributes: HeaderConfig.Group.textAttributes)
 
         addSubnode(groupNode)
+
+        let dividerConfig = HeaderConfig.Group.Divider.self
+        if dividerConfig.enabled {
+          groupDivider = ASTextNode()
+          groupDivider!.attributedString = NSAttributedString(
+            string: dividerConfig.text,
+            attributes: dividerConfig.textAttributes)
+
+          addSubnode(groupDivider)
+        }
       }
     }
 
@@ -146,6 +157,25 @@ public class PostHeaderNode: ASCellNode {
     }
 
     if let groupNode = groupNode {
+      if let groupDivider = groupDivider {
+        let dividerSize = groupDivider.measure(
+          CGSize(
+            width: CGFloat(FLT_MAX),
+            height: height))
+
+        let textSize = groupNode.measure(
+          CGSize(
+            width: CGFloat(FLT_MAX),
+            height: height))
+        let dividerY = firstRowY(textSize.height) +
+          (textSize.height - dividerSize.height) / 2
+
+        groupDivider.frame = CGRect(
+          origin: CGPoint(x: x, y: dividerY),
+          size: dividerSize)
+        x += dividerSize.width + authorConfig.horizontalPadding
+      }
+
       let size = groupNode.measure(
         CGSize(
           width: maxWidth,
@@ -166,7 +196,9 @@ public class PostHeaderNode: ASCellNode {
       if let locationIconNode = locationIconNode {
         let iconConfig = HeaderConfig.Location.Icon.self
 
-        locationIconNode.frame = CGRect(x: authorNameX, y: rowY,
+        let iconY = rowY + (size.height - iconConfig.size) / 2
+
+        locationIconNode.frame = CGRect(x: authorNameX, y: iconY,
           width: iconConfig.size, height: iconConfig.size)
         authorNameX += iconConfig.size + iconConfig.padding
       }
