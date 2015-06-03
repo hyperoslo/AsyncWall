@@ -36,10 +36,9 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
       var comments = [Post]()
       var attachmentCount = 0
       var commentCount = 0
-      var group: String?
+      var group = Group(name: faker.team.name())
       var location: String?
 
-      group = faker.team.name()
       location = faker.address.city()
 
       if i % 4 == 0 {
