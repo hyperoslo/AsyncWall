@@ -75,6 +75,13 @@ public struct Config {
             NSFontAttributeName: UIFont.systemFontOfSize(12),
             NSForegroundColorAttributeName: UIColor.grayColor()
           ]
+
+          public struct Icon {
+            public static var enabled = true
+            public static var padding: CGFloat = 3
+            public static var size: CGFloat = 12
+            public static var image: UIImage?
+          }
         }
 
         public struct Date {

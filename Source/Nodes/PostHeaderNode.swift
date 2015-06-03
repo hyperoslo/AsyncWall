@@ -8,6 +8,7 @@ public class PostHeaderNode: ASCellNode {
   var authorNameNode: ASTextNode?
   var authorAvatarNode: ASImageNode?
   var groupNode: ASTextNode?
+  var locationIconNode: ASImageNode?
   var locationNode: ASTextNode?
   var dateNode: ASTextNode?
 
@@ -76,6 +77,14 @@ public class PostHeaderNode: ASCellNode {
           attributes: HeaderConfig.Location.textAttributes)
 
         addSubnode(locationNode)
+
+        if HeaderConfig.Location.Icon.enabled {
+          locationIconNode = ASImageNode()
+          locationIconNode?.backgroundColor = HeaderConfig.Author.Avatar.placeholderColor
+          locationIconNode?.image = HeaderConfig.Location.Icon.image
+
+          addSubnode(locationIconNode)
+        }
       }
     }
 
@@ -153,8 +162,17 @@ public class PostHeaderNode: ASCellNode {
           width: CGFloat(FLT_MAX),
           height: height))
 
+      let rowY = secondRowY(size.height)
+      if let locationIconNode = locationIconNode {
+        let iconConfig = HeaderConfig.Location.Icon.self
+
+        locationIconNode.frame = CGRect(x: authorNameX, y: rowY,
+          width: iconConfig.size, height: iconConfig.size)
+        authorNameX += iconConfig.size + iconConfig.padding
+      }
+
       locationNode.frame = CGRect(
-        origin: CGPoint(x: authorNameX, y: secondRowY(size.height)),
+        origin: CGPoint(x: authorNameX, y: rowY),
         size: size)
     }
   }
