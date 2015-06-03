@@ -97,33 +97,14 @@ public class PostHeaderNode: ASCellNode {
 
   override public func layout() {
     var x: CGFloat = 0
-    var y: CGFloat = 0
 
     let avatarConfig = HeaderConfig.Author.Avatar.self
     let authorConfig = HeaderConfig.Author.self
 
-    let centerY: (height: CGFloat) -> CGFloat = { (height: CGFloat) -> CGFloat in
-      return y + (self.height - height) / 2
-    }
-
-    let firstRowY: (height: CGFloat) -> CGFloat = { (height: CGFloat) -> CGFloat in
-      let itemY = self.locationNode != nil ?
-        self.height / 2 - height - authorConfig.verticalPadding :
-        centerY(height: height)
-      return y + itemY
-    }
-
-    let secondRowY: (height: CGFloat) -> CGFloat = { (height: CGFloat) -> CGFloat in
-      let itemY = self.authorNameNode != nil ?
-        self.height / 2 + authorConfig.verticalPadding :
-        centerY(height: height)
-      return y + itemY
-    }
-
     if let authorAvatarNode = authorAvatarNode {
       authorAvatarNode.frame = CGRect(
         x: x,
-        y: centerY(height: avatarConfig.size),
+        y: centerY(avatarConfig.size),
         width: avatarConfig.size,
         height: avatarConfig.size)
       x += avatarConfig.size + authorConfig.horizontalPadding
@@ -138,7 +119,7 @@ public class PostHeaderNode: ASCellNode {
           height: height))
 
       authorNameNode.frame = CGRect(
-        origin: CGPoint(x: x, y: firstRowY(height: size.height)),
+        origin: CGPoint(x: x, y: firstRowY(size.height)),
         size: size)
       maxWidth -= size.width
       x += size.width + authorConfig.horizontalPadding
@@ -150,7 +131,7 @@ public class PostHeaderNode: ASCellNode {
           width: CGFloat(FLT_MAX),
           height: height))
       dateNode.frame = CGRect(
-        origin: CGPoint(x: width - size.width, y: centerY(height: size.height)),
+        origin: CGPoint(x: width - size.width, y: centerY(size.height)),
         size: size)
       maxWidth -= size.width
     }
@@ -162,7 +143,7 @@ public class PostHeaderNode: ASCellNode {
           height: height))
 
       groupNode.frame = CGRect(
-        origin: CGPoint(x: x, y: firstRowY(height: size.height)),
+        origin: CGPoint(x: x, y: firstRowY(size.height)),
         size: size)
     }
 
@@ -173,8 +154,26 @@ public class PostHeaderNode: ASCellNode {
           height: height))
 
       locationNode.frame = CGRect(
-        origin: CGPoint(x: authorNameX, y: secondRowY(height: size.height)),
+        origin: CGPoint(x: authorNameX, y: secondRowY(size.height)),
         size: size)
     }
+  }
+
+  // MARK: - Private Methods
+
+  func centerY(height: CGFloat) -> CGFloat {
+    return (self.height - height) / 2
+  }
+
+  func firstRowY(height: CGFloat) -> CGFloat {
+    return self.locationNode != nil ?
+      self.height / 2 - height - HeaderConfig.Author.verticalPadding :
+      centerY(height)
+  }
+
+  func secondRowY(height: CGFloat) -> CGFloat {
+    return self.authorNameNode != nil ?
+      self.height / 2 + HeaderConfig.Author.verticalPadding :
+      centerY(height)
   }
 }
