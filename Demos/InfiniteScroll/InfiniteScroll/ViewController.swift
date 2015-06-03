@@ -34,12 +34,16 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
         avatar: Image("http://lorempixel.com/%d/%d?type=avatar&id=\(i)"))
       var attachments = [Attachment]()
       var comments = [Post]()
-      var attachmentCount = 0;
-      var commentCount = 0;
+      var attachmentCount = 0
+      var commentCount = 0
+      var group: String?
+      var location: String?
 
       if i % 4 == 0 {
         attachmentCount = 4
         commentCount = 3
+        group = faker.team.name()
+        location = faker.address.city()
       } else if i % 3 == 0 {
         attachmentCount = 2
         commentCount = 1
@@ -59,6 +63,8 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
         author: user,
         attachments: attachments
       )
+      post.group = group
+      post.location = location
 
       for x in 0..<commentCount {
         let commentUser = User(

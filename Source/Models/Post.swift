@@ -4,6 +4,8 @@ public class Post: NSObject {
 
   public var author: User?
   public var date: NSDate
+  public var group: String?
+  public var location: String?
   public var text: String?
   public var attachments: [Attachment]?
   public var likes: Int = 0
@@ -12,9 +14,9 @@ public class Post: NSObject {
   public var comments = [Post]()
 
   public init(text: String, date: NSDate, author: User? = nil, attachments: [Attachment]? = nil) {
-    self.text = text
-    self.date = date
-    self.author = author
-    self.attachments = attachments
+      self.text = text
+      self.date = date
+      self.author = author
+      self.attachments = attachments
   }
 }

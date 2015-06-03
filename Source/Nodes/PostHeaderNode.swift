@@ -7,6 +7,10 @@ public class PostHeaderNode: ASCellNode {
 
   var authorNameNode: ASTextNode?
   var authorAvatarNode: ASImageNode?
+  var groupNode: ASTextNode?
+  var groupDivider: ASTextNode?
+  var locationIconNode: ASImageNode?
+  var locationNode: ASTextNode?
   var dateNode: ASTextNode?
 
   var height: CGFloat {
@@ -30,6 +34,8 @@ public class PostHeaderNode: ASCellNode {
         authorNameNode!.attributedString = NSAttributedString(
           string: author.name,
           attributes: HeaderConfig.Author.textAttributes)
+        authorNameNode!.userInteractionEnabled = true
+
         addSubnode(authorNameNode)
 
         if HeaderConfig.Author.Avatar.enabled {
@@ -43,6 +49,7 @@ public class PostHeaderNode: ASCellNode {
               authorAvatarNode?.cornerRadius = imageSize / 2
               authorAvatarNode?.clipsToBounds = true
             }
+            authorAvatarNode!.userInteractionEnabled = true
 
             authorAvatarNode?.fetchImage(
               Config.Wall.thumbnailForAttachment(
@@ -55,11 +62,54 @@ public class PostHeaderNode: ASCellNode {
       }
     }
 
+    if HeaderConfig.Group.enabled {
+      if let group = post.group {
+        groupNode = ASTextNode()
+        groupNode!.attributedString = NSAttributedString(
+          string: group,
+          attributes: HeaderConfig.Group.textAttributes)
+        groupNode!.userInteractionEnabled = true
+
+        addSubnode(groupNode)
+
+        let dividerConfig = HeaderConfig.Group.Divider.self
+        if dividerConfig.enabled {
+          groupDivider = ASTextNode()
+          groupDivider!.attributedString = NSAttributedString(
+            string: dividerConfig.text,
+            attributes: dividerConfig.textAttributes)
+
+          addSubnode(groupDivider)
+        }
+      }
+    }
+
+    if HeaderConfig.Location.enabled {
+      if let location = post.location {
+        locationNode = ASTextNode()
+        locationNode!.attributedString = NSAttributedString(
+          string: location,
+          attributes: HeaderConfig.Location.textAttributes)
+        locationNode!.userInteractionEnabled = true
+
+        addSubnode(locationNode)
+
+        if HeaderConfig.Location.Icon.enabled {
+          locationIconNode = ASImageNode()
+          locationIconNode?.backgroundColor = HeaderConfig.Author.Avatar.placeholderColor
+          locationIconNode?.image = HeaderConfig.Location.Icon.image
+
+          addSubnode(locationIconNode)
+        }
+      }
+    }
+
     if HeaderConfig.Date.enabled {
       dateNode = ASTextNode()
       dateNode!.attributedString = NSAttributedString(
         string: Config.Wall.stringFromPostDate(date: post.date),
         attributes: HeaderConfig.Date.textAttributes)
+      dateNode!.userInteractionEnabled = true
 
       addSubnode(dateNode)
     }
@@ -73,30 +123,32 @@ public class PostHeaderNode: ASCellNode {
 
   override public func layout() {
     var x: CGFloat = 0
-    var y: CGFloat = 0
 
-    let headerY: (height: CGFloat) -> CGFloat = { (height: CGFloat) -> CGFloat in
-      return (self.height - height) / 2
-    }
+    let avatarConfig = HeaderConfig.Author.Avatar.self
+    let authorConfig = HeaderConfig.Author.self
 
     if let authorAvatarNode = authorAvatarNode {
-      let avatarConfig = HeaderConfig.Author.Avatar.self
       authorAvatarNode.frame = CGRect(
         x: x,
-        y: y + headerY(height: avatarConfig.size),
+        y: centerY(avatarConfig.size),
         width: avatarConfig.size,
         height: avatarConfig.size)
-      x += CGRectGetMaxX(authorAvatarNode.frame) + avatarConfig.padding
+      x += avatarConfig.size + authorConfig.horizontalPadding
     }
 
+    var maxWidth = width
+    var authorNameX = x
     if let authorNameNode = authorNameNode {
       let size = authorNameNode.measure(
         CGSize(
           width: CGFloat(FLT_MAX),
           height: height))
+
       authorNameNode.frame = CGRect(
-        origin: CGPoint(x: x, y: y + headerY(height: size.height)),
+        origin: CGPoint(x: x, y: firstRowY(size.height)),
         size: size)
+      maxWidth -= size.width
+      x += size.width + authorConfig.horizontalPadding
     }
 
     if let dateNode = dateNode {
@@ -105,8 +157,79 @@ public class PostHeaderNode: ASCellNode {
           width: CGFloat(FLT_MAX),
           height: height))
       dateNode.frame = CGRect(
-        origin: CGPoint(x: width - size.width, y: y + headerY(height: size.height)),
+        origin: CGPoint(x: width - size.width, y: centerY(size.height)),
+        size: size)
+      maxWidth -= size.width
+    }
+
+    if let groupNode = groupNode {
+      if let groupDivider = groupDivider {
+        let dividerSize = groupDivider.measure(
+          CGSize(
+            width: CGFloat(FLT_MAX),
+            height: height))
+
+        let textSize = groupNode.measure(
+          CGSize(
+            width: CGFloat(FLT_MAX),
+            height: height))
+        let dividerY = firstRowY(textSize.height) +
+          (textSize.height - dividerSize.height) / 2
+
+        groupDivider.frame = CGRect(
+          origin: CGPoint(x: x, y: dividerY),
+          size: dividerSize)
+        x += dividerSize.width + authorConfig.horizontalPadding
+      }
+
+      let size = groupNode.measure(
+        CGSize(
+          width: maxWidth,
+          height: height))
+
+      groupNode.frame = CGRect(
+        origin: CGPoint(x: x, y: firstRowY(size.height)),
         size: size)
     }
+
+    if let locationNode = locationNode {
+      let size = locationNode.measure(
+        CGSize(
+          width: CGFloat(FLT_MAX),
+          height: height))
+
+      let rowY = secondRowY(size.height)
+      if let locationIconNode = locationIconNode {
+        let iconConfig = HeaderConfig.Location.Icon.self
+
+        let iconY = rowY + (size.height - iconConfig.size) / 2
+
+        locationIconNode.frame = CGRect(x: authorNameX, y: iconY,
+          width: iconConfig.size, height: iconConfig.size)
+        authorNameX += iconConfig.size + iconConfig.padding
+      }
+
+      locationNode.frame = CGRect(
+        origin: CGPoint(x: authorNameX, y: rowY),
+        size: size)
+    }
+  }
+
+  // MARK: - Private Methods
+
+  func centerY(height: CGFloat) -> CGFloat {
+    return (self.height - height) / 2
+  }
+
+  func firstRowY(height: CGFloat) -> CGFloat {
+    return self.locationNode != nil ?
+      self.height / 2 - height - HeaderConfig.Author.verticalPadding :
+      centerY(height)
+  }
+
+  func secondRowY(height: CGFloat) -> CGFloat {
+    return self.authorNameNode != nil ?
+      self.height / 2 + HeaderConfig.Author.verticalPadding :
+      centerY(height)
   }
 }

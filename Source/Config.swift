@@ -43,10 +43,11 @@ public struct Config {
       public struct Header {
         public static var enabled = true
         public static var height: CGFloat = 40
-        public static var showDate = true
 
         public struct Author {
           public static var enabled = true
+          public static var horizontalPadding: CGFloat = 5
+          public static var verticalPadding: CGFloat = 1
           public static var textAttributes = [
             NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
             NSForegroundColorAttributeName: UIColor.blackColor()
@@ -54,17 +55,48 @@ public struct Config {
 
           public struct Avatar {
             public static var enabled = true
-            public static var padding: CGFloat = 5
             public static var size: CGFloat = 32
             public static var rounded = true
             public static var placeholderColor = UIColor.lightGrayColor()
           }
         }
 
+        public struct Group {
+          public static var enabled = true
+          public static var textAttributes = [
+            NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
+            NSForegroundColorAttributeName: UIColor.blackColor()
+          ]
+
+          public struct Divider {
+            public static var enabled = true
+            public static var textAttributes = [
+              NSFontAttributeName: UIFont.systemFontOfSize(12),
+              NSForegroundColorAttributeName: UIColor.grayColor()
+            ]
+            public static var text = ">"
+          }
+        }
+
+        public struct Location {
+          public static var enabled = true
+          public static var textAttributes = [
+            NSFontAttributeName: UIFont.systemFontOfSize(12),
+            NSForegroundColorAttributeName: UIColor.grayColor()
+          ]
+
+          public struct Icon {
+            public static var enabled = true
+            public static var padding: CGFloat = 3
+            public static var size: CGFloat = 12
+            public static var image: UIImage?
+          }
+        }
+
         public struct Date {
           public static var enabled = true
           public static var textAttributes = [
-            NSFontAttributeName: UIFont.italicSystemFontOfSize(12),
+            NSFontAttributeName: UIFont.systemFontOfSize(12),
             NSForegroundColorAttributeName: UIColor.grayColor()
           ]
         }
