@@ -34,6 +34,8 @@ public class PostHeaderNode: ASCellNode {
         authorNameNode!.attributedString = NSAttributedString(
           string: author.name,
           attributes: HeaderConfig.Author.textAttributes)
+        authorNameNode!.userInteractionEnabled = true
+
         addSubnode(authorNameNode)
 
         if HeaderConfig.Author.Avatar.enabled {
@@ -47,6 +49,7 @@ public class PostHeaderNode: ASCellNode {
               authorAvatarNode?.cornerRadius = imageSize / 2
               authorAvatarNode?.clipsToBounds = true
             }
+            authorAvatarNode!.userInteractionEnabled = true
 
             authorAvatarNode?.fetchImage(
               Config.Wall.thumbnailForAttachment(
@@ -65,6 +68,7 @@ public class PostHeaderNode: ASCellNode {
         groupNode!.attributedString = NSAttributedString(
           string: group,
           attributes: HeaderConfig.Group.textAttributes)
+        groupNode!.userInteractionEnabled = true
 
         addSubnode(groupNode)
 
@@ -86,6 +90,7 @@ public class PostHeaderNode: ASCellNode {
         locationNode!.attributedString = NSAttributedString(
           string: location,
           attributes: HeaderConfig.Location.textAttributes)
+        locationNode!.userInteractionEnabled = true
 
         addSubnode(locationNode)
 
@@ -104,6 +109,7 @@ public class PostHeaderNode: ASCellNode {
       dateNode!.attributedString = NSAttributedString(
         string: Config.Wall.stringFromPostDate(date: post.date),
         attributes: HeaderConfig.Date.textAttributes)
+      dateNode!.userInteractionEnabled = true
 
       addSubnode(dateNode)
     }

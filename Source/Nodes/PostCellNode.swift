@@ -43,9 +43,6 @@ public class PostCellNode: ASCellNode {
     if let attachments = post.attachments where attachments.count > 0 {
       attachmentGridNode = AttachmentGridNode(attachments: attachments, width: contentWidth)
       attachmentGridNode!.userInteractionEnabled = true
-      attachmentGridNode!.addTarget(self,
-        action: "tapAction:",
-        forControlEvents: ASControlNodeEvent.TouchUpInside)
 
       addSubnode(attachmentGridNode)
     }
@@ -55,11 +52,24 @@ public class PostCellNode: ASCellNode {
       textNode!.attributedString = NSAttributedString(string: text,
         attributes: Config.Wall.Post.Text.textAttributes)
       textNode!.userInteractionEnabled = true
-      textNode!.addTarget(self,
-        action: "tapAction:",
-        forControlEvents: ASControlNodeEvent.TouchUpInside)
 
       addSubnode(textNode)
+    }
+
+    let actionNodes = [
+      headerNode?.authorNameNode,
+      headerNode?.authorAvatarNode,
+      headerNode?.groupNode,
+      headerNode?.dateNode,
+      headerNode?.locationNode,
+      attachmentGridNode,
+      textNode
+    ]
+
+    for actionNode in actionNodes {
+      actionNode?.addTarget(self,
+        action: "tapAction:",
+        forControlEvents: ASControlNodeEvent.TouchUpInside)
     }
 
     if Config.Wall.Post.Divider.enabled {
@@ -71,12 +81,27 @@ public class PostCellNode: ASCellNode {
 
   // MARK: - Actions
 
-  func tapAction(sender: AnyObject) {
+  func tapAction(sender: ASDisplayNode) {
     if let delegate = delegate {
-      if sender.isEqual(textNode) {
-        delegate.cellNodeElementWasTapped(.Text, sender: self)
+      var tappedElement: TappedElement?
+
+      if sender.isEqual(headerNode?.authorNameNode)
+        || sender.isEqual(headerNode?.authorAvatarNode) {
+          tappedElement = .Author
+      } else if sender.isEqual(headerNode?.groupNode) {
+        tappedElement = .Group
+      } else if sender.isEqual(headerNode?.dateNode) {
+        tappedElement = .Date
+      } else if sender.isEqual(headerNode?.locationNode) {
+        tappedElement = .Location
       } else if sender.isEqual(attachmentGridNode) {
-        delegate.cellNodeElementWasTapped(.Attachment, sender: self)
+        tappedElement = .Attachment
+      } else if sender.isEqual(textNode) {
+        tappedElement = .Text
+      }
+
+      if let tappedElement = tappedElement {
+        delegate.cellNodeElementWasTapped(tappedElement, sender: self)
       }
     }
   }
