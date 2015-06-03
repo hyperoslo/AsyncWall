@@ -1,5 +1,3 @@
-import Foundation
-
 public struct Group {
 
   public var name: String?
