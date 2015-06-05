@@ -10,8 +10,7 @@ public class PostCellNode: ASCellNode {
   var headerNode: PostHeaderNode?
   var attachmentGridNode: AttachmentGridNode?
   var textNode: ASTextNode?
-  var likesNode: ASTextNode?
-  var commentsNode: ASTextNode?
+  var footerNode: PostFooterNode?
   var divider: ASDisplayNode?
 
   var contentWidth: CGFloat {
@@ -56,6 +55,13 @@ public class PostCellNode: ASCellNode {
       addSubnode(textNode)
     }
 
+    if PostConfig.Footer.enabled {
+      footerNode = PostFooterNode(post: post, width: contentWidth)
+      footerNode!.userInteractionEnabled = true
+
+      addSubnode(footerNode)
+    }
+
     let actionNodes = [
       headerNode?.authorNameNode,
       headerNode?.authorAvatarNode,
@@ -63,7 +69,10 @@ public class PostCellNode: ASCellNode {
       headerNode?.dateNode,
       headerNode?.locationNode,
       attachmentGridNode,
-      textNode
+      textNode,
+      footerNode?.likesNode,
+      footerNode?.commentsNode,
+      footerNode?.seenCountNode
     ]
 
     for actionNode in actionNodes {
@@ -98,6 +107,12 @@ public class PostCellNode: ASCellNode {
         tappedElement = .Attachment
       } else if sender.isEqual(textNode) {
         tappedElement = .Text
+      } else if sender.isEqual(footerNode?.likesNode) {
+        tappedElement = .Likes
+      } else if sender.isEqual(footerNode?.commentsNode) {
+        tappedElement = .Comments
+      } else if sender.isEqual(footerNode?.seenCountNode) {
+        tappedElement = .SeenCount
       }
 
       if let tappedElement = tappedElement {
@@ -124,6 +139,10 @@ public class PostCellNode: ASCellNode {
         width: contentWidth,
         height: CGFloat(FLT_MAX)))
       height += textSize.height + Config.Wall.padding
+    }
+
+    if let footerNode = footerNode {
+      height += footerNode.height
     }
 
     if PostConfig.Divider.enabled {
@@ -163,6 +182,15 @@ public class PostCellNode: ASCellNode {
         size: size)
 
       y += size.height + padding
+    }
+
+    if let footerNode = footerNode {
+      footerNode.frame = CGRect(
+        x: padding,
+        y: y,
+        width: footerNode.width,
+        height: footerNode.height)
+      y += footerNode.height + padding
     }
 
     if let divider = divider {
