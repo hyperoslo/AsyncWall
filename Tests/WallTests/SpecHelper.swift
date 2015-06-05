@@ -22,7 +22,7 @@ struct SpecHelper {
     post.group = Group(name: faker.team.name())
     post.location = Location(name: faker.address.city(), coordinate: coordinate)
     post.likes = 10
-    post.shownCount = 10
+    post.seenCount = 10
 
     return post
   }
