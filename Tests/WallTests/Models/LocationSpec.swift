@@ -39,7 +39,7 @@ class LocationSpec: QuickSpec {
             expect(location.name).to(equal(name))
           }
 
-          it ("has a coordinate") {
+          it ("does not have a coordinate") {
             expect(location.coordinate).to(beNil())
           }
         }
