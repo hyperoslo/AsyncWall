@@ -2,20 +2,35 @@ PODS:
   - AsyncDisplayKit (1.2):
     - AsyncDisplayKit/ASDealloc2MainObject (= 1.2)
   - AsyncDisplayKit/ASDealloc2MainObject (1.2)
+  - Faker (0.1.0):
+    - SwiftyJSON (~> 2.2.0)
   - HanekeSwift (0.9.1)
   - Nimble (1.0.0-rc.1)
   - Quick (0.3.1)
+  - SwiftyJSON (2.2.0)
 
 DEPENDENCIES:
   - AsyncDisplayKit (= 1.2)
+  - Faker (from `https://github.com/vadymmarkov/Faker`)
   - HanekeSwift (= 0.9.1)
   - Nimble (= 1.0.0-rc.1)
   - Quick (= 0.3.1)
 
+EXTERNAL SOURCES:
+  Faker:
+    :git: https://github.com/vadymmarkov/Faker
+
+CHECKOUT OPTIONS:
+  Faker:
+    :commit: 49a53cbc60bb2c8757eb0efcb2994759027062a8
+    :git: https://github.com/vadymmarkov/Faker
+
 SPEC CHECKSUMS:
   AsyncDisplayKit: 32d5b9112b8c1b6644b54429e0cda4fbf6563781
+  Faker: ec2361307c261ae4b26c8da20b127d416faf0ebd
   HanekeSwift: 50d37bfbc4432edc649167e538c259feccb4a2bb
   Nimble: 23f1dbddf1706172c7d740430858e5dfa93d997a
   Quick: 824572d3d198d51e52cf4aa722cebf7e59952a35
+  SwiftyJSON: 0b3e6c07af17ff745e77e8e9984097b55c956e5c
 
 COCOAPODS: 0.37.2

@@ -1,17 +1,18 @@
 import Quick
 import Nimble
+import Faker
 
 class PostSpec: QuickSpec {
 
   override func spec() {
     describe("User") {
-      let text = "Test post"
+      let text = Faker().lorem.paragraph(sentencesAmount: 5)
       let date = NSDate()
       let user = User(
-        name: "John Hyperseed",
-        avatar: Image("https://avatars2.githubusercontent.com/u/1340892?v=3&s=200"))
-      let group = "Group"
-      let location = "Oslo"
+        name: Faker().name.name(),
+        avatar: Image(Faker().internet.url()))
+      let group = Faker().team.name()
+      let location = Faker().address.city()
       let attachments: [Attachment] = [Image("http://lorempixel.com/300/200/")]
 
       var post: Post!

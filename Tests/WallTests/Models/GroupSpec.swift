@@ -1,12 +1,13 @@
 import Quick
 import Nimble
+import Faker
 
 class GroupSpec: QuickSpec {
 
   override func spec() {
     describe("Group") {
-      let url = "https://avatars2.githubusercontent.com/u/1340892?v=3&s=200"
-      let name = "Hyper"
+      let url = Faker().internet.url()
+      let name = Faker().team.name()
       let image = Image(url)
 
       var group: Group!
