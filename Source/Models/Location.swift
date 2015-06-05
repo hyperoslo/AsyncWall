@@ -1,13 +1,11 @@
 public struct Location {
 
   public var name: String
-  public var latitude: Float?
-  public var longitude: Float?
+  public var coordinate: Coordinate?
 
-  public init(name: String, latitude: Float, longitude: Float) {
+  public init(name: String, coordinate: Coordinate?) {
     self.name = name
-    self.latitude = latitude
-    self.longitude = longitude
+    self.coordinate = coordinate
   }
 
 }
