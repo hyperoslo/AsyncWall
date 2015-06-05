@@ -146,7 +146,7 @@ public struct Config {
           ]
         }
 
-        public struct Views {
+        public struct ShownCount {
           public static var enabled = true
           public static var textAttributes = [
             NSFontAttributeName: UIFont.italicSystemFontOfSize(12),
