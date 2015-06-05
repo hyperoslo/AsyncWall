@@ -1,11 +1,12 @@
 import Quick
 import Nimble
+import Faker
 
 class ImageSpec: QuickSpec {
 
   override func spec() {
     describe("Image") {
-      let source = "https://github.com/hyperoslo/Wall/blob/master/Images/logo-v2.png"
+      let source = Faker().internet.url()
       var image: Image!
 
       beforeEach {

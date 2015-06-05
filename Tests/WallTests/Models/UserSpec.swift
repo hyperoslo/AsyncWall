@@ -1,12 +1,15 @@
 import Quick
 import Nimble
+import Faker
 
 class UserSpec: QuickSpec {
 
+  let faker = Faker()
+
   override func spec() {
     describe("User") {
-      let url = "https://avatars2.githubusercontent.com/u/1340892?v=3&s=200"
-      let name = "John Hyperseed"
+      let url = Faker().internet.url()
+      let name = Faker().name.name()
       let avatar = Image(url)
 
       var user: User!
