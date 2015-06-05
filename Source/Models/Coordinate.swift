@@ -7,5 +7,4 @@ public struct Coordinate {
     self.latitude = latitude
     self.longitude = longitude
   }
-
 }

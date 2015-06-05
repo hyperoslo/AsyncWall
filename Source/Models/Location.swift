@@ -7,5 +7,4 @@ public struct Location {
     self.name = name
     self.coordinate = coordinate
   }
-
 }
