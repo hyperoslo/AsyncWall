@@ -1,12 +1,15 @@
 import Quick
 import Nimble
+import Faker
 
 class LocationSpec: QuickSpec {
 
   override func spec() {
     describe("Location") {
-      let name = "Greece"
-      let coordinate = Coordinate(latitude: 3.14, longitude: 3.24)
+      let name = Faker().address.city()
+      let coordinate = Coordinate(
+        latitude: (Faker().address.latitude() as NSString).doubleValue,
+        longitude: (Faker().address.longitude() as NSString).doubleValue)
 
       var location : Location!
 
