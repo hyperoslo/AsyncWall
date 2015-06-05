@@ -37,13 +37,12 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
       var attachmentCount = 0
       var commentCount = 0
       var group: String?
-      var location: String?
+      var location = Location(name:faker.address.city())
 
       if i % 4 == 0 {
         attachmentCount = 4
         commentCount = 3
         group = faker.team.name()
-        location = faker.address.city()
       } else if i % 3 == 0 {
         attachmentCount = 2
         commentCount = 1
