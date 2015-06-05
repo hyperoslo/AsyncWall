@@ -27,7 +27,7 @@ class GroupSpec: QuickSpec {
           }
         }
 
-        context("without avatar") {
+        context("without image") {
           beforeEach {
             group = Group(name: name)
           }
