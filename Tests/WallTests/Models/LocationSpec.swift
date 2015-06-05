@@ -32,7 +32,7 @@ class LocationSpec: QuickSpec {
 
         context("without location") {
           beforeEach {
-            location = Location(name: name, coordinate: nil)
+            location = Location(name: name)
           }
 
           it("sets a name") {
