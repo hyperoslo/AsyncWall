@@ -126,6 +126,9 @@ public struct Config {
       }
 
       public struct Footer {
+        public static var enabled = true
+        public static var height: CGFloat = 40
+        
         public struct Likes {
           public static var enabled = true
           public static var textAttributes = [
