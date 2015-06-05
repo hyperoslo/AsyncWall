@@ -23,6 +23,11 @@ class LocationSpec: QuickSpec {
           it ("has a coordinate") {
             expect(location.coordinate).notTo(beNil())
           }
+
+          it ("has the right location") {
+            expect(location.coordinate?.latitude).to(equal(coordinate.latitude))
+            expect(location.coordinate?.longitude).to(equal(coordinate.longitude))
+          }
         }
 
         context("without location") {
