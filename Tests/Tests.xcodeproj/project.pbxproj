@@ -177,9 +177,9 @@
 			isa = PBXGroup;
 			children = (
 				D54B82011B175FCE00FB0197 /* Attachment.swift */,
+				BDA23F541B218A9200595C31 /* Coordinate.swift */,
 				D54B82021B175FCE00FB0197 /* Image.swift */,
 				BDA23F501B1F755000595C31 /* Location.swift */,
-				BDA23F541B218A9200595C31 /* Coordinate.swift */,
 				D54B82031B175FCE00FB0197 /* Post.swift */,
 				D54B82041B175FCE00FB0197 /* User.swift */,
 				D54B82051B175FCE00FB0197 /* Video.swift */,
