@@ -6,7 +6,7 @@ class LocationSpec: QuickSpec {
   override func spec() {
     describe("Location") {
       let name = "Greece"
-      let coordinate = Coordinate(latitude: 3.14, longitude: 3.14)
+      let coordinate = Coordinate(latitude: 3.14, longitude: 3.24)
 
       var location : Location!
 
