@@ -11,6 +11,7 @@
 		BD63CE0E1AEC2C4A0052E95E /* Wall.podspec in Resources */ = {isa = PBXBuildFile; fileRef = BD63CE0D1AEC2C4A0052E95E /* Wall.podspec */; };
 		BD8E43E51AEC2B8200BC0631 /* WallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8E43E21AEC2B8200BC0631 /* WallController.swift */; };
 		BD8E43E61AEC2B8200BC0631 /* WallDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8E43E31AEC2B8200BC0631 /* WallDataSource.swift */; };
+		BDF029EE1B2192C900C5027C /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF029ED1B2192C900C5027C /* Group.swift */; };
 		BDF240F71B163D7E00D571F6 /* URLStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF240F61B163D7E00D571F6 /* URLStringConvertible.swift */; };
 		D50502201B1E688A003044FD /* PostSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D505021F1B1E688A003044FD /* PostSpec.swift */; };
 		D52CF6C31B17090A002B4A5A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CF6C21B17090A002B4A5A /* Config.swift */; };
@@ -39,6 +40,7 @@
 		BD8E43DB1AEC2B7700BC0631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD8E43E21AEC2B8200BC0631 /* WallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallController.swift; sourceTree = "<group>"; };
 		BD8E43E31AEC2B8200BC0631 /* WallDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallDataSource.swift; sourceTree = "<group>"; };
+		BDF029ED1B2192C900C5027C /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		BDF240F61B163D7E00D571F6 /* URLStringConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLStringConvertible.swift; sourceTree = "<group>"; };
 		D505021F1B1E688A003044FD /* PostSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostSpec.swift; sourceTree = "<group>"; };
 		D52CF6C21B17090A002B4A5A /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				D54B82011B175FCE00FB0197 /* Attachment.swift */,
+				BDF029ED1B2192C900C5027C /* Group.swift */,
 				D54B82021B175FCE00FB0197 /* Image.swift */,
 				D54B82031B175FCE00FB0197 /* Post.swift */,
 				D54B82041B175FCE00FB0197 /* User.swift */,
@@ -304,6 +307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDF029EE1B2192C900C5027C /* Group.swift in Sources */,
 				D54B82091B175FCE00FB0197 /* User.swift in Sources */,
 				BDF240F71B163D7E00D571F6 /* URLStringConvertible.swift in Sources */,
 				D5FE39CF1B1DA2FE0034CD25 /* UserSpec.swift in Sources */,
