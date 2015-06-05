@@ -102,6 +102,27 @@ public struct Config {
         }
       }
 
+      public struct Footer {
+        public static var enabled = true
+        public static var height: CGFloat = 40
+
+        public struct Likes {
+          public static var enabled = true
+          public static var textAttributes = [
+            NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
+            NSForegroundColorAttributeName: UIColor.blackColor()
+          ]
+        }
+
+        public struct Comments {
+          public static var enabled = true
+          public static var textAttributes = [
+            NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
+            NSForegroundColorAttributeName: UIColor.blackColor()
+          ]
+        }
+      }
+
       public struct Attachments {
         public static var ratio: CGFloat = 3 / 2
         public static var padding: CGFloat = 10

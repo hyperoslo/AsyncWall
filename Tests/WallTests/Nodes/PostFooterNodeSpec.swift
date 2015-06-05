@@ -6,8 +6,7 @@ class FooterNodeSpec: QuickSpec {
   override func spec() {
     describe("PostFooterNode") {
       let width: CGFloat = 320
-      let post = Post(text: "Test", date: NSDate(), author: User(name: "John Hyperseed"))
-      post.likes = 10
+      let post = SpecHelper.post
 
       var node: PostFooterNode!
 
@@ -16,7 +15,7 @@ class FooterNodeSpec: QuickSpec {
       }
 
       describe("#init") {
-        context("with width") {
+        context("with width and post") {
           it ("sets a width") {
             expect(node.width).to(equal(width))
           }
