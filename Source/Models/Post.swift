@@ -4,7 +4,7 @@ public class Post: NSObject {
 
   public var author: User?
   public var date: NSDate
-  public var group: String?
+  public var group: Group?
   public var location: Location?
   public var text: String?
   public var attachments: [Attachment]?

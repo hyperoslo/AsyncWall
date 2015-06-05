@@ -66,7 +66,7 @@ public class PostHeaderNode: ASCellNode {
       if let group = post.group {
         groupNode = ASTextNode()
         groupNode!.attributedString = NSAttributedString(
-          string: group,
+          string: group.name!,
           attributes: HeaderConfig.Group.textAttributes)
         groupNode!.userInteractionEnabled = true
 
