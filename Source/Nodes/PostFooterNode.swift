@@ -6,6 +6,7 @@ public class PostFooterNode: ASCellNode {
   let width: CGFloat
 
   var likesNode: ASTextNode?
+  var commentsNode: ASTextNode?
 
   var height: CGFloat {
     return FooterConfig.height
@@ -31,6 +32,16 @@ public class PostFooterNode: ASCellNode {
 
       addSubnode(likesNode)
     }
+
+    if FooterConfig.Comments.enabled {
+      commentsNode = ASTextNode()
+      commentsNode!.attributedString = NSAttributedString(
+        string: "\(post.comments.count)",
+        attributes: FooterConfig.Comments.textAttributes)
+      commentsNode!.userInteractionEnabled = true
+
+      addSubnode(commentsNode)
+    }
   }
 
   // MARK: - Layout
@@ -49,6 +60,18 @@ public class PostFooterNode: ASCellNode {
           height: height))
 
       likesNode.frame = CGRect(
+        origin: CGPoint(x: x, y: centerY(size.height)),
+        size: size)
+      x += size.width + FooterConfig.horizontalPadding
+    }
+
+    if let commentsNode = commentsNode {
+      let size = commentsNode.measure(
+        CGSize(
+          width: CGFloat(FLT_MAX),
+          height: height))
+
+      commentsNode.frame = CGRect(
         origin: CGPoint(x: x, y: centerY(size.height)),
         size: size)
       x += size.width + FooterConfig.horizontalPadding
