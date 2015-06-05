@@ -88,7 +88,7 @@ public class PostHeaderNode: ASCellNode {
       if let location = post.location {
         locationNode = ASTextNode()
         locationNode!.attributedString = NSAttributedString(
-          string: location,
+          string: location.name,
           attributes: HeaderConfig.Location.textAttributes)
         locationNode!.userInteractionEnabled = true
 
