@@ -72,7 +72,7 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
       post.group = group
       post.location = location
       post.likes = likes
-      post.seenCount = seenBy
+      post.seenBy = seenBy
 
       for x in 0..<commentCount {
         let commentUser = User(
