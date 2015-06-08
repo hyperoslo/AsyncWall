@@ -35,19 +35,27 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
       var attachments = [Attachment]()
       var comments = [Post]()
       var attachmentCount = 0
+      var likes = 0
       var commentCount = 0
+      var seenBy = 0
       var group = Group(name: faker.team.name())
       var location = Location(name:faker.address.city())
 
       if i % 4 == 0 {
         attachmentCount = 4
         commentCount = 3
+        likes = 3
+        seenBy = 4
       } else if i % 3 == 0 {
         attachmentCount = 2
         commentCount = 1
+        likes = 1
+        seenBy = 2
       } else if i % 2 == 0 {
         attachmentCount = 1
         commentCount = 4
+        likes = 4
+        seenBy = 6
       }
 
       for x in 0..<attachmentCount {
@@ -63,6 +71,8 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
       )
       post.group = group
       post.location = location
+      post.likes = likes
+      post.seenCount = seenBy
 
       for x in 0..<commentCount {
         let commentUser = User(
