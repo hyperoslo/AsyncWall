@@ -24,7 +24,6 @@ Pod::Spec.new do |s|
 
   s.dependency 'AsyncDisplayKit', '~> 1.2'
   s.dependency 'HanekeSwift', '~> 0.9.1'
-  s.dependency 'TTTLocalizedPluralString', '~> 0.0.9'
 
   s.frameworks = 'Foundation'
 end

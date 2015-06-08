@@ -25,8 +25,9 @@ public class PostFooterNode: ASCellNode {
     super.init()
 
     if FooterConfig.Likes.enabled {
-      let string = "\(post.likes) " +
-        Config.pluralForSingular(FooterConfig.Likes.text, count: post.likes)
+      let string = String.localizedStringWithFormat(
+        NSLocalizedString("%d like(s)", comment: ""),
+        post.likes)
 
       likesNode = ASTextNode()
       likesNode!.attributedString = NSAttributedString(
@@ -38,8 +39,9 @@ public class PostFooterNode: ASCellNode {
     }
 
     if FooterConfig.Comments.enabled {
-      let string = "\(post.comments.count) " +
-        Config.pluralForSingular(FooterConfig.Comments.text, count: post.comments.count)
+      let string = String.localizedStringWithFormat(
+        NSLocalizedString("%d comment(s)", comment: ""),
+        post.comments.count)
 
       commentsNode = ASTextNode()
       commentsNode!.attributedString = NSAttributedString(
@@ -99,7 +101,7 @@ public class PostFooterNode: ASCellNode {
     if let seenByNode = seenByNode {
       let size = seenByNode.measure(
         CGSize(
-          width: width - x,
+          width: CGFloat(FLT_MAX),
           height: height))
 
       seenByNode.frame = CGRect(

@@ -1,7 +1,6 @@
 import Foundation
 import UIKit
 import Haneke
-import TTTLocalizedPluralString
 
 public struct Config {
 
@@ -10,14 +9,6 @@ public struct Config {
     dateFormatter.dateFormat = "MM-dd"
     return dateFormatter
     }()
-
-  public static func pluralForSingular(singular: String, count: Int) -> String {
-    let formatString = NSBundle.mainBundle().localizedStringForKey(
-      TTTLocalizedPluralStringKeyForCountAndSingularNoun(UInt(count), singular),
-      value: "",
-      table: nil)
-    return String(format: formatString, UInt(count))
-  }
 
   public struct Cache {
 
@@ -140,7 +131,6 @@ public struct Config {
         public static var horizontalPadding: CGFloat = 10
 
         public struct Likes {
-          public static var text = "like"
           public static var enabled = true
           public static var textAttributes = [
             NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
@@ -149,7 +139,6 @@ public struct Config {
         }
 
         public struct Comments {
-          public static var text = "comment"
           public static var enabled = true
           public static var textAttributes = [
             NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
