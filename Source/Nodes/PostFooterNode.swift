@@ -26,7 +26,7 @@ public class PostFooterNode: ASCellNode {
 
     if FooterConfig.Likes.enabled {
       let string = "\(post.likes) " +
-        Config.pluralForSingular("like", count: post.likes)
+        Config.pluralForSingular(FooterConfig.Likes.text, count: post.likes)
 
       likesNode = ASTextNode()
       likesNode!.attributedString = NSAttributedString(
@@ -39,7 +39,7 @@ public class PostFooterNode: ASCellNode {
 
     if FooterConfig.Comments.enabled {
       let string = "\(post.comments.count) " +
-        Config.pluralForSingular("comment", count: post.comments.count)
+        Config.pluralForSingular(FooterConfig.Comments.text, count: post.comments.count)
 
       commentsNode = ASTextNode()
       commentsNode!.attributedString = NSAttributedString(
