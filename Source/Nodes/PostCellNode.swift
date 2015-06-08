@@ -190,7 +190,7 @@ public class PostCellNode: ASCellNode {
         y: y,
         width: footerNode.width,
         height: footerNode.height)
-      y += footerNode.height + padding
+      y += footerNode.height
     }
 
     if let divider = divider {
