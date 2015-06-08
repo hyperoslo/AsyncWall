@@ -34,7 +34,7 @@ class PostSpec: QuickSpec {
           expect(post.group).to(beNil())
           expect(post.location).to(beNil())
           expect(post.likes).to(equal(0))
-          expect(post.seenCount).to(equal(0))
+          expect(post.seenBy).to(equal(0))
           expect(post.parent).to(beNil())
           expect(post.comments.count).to(equal(0))
         }

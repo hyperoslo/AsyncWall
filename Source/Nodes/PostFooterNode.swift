@@ -53,7 +53,7 @@ public class PostFooterNode: ASCellNode {
     }
 
     if FooterConfig.SeenBy.enabled {
-      let string = "\(FooterConfig.SeenBy.text) \(post.seenCount)"
+      let string = "\(FooterConfig.SeenBy.text) \(post.seenBy)"
 
       seenByNode = ASTextNode()
       seenByNode!.attributedString = NSAttributedString(

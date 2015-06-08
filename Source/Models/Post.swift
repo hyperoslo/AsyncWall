@@ -9,7 +9,7 @@ public class Post: NSObject {
   public var text: String?
   public var attachments: [Attachment]?
   public var likes: Int = 0
-  public var seenCount: Int = 0
+  public var seenBy: Int = 0
   public var parent: Post?
   public var comments = [Post]()
 
