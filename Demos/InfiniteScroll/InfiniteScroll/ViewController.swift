@@ -57,7 +57,7 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
       let sencenceCount = Int(arc4random_uniform(8) + 1)
       let post = Post(
         text: faker.lorem.sentences(amount: sencenceCount),
-        date: NSDate(timeIntervalSinceNow: -4),
+        date: NSDate(timeIntervalSinceNow: -Double(arc4random_uniform(60000))),
         author: user,
         attachments: attachments
       )
