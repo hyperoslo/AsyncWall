@@ -23,7 +23,7 @@ class FooterNodeSpec: QuickSpec {
           expect(node.height).to(equal(Config.Wall.Post.Footer.height))
         }
 
-        context("with likes, comments and seenCount enabled") {
+        context("with likes, comments and seenBy enabled") {
           it("adds the node with the number of likes ") {
             let string = "\(post.likes) " +
               Config.pluralForSingular(Config.Wall.Post.Footer.Likes.text, count: post.likes)
@@ -66,7 +66,7 @@ class FooterNodeSpec: QuickSpec {
           }
         }
 
-        context("with likes, comments and seenCount disabled") {
+        context("with likes, comments and seenBy disabled") {
           beforeEach {
             Config.Wall.Post.Footer.Likes.enabled = false
             Config.Wall.Post.Footer.Comments.enabled = false
