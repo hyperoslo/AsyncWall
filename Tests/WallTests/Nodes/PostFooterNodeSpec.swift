@@ -25,10 +25,13 @@ class FooterNodeSpec: QuickSpec {
 
         context("with likes, comments and seenCount enabled") {
           it("adds the node with the number of likes ") {
+            let string = "\(post.likes) " +
+              Config.pluralForSingular(Config.Wall.Post.Footer.Likes.text, count: post.likes)
+
             expect(node.likesNode).notTo(beNil())
             expect(node.likesNode!.attributedString).to(equal(
               NSAttributedString(
-                string: "\(post.likes)",
+                string: string,
                 attributes: Config.Wall.Post.Footer.Likes.textAttributes)))
             expect(node.likesNode!.userInteractionEnabled).to(beTrue())
             expect(node.likesNode!.supernode).notTo(beNil())
@@ -36,10 +39,13 @@ class FooterNodeSpec: QuickSpec {
           }
 
           it("adds the node with the number of comments") {
+            let string = "\(post.comments.count) " +
+              Config.pluralForSingular(Config.Wall.Post.Footer.Comments.text, count: post.comments.count)
+
             expect(node.commentsNode).notTo(beNil())
             expect(node.commentsNode!.attributedString).to(equal(
               NSAttributedString(
-                string: "\(post.comments.count)",
+                string: string,
                 attributes: Config.Wall.Post.Footer.Comments.textAttributes)))
             expect(node.commentsNode!.userInteractionEnabled).to(beTrue())
             expect(node.commentsNode!.supernode).notTo(beNil())
@@ -47,14 +53,16 @@ class FooterNodeSpec: QuickSpec {
           }
 
           it("adds the node with the number of views") {
+            let string = "\(Config.Wall.Post.Footer.SeenBy.text) \(post.seenCount)"
+
             expect(node.seenByNode).notTo(beNil())
-            expect(node.commentsNode!.attributedString).to(equal(
+            expect(node.seenByNode!.attributedString).to(equal(
               NSAttributedString(
-                string: "\(post.comments.count)",
-                attributes: Config.Wall.Post.Footer.Comments.textAttributes)))
-            expect(node.commentsNode!.userInteractionEnabled).to(beTrue())
-            expect(node.commentsNode!.supernode).notTo(beNil())
-            expect(node.commentsNode!.supernode).to(equal(node))
+                string: string,
+                attributes: Config.Wall.Post.Footer.SeenBy.textAttributes)))
+            expect(node.seenByNode!.userInteractionEnabled).to(beTrue())
+            expect(node.seenByNode!.supernode).notTo(beNil())
+            expect(node.seenByNode!.supernode).to(equal(node))
           }
         }
 
@@ -78,6 +86,22 @@ class FooterNodeSpec: QuickSpec {
           it("does not add the node with the number of views ") {
             expect(node.seenByNode).to(beNil())
           }
+        }
+      }
+
+      describe("#calculateSizeThatFits") {
+        var size = CGSizeZero
+
+        beforeEach {
+          size = node.calculateSizeThatFits(CGSizeZero)
+        }
+
+        it("returns correct width") {
+          expect(Double(size.width)) ≈ Double(node.width)
+        }
+
+        it("returns correct height") {
+          expect(Double(size.height)) ≈ Double(node.height)
         }
       }
     }

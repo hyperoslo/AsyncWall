@@ -30,7 +30,7 @@ public class PostFooterNode: ASCellNode {
 
       likesNode = ASTextNode()
       likesNode!.attributedString = NSAttributedString(
-        string: "\(post.likes)",
+        string: string,
         attributes: FooterConfig.Likes.textAttributes)
       likesNode!.userInteractionEnabled = true
 
