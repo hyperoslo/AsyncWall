@@ -10,8 +10,8 @@ struct SpecHelper {
       avatar: Image(faker.internet.url()))
 
     let coordinate = Coordinate(
-      latitude: (faker.address.latitude() as NSString).doubleValue,
-      longitude: (faker.address.longitude() as NSString).doubleValue)
+      latitude: faker.address.latitude(),
+      longitude: faker.address.longitude())
 
     var post = Post(
       text: faker.lorem.paragraph(sentencesAmount: 5),
