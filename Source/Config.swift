@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 import Haneke
+import TimeAgo
 
 public struct Config {
 
@@ -34,7 +35,7 @@ public struct Config {
 
     public static var stringFromPostDate: (date: NSDate) -> String = {
       (date: NSDate) -> String in
-      return Config.dateFormatter.stringFromDate(date)
+      return date.timeAgo
     }
 
     public struct Post {
