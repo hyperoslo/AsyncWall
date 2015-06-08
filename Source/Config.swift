@@ -157,7 +157,7 @@ public struct Config {
           ]
         }
 
-        public struct SeenCount {
+        public struct SeenBy {
           public static var text = "seen by"
           public static var enabled = true
           public static var textAttributes = [

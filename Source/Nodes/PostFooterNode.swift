@@ -7,7 +7,7 @@ public class PostFooterNode: ASCellNode {
 
   var likesNode: ASTextNode?
   var commentsNode: ASTextNode?
-  var seenCountNode: ASTextNode?
+  var seenByNode: ASTextNode?
 
   var height: CGFloat {
     return FooterConfig.height
@@ -50,16 +50,16 @@ public class PostFooterNode: ASCellNode {
       addSubnode(commentsNode)
     }
 
-    if FooterConfig.SeenCount.enabled {
-      let string = "\(FooterConfig.SeenCount.text) \(post.seenCount)"
+    if FooterConfig.SeenBy.enabled {
+      let string = "\(FooterConfig.SeenBy.text) \(post.seenCount)"
 
-      seenCountNode = ASTextNode()
-      seenCountNode!.attributedString = NSAttributedString(
+      seenByNode = ASTextNode()
+      seenByNode!.attributedString = NSAttributedString(
         string: string,
-        attributes: FooterConfig.SeenCount.textAttributes)
-      seenCountNode!.userInteractionEnabled = true
+        attributes: FooterConfig.SeenBy.textAttributes)
+      seenByNode!.userInteractionEnabled = true
 
-      addSubnode(seenCountNode)
+      addSubnode(seenByNode)
     }
   }
 
@@ -96,13 +96,13 @@ public class PostFooterNode: ASCellNode {
       x += size.width + FooterConfig.horizontalPadding
     }
 
-    if let seenCountNode = seenCountNode {
-      let size = seenCountNode.measure(
+    if let seenByNode = seenByNode {
+      let size = seenByNode.measure(
         CGSize(
           width: width - x,
           height: height))
 
-      seenCountNode.frame = CGRect(
+      seenByNode.frame = CGRect(
         origin: CGPoint(x: width - size.width, y: centerY(size.height)),
         size: size)
     }

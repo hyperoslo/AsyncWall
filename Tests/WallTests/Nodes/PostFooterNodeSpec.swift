@@ -18,7 +18,7 @@ class FooterNodeSpec: QuickSpec {
         it("sets a width") {
           expect(node.width).to(equal(width))
         }
-        
+
         it("has the correct height") {
           expect(node.height).to(equal(Config.Wall.Post.Footer.height))
         }
@@ -47,7 +47,7 @@ class FooterNodeSpec: QuickSpec {
           }
 
           it("adds the node with the number of views") {
-            expect(node.seenCountNode).notTo(beNil())
+            expect(node.seenByNode).notTo(beNil())
             expect(node.commentsNode!.attributedString).to(equal(
               NSAttributedString(
                 string: "\(post.comments.count)",
@@ -62,7 +62,7 @@ class FooterNodeSpec: QuickSpec {
           beforeEach {
             Config.Wall.Post.Footer.Likes.enabled = false
             Config.Wall.Post.Footer.Comments.enabled = false
-            Config.Wall.Post.Footer.SeenCount.enabled = false
+            Config.Wall.Post.Footer.SeenBy.enabled = false
 
             node = PostFooterNode(post: post, width: width)
           }
@@ -76,7 +76,7 @@ class FooterNodeSpec: QuickSpec {
           }
 
           it("does not add the node with the number of views ") {
-            expect(node.seenCountNode).to(beNil())
+            expect(node.seenByNode).to(beNil())
           }
         }
       }

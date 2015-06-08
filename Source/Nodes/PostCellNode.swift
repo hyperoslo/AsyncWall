@@ -72,7 +72,7 @@ public class PostCellNode: ASCellNode {
       textNode,
       footerNode?.likesNode,
       footerNode?.commentsNode,
-      footerNode?.seenCountNode
+      footerNode?.seenByNode
     ]
 
     for actionNode in actionNodes {
@@ -111,7 +111,7 @@ public class PostCellNode: ASCellNode {
         tappedElement = .Likes
       } else if sender.isEqual(footerNode?.commentsNode) {
         tappedElement = .Comments
-      } else if sender.isEqual(footerNode?.seenCountNode) {
+      } else if sender.isEqual(footerNode?.seenByNode) {
         tappedElement = .SeenCount
       }
 
