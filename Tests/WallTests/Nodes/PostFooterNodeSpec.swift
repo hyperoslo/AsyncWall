@@ -25,8 +25,9 @@ class FooterNodeSpec: QuickSpec {
 
         context("with likes, comments and seenBy enabled") {
           it("adds the node with the number of likes ") {
-            let string = "\(post.likes) " +
-              Config.pluralForSingular(Config.Wall.Post.Footer.Likes.text, count: post.likes)
+            let string = String.localizedStringWithFormat(
+              NSLocalizedString("%d like(s)", comment: ""),
+              post.likes)
 
             expect(node.likesNode).notTo(beNil())
             expect(node.likesNode!.attributedString).to(equal(
@@ -39,8 +40,9 @@ class FooterNodeSpec: QuickSpec {
           }
 
           it("adds the node with the number of comments") {
-            let string = "\(post.comments.count) " +
-              Config.pluralForSingular(Config.Wall.Post.Footer.Comments.text, count: post.comments.count)
+            let string = String.localizedStringWithFormat(
+              NSLocalizedString("%d comment(s)", comment: ""),
+              post.comments.count)
 
             expect(node.commentsNode).notTo(beNil())
             expect(node.commentsNode!.attributedString).to(equal(
