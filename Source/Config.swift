@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 import Haneke
+import TTTLocalizedPluralString
 
 public struct Config {
 
@@ -9,6 +10,14 @@ public struct Config {
     dateFormatter.dateFormat = "MM-dd"
     return dateFormatter
     }()
+
+  public static func pluralForSingular(singular: String, count: Int) -> String {
+    let formatString = NSBundle.mainBundle().localizedStringForKey(
+      TTTLocalizedPluralStringKeyForCountAndSingularNoun(UInt(count), singular),
+      value: "",
+      table: nil)
+    return String(format: formatString, UInt(count))
+  }
 
   public struct Cache {
 
