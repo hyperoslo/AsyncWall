@@ -147,7 +147,7 @@ public struct Config {
         }
 
         public struct SeenBy {
-          public static var text = "seen by"
+          public static var text = NSLocalizedString("Seen by", comment: "")
           public static var enabled = true
           public static var textAttributes = [
             NSFontAttributeName: UIFont.italicSystemFontOfSize(12),
