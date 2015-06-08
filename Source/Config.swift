@@ -140,6 +140,7 @@ public struct Config {
         public static var horizontalPadding: CGFloat = 10
 
         public struct Likes {
+          public static var text = "like"
           public static var enabled = true
           public static var textAttributes = [
             NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
@@ -148,6 +149,7 @@ public struct Config {
         }
 
         public struct Comments {
+          public static var text = "comment"
           public static var enabled = true
           public static var textAttributes = [
             NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
@@ -156,6 +158,7 @@ public struct Config {
         }
 
         public struct SeenCount {
+          public static var text = "seen by"
           public static var enabled = true
           public static var textAttributes = [
             NSFontAttributeName: UIFont.italicSystemFontOfSize(12),

@@ -27,7 +27,7 @@ public class PostFooterNode: ASCellNode {
     if FooterConfig.Likes.enabled {
       let string = "\(post.likes) " +
         Config.pluralForSingular("like", count: post.likes)
-      
+
       likesNode = ASTextNode()
       likesNode!.attributedString = NSAttributedString(
         string: "\(post.likes)",
@@ -51,9 +51,11 @@ public class PostFooterNode: ASCellNode {
     }
 
     if FooterConfig.SeenCount.enabled {
+      let string = "\(FooterConfig.SeenCount.text) \(post.seenCount)"
+
       seenCountNode = ASTextNode()
       seenCountNode!.attributedString = NSAttributedString(
-        string: "\(post.seenCount)",
+        string: string,
         attributes: FooterConfig.SeenCount.textAttributes)
       seenCountNode!.userInteractionEnabled = true
 
