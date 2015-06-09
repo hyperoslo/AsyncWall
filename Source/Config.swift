@@ -127,6 +127,10 @@ public struct Config {
       }
 
       public struct Footer {
+        public static var enabled = true
+        public static var height: CGFloat = 40
+        public static var horizontalPadding: CGFloat = 10
+
         public struct Likes {
           public static var enabled = true
           public static var textAttributes = [
@@ -143,7 +147,8 @@ public struct Config {
           ]
         }
 
-        public struct Views {
+        public struct Seen {
+          public static var text = NSLocalizedString("Seen by", comment: "")
           public static var enabled = true
           public static var textAttributes = [
             NSFontAttributeName: UIFont.italicSystemFontOfSize(12),

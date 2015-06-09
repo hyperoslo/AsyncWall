@@ -6,8 +6,8 @@ class CoordinateSpec: QuickSpec {
 
   override func spec() {
     describe("Coordinate") {
-      let latitude = (Faker().address.latitude() as NSString).doubleValue
-      let longitude = (Faker().address.longitude() as NSString).doubleValue
+      let latitude = Faker().address.latitude()
+      let longitude = Faker().address.longitude()
 
       var coordinate: Coordinate!
 

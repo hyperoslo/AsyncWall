@@ -22,7 +22,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Faker:
-    :commit: 49a53cbc60bb2c8757eb0efcb2994759027062a8
+    :commit: b24d4ed16d1c47976e76d64d450af60c468a9544
     :git: https://github.com/vadymmarkov/Faker
 
 SPEC CHECKSUMS:

@@ -14,6 +14,8 @@
 		BDF241291B1643E000D571F6 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = BDF241281B1643E000D571F6 /* Podfile */; };
 		BDFD40F61B18A2B800A8A55D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFD40F51B18A2B800A8A55D /* DetailViewController.swift */; };
 		D5B7714C1B170310008CC3B3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B7714B1B170310008CC3B3 /* LaunchScreen.xib */; };
+		D5D9C6E71B265F4B00871872 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = D5D9C6E91B265F4B00871872 /* Localizable.stringsdict */; };
+		D5D9C6ED1B265F7F00871872 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5D9C6EF1B265F7F00871872 /* Localizable.strings */; };
 		F19271B1F44F9A001FE0B74C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A589AF8E62EC4E167702DFC /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -30,6 +32,10 @@
 		BDFD40F51B18A2B800A8A55D /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C9CA9B2940F1605E016CD681 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D5B7714B1B170310008CC3B3 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		D5D9C6E81B265F4B00871872 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Base; path = Base.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		D5D9C6EA1B265F4C00871872 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		D5D9C6EE1B265F7F00871872 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D5D9C6F01B265F8100871872 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +97,8 @@
 				BD2ED3D21B1B8D1700FC0034 /* icon.png */,
 				D5B7714B1B170310008CC3B3 /* LaunchScreen.xib */,
 				BDF241071B16439D00D571F6 /* Info.plist */,
+				D5D9C6E91B265F4B00871872 /* Localizable.stringsdict */,
+				D5D9C6EF1B265F7F00871872 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -165,6 +173,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD2ED3D31B1B8D1700FC0034 /* icon.png in Resources */,
+				D5D9C6ED1B265F7F00871872 /* Localizable.strings in Resources */,
+				D5D9C6E71B265F4B00871872 /* Localizable.stringsdict in Resources */,
 				BDF241291B1643E000D571F6 /* Podfile in Resources */,
 				D5B7714C1B170310008CC3B3 /* LaunchScreen.xib in Resources */,
 				BDF241101B16439D00D571F6 /* Images.xcassets in Resources */,
@@ -233,6 +243,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D5D9C6E91B265F4B00871872 /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5D9C6E81B265F4B00871872 /* Base */,
+				D5D9C6EA1B265F4C00871872 /* en */,
+			);
+			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
+		D5D9C6EF1B265F7F00871872 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5D9C6EE1B265F7F00871872 /* Base */,
+				D5D9C6F01B265F8100871872 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		BDF241201B16439D00D571F6 /* Debug */ = {

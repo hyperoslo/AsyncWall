@@ -8,8 +8,8 @@ class LocationSpec: QuickSpec {
     describe("Location") {
       let name = Faker().address.city()
       let coordinate = Coordinate(
-        latitude: (Faker().address.latitude() as NSString).doubleValue,
-        longitude: (Faker().address.longitude() as NSString).doubleValue)
+        latitude: Faker().address.latitude(),
+        longitude: Faker().address.longitude())
 
       var location : Location!
 
