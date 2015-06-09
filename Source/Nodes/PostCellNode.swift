@@ -181,7 +181,7 @@ public class PostCellNode: ASCellNode {
         origin: CGPoint(x: padding, y: y),
         size: size)
 
-      y += size.height + padding
+      y += size.height
     }
 
     if let footerNode = footerNode {
@@ -191,6 +191,8 @@ public class PostCellNode: ASCellNode {
         width: footerNode.width,
         height: footerNode.height)
       y += footerNode.height
+    } else {
+      y += padding
     }
 
     if let divider = divider {
