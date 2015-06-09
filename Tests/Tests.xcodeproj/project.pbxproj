@@ -34,6 +34,7 @@
 		D577C33A1B1B83C1002D8C3B /* CounterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D577C3391B1B83C1002D8C3B /* CounterNode.swift */; };
 		D5A787B51B27AED700472D32 /* PostActionBarNodeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A787B41B27AED700472D32 /* PostActionBarNodeSpec.swift */; };
 		D5A787B71B27AF2500472D32 /* PostActionBarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A787B61B27AF2500472D32 /* PostActionBarNode.swift */; };
+		D5A787B91B27B25E00472D32 /* ControlNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A787B81B27B25E00472D32 /* ControlNode.swift */; };
 		D5F318E01B21B44D00DE9899 /* PostFooterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F318DF1B21B44D00DE9899 /* PostFooterNode.swift */; };
 		D5F318E31B21B4EB00DE9899 /* PostFooterNodeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F318E21B21B4EB00DE9899 /* PostFooterNodeSpec.swift */; };
 		D5F318E51B21B92600DE9899 /* SpecHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F318E41B21B92600DE9899 /* SpecHelper.swift */; };
@@ -73,6 +74,7 @@
 		D577C3391B1B83C1002D8C3B /* CounterNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterNode.swift; sourceTree = "<group>"; };
 		D5A787B41B27AED700472D32 /* PostActionBarNodeSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostActionBarNodeSpec.swift; sourceTree = "<group>"; };
 		D5A787B61B27AF2500472D32 /* PostActionBarNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostActionBarNode.swift; sourceTree = "<group>"; };
+		D5A787B81B27B25E00472D32 /* ControlNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlNode.swift; sourceTree = "<group>"; };
 		D5F318DF1B21B44D00DE9899 /* PostFooterNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostFooterNode.swift; sourceTree = "<group>"; };
 		D5F318E21B21B4EB00DE9899 /* PostFooterNodeSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostFooterNodeSpec.swift; sourceTree = "<group>"; };
 		D5F318E41B21B92600DE9899 /* SpecHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecHelper.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				D558ECA41B1B48B00072D719 /* AttachmentGridNode.swift */,
 				D577C3391B1B83C1002D8C3B /* CounterNode.swift */,
 				D558ECA61B1B48C50072D719 /* CommentCellNode.swift */,
+				D5A787B81B27B25E00472D32 /* ControlNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				D54B820C1B18647500FB0197 /* ASCellNodeExtension.swift in Sources */,
 				D5A787B51B27AED700472D32 /* PostActionBarNodeSpec.swift in Sources */,
 				BD8E43E61AEC2B8200BC0631 /* WallDataSource.swift in Sources */,
+				D5A787B91B27B25E00472D32 /* ControlNode.swift in Sources */,
 				D5F318E51B21B92600DE9899 /* SpecHelper.swift in Sources */,
 				D54B820E1B1868B400FB0197 /* PostCellNodeDelegate.swift in Sources */,
 				BDA23F511B1F755000595C31 /* Location.swift in Sources */,
