@@ -65,7 +65,7 @@ public struct Config {
         public struct Group {
           public static var enabled = true
           public static var textAttributes = [
-            NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
+            NSFontAttributeName: UIFont.boldSystemFontOfSize(12),
             NSForegroundColorAttributeName: UIColor.blackColor()
           ]
 
