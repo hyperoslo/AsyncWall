@@ -1,7 +1,7 @@
 import UIKit
 
 public enum TappedElement {
-  case Author, Group, Date, Location, Text, Attachment, Likes, SeenCount, Comments
+  case Author, Group, Date, Location, Text, Attachment, Likes, Seen, Comments
 }
 
 public protocol WallTapDelegate {

@@ -147,7 +147,7 @@ public struct Config {
           ]
         }
 
-        public struct SeenBy {
+        public struct Seen {
           public static var text = NSLocalizedString("Seen by", comment: "")
           public static var enabled = true
           public static var textAttributes = [

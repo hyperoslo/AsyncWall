@@ -23,7 +23,7 @@ class FooterNodeSpec: QuickSpec {
           expect(node.height).to(equal(Config.Wall.Post.Footer.height))
         }
 
-        context("with likes, comments and seenBy enabled") {
+        context("with likes, comments and seen enabled") {
           it("adds the node with the number of likes ") {
             let string = String.localizedStringWithFormat(
               NSLocalizedString("%d like(s)", comment: ""),
@@ -55,24 +55,24 @@ class FooterNodeSpec: QuickSpec {
           }
 
           it("adds the node with the number of views") {
-            let string = "\(Config.Wall.Post.Footer.SeenBy.text) \(post.seenBy)"
+            let string = "\(Config.Wall.Post.Footer.Seen.text) \(post.seen)"
 
-            expect(node.seenByNode).notTo(beNil())
-            expect(node.seenByNode!.attributedString).to(equal(
+            expect(node.seenNode).notTo(beNil())
+            expect(node.seenNode!.attributedString).to(equal(
               NSAttributedString(
                 string: string,
-                attributes: Config.Wall.Post.Footer.SeenBy.textAttributes)))
-            expect(node.seenByNode!.userInteractionEnabled).to(beTrue())
-            expect(node.seenByNode!.supernode).notTo(beNil())
-            expect(node.seenByNode!.supernode).to(equal(node))
+                attributes: Config.Wall.Post.Footer.Seen.textAttributes)))
+            expect(node.seenNode!.userInteractionEnabled).to(beTrue())
+            expect(node.seenNode!.supernode).notTo(beNil())
+            expect(node.seenNode!.supernode).to(equal(node))
           }
         }
 
-        context("with likes, comments and seenBy disabled") {
+        context("with likes, comments and seen disabled") {
           beforeEach {
             Config.Wall.Post.Footer.Likes.enabled = false
             Config.Wall.Post.Footer.Comments.enabled = false
-            Config.Wall.Post.Footer.SeenBy.enabled = false
+            Config.Wall.Post.Footer.Seen.enabled = false
 
             node = PostFooterNode(post: post, width: width)
           }
@@ -86,7 +86,7 @@ class FooterNodeSpec: QuickSpec {
           }
 
           it("does not add the node with the number of views ") {
-            expect(node.seenByNode).to(beNil())
+            expect(node.seenNode).to(beNil())
           }
         }
       }
