@@ -32,6 +32,8 @@
 		D558ECA51B1B48B00072D719 /* AttachmentGridNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D558ECA41B1B48B00072D719 /* AttachmentGridNode.swift */; };
 		D558ECA71B1B48C50072D719 /* CommentCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D558ECA61B1B48C50072D719 /* CommentCellNode.swift */; };
 		D577C33A1B1B83C1002D8C3B /* CounterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D577C3391B1B83C1002D8C3B /* CounterNode.swift */; };
+		D5A787B51B27AED700472D32 /* PostActionBarNodeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A787B41B27AED700472D32 /* PostActionBarNodeSpec.swift */; };
+		D5A787B71B27AF2500472D32 /* PostActionBarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A787B61B27AF2500472D32 /* PostActionBarNode.swift */; };
 		D5F318E01B21B44D00DE9899 /* PostFooterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F318DF1B21B44D00DE9899 /* PostFooterNode.swift */; };
 		D5F318E31B21B4EB00DE9899 /* PostFooterNodeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F318E21B21B4EB00DE9899 /* PostFooterNodeSpec.swift */; };
 		D5F318E51B21B92600DE9899 /* SpecHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F318E41B21B92600DE9899 /* SpecHelper.swift */; };
@@ -69,6 +71,8 @@
 		D558ECA41B1B48B00072D719 /* AttachmentGridNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentGridNode.swift; sourceTree = "<group>"; };
 		D558ECA61B1B48C50072D719 /* CommentCellNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCellNode.swift; sourceTree = "<group>"; };
 		D577C3391B1B83C1002D8C3B /* CounterNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterNode.swift; sourceTree = "<group>"; };
+		D5A787B41B27AED700472D32 /* PostActionBarNodeSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostActionBarNodeSpec.swift; sourceTree = "<group>"; };
+		D5A787B61B27AF2500472D32 /* PostActionBarNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostActionBarNode.swift; sourceTree = "<group>"; };
 		D5F318DF1B21B44D00DE9899 /* PostFooterNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostFooterNode.swift; sourceTree = "<group>"; };
 		D5F318E21B21B4EB00DE9899 /* PostFooterNodeSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostFooterNodeSpec.swift; sourceTree = "<group>"; };
 		D5F318E41B21B92600DE9899 /* SpecHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecHelper.swift; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 				D54B81D71B17147700FB0197 /* PostCellNode.swift */,
 				D5FE39C91B1C80A20034CD25 /* PostHeaderNode.swift */,
 				D5F318DF1B21B44D00DE9899 /* PostFooterNode.swift */,
+				D5A787B61B27AF2500472D32 /* PostActionBarNode.swift */,
 				D558ECA41B1B48B00072D719 /* AttachmentGridNode.swift */,
 				D577C3391B1B83C1002D8C3B /* CounterNode.swift */,
 				D558ECA61B1B48C50072D719 /* CommentCellNode.swift */,
@@ -205,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				D5F318E21B21B4EB00DE9899 /* PostFooterNodeSpec.swift */,
+				D5A787B41B27AED700472D32 /* PostActionBarNodeSpec.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -342,6 +348,7 @@
 				BDF029EE1B2192C900C5027C /* Group.swift in Sources */,
 				D54B82091B175FCE00FB0197 /* User.swift in Sources */,
 				BDF240F71B163D7E00D571F6 /* URLStringConvertible.swift in Sources */,
+				D5A787B71B27AF2500472D32 /* PostActionBarNode.swift in Sources */,
 				D5FE39CF1B1DA2FE0034CD25 /* UserSpec.swift in Sources */,
 				BD8E43E51AEC2B8200BC0631 /* WallController.swift in Sources */,
 				BDA23F551B218A9200595C31 /* Coordinate.swift in Sources */,
@@ -355,6 +362,7 @@
 				BDF029F01B2192F100C5027C /* GroupSpec.swift in Sources */,
 				D52CF6C31B17090A002B4A5A /* Config.swift in Sources */,
 				D54B820C1B18647500FB0197 /* ASCellNodeExtension.swift in Sources */,
+				D5A787B51B27AED700472D32 /* PostActionBarNodeSpec.swift in Sources */,
 				BD8E43E61AEC2B8200BC0631 /* WallDataSource.swift in Sources */,
 				D5F318E51B21B92600DE9899 /* SpecHelper.swift in Sources */,
 				D54B820E1B1868B400FB0197 /* PostCellNodeDelegate.swift in Sources */,

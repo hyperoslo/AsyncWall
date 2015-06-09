@@ -1,7 +1,7 @@
 import Quick
 import Nimble
 
-class FooterNodeSpec: QuickSpec {
+class PostFooterNodeSpec: QuickSpec {
 
   override func spec() {
     describe("PostFooterNode") {
