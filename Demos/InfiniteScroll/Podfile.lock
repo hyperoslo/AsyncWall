@@ -6,11 +6,9 @@ PODS:
     - SwiftyJSON (~> 2.2.0)
   - HanekeSwift (0.9.1)
   - SwiftyJSON (2.2.0)
-  - TTTLocalizedPluralString (0.0.9)
   - Wall (0.1.0):
     - AsyncDisplayKit (~> 1.2)
     - HanekeSwift (~> 0.9.1)
-    - TTTLocalizedPluralString (~> 0.0.9)
 
 DEPENDENCIES:
   - Faker (from `https://github.com/vadymmarkov/Faker`)
@@ -32,7 +30,6 @@ SPEC CHECKSUMS:
   Faker: ec2361307c261ae4b26c8da20b127d416faf0ebd
   HanekeSwift: 50d37bfbc4432edc649167e538c259feccb4a2bb
   SwiftyJSON: 0b3e6c07af17ff745e77e8e9984097b55c956e5c
-  TTTLocalizedPluralString: 7077ba1ddf1cf557d14399c6f8db8962680b951b
-  Wall: cdc6b82466f88a5849a5fe31afa689c3bf97281e
+  Wall: 18d79fd91eddf056dd19c43e5b45b7f671231d06
 
 COCOAPODS: 0.37.2
