@@ -8,6 +8,7 @@ PODS:
   - Nimble (1.0.0-rc.1)
   - Quick (0.3.1)
   - SwiftyJSON (2.2.0)
+  - TimeAgo (0.1.0)
 
 DEPENDENCIES:
   - AsyncDisplayKit (= 1.2)
@@ -15,15 +16,21 @@ DEPENDENCIES:
   - HanekeSwift (= 0.9.1)
   - Nimble (= 1.0.0-rc.1)
   - Quick (= 0.3.1)
+  - TimeAgo (from `https://github.com/hyperoslo/TimeAgo`)
 
 EXTERNAL SOURCES:
   Faker:
     :git: https://github.com/vadymmarkov/Faker
+  TimeAgo:
+    :git: https://github.com/hyperoslo/TimeAgo
 
 CHECKOUT OPTIONS:
   Faker:
     :commit: b24d4ed16d1c47976e76d64d450af60c468a9544
     :git: https://github.com/vadymmarkov/Faker
+  TimeAgo:
+    :commit: 3d371e8ba0576f6bb3cc9181a2a74a717c8fa060
+    :git: https://github.com/hyperoslo/TimeAgo
 
 SPEC CHECKSUMS:
   AsyncDisplayKit: 32d5b9112b8c1b6644b54429e0cda4fbf6563781
@@ -32,5 +39,6 @@ SPEC CHECKSUMS:
   Nimble: 23f1dbddf1706172c7d740430858e5dfa93d997a
   Quick: 824572d3d198d51e52cf4aa722cebf7e59952a35
   SwiftyJSON: 0b3e6c07af17ff745e77e8e9984097b55c956e5c
+  TimeAgo: e82c5171b70a4ad868fc30bf13090e4fe036808d
 
 COCOAPODS: 0.37.2

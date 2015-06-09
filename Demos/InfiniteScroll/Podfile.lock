@@ -22,7 +22,7 @@ EXTERNAL SOURCES:
   TimeAgo:
     :git: https://github.com/hyperoslo/TimeAgo
   Wall:
-    :path: ../../
+    :path: "../../"
 
 CHECKOUT OPTIONS:
   Faker:
