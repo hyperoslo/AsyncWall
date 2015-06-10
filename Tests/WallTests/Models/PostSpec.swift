@@ -31,6 +31,7 @@ class PostSpec: QuickSpec {
         }
 
         it("sets default values") {
+          expect(post.title).to(beNil())
           expect(post.group).to(beNil())
           expect(post.location).to(beNil())
           expect(post.likes).to(equal(0))
