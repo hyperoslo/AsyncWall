@@ -2,6 +2,7 @@ import Foundation
 
 public class Post: NSObject {
 
+  public var title: String?
   public var author: User?
   public var date: NSDate
   public var group: Group?
