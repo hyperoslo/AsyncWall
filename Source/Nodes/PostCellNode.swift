@@ -78,7 +78,9 @@ public class PostCellNode: ASCellNode {
       textNode,
       footerNode?.likesNode,
       footerNode?.commentsNode,
-      footerNode?.seenNode
+      footerNode?.seenNode,
+      actionBarNode?.likeControlNode,
+      actionBarNode?.commentControlNode
     ]
 
     for actionNode in actionNodes {
@@ -119,6 +121,10 @@ public class PostCellNode: ASCellNode {
         tappedElement = .Comments
       } else if sender.isEqual(footerNode?.seenNode) {
         tappedElement = .Seen
+      } else if sender.isEqual(actionBarNode?.likeControlNode) {
+        tappedElement = .LikeButton
+      } else if sender.isEqual(actionBarNode?.commentControlNode) {
+        tappedElement = .CommentButton
       }
 
       if let tappedElement = tappedElement {
