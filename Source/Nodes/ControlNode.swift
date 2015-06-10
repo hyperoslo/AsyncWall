@@ -6,12 +6,20 @@ public class ControlNode: ASControlNode {
   var titleNode: ASTextNode?
   var imageNode: ASImageNode?
 
+  var size: CGSize {
+    return ControlConfig.size
+  }
+
+  var contentSize = CGSizeZero
+
   private var ControlConfig: Config.Wall.Post.Control.Type {
     return Config.Wall.Post.Control.self
   }
 
   public init(title: NSAttributedString?, image: UIImage?) {
     super.init()
+
+    backgroundColor = .redColor()
 
     if let title = title {
       titleNode = ASTextNode()
@@ -32,24 +40,26 @@ public class ControlNode: ASControlNode {
 
   override public func layout() {
     var x: CGFloat = ControlConfig.padding
-    var y: CGFloat = ControlConfig.padding
 
     if let imageNode = imageNode {
       let size = ControlConfig.imageSize
 
       imageNode.frame = CGRect(
-        origin: CGPoint(x: x, y: y + centerY(size.height)),
+        origin: CGPoint(x: x, y: centerY(size.height)),
         size: size)
       x += size.width + ControlConfig.padding
     }
 
     if let titleNode = titleNode {
-      let size = CGSize(
-        width: CGFloat(FLT_MAX),
-        height: frame.size.height - 2 * ControlConfig.padding)
+      let titleHeight = self.size.height - 2 * ControlConfig.padding
+
+      let size = titleNode.measure(
+        CGSize(
+          width: CGFloat(FLT_MAX),
+          height: titleHeight < 0 ? 0 : titleHeight))
 
       titleNode.frame = CGRect(
-        origin: CGPoint(x: x, y: y + centerY(size.height)),
+        origin: CGPoint(x: x, y: centerY(size.height)),
         size: size)
     }
   }
@@ -57,6 +67,6 @@ public class ControlNode: ASControlNode {
   // MARK: - Private Methods
 
   func centerY(height: CGFloat) -> CGFloat {
-    return (frame.size.height - height) / 2
+    return (size.height - height) / 2
   }
 }

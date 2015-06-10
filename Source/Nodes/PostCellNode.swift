@@ -64,7 +64,7 @@ public class PostCellNode: ASCellNode {
     }
 
     if Config.Wall.Post.ActionBar.enabled {
-      actionBarNode = PostActionBarNode()
+      actionBarNode = PostActionBarNode(width: contentWidth)
       addSubnode(actionBarNode)
     }
 
@@ -212,8 +212,8 @@ public class PostCellNode: ASCellNode {
         x: padding,
         y: y,
         width: contentWidth,
-        height: PostConfig.Divider.height)
-      y += CGRectGetHeight(actionBarNode.frame)
+        height: actionBarNode.height)
+      y += actionBarNode.height
     }
 
     if let divider = divider {

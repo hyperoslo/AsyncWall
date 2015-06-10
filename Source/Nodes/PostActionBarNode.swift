@@ -3,15 +3,13 @@ import AsyncDisplayKit
 
 public class PostActionBarNode: ASCellNode {
 
+  let width: CGFloat
+
   var likeControlNode: ControlNode?
   var commentControlNode: ControlNode?
 
-  var halfOfFrame: CGRect {
-    return CGRect(
-      x: 0,
-      y: 0,
-      width: CGRectGetWidth(self.frame),
-      height: CGRectGetHeight(self.frame))
+  var height: CGFloat {
+    return ActionBarConfig.height
   }
 
   private var ActionBarConfig: Config.Wall.Post.ActionBar.Type {
@@ -20,7 +18,9 @@ public class PostActionBarNode: ASCellNode {
 
   // MARK: - Initialization
 
-  public override init() {
+  public init(width: CGFloat) {
+    self.width = width
+
     super.init()
 
     if ActionBarConfig.LikeButton.enabled {
@@ -58,28 +58,26 @@ public class PostActionBarNode: ASCellNode {
 
   // MARK: - Layout
 
+  override public func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
+    return CGSizeMake(width, height)
+  }
+
   override public func layout() {
     var x: CGFloat = 0
+    let sideSize = CGSize(width: width / 2, height: height)
 
     if let likeControlNode = likeControlNode {
-      let size = Config.Wall.Post.Control.size
-
       likeControlNode.frame = CGRect(
-        origin: likeControlNode.frame.centerInRect(halfOfFrame),
-        size: size)
+        origin: likeControlNode.size.centerInSize(sideSize),
+        size: likeControlNode.size)
 
-      x += CGRectGetWidth(likeControlNode.frame)
+      x += sideSize.width
     }
 
     if let commentControlNode = commentControlNode {
-      let size = Config.Wall.Post.Control.size
-
-      var origin = commentControlNode.frame.centerInRect(halfOfFrame)
-      origin.x += x
       commentControlNode.frame = CGRect(
-        origin: origin,
-        size: size)
-      commentControlNode.frame.centerInRect(halfOfFrame)
+        origin: commentControlNode.size.centerInSize(sideSize),
+        size: commentControlNode.size)
     }
   }
 }

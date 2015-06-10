@@ -21,6 +21,11 @@ class ControlNodeSpec: QuickSpec {
       }
 
       describe("#init") {
+
+        it("returns a correct size") {
+          expect(node.size).to(equal(Config.Wall.Post.Control.size))
+        }
+
         it("adds a title node") {
           expect(node.titleNode).notTo(beNil())
           expect(node.titleNode!.attributedString).to(equal(title))

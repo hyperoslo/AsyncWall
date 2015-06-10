@@ -5,13 +5,23 @@ class PostActionBarNodeSpec: QuickSpec {
 
   override func spec() {
     describe("PostActionBarNode") {
+      let width: CGFloat = 320
+
       var node: PostActionBarNode!
 
       beforeEach {
-        node = PostActionBarNode()
+        node = PostActionBarNode(width: width)
       }
 
       describe("#init") {
+        it("sets a width") {
+          expect(node.width).to(equal(width))
+        }
+
+        it("returns a correct height") {
+          expect(node.height).to(equal(Config.Wall.Post.ActionBar.height))
+        }
+
         context("with like button and comment button enabled") {
           it("adds a like control node") {
             let image = Config.Wall.Post.ActionBar.LikeButton.image
@@ -49,7 +59,7 @@ class PostActionBarNodeSpec: QuickSpec {
             Config.Wall.Post.ActionBar.LikeButton.enabled = false
             Config.Wall.Post.ActionBar.CommentButton.enabled = true
 
-            node = PostActionBarNode()
+            node = PostActionBarNode(width: width)
           }
 
           it("does not add a like control node") {
@@ -65,8 +75,8 @@ class PostActionBarNodeSpec: QuickSpec {
           beforeEach {
             Config.Wall.Post.ActionBar.LikeButton.enabled = true
             Config.Wall.Post.ActionBar.CommentButton.enabled = false
-            
-            node = PostActionBarNode()
+
+            node = PostActionBarNode(width: width)
           }
 
           it("adds a like control node") {
