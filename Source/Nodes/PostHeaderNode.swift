@@ -123,6 +123,7 @@ public class PostHeaderNode: ASCellNode {
 
   override public func layout() {
     var x: CGFloat = 0
+    var maxWidth = width
 
     let avatarConfig = HeaderConfig.Author.Avatar.self
     let authorConfig = HeaderConfig.Author.self
@@ -136,7 +137,6 @@ public class PostHeaderNode: ASCellNode {
       x += avatarConfig.size + authorConfig.horizontalPadding
     }
 
-    var maxWidth = width
     var authorNameX = x
     if let authorNameNode = authorNameNode {
       let size = authorNameNode.measure(
@@ -147,7 +147,6 @@ public class PostHeaderNode: ASCellNode {
       authorNameNode.frame = CGRect(
         origin: CGPoint(x: x, y: firstRowY(size.height)),
         size: size)
-      maxWidth -= size.width
       x += size.width + authorConfig.horizontalPadding
     }
 
@@ -159,7 +158,7 @@ public class PostHeaderNode: ASCellNode {
       dateNode.frame = CGRect(
         origin: CGPoint(x: width - size.width, y: centerY(size.height)),
         size: size)
-      maxWidth -= size.width
+      maxWidth -= size.width + authorConfig.horizontalPadding
     }
 
     if let groupNode = groupNode {
@@ -169,12 +168,12 @@ public class PostHeaderNode: ASCellNode {
             width: CGFloat(FLT_MAX),
             height: height))
 
-        let textSize = groupNode.measure(
+        let groupSize = groupNode.measure(
           CGSize(
             width: CGFloat(FLT_MAX),
             height: height))
-        let dividerY = firstRowY(textSize.height) +
-          (textSize.height - dividerSize.height) / 2
+        let dividerY = firstRowY(groupSize.height) +
+          (groupSize.height - dividerSize.height) / 2
 
         groupDivider.frame = CGRect(
           origin: CGPoint(x: x, y: dividerY),
@@ -182,13 +181,18 @@ public class PostHeaderNode: ASCellNode {
         x += dividerSize.width + authorConfig.horizontalPadding
       }
 
+      maxWidth -= x
+
       let size = groupNode.measure(
         CGSize(
           width: maxWidth,
           height: height))
+      let textSize = groupNode.attributedString.size()
+      let groupY = textSize.width > size.width ? centerY(size.height) :
+        firstRowY(size.height)
 
       groupNode.frame = CGRect(
-        origin: CGPoint(x: x, y: firstRowY(size.height)),
+        origin: CGPoint(x: x, y: groupY),
         size: size)
     }
 
