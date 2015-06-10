@@ -6,6 +6,14 @@ public class PostActionBarNode: ASCellNode {
   var likeControlNode: ControlNode?
   var commentControlNode: ControlNode?
 
+  var halfOfFrame: CGRect {
+    return CGRect(
+      x: 0,
+      y: 0,
+      width: CGRectGetWidth(self.frame),
+      height: CGRectGetHeight(self.frame))
+  }
+
   private var ActionBarConfig: Config.Wall.Post.ActionBar.Type {
     return Config.Wall.Post.ActionBar.self
   }
@@ -45,6 +53,33 @@ public class PostActionBarNode: ASCellNode {
       commentControlNode!.userInteractionEnabled = true
 
       addSubnode(commentControlNode)
+    }
+  }
+
+  // MARK: - Layout
+
+  override public func layout() {
+    var x: CGFloat = 0
+
+    if let likeControlNode = likeControlNode {
+      let size = Config.Wall.Post.Control.size
+
+      likeControlNode.frame = CGRect(
+        origin: likeControlNode.frame.centerInRect(halfOfFrame),
+        size: size)
+
+      x += CGRectGetWidth(likeControlNode.frame)
+    }
+
+    if let commentControlNode = commentControlNode {
+      let size = Config.Wall.Post.Control.size
+
+      var origin = commentControlNode.frame.centerInRect(halfOfFrame)
+      origin.x += x
+      commentControlNode.frame = CGRect(
+        origin: origin,
+        size: size)
+      commentControlNode.frame.centerInRect(halfOfFrame)
     }
   }
 }
