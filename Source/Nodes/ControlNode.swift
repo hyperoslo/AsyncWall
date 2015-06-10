@@ -3,6 +3,7 @@ import AsyncDisplayKit
 
 public class ControlNode: ASControlNode {
 
+  var contentNode: ASDisplayNode
   var titleNode: ASTextNode?
   var imageNode: ASImageNode?
 
@@ -10,43 +11,45 @@ public class ControlNode: ASControlNode {
     return ControlConfig.size
   }
 
-  var contentSize = CGSizeZero
-
   private var ControlConfig: Config.Wall.Post.Control.Type {
     return Config.Wall.Post.Control.self
   }
 
   public init(title: NSAttributedString?, image: UIImage?) {
-    super.init()
+    contentNode = ASDisplayNode()
 
-    backgroundColor = .redColor()
+    super.init()
 
     if let title = title {
       titleNode = ASTextNode()
       titleNode!.attributedString = title
 
-      addSubnode(titleNode)
+      contentNode.addSubnode(titleNode)
     }
 
     if let image = image {
       imageNode = ASImageNode()
       imageNode?.image = image
 
-      addSubnode(imageNode)
+      contentNode.addSubnode(imageNode)
     }
+
+    addSubnode(contentNode)
   }
 
   // MARK: - Layout
 
   override public func layout() {
     var x: CGFloat = ControlConfig.padding
+    var contentSize = size
 
     if let imageNode = imageNode {
       let size = ControlConfig.imageSize
 
       imageNode.frame = CGRect(
-        origin: CGPoint(x: x, y: centerY(size.height)),
+        origin: CGPoint(x: x, y: size.centerInSize(self.size).y),
         size: size)
+
       x += size.width + ControlConfig.padding
     }
 
@@ -59,14 +62,15 @@ public class ControlNode: ASControlNode {
           height: titleHeight < 0 ? 0 : titleHeight))
 
       titleNode.frame = CGRect(
-        origin: CGPoint(x: x, y: centerY(size.height)),
+        origin: CGPoint(x: x, y: size.centerInSize(self.size).y),
         size: size)
+
+      x += size.width + ControlConfig.padding
     }
-  }
 
-  // MARK: - Private Methods
-
-  func centerY(height: CGFloat) -> CGFloat {
-    return (size.height - height) / 2
+    contentSize.width = x
+    contentNode.frame = CGRect(
+      origin: CGPoint(x: contentSize.centerInSize(size).x, y: 0),
+      size: contentSize)
   }
 }

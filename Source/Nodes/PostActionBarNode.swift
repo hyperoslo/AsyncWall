@@ -75,8 +75,10 @@ public class PostActionBarNode: ASCellNode {
     }
 
     if let commentControlNode = commentControlNode {
+      var origin = commentControlNode.size.centerInSize(sideSize)
+      origin.x += x
       commentControlNode.frame = CGRect(
-        origin: commentControlNode.size.centerInSize(sideSize),
+        origin: origin,
         size: commentControlNode.size)
     }
   }
