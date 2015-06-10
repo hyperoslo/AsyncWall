@@ -30,10 +30,6 @@ public class ControlNode: ASControlNode {
 
   // MARK: - Layout
 
-  override public func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
-    return ControlConfig.size
-  }
-
   override public func layout() {
     var x: CGFloat = ControlConfig.padding
     var y: CGFloat = ControlConfig.padding
@@ -50,7 +46,7 @@ public class ControlNode: ASControlNode {
     if let titleNode = titleNode {
       let size = CGSize(
         width: CGFloat(FLT_MAX),
-        height: ControlConfig.size.height - 2 * ControlConfig.padding)
+        height: frame.size.height - 2 * ControlConfig.padding)
 
       titleNode.frame = CGRect(
         origin: CGPoint(x: x, y: y + centerY(size.height)),
@@ -61,6 +57,6 @@ public class ControlNode: ASControlNode {
   // MARK: - Private Methods
 
   func centerY(height: CGFloat) -> CGFloat {
-    return (ControlConfig.size.height - height) / 2
+    return (frame.size.height - height) / 2
   }
 }

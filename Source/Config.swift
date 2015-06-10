@@ -164,7 +164,7 @@ public struct Config {
 
         public struct LikeButton {
           public static var enabled = true
-          public static var text: String? = NSLocalizedString("Like", comment: "")
+          public static var title: String? = NSLocalizedString("Like", comment: "")
           public static var image: UIImage?
           public static var textAttributes = [
             NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
@@ -174,7 +174,7 @@ public struct Config {
 
         public struct CommentButton {
           public static var enabled = true
-          public static var text: String? = NSLocalizedString("Comment", comment: "")
+          public static var title: String? = NSLocalizedString("Comment", comment: "")
           public static var image: UIImage?
           public static var textAttributes = [
             NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
