@@ -26,18 +26,24 @@ class ControlNodeSpec: QuickSpec {
           expect(node.size).to(equal(Config.Wall.Post.Control.size))
         }
 
+        it("adds a content node") {
+          expect(node.contentNode).notTo(beNil())
+          expect(node.contentNode.supernode).notTo(beNil())
+          expect(node.contentNode.supernode).to(equal(node))
+        }
+
         it("adds a title node") {
           expect(node.titleNode).notTo(beNil())
           expect(node.titleNode!.attributedString).to(equal(title))
           expect(node.titleNode!.supernode).notTo(beNil())
-          expect(node.titleNode!.supernode).to(equal(node))
+          expect(node.titleNode!.supernode).to(equal(node.contentNode))
         }
 
         it("adds an image node") {
           expect(node.imageNode).notTo(beNil())
           expect(node.imageNode!.image).to(equal(image))
           expect(node.imageNode!.supernode).notTo(beNil())
-          expect(node.imageNode!.supernode).to(equal(node))
+          expect(node.imageNode!.supernode).to(equal(node.contentNode))
         }
 
         context("with no title") {
