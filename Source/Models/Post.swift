@@ -2,11 +2,11 @@ import Foundation
 
 public class Post: NSObject {
 
-  public var title: String?
   public var author: User?
   public var date: NSDate
   public var group: Group?
   public var location: Location?
+  public var title: String?
   public var text: String?
   public var attachments: [Attachment]?
   public var likes: Int = 0
