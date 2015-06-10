@@ -148,13 +148,46 @@ public struct Config {
         }
 
         public struct Seen {
-          public static var text = NSLocalizedString("Seen by", comment: "")
           public static var enabled = true
+          public static var text = NSLocalizedString("Seen by", comment: "")
           public static var textAttributes = [
             NSFontAttributeName: UIFont.italicSystemFontOfSize(12),
             NSForegroundColorAttributeName: UIColor.grayColor()
           ]
         }
+      }
+
+      public struct ActionBar {
+        public static var enabled = true
+        public static var dividerEnabled = true
+        public static var height: CGFloat = 40
+        public static var backgroundColor = UIColor.clearColor()
+
+        public struct LikeButton {
+          public static var enabled = true
+          public static var title: String? = NSLocalizedString("Like", comment: "")
+          public static var image: UIImage?
+          public static var textAttributes = [
+            NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
+            NSForegroundColorAttributeName: UIColor.lightGrayColor()
+          ]
+        }
+
+        public struct CommentButton {
+          public static var enabled = true
+          public static var title: String? = NSLocalizedString("Comment", comment: "")
+          public static var image: UIImage?
+          public static var textAttributes = [
+            NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
+            NSForegroundColorAttributeName: UIColor.lightGrayColor()
+          ]
+        }
+      }
+
+      public struct Control {
+        public static var size = CGSize(width: 100.0, height: 35.0)
+        public static var padding: CGFloat = 5
+        public static var imageSize = CGSize(width: 22, height: 22)
       }
 
       public struct Divider {

@@ -21,17 +21,26 @@ PODS:
     - NSDictionary-ANDYSafeValue (~> 0.3)
     - NSEntityDescription-SYNCPrimaryKey (~> 0.1.0)
     - NSManagedObject-HYPPropertyMapper (~> 3.0.4)
+  - TimeAgo (0.1.0)
   - Wall (0.1.0):
     - AsyncDisplayKit (~> 1.2)
     - HanekeSwift (~> 0.9.1)
 
 DEPENDENCIES:
   - Sync
+  - TimeAgo (from `https://github.com/hyperoslo/TimeAgo`)
   - Wall (from `../../`)
 
 EXTERNAL SOURCES:
+  TimeAgo:
+    :git: https://github.com/hyperoslo/TimeAgo
   Wall:
     :path: "../../"
+
+CHECKOUT OPTIONS:
+  TimeAgo:
+    :commit: e80dfdfd2b80663c26565d41d1ec5739a944693d
+    :git: https://github.com/hyperoslo/TimeAgo
 
 SPEC CHECKSUMS:
   AsyncDisplayKit: 32d5b9112b8c1b6644b54429e0cda4fbf6563781
@@ -45,6 +54,7 @@ SPEC CHECKSUMS:
   NSObject-HYPTesting: fadde70c75061b731b313c390e20777aed0a914d
   NSString-HYPNetworking: f95766d4dc5693b45a0331ab8cf3a0b998f38cd7
   Sync: 984b6dfb10cf8a7df97e7bfe22e1babb403fd4c7
+  TimeAgo: e82c5171b70a4ad868fc30bf13090e4fe036808d
   Wall: 18d79fd91eddf056dd19c43e5b45b7f671231d06
 
 COCOAPODS: 0.37.2

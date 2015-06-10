@@ -9,6 +9,7 @@ class ViewController: WallController {
     title = "app.net"
 
     Config.Wall.Post.Footer.enabled = false
+    Config.Wall.Post.ActionBar.enabled = false
 
     Networking.fetchPosts { (json, error) -> Void in
       if (json != nil && error == nil) {

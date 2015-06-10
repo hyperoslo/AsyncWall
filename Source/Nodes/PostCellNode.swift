@@ -11,6 +11,7 @@ public class PostCellNode: ASCellNode {
   var attachmentGridNode: AttachmentGridNode?
   var textNode: ASTextNode?
   var footerNode: PostFooterNode?
+  var actionBarNode: PostActionBarNode?
   var divider: ASDisplayNode?
 
   var contentWidth: CGFloat {
@@ -62,6 +63,11 @@ public class PostCellNode: ASCellNode {
       addSubnode(footerNode)
     }
 
+    if Config.Wall.Post.ActionBar.enabled {
+      actionBarNode = PostActionBarNode(width: contentWidth)
+      addSubnode(actionBarNode)
+    }
+
     let actionNodes = [
       headerNode?.authorNameNode,
       headerNode?.authorAvatarNode,
@@ -72,7 +78,9 @@ public class PostCellNode: ASCellNode {
       textNode,
       footerNode?.likesNode,
       footerNode?.commentsNode,
-      footerNode?.seenNode
+      footerNode?.seenNode,
+      actionBarNode?.likeControlNode,
+      actionBarNode?.commentControlNode
     ]
 
     for actionNode in actionNodes {
@@ -113,6 +121,10 @@ public class PostCellNode: ASCellNode {
         tappedElement = .Comments
       } else if sender.isEqual(footerNode?.seenNode) {
         tappedElement = .Seen
+      } else if sender.isEqual(actionBarNode?.likeControlNode) {
+        tappedElement = .LikeButton
+      } else if sender.isEqual(actionBarNode?.commentControlNode) {
+        tappedElement = .CommentButton
       }
 
       if let tappedElement = tappedElement {
@@ -143,6 +155,12 @@ public class PostCellNode: ASCellNode {
 
     if let footerNode = footerNode {
       height += footerNode.height
+    } else {
+      height += Config.Wall.padding
+    }
+
+    if let actionBarNode = actionBarNode {
+      height += PostConfig.ActionBar.height
     }
 
     if PostConfig.Divider.enabled {
@@ -193,6 +211,15 @@ public class PostCellNode: ASCellNode {
       y += footerNode.height
     } else {
       y += padding
+    }
+
+    if let actionBarNode = actionBarNode {
+      actionBarNode.frame = CGRect(
+        x: padding,
+        y: y,
+        width: contentWidth,
+        height: actionBarNode.height)
+      y += actionBarNode.height
     }
 
     if let divider = divider {
