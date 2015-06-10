@@ -36,6 +36,7 @@
 		D5A787B71B27AF2500472D32 /* PostActionBarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A787B61B27AF2500472D32 /* PostActionBarNode.swift */; };
 		D5A787B91B27B25E00472D32 /* ControlNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A787B81B27B25E00472D32 /* ControlNode.swift */; };
 		D5A787BB1B27B51D00472D32 /* ControlNodeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A787BA1B27B51D00472D32 /* ControlNodeSpec.swift */; };
+		D5A787BD1B27C25000472D32 /* CGRectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A787BC1B27C25000472D32 /* CGRectExtension.swift */; };
 		D5F318E01B21B44D00DE9899 /* PostFooterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F318DF1B21B44D00DE9899 /* PostFooterNode.swift */; };
 		D5F318E31B21B4EB00DE9899 /* PostFooterNodeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F318E21B21B4EB00DE9899 /* PostFooterNodeSpec.swift */; };
 		D5F318E51B21B92600DE9899 /* SpecHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F318E41B21B92600DE9899 /* SpecHelper.swift */; };
@@ -77,6 +78,7 @@
 		D5A787B61B27AF2500472D32 /* PostActionBarNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostActionBarNode.swift; sourceTree = "<group>"; };
 		D5A787B81B27B25E00472D32 /* ControlNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlNode.swift; sourceTree = "<group>"; };
 		D5A787BA1B27B51D00472D32 /* ControlNodeSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlNodeSpec.swift; sourceTree = "<group>"; };
+		D5A787BC1B27C25000472D32 /* CGRectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGRectExtension.swift; sourceTree = "<group>"; };
 		D5F318DF1B21B44D00DE9899 /* PostFooterNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostFooterNode.swift; sourceTree = "<group>"; };
 		D5F318E21B21B4EB00DE9899 /* PostFooterNodeSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostFooterNodeSpec.swift; sourceTree = "<group>"; };
 		D5F318E41B21B92600DE9899 /* SpecHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecHelper.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			children = (
 				BDF240F61B163D7E00D571F6 /* URLStringConvertible.swift */,
 				D54B820B1B18647500FB0197 /* ASCellNodeExtension.swift */,
+				D5A787BC1B27C25000472D32 /* CGRectExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				BDF240F71B163D7E00D571F6 /* URLStringConvertible.swift in Sources */,
 				D5A787B71B27AF2500472D32 /* PostActionBarNode.swift in Sources */,
 				D5FE39CF1B1DA2FE0034CD25 /* UserSpec.swift in Sources */,
+				D5A787BD1B27C25000472D32 /* CGRectExtension.swift in Sources */,
 				BD8E43E51AEC2B8200BC0631 /* WallController.swift in Sources */,
 				BDA23F551B218A9200595C31 /* Coordinate.swift in Sources */,
 				D54B82081B175FCE00FB0197 /* Post.swift in Sources */,
