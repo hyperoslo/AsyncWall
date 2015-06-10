@@ -183,6 +183,12 @@ public struct Config {
         }
       }
 
+      public struct Control {
+        public static var size: CGSize(width: 100, height: 40)
+        public static var padding: CGFloat = 5
+        public static var imageSize = CGSize(width: 22, height: 22)
+      }
+
       public struct Divider {
         public static var enabled = true
         public static var height: CGFloat = 1

@@ -6,6 +6,10 @@ public class ControlNode: ASControlNode {
   var titleNode: ASTextNode?
   var imageNode: ASImageNode?
 
+  private var ControlConfig: Config.Wall.Post.Control.Type {
+    return Config.Wall.Post.Control.self
+  }
+
   public init(title: NSAttributedString?, image: UIImage?) {
     super.init()
 
@@ -22,5 +26,41 @@ public class ControlNode: ASControlNode {
 
       addSubnode(imageNode)
     }
+  }
+
+  // MARK: - Layout
+
+  override public func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
+    return ControlConfig.size
+  }
+
+  override public func layout() {
+    var x: CGFloat = ControlConfig.padding
+    var y: CGFloat = ControlConfig.padding
+
+    if let imageNode = imageNode {
+      let size = ControlConfig.imageSize
+
+      imageNode.frame = CGRect(
+        origin: CGPoint(x: x, y: y + centerY(size.height)),
+        size: size)
+      x += size.width + ControlConfig.padding
+    }
+
+    if let titleNode = titleNode {
+      let size = CGSize(
+        width: CGFloat(FLT_MAX),
+        height: ControlConfig.size.height - 2 * ControlConfig.padding)
+
+      titleNode.frame = CGRect(
+        origin: CGPoint(x: x, y: y + centerY(size.height)),
+        size: size)
+    }
+  }
+
+  // MARK: - Private Methods
+
+  func centerY(height: CGFloat) -> CGFloat {
+    return (ControlConfig.size.height - height) / 2
   }
 }
