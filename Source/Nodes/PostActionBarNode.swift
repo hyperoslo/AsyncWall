@@ -7,6 +7,7 @@ public class PostActionBarNode: ASCellNode {
 
   var likeControlNode: ControlNode?
   var commentControlNode: ControlNode?
+  var divider: ASDisplayNode?
 
   var height: CGFloat {
     return ActionBarConfig.height
@@ -22,6 +23,12 @@ public class PostActionBarNode: ASCellNode {
     self.width = width
 
     super.init()
+
+    if ActionBarConfig.dividerEnabled {
+      divider = ASDisplayNode()
+      divider!.backgroundColor = Config.Wall.Post.Divider.backgroundColor
+      addSubnode(divider)
+    }
 
     if ActionBarConfig.LikeButton.enabled {
       var title: NSAttributedString?
@@ -65,6 +72,14 @@ public class PostActionBarNode: ASCellNode {
   override public func layout() {
     var x: CGFloat = 0
     let sideSize = CGSize(width: width / 2, height: height)
+
+    if let divider = divider {
+      divider.frame = CGRect(
+        x: 0,
+        y: 0,
+        width: width,
+        height: Config.Wall.Post.Divider.height)
+    }
 
     if let likeControlNode = likeControlNode {
       likeControlNode.frame = CGRect(

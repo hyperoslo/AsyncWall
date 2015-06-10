@@ -159,7 +159,8 @@ public struct Config {
 
       public struct ActionBar {
         public static var enabled = true
-        public static var height: CGFloat = 50
+        public static var dividerEnabled = true
+        public static var height: CGFloat = 40
         public static var backgroundColor = UIColor.clearColor()
 
         public struct LikeButton {
