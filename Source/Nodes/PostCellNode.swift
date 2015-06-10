@@ -11,6 +11,7 @@ public class PostCellNode: ASCellNode {
   var attachmentGridNode: AttachmentGridNode?
   var textNode: ASTextNode?
   var footerNode: PostFooterNode?
+  var actionBarNode: PostActionBarNode?
   var divider: ASDisplayNode?
 
   var contentWidth: CGFloat {
@@ -60,6 +61,11 @@ public class PostCellNode: ASCellNode {
       footerNode!.userInteractionEnabled = true
 
       addSubnode(footerNode)
+    }
+
+    if Config.Wall.Post.ActionBar.enabled {
+      actionBarNode = PostActionBarNode()
+      addSubnode(actionBarNode)
     }
 
     let actionNodes = [
@@ -143,6 +149,12 @@ public class PostCellNode: ASCellNode {
 
     if let footerNode = footerNode {
       height += footerNode.height
+    } else {
+      height += Config.Wall.padding
+    }
+
+    if let actionBarNode = actionBarNode {
+      height += PostConfig.ActionBar.height
     }
 
     if PostConfig.Divider.enabled {
@@ -193,6 +205,15 @@ public class PostCellNode: ASCellNode {
       y += footerNode.height
     } else {
       y += padding
+    }
+
+    if let actionBarNode = actionBarNode {
+      actionBarNode.frame = CGRect(
+        x: padding,
+        y: y,
+        width: contentWidth,
+        height: PostConfig.Divider.height)
+      y += CGRectGetHeight(actionBarNode.frame)
     }
 
     if let divider = divider {
