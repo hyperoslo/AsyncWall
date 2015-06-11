@@ -4,27 +4,29 @@ import AsyncDisplayKit
 public class PostFooterNode: ASCellNode {
 
   let width: CGFloat
+  let config: Config
 
   var likesNode: ASTextNode?
   var commentsNode: ASTextNode?
   var seenNode: ASTextNode?
 
-  var height: CGFloat {
-    return FooterConfig.height
+  var footerConfig: Config.Wall.Post.Footer {
+    return config.wall.post.footer
   }
 
-  private var FooterConfig: Config.Wall.Post.Footer.Type {
-    return Config.Wall.Post.Footer.self
+  var height: CGFloat {
+    return footerConfig.height
   }
 
   // MARK: - Initialization
 
-  public init(post: Post, width: CGFloat) {
+  public init(config: Config, post: Post, width: CGFloat) {
     self.width = width
+    self.config = config
 
     super.init()
 
-    if FooterConfig.Likes.enabled {
+    if footerConfig.likes.enabled {
       let string = String.localizedStringWithFormat(
         NSLocalizedString("%d like(s)", comment: ""),
         post.likes)
@@ -32,13 +34,13 @@ public class PostFooterNode: ASCellNode {
       likesNode = ASTextNode()
       likesNode!.attributedString = NSAttributedString(
         string: string,
-        attributes: FooterConfig.Likes.textAttributes)
+        attributes: footerConfig.likes.textAttributes)
       likesNode!.userInteractionEnabled = true
 
       addSubnode(likesNode)
     }
 
-    if FooterConfig.Comments.enabled {
+    if footerConfig.comments.enabled {
       let string = String.localizedStringWithFormat(
         NSLocalizedString("%d comment(s)", comment: ""),
         post.comments.count)
@@ -46,19 +48,19 @@ public class PostFooterNode: ASCellNode {
       commentsNode = ASTextNode()
       commentsNode!.attributedString = NSAttributedString(
         string: string,
-        attributes: FooterConfig.Comments.textAttributes)
+        attributes: footerConfig.comments.textAttributes)
       commentsNode!.userInteractionEnabled = true
 
       addSubnode(commentsNode)
     }
 
-    if FooterConfig.Seen.enabled {
-      let string = "\(FooterConfig.Seen.text) \(post.seen)"
+    if footerConfig.seen.enabled {
+      let string = "\(footerConfig.seen.text) \(post.seen)"
 
       seenNode = ASTextNode()
       seenNode!.attributedString = NSAttributedString(
         string: string,
-        attributes: FooterConfig.Seen.textAttributes)
+        attributes: footerConfig.seen.textAttributes)
       seenNode!.userInteractionEnabled = true
 
       addSubnode(seenNode)
@@ -83,7 +85,7 @@ public class PostFooterNode: ASCellNode {
       likesNode.frame = CGRect(
         origin: CGPoint(x: x, y: centerY(size.height)),
         size: size)
-      x += size.width + FooterConfig.horizontalPadding
+      x += size.width + footerConfig.horizontalPadding
     }
 
     if let commentsNode = commentsNode {
@@ -95,7 +97,7 @@ public class PostFooterNode: ASCellNode {
       commentsNode.frame = CGRect(
         origin: CGPoint(x: x, y: centerY(size.height)),
         size: size)
-      x += size.width + FooterConfig.horizontalPadding
+      x += size.width + footerConfig.horizontalPadding
     }
 
     if let seenNode = seenNode {

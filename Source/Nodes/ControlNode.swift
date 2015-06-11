@@ -3,19 +3,22 @@ import AsyncDisplayKit
 
 public class ControlNode: ASControlNode {
 
+  let config: Config
+
   var contentNode: ASDisplayNode
   var titleNode: ASTextNode?
   var imageNode: ASImageNode?
 
   var size: CGSize {
-    return ControlConfig.size
+    return controlConfig.size
   }
 
-  private var ControlConfig: Config.Wall.Post.Control.Type {
-    return Config.Wall.Post.Control.self
+  private var controlConfig: Config.Wall.Post.Control {
+    return config.wall.post.control
   }
 
-  public init(title: NSAttributedString?, image: UIImage?) {
+  public init(config: Config, title: NSAttributedString?, image: UIImage?) {
+    self.config = config
     contentNode = ASDisplayNode()
 
     super.init()
@@ -40,21 +43,21 @@ public class ControlNode: ASControlNode {
   // MARK: - Layout
 
   override public func layout() {
-    var x: CGFloat = ControlConfig.padding
+    var x: CGFloat = controlConfig.padding
     var contentSize = size
 
     if let imageNode = imageNode {
-      let size = ControlConfig.imageSize
+      let size = controlConfig.imageSize
 
       imageNode.frame = CGRect(
         origin: CGPoint(x: x, y: size.centerInSize(self.size).y),
         size: size)
 
-      x += size.width + ControlConfig.padding
+      x += size.width + controlConfig.padding
     }
 
     if let titleNode = titleNode {
-      let titleHeight = self.size.height - 2 * ControlConfig.padding
+      let titleHeight = self.size.height - 2 * controlConfig.padding
 
       let size = titleNode.measure(
         CGSize(
@@ -65,7 +68,7 @@ public class ControlNode: ASControlNode {
         origin: CGPoint(x: x, y: size.centerInSize(self.size).y),
         size: size)
 
-      x += size.width + ControlConfig.padding
+      x += size.width + controlConfig.padding
     }
 
     contentSize.width = x

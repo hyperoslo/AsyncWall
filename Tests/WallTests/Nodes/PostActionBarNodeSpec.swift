@@ -5,12 +5,14 @@ class PostActionBarNodeSpec: QuickSpec {
 
   override func spec() {
     describe("PostActionBarNode") {
+      let config = Config()
       let width: CGFloat = 320
+      let actionBarConfig = config.wall.post.actionBar
 
       var node: PostActionBarNode!
 
       beforeEach {
-        node = PostActionBarNode(width: width)
+        node = PostActionBarNode(config: config, width: width)
       }
 
       describe("#init") {
@@ -19,15 +21,15 @@ class PostActionBarNodeSpec: QuickSpec {
         }
 
         it("returns a correct height") {
-          expect(node.height).to(equal(Config.Wall.Post.ActionBar.height))
+          expect(node.height).to(equal(actionBarConfig.height))
         }
 
         context("with like button and comment button enabled") {
           it("adds a like control node") {
-            let image = Config.Wall.Post.ActionBar.LikeButton.image
+            let image = actionBarConfig.likeButton.image
             let title = NSAttributedString(
-              string: Config.Wall.Post.ActionBar.LikeButton.title!,
-              attributes: Config.Wall.Post.ActionBar.LikeButton.textAttributes)
+              string: actionBarConfig.likeButton.title!,
+              attributes: actionBarConfig.likeButton.textAttributes)
 
             expect(node.likeControlNode).notTo(beNil())
             expect(node.likeControlNode!.titleNode).notTo(beNil())
@@ -39,10 +41,10 @@ class PostActionBarNodeSpec: QuickSpec {
           }
 
           it("adds a comment control node") {
-            let image = Config.Wall.Post.ActionBar.CommentButton.image
+            let image = actionBarConfig.commentButton.image
             let title = NSAttributedString(
-              string: Config.Wall.Post.ActionBar.CommentButton.title!,
-              attributes: Config.Wall.Post.ActionBar.CommentButton.textAttributes)
+              string: actionBarConfig.commentButton.title!,
+              attributes: actionBarConfig.commentButton.textAttributes)
 
             expect(node.commentControlNode).notTo(beNil())
             expect(node.commentControlNode!.titleNode).notTo(beNil())
@@ -56,10 +58,11 @@ class PostActionBarNodeSpec: QuickSpec {
 
         context("with like button disabled") {
           beforeEach {
-            Config.Wall.Post.ActionBar.LikeButton.enabled = false
-            Config.Wall.Post.ActionBar.CommentButton.enabled = true
+            var configDisabled = config
+            configDisabled.wall.post.actionBar.likeButton.enabled = false
+            configDisabled.wall.post.actionBar.commentButton.enabled = true
 
-            node = PostActionBarNode(width: width)
+            node = PostActionBarNode(config: configDisabled, width: width)
           }
 
           it("does not add a like control node") {
@@ -73,10 +76,11 @@ class PostActionBarNodeSpec: QuickSpec {
 
         context("with comment button disabled") {
           beforeEach {
-            Config.Wall.Post.ActionBar.LikeButton.enabled = true
-            Config.Wall.Post.ActionBar.CommentButton.enabled = false
+            var configDisabled = config
+            configDisabled.wall.post.actionBar.likeButton.enabled = true
+            configDisabled.wall.post.actionBar.commentButton.enabled = false
 
-            node = PostActionBarNode(width: width)
+            node = PostActionBarNode(config: configDisabled, width: width)
           }
 
           it("adds a like control node") {

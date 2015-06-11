@@ -3,6 +3,7 @@ import AsyncDisplayKit
 
 public class AttachmentGridNode: ASControlNode {
 
+  let config: Config
   let width: CGFloat
   let attachments: [Attachment]
 
@@ -10,24 +11,25 @@ public class AttachmentGridNode: ASControlNode {
   var counterNode: CounterNode?
 
   var height: CGFloat {
-    return width / AttachmentsConfig.ratio
+    return width / attachmentsConfig.ratio
   }
 
   var contentWidth: CGFloat {
-    return width - AttachmentsConfig.padding
+    return width - attachmentsConfig.padding
   }
 
   var contentHeight: CGFloat {
-    return height - AttachmentsConfig.padding
+    return height - attachmentsConfig.padding
   }
 
-  private var AttachmentsConfig: Config.Wall.Post.Attachments.Type {
-    return Config.Wall.Post.Attachments.self
+  private var attachmentsConfig: Config.Wall.Post.Attachments {
+    return config.wall.post.attachments
   }
 
   // MARK: - Initialization
 
-  public init(attachments: [Attachment], width: CGFloat) {
+  public init(config: Config, attachments: [Attachment], width: CGFloat) {
+    self.config = config
     let totalCount = attachments.count
     self.attachments = totalCount < 4 ? attachments : Array(attachments[0..<3])
     self.width = width
@@ -38,7 +40,7 @@ public class AttachmentGridNode: ASControlNode {
       let imageNode = ASImageNode()
       imageNode.backgroundColor = .grayColor()
       let imageSize = sizeForThumbnailAtIndex(index)
-      imageNode.fetchImage(Config.Wall.thumbnailForAttachment(
+      imageNode.fetchImage(config.wall.thumbnailForAttachment(
         attachment: attachment,
         size: CGSize(
           width: imageSize.width,
@@ -47,8 +49,8 @@ public class AttachmentGridNode: ASControlNode {
       addSubnode(imageNode)
     }
 
-    if AttachmentsConfig.Counter.enabled && totalCount > 3 {
-      counterNode = CounterNode(count: imageNodes.count, totalCount: totalCount)
+    if attachmentsConfig.counter.enabled && totalCount > 3 {
+      counterNode = CounterNode(config: config, count: imageNodes.count, totalCount: totalCount)
       addSubnode(counterNode)
     }
   }
@@ -71,9 +73,9 @@ public class AttachmentGridNode: ASControlNode {
         width: imageSize.width,
         height: imageSize.height)
       if index == 0 {
-        x += imageSize.width + AttachmentsConfig.padding
+        x += imageSize.width + attachmentsConfig.padding
       } else if index == 1 {
-        y += imageSize.height + AttachmentsConfig.padding
+        y += imageSize.height + attachmentsConfig.padding
       }
     }
 

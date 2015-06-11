@@ -12,7 +12,10 @@ public class CommentCellNode: PostCellNode {
   public override init(post: Post, width: CGFloat, _ delegate: AnyObject? = nil) {
     super.init(post: post, width: width, delegate)
 
-    backgroundColor = CommentConfig.backgroundColor
-    divider!.backgroundColor = CommentConfig.Divider.backgroundColor
+    if let config = config {
+      let commentConfig = config.wall.comment
+      backgroundColor = commentConfig.backgroundColor
+      divider!.backgroundColor = commentConfig.divider.backgroundColor
+    }
   }
 }

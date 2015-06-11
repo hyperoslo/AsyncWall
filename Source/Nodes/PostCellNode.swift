@@ -6,6 +6,7 @@ public class PostCellNode: ASCellNode {
   let width: CGFloat
   var delegate: PostCellNodeDelegate?
   var post: Post
+  var config: Config?
 
   var headerNode: PostHeaderNode?
   var attachmentGridNode: AttachmentGridNode?
@@ -15,11 +16,11 @@ public class PostCellNode: ASCellNode {
   var divider: ASDisplayNode?
 
   var contentWidth: CGFloat {
-    return width - 2 * Config.Wall.padding
-  }
-
-  private var PostConfig: Config.Wall.Post.Type {
-    return Config.Wall.Post.self
+    var contentWidth = width
+    if let config = delegate?.config {
+      contentWidth = width - 2 * config.wall.padding
+    }
+    return contentWidth
   }
 
   // MARK: - Initialization
@@ -28,71 +29,76 @@ public class PostCellNode: ASCellNode {
     self.post = post
     self.width = width
     self.delegate = delegate as? PostCellNodeDelegate
+    self.config = self.delegate?.config
 
     super.init()
 
-    self.backgroundColor = PostConfig.backgroundColor
+    if let config = config {
+      let postConfig = config.wall.post
 
-    if PostConfig.Header.enabled {
-      headerNode = PostHeaderNode(post: post, width: contentWidth)
-      headerNode!.userInteractionEnabled = true
+      self.backgroundColor = postConfig.backgroundColor
 
-      addSubnode(headerNode)
-    }
+      if postConfig.header.enabled {
+        headerNode = PostHeaderNode(config: config, post: post, width: contentWidth)
+        headerNode!.userInteractionEnabled = true
 
-    if let attachments = post.attachments where attachments.count > 0 {
-      attachmentGridNode = AttachmentGridNode(attachments: attachments, width: contentWidth)
-      attachmentGridNode!.userInteractionEnabled = true
+        addSubnode(headerNode)
+      }
 
-      addSubnode(attachmentGridNode)
-    }
+      if let attachments = post.attachments where attachments.count > 0 {
+        attachmentGridNode = AttachmentGridNode(config: config, attachments: attachments, width: contentWidth)
+        attachmentGridNode!.userInteractionEnabled = true
 
-    if let text = post.text {
-      textNode = ASTextNode()
-      textNode!.attributedString = NSAttributedString(string: text,
-        attributes: Config.Wall.Post.Text.textAttributes)
-      textNode!.userInteractionEnabled = true
+        addSubnode(attachmentGridNode)
+      }
 
-      addSubnode(textNode)
-    }
+      if let text = post.text {
+        textNode = ASTextNode()
+        textNode!.attributedString = NSAttributedString(string: text,
+          attributes: config.wall.post.text.textAttributes)
+        textNode!.userInteractionEnabled = true
 
-    if PostConfig.Footer.enabled {
-      footerNode = PostFooterNode(post: post, width: contentWidth)
-      footerNode!.userInteractionEnabled = true
+        addSubnode(textNode)
+      }
 
-      addSubnode(footerNode)
-    }
+      if postConfig.footer.enabled {
+        footerNode = PostFooterNode(config: config, post: post, width: contentWidth)
+        footerNode!.userInteractionEnabled = true
 
-    if Config.Wall.Post.ActionBar.enabled {
-      actionBarNode = PostActionBarNode(width: contentWidth)
-      addSubnode(actionBarNode)
-    }
+        addSubnode(footerNode)
+      }
 
-    let actionNodes = [
-      headerNode?.authorNameNode,
-      headerNode?.authorAvatarNode,
-      headerNode?.groupNode,
-      headerNode?.dateNode,
-      headerNode?.locationNode,
-      attachmentGridNode,
-      textNode,
-      footerNode?.likesNode,
-      footerNode?.commentsNode,
-      footerNode?.seenNode,
-      actionBarNode?.likeControlNode,
-      actionBarNode?.commentControlNode
-    ]
+      if config.wall.post.actionBar.enabled {
+        actionBarNode = PostActionBarNode(config: config, width: contentWidth)
+        addSubnode(actionBarNode)
+      }
 
-    for actionNode in actionNodes {
-      actionNode?.addTarget(self,
-        action: "tapAction:",
-        forControlEvents: ASControlNodeEvent.TouchUpInside)
-    }
+      let actionNodes = [
+        headerNode?.authorNameNode,
+        headerNode?.authorAvatarNode,
+        headerNode?.groupNode,
+        headerNode?.dateNode,
+        headerNode?.locationNode,
+        attachmentGridNode,
+        textNode,
+        footerNode?.likesNode,
+        footerNode?.commentsNode,
+        footerNode?.seenNode,
+        actionBarNode?.likeControlNode,
+        actionBarNode?.commentControlNode
+      ]
 
-    if Config.Wall.Post.Divider.enabled {
-      divider = ASDisplayNode()
-      divider!.backgroundColor = PostConfig.Divider.backgroundColor
-      addSubnode(divider)
+      for actionNode in actionNodes {
+        actionNode?.addTarget(self,
+          action: "tapAction:",
+          forControlEvents: ASControlNodeEvent.TouchUpInside)
+      }
+
+      if config.wall.post.divider.enabled {
+        divider = ASDisplayNode()
+        divider!.backgroundColor = postConfig.divider.backgroundColor
+        addSubnode(divider)
+      }
     }
   }
 
@@ -136,42 +142,56 @@ public class PostCellNode: ASCellNode {
   // MARK: - Layout
 
   override public func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
-    var height: CGFloat = 0.0
+    var height: CGFloat = 0
+    var padding: CGFloat = 0
+    var dividerHeight: CGFloat = 0
+
+    if let config = config {
+      padding = config.wall.padding
+      dividerHeight = config.wall.post.divider.height
+    }
 
     if let headerNode = headerNode {
       height += headerNode.height
     }
 
     if let attachmentGridNode = attachmentGridNode {
-      height += attachmentGridNode.height + 2 * Config.Wall.padding
+      height += attachmentGridNode.height + 2 * padding
     }
 
     if let textNode = textNode {
       let textSize = textNode.measure(CGSize(
         width: contentWidth,
         height: CGFloat(FLT_MAX)))
-      height += textSize.height + Config.Wall.padding
+      height += textSize.height + padding
     }
 
     if let footerNode = footerNode {
       height += footerNode.height
     } else {
-      height += Config.Wall.padding
+      height += padding
     }
 
     if let actionBarNode = actionBarNode {
-      height += PostConfig.ActionBar.height
+      height += actionBarNode.height
     }
 
-    if PostConfig.Divider.enabled {
-      height += PostConfig.Divider.height
+    if let divider = divider {
+      height += dividerHeight
     }
 
     return CGSizeMake(width, height)
   }
 
   override public func layout() {
-    let padding = Config.Wall.padding
+    var padding: CGFloat = 0
+    var dividerHeight: CGFloat = 0
+
+    if let config = config {
+      padding = config.wall.padding
+      dividerHeight = config.wall.post.divider.height
+    }
+
     var y = padding
 
     if let headerNode = headerNode {
@@ -227,7 +247,7 @@ public class PostCellNode: ASCellNode {
         x: padding,
         y: y,
         width: contentWidth,
-        height: PostConfig.Divider.height)
+        height: dividerHeight)
     }
   }
 }
