@@ -1,7 +1,7 @@
 import UIKit
 import AsyncDisplayKit
 
-public class PostHeaderNode: ASCellNode {
+public class PostHeaderNode: ASDisplayNode {
 
   let config: Config
   let width: CGFloat

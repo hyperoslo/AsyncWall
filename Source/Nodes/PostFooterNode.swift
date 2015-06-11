@@ -1,7 +1,7 @@
 import UIKit
 import AsyncDisplayKit
 
-public class PostFooterNode: ASCellNode {
+public class PostFooterNode: ASDisplayNode {
 
   let width: CGFloat
   let config: Config
