@@ -11,6 +11,7 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
 
     title = "Infinite Scroll"
 
+    config.wall.post.title.enabled = true
     config.wall.post.text.textAttributes[NSForegroundColorAttributeName] = UIColor.darkTextColor()
     config.wall.thumbnailForAttachment = {
       (attachment: Attachment, size: CGSize) -> URLStringConvertible in
@@ -40,12 +41,14 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
       var seen = 0
       var group = Group(name: faker.team.name())
       var location = Location(name:faker.address.city())
+      var title: String?
 
       if i % 4 == 0 {
         attachmentCount = 4
         commentCount = 3
         likes = 3
         seen = 4
+        title = faker.lorem.word()
       } else if i % 3 == 0 {
         attachmentCount = 2
         commentCount = 1
@@ -69,6 +72,9 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
         author: user,
         attachments: attachments
       )
+      if let title = title {
+        post.title = title
+      }
       post.group = group
       post.location = location
       post.likes = likes
