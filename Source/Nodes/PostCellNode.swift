@@ -231,7 +231,7 @@ public class PostCellNode: ASCellNode {
       let size = titleNode.calculatedSize
       titleNode.frame = CGRect(
         origin: CGPoint(x: padding, y: y),
-        size: size)
+        size: CGSize(width: contentWidth, height: size.height))
 
       y += size.height
     }
