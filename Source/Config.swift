@@ -3,7 +3,7 @@ import UIKit
 import Haneke
 import TimeAgo
 
-public struct Config {
+public class Config {
   public var cache = Cache()
   public var wall = Wall()
 
