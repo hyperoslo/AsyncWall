@@ -13,6 +13,8 @@ public struct Config {
     return dateFormatter
     }()
 
+  public init() {}
+
   public struct Cache {
     public struct Thumbnails {
       public static var format = "wall-thumbnails"
