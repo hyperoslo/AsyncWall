@@ -26,10 +26,10 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Faker:
-    :commit: 49a53cbc60bb2c8757eb0efcb2994759027062a8
+    :commit: b24d4ed16d1c47976e76d64d450af60c468a9544
     :git: https://github.com/vadymmarkov/Faker
   TimeAgo:
-    :commit: 3d371e8ba0576f6bb3cc9181a2a74a717c8fa060
+    :commit: e80dfdfd2b80663c26565d41d1ec5739a944693d
     :git: https://github.com/hyperoslo/TimeAgo
 
 SPEC CHECKSUMS:
