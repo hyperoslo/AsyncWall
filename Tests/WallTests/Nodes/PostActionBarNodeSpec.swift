@@ -12,7 +12,7 @@ class PostActionBarNodeSpec: QuickSpec {
       var node: PostActionBarNode!
 
       beforeEach {
-        node = PostActionBarNode(width: width, config: config)
+        node = PostActionBarNode(config: config, width: width)
       }
 
       describe("#init") {

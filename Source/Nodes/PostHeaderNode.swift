@@ -3,6 +3,7 @@ import AsyncDisplayKit
 
 public class PostHeaderNode: ASCellNode {
 
+  let config: Config
   let width: CGFloat
 
   var authorNameNode: ASTextNode?
@@ -14,33 +15,34 @@ public class PostHeaderNode: ASCellNode {
   var dateNode: ASTextNode?
 
   var height: CGFloat {
-    return HeaderConfig.height
+    return headerConfig.height
   }
 
-  private var HeaderConfig: Config.Wall.Post.Header.Type {
-    return Config.Wall.Post.Header.self
+  private var headerConfig: Config.Wall.Post.Header {
+    return config.wall.post.header
   }
 
   // MARK: - Initialization
 
-  public init(post: Post, width: CGFloat) {
+  public init(config: Config, post: Post, width: CGFloat) {
+    self.config = config
     self.width = width
 
     super.init()
 
-    if HeaderConfig.Author.enabled {
+    if headerConfig.author.enabled {
       if let author = post.author {
         authorNameNode = ASTextNode()
         authorNameNode!.attributedString = NSAttributedString(
           string: author.name,
-          attributes: HeaderConfig.Author.textAttributes)
+          attributes: headerConfig.author.textAttributes)
         authorNameNode!.userInteractionEnabled = true
 
         addSubnode(authorNameNode)
 
-        if HeaderConfig.Author.Avatar.enabled {
+        if headerConfig.author.avatar.enabled {
           if let avatar = author.avatar {
-            let avatarConfig = HeaderConfig.Author.Avatar.self
+            let avatarConfig = headerConfig.author.avatar
             let imageSize = avatarConfig.size
 
             authorAvatarNode = ASImageNode()
@@ -62,17 +64,17 @@ public class PostHeaderNode: ASCellNode {
       }
     }
 
-    if HeaderConfig.Group.enabled {
+    if headerConfig.group.enabled {
       if let group = post.group {
         groupNode = ASTextNode()
         groupNode!.attributedString = NSAttributedString(
           string: group.name!,
-          attributes: HeaderConfig.Group.textAttributes)
+          attributes: headerConfig.group.textAttributes)
         groupNode!.userInteractionEnabled = true
 
         addSubnode(groupNode)
 
-        let dividerConfig = HeaderConfig.Group.Divider.self
+        let dividerConfig = headerConfig.group.divider
         if dividerConfig.enabled {
           groupDivider = ASTextNode()
           groupDivider!.attributedString = NSAttributedString(
@@ -84,31 +86,31 @@ public class PostHeaderNode: ASCellNode {
       }
     }
 
-    if HeaderConfig.Location.enabled {
+    if headerConfig.location.enabled {
       if let location = post.location {
         locationNode = ASTextNode()
         locationNode!.attributedString = NSAttributedString(
           string: location.name,
-          attributes: HeaderConfig.Location.textAttributes)
+          attributes: headerConfig.location.textAttributes)
         locationNode!.userInteractionEnabled = true
 
         addSubnode(locationNode)
 
-        if HeaderConfig.Location.Icon.enabled {
+        if headerConfig.location.icon.enabled {
           locationIconNode = ASImageNode()
-          locationIconNode?.backgroundColor = HeaderConfig.Author.Avatar.placeholderColor
-          locationIconNode?.image = HeaderConfig.Location.Icon.image
+          locationIconNode?.backgroundColor = headerConfig.author.avatar.placeholderColor
+          locationIconNode?.image = headerConfig.location.icon.image
 
           addSubnode(locationIconNode)
         }
       }
     }
 
-    if HeaderConfig.Date.enabled {
+    if headerConfig.date.enabled {
       dateNode = ASTextNode()
       dateNode!.attributedString = NSAttributedString(
-        string: Config.Wall.stringFromPostDate(date: post.date),
-        attributes: HeaderConfig.Date.textAttributes)
+        string: config.wall.stringFromPostDate(date: post.date),
+        attributes: headerConfig.date.textAttributes)
       dateNode!.userInteractionEnabled = true
 
       addSubnode(dateNode)
@@ -125,8 +127,8 @@ public class PostHeaderNode: ASCellNode {
     var x: CGFloat = 0
     var maxWidth = width
 
-    let avatarConfig = HeaderConfig.Author.Avatar.self
-    let authorConfig = HeaderConfig.Author.self
+    let avatarConfig = headerConfig.author.avatar
+    let authorConfig = headerConfig.author
 
     if let authorAvatarNode = authorAvatarNode {
       authorAvatarNode.frame = CGRect(
@@ -204,7 +206,7 @@ public class PostHeaderNode: ASCellNode {
 
       let rowY = secondRowY(size.height)
       if let locationIconNode = locationIconNode {
-        let iconConfig = HeaderConfig.Location.Icon.self
+        let iconConfig = headerConfig.location.icon
 
         let iconY = rowY + (size.height - iconConfig.size) / 2
 
@@ -227,13 +229,13 @@ public class PostHeaderNode: ASCellNode {
 
   func firstRowY(height: CGFloat) -> CGFloat {
     return self.locationNode != nil ?
-      self.height / 2 - height - HeaderConfig.Author.verticalPadding :
+      self.height / 2 - height - headerConfig.author.verticalPadding :
       centerY(height)
   }
 
   func secondRowY(height: CGFloat) -> CGFloat {
     return self.authorNameNode != nil ?
-      self.height / 2 + HeaderConfig.Author.verticalPadding :
+      self.height / 2 + headerConfig.author.verticalPadding :
       centerY(height)
   }
 }

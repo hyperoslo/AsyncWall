@@ -14,11 +14,9 @@ public struct Config {
     }()
 
   public struct Cache {
-    public var thumbnails = Thumbnails()
-
     public struct Thumbnails {
-      public var format = "wall-thumbnails"
-      public var storage: Haneke.Cache<UIImage> {
+      public static var format = "wall-thumbnails"
+      public static var storage: Haneke.Cache<UIImage> {
         let cache = Shared.imageCache
         let format = Format<UIImage>(name: self.format, diskCapacity: 20 * 1024 * 1024)
         cache.addFormat(format)

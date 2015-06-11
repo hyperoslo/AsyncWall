@@ -7,10 +7,11 @@ class ControlNodeSpec: QuickSpec {
   override func spec() {
     describe("ControlNode") {
       let faker = Faker()
+      let config = Config()
 
       let title = NSAttributedString(
         string: "Comment",
-        attributes: Config.Wall.Post.ActionBar.CommentButton.textAttributes)
+        attributes: config.wall.post.actionBar.commentButton.textAttributes)
       let url = Faker().internet.url()
       let image = UIImage()
 

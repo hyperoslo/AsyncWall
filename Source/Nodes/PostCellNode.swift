@@ -39,14 +39,14 @@ public class PostCellNode: ASCellNode {
       self.backgroundColor = postConfig.backgroundColor
 
       if postConfig.header.enabled {
-        headerNode = PostHeaderNode(post: post, width: contentWidth)
+        headerNode = PostHeaderNode(config: config, post: post, width: contentWidth)
         headerNode!.userInteractionEnabled = true
 
         addSubnode(headerNode)
       }
 
       if let attachments = post.attachments where attachments.count > 0 {
-        attachmentGridNode = AttachmentGridNode(attachments: attachments, width: contentWidth)
+        attachmentGridNode = AttachmentGridNode(config: config, attachments: attachments, width: contentWidth)
         attachmentGridNode!.userInteractionEnabled = true
 
         addSubnode(attachmentGridNode)
@@ -62,14 +62,14 @@ public class PostCellNode: ASCellNode {
       }
 
       if postConfig.footer.enabled {
-        footerNode = PostFooterNode(post: post, width: contentWidth)
+        footerNode = PostFooterNode(config: config, post: post, width: contentWidth)
         footerNode!.userInteractionEnabled = true
 
         addSubnode(footerNode)
       }
 
       if config.wall.post.actionBar.enabled {
-        actionBarNode = PostActionBarNode(width: contentWidth, config: config)
+        actionBarNode = PostActionBarNode(config: config, width: contentWidth)
         addSubnode(actionBarNode)
       }
 

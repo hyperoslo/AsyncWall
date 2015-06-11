@@ -3,8 +3,8 @@ import AsyncDisplayKit
 
 public class PostActionBarNode: ASCellNode {
 
-  let width: CGFloat
   let config: Config
+  let width: CGFloat
 
   var likeControlNode: ControlNode?
   var commentControlNode: ControlNode?
@@ -20,7 +20,7 @@ public class PostActionBarNode: ASCellNode {
 
   // MARK: - Initialization
 
-  public init(width: CGFloat, config: Config) {
+  public init(config: Config, width: CGFloat) {
     self.width = width
     self.config = config
 
@@ -42,7 +42,7 @@ public class PostActionBarNode: ASCellNode {
           attributes: actionBarConfig.likeButton.textAttributes)
       }
 
-      likeControlNode = ControlNode(title: title, image: image)
+      likeControlNode = ControlNode(config: config, title: title, image: image)
       likeControlNode!.userInteractionEnabled = true
 
       addSubnode(likeControlNode)
@@ -58,7 +58,7 @@ public class PostActionBarNode: ASCellNode {
           attributes: actionBarConfig.commentButton.textAttributes)
       }
 
-      commentControlNode = ControlNode(title: title, image: image)
+      commentControlNode = ControlNode(config: config, title: title, image: image)
       commentControlNode!.userInteractionEnabled = true
 
       addSubnode(commentControlNode)
