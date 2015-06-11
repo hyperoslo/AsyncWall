@@ -18,13 +18,13 @@ class ControlNodeSpec: QuickSpec {
       var node: ControlNode!
 
       beforeEach {
-        node = ControlNode(title: title, image: image)
+        node = ControlNode(config: config, title: title, image: image)
       }
 
       describe("#init") {
 
         it("returns a correct size") {
-          expect(node.size).to(equal(Config.Wall.Post.Control.size))
+          expect(node.size).to(equal(config.wall.post.control.size))
         }
 
         it("adds a content node") {
@@ -49,7 +49,7 @@ class ControlNodeSpec: QuickSpec {
 
         context("with no title") {
           beforeEach {
-            node = ControlNode(title: nil, image: image)
+            node = ControlNode(config: config, title: nil, image: image)
           }
 
           it("does not add a title node") {
@@ -59,7 +59,7 @@ class ControlNodeSpec: QuickSpec {
 
         context("with no image") {
           beforeEach {
-            node = ControlNode(title: title, image: nil)
+            node = ControlNode(config: config, title: title, image: nil)
           }
 
           it("does not add an image node") {

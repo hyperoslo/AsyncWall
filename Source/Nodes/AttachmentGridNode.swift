@@ -50,7 +50,7 @@ public class AttachmentGridNode: ASControlNode {
     }
 
     if attachmentsConfig.counter.enabled && totalCount > 3 {
-      counterNode = CounterNode(count: imageNodes.count, totalCount: totalCount)
+      counterNode = CounterNode(config: config, count: imageNodes.count, totalCount: totalCount)
       addSubnode(counterNode)
     }
   }

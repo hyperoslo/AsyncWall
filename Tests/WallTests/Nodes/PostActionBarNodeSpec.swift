@@ -5,8 +5,8 @@ class PostActionBarNodeSpec: QuickSpec {
 
   override func spec() {
     describe("PostActionBarNode") {
-      let width: CGFloat = 320
       let config = Config()
+      let width: CGFloat = 320
       let actionBarConfig = config.wall.post.actionBar
 
       var node: PostActionBarNode!
@@ -62,7 +62,7 @@ class PostActionBarNodeSpec: QuickSpec {
             configDisabled.wall.post.actionBar.likeButton.enabled = false
             configDisabled.wall.post.actionBar.commentButton.enabled = false
 
-            node = PostActionBarNode(width: width, config: config)
+            node = PostActionBarNode(config: config, width: width)
           }
 
           it("does not add a like control node") {
@@ -80,7 +80,7 @@ class PostActionBarNodeSpec: QuickSpec {
             configDisabled.wall.post.actionBar.likeButton.enabled = true
             configDisabled.wall.post.actionBar.commentButton.enabled = false
 
-            node = PostActionBarNode(width: width, config: config)
+            node = PostActionBarNode(config: config, width: width)
           }
 
           it("adds a like control node") {

@@ -5,13 +5,16 @@ class PostFooterNodeSpec: QuickSpec {
 
   override func spec() {
     describe("PostFooterNode") {
+      let config = Config()
+      let footerConfig = config.wall.post.footer
+
       let width: CGFloat = 320
       let post = SpecHelper.post
 
       var node: PostFooterNode!
 
       beforeEach {
-        node = PostFooterNode(post: post, width: width)
+        node = PostFooterNode(config: config, post: post, width: width)
       }
 
       describe("#init") {
@@ -20,7 +23,7 @@ class PostFooterNodeSpec: QuickSpec {
         }
 
         it("has the correct height") {
-          expect(node.height).to(equal(Config.Wall.Post.Footer.height))
+          expect(node.height).to(equal(footerConfig.height))
         }
 
         context("with likes, comments and seen enabled") {
@@ -33,7 +36,7 @@ class PostFooterNodeSpec: QuickSpec {
             expect(node.likesNode!.attributedString).to(equal(
               NSAttributedString(
                 string: string,
-                attributes: Config.Wall.Post.Footer.Likes.textAttributes)))
+                attributes: footerConfig.likes.textAttributes)))
             expect(node.likesNode!.userInteractionEnabled).to(beTrue())
             expect(node.likesNode!.supernode).notTo(beNil())
             expect(node.likesNode!.supernode).to(equal(node))
@@ -48,20 +51,20 @@ class PostFooterNodeSpec: QuickSpec {
             expect(node.commentsNode!.attributedString).to(equal(
               NSAttributedString(
                 string: string,
-                attributes: Config.Wall.Post.Footer.Comments.textAttributes)))
+                attributes: footerConfig.comments.textAttributes)))
             expect(node.commentsNode!.userInteractionEnabled).to(beTrue())
             expect(node.commentsNode!.supernode).notTo(beNil())
             expect(node.commentsNode!.supernode).to(equal(node))
           }
 
           it("adds the node with the number of views") {
-            let string = "\(Config.Wall.Post.Footer.Seen.text) \(post.seen)"
+            let string = "\(footerConfig.seen.text) \(post.seen)"
 
             expect(node.seenNode).notTo(beNil())
             expect(node.seenNode!.attributedString).to(equal(
               NSAttributedString(
                 string: string,
-                attributes: Config.Wall.Post.Footer.Seen.textAttributes)))
+                attributes: footerConfig.seen.textAttributes)))
             expect(node.seenNode!.userInteractionEnabled).to(beTrue())
             expect(node.seenNode!.supernode).notTo(beNil())
             expect(node.seenNode!.supernode).to(equal(node))
@@ -70,11 +73,13 @@ class PostFooterNodeSpec: QuickSpec {
 
         context("with likes, comments and seen disabled") {
           beforeEach {
-            Config.Wall.Post.Footer.Likes.enabled = false
-            Config.Wall.Post.Footer.Comments.enabled = false
-            Config.Wall.Post.Footer.Seen.enabled = false
+            var configDisabled = config
 
-            node = PostFooterNode(post: post, width: width)
+            configDisabled.wall.post.footer.likes.enabled = false
+            configDisabled.wall.post.footer.comments.enabled = false
+            configDisabled.wall.post.footer.seen.enabled = false
+
+            node = PostFooterNode(config: configDisabled, post: post, width: width)
           }
 
           it("does not add the node with the number of likes ") {
