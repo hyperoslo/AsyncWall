@@ -54,7 +54,7 @@ public class PostHeaderNode: ASCellNode {
             authorAvatarNode!.userInteractionEnabled = true
 
             authorAvatarNode?.fetchImage(
-              Config.Wall.thumbnailForAttachment(
+              config.wall.thumbnailForAttachment(
                 attachment: avatar,
                 size: CGSize(width: imageSize, height: imageSize)).url)
 

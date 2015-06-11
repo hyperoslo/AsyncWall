@@ -60,9 +60,9 @@ class PostActionBarNodeSpec: QuickSpec {
           beforeEach {
             var configDisabled = config
             configDisabled.wall.post.actionBar.likeButton.enabled = false
-            configDisabled.wall.post.actionBar.commentButton.enabled = false
+            configDisabled.wall.post.actionBar.commentButton.enabled = true
 
-            node = PostActionBarNode(config: config, width: width)
+            node = PostActionBarNode(config: configDisabled, width: width)
           }
 
           it("does not add a like control node") {
@@ -80,7 +80,7 @@ class PostActionBarNodeSpec: QuickSpec {
             configDisabled.wall.post.actionBar.likeButton.enabled = true
             configDisabled.wall.post.actionBar.commentButton.enabled = false
 
-            node = PostActionBarNode(config: config, width: width)
+            node = PostActionBarNode(config: configDisabled, width: width)
           }
 
           it("adds a like control node") {
