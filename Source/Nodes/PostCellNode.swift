@@ -59,7 +59,10 @@ public class PostCellNode: ASCellNode {
       }
 
       if let attachments = post.attachments where attachments.count > 0 {
-        attachmentGridNode = AttachmentGridNode(config: config, attachments: attachments, width: contentWidth)
+        attachmentGridNode = AttachmentGridNode(
+          config: config,
+          attachments: attachments,
+          width: contentWidth)
         attachmentGridNode!.userInteractionEnabled = true
 
         addSubnode(attachmentGridNode)
@@ -67,7 +70,8 @@ public class PostCellNode: ASCellNode {
 
       if let text = post.text {
         textNode = ASTextNode()
-        textNode!.attributedString = NSAttributedString(string: text,
+        textNode!.attributedString = NSAttributedString(
+          string: text,
           attributes: config.wall.post.text.textAttributes)
         textNode!.userInteractionEnabled = true
 
