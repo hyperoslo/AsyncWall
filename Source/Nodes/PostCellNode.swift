@@ -3,12 +3,13 @@ import AsyncDisplayKit
 
 public class PostCellNode: ASCellNode {
 
-  let width: CGFloat
-  var delegate: PostCellNodeDelegate?
-  var post: Post
-  var config: Config?
+  public let width: CGFloat
+  public var delegate: PostCellNodeDelegate?
+  public var post: Post
+  public var config: Config?
 
   var headerNode: PostHeaderNode?
+  var titleNode: ASTextNode?
   var attachmentGridNode: AttachmentGridNode?
   var textNode: ASTextNode?
   var footerNode: PostFooterNode?
@@ -43,6 +44,18 @@ public class PostCellNode: ASCellNode {
         headerNode!.userInteractionEnabled = true
 
         addSubnode(headerNode)
+      }
+
+      if postConfig.title.enabled {
+        if let title = post.title {
+          titleNode = ASTextNode()
+          titleNode!.attributedString = NSAttributedString(
+            string: title,
+            attributes: config.wall.post.title.textAttributes)
+          titleNode!.userInteractionEnabled = true
+
+          addSubnode(titleNode)
+        }
       }
 
       if let attachments = post.attachments where attachments.count > 0 {
@@ -155,15 +168,22 @@ public class PostCellNode: ASCellNode {
       height += headerNode.height
     }
 
+    if let titleNode = titleNode {
+      let size = titleNode.measure(CGSize(
+        width: contentWidth,
+        height: CGFloat(FLT_MAX)))
+      height += size.height + padding
+    }
+
     if let attachmentGridNode = attachmentGridNode {
       height += attachmentGridNode.height + 2 * padding
     }
 
     if let textNode = textNode {
-      let textSize = textNode.measure(CGSize(
+      let size = textNode.measure(CGSize(
         width: contentWidth,
         height: CGFloat(FLT_MAX)))
-      height += textSize.height + padding
+      height += size.height + padding
     }
 
     if let footerNode = footerNode {
@@ -201,6 +221,15 @@ public class PostCellNode: ASCellNode {
         width: headerNode.width,
         height: headerNode.height)
       y += headerNode.height
+    }
+
+    if let titleNode = titleNode {
+      let size = titleNode.calculatedSize
+      titleNode.frame = CGRect(
+        origin: CGPoint(x: padding, y: y),
+        size: size)
+
+      y += size.height
     }
 
     if let attachmentGridNode = attachmentGridNode {
