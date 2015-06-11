@@ -15,8 +15,8 @@ class ViewController: WallController {
       if (json != nil && error == nil) {
         var posts = [Post]()
 
-        for post in json! as Array {
-          if let text = post["text"] as? String {
+        for postData in json! as Array {
+          if let text = postData["text"] as? String {
             let post = Post(text: text, date: NSDate())
             posts.append(post)
           }
