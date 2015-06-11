@@ -4,40 +4,42 @@ import AsyncDisplayKit
 public class PostActionBarNode: ASCellNode {
 
   let width: CGFloat
+  let config: Config
 
   var likeControlNode: ControlNode?
   var commentControlNode: ControlNode?
   var divider: ASDisplayNode?
 
   var height: CGFloat {
-    return ActionBarConfig.height
+    return actionBarConfig.height
   }
 
-  private var ActionBarConfig: Config.Wall.Post.ActionBar.Type {
-    return Config.Wall.Post.ActionBar.self
+  private var actionBarConfig: Config.Wall.Post.ActionBar {
+    return config.wall.post.actionBar
   }
 
   // MARK: - Initialization
 
-  public init(width: CGFloat) {
+  public init(width: CGFloat, config: Config) {
     self.width = width
+    self.config = config
 
     super.init()
 
-    if ActionBarConfig.dividerEnabled {
+    if actionBarConfig.dividerEnabled {
       divider = ASDisplayNode()
-      divider!.backgroundColor = Config.Wall.Post.Divider.backgroundColor
+      divider!.backgroundColor = config.wall.post.divider.backgroundColor
       addSubnode(divider)
     }
 
-    if ActionBarConfig.LikeButton.enabled {
+    if actionBarConfig.likeButton.enabled {
       var title: NSAttributedString?
-      var image = ActionBarConfig.LikeButton.image
+      var image = actionBarConfig.likeButton.image
 
-      if let controlTitle = ActionBarConfig.LikeButton.title {
+      if let controlTitle = actionBarConfig.likeButton.title {
         title = NSAttributedString(
           string: controlTitle,
-          attributes: ActionBarConfig.LikeButton.textAttributes)
+          attributes: actionBarConfig.likeButton.textAttributes)
       }
 
       likeControlNode = ControlNode(title: title, image: image)
@@ -46,14 +48,14 @@ public class PostActionBarNode: ASCellNode {
       addSubnode(likeControlNode)
     }
 
-    if ActionBarConfig.CommentButton.enabled {
+    if actionBarConfig.commentButton.enabled {
       var title: NSAttributedString?
-      var image = ActionBarConfig.CommentButton.image
+      var image = actionBarConfig.commentButton.image
 
-      if let controlTitle = ActionBarConfig.CommentButton.title {
+      if let controlTitle = actionBarConfig.commentButton.title {
         title = NSAttributedString(
           string: controlTitle,
-          attributes: ActionBarConfig.CommentButton.textAttributes)
+          attributes: actionBarConfig.commentButton.textAttributes)
       }
 
       commentControlNode = ControlNode(title: title, image: image)
@@ -78,7 +80,7 @@ public class PostActionBarNode: ASCellNode {
         x: 0,
         y: 0,
         width: width,
-        height: Config.Wall.Post.Divider.height)
+        height: config.wall.post.divider.height)
     }
 
     if let likeControlNode = likeControlNode {

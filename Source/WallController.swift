@@ -11,6 +11,7 @@ public class WallController: UIViewController {
 
   public var post: Post?
   public var delegate: AnyObject?
+  public var config = Config()
 
   public lazy var collectionView: ASCollectionView = { [unowned self] in
     var frame = self.view.bounds
