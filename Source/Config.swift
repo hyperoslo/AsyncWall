@@ -47,6 +47,7 @@ public class Config {
     public struct Post {
       public var backgroundColor = UIColor.whiteColor()
       public var header = Header()
+      public var title = Title()
       public var attachments = Attachments()
       public var text = Text()
       public var footer = Footer()
@@ -121,6 +122,19 @@ public class Config {
             NSForegroundColorAttributeName: UIColor.grayColor()
           ]
         }
+      }
+
+      public struct Title {
+        public var enabled = false
+        public var textAttributes = [
+          NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
+          NSForegroundColorAttributeName: UIColor.blackColor(),
+          NSParagraphStyleAttributeName: {
+            var style = NSMutableParagraphStyle()
+            style.alignment = .Center
+            return style
+            }()
+        ]
       }
 
       public struct Attachments {
