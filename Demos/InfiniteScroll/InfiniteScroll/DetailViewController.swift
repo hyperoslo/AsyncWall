@@ -23,4 +23,5 @@ class DetailViewController: WallController {
       }
     }
   }
+
 }
