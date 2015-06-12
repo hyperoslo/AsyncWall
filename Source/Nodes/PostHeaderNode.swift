@@ -107,13 +107,15 @@ public class PostHeaderNode: ASDisplayNode {
     }
 
     if headerConfig.date.enabled {
-      dateNode = ASTextNode()
-      dateNode!.attributedString = NSAttributedString(
-        string: config.wall.stringFromPostDate(date: post.date),
-        attributes: headerConfig.date.textAttributes)
-      dateNode!.userInteractionEnabled = true
+      if let date = post.date {
+        dateNode = ASTextNode()
+        dateNode!.attributedString = NSAttributedString(
+          string: config.wall.stringFromPostDate(date: date),
+          attributes: headerConfig.date.textAttributes)
+        dateNode!.userInteractionEnabled = true
 
-      addSubnode(dateNode)
+        addSubnode(dateNode)
+      }
     }
   }
 
