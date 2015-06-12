@@ -1,17 +1,10 @@
 import Foundation
 import UIKit
 import Haneke
-import TimeAgo
 
 public class Config {
   public var cache = Cache()
   public var wall = Wall()
-
-  private var dateFormatter: NSDateFormatter = {
-    let dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "MM-dd"
-    return dateFormatter
-    }()
 
   public init() {}
 
@@ -29,14 +22,21 @@ public class Config {
   }
 
   public struct Wall {
+    
+    public lazy var dateFormatter: NSDateFormatter = {
+      let dateFormatter = NSDateFormatter()
+      dateFormatter.dateFormat = "MM-dd"
+      return dateFormatter
+      }()
+
     public var thumbnailForAttachment: (attachment: Attachment, size: CGSize) -> URLStringConvertible = {
       (attachment: Attachment, size: CGSize) -> URLStringConvertible in
       return attachment.thumbnail
     }
 
-    public var stringFromPostDate: (date: NSDate) -> String = {
+    public lazy var stringFromPostDate: (date: NSDate) -> String = {
       (date: NSDate) -> String in
-      return date.timeAgo
+      return self.dateFormatter.stringFromDate(date)
     }
 
     public var post = Post()

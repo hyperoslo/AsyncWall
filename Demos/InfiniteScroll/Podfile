@@ -7,4 +7,3 @@ inhibit_all_warnings!
 
 pod 'Wall', path: '../../'
 pod 'Faker', git: 'https://github.com/vadymmarkov/Faker'
-pod 'TimeAgo', git: 'https://github.com/hyperoslo/TimeAgo'
