@@ -1,10 +1,10 @@
 import UIKit
 import AsyncDisplayKit
 
-public class CounterNode: ASCellNode {
+public class CounterNode: ASDisplayNode {
 
   let config: Config
-  
+
   var textNode: ASTextNode
   var boxNode: ASDisplayNode
   var backBoxNode: ASDisplayNode
@@ -23,7 +23,7 @@ public class CounterNode: ASCellNode {
 
   public init(config: Config, count: Int, totalCount: Int) {
     self.config = config
-    
+
     backBoxNode = ASDisplayNode()
     backBoxNode.backgroundColor = .whiteColor()
     backBoxNode.alpha = 0.4

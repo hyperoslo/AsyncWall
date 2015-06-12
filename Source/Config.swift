@@ -29,8 +29,6 @@ public class Config {
   }
 
   public struct Wall {
-    public var padding: CGFloat = 10
-
     public var thumbnailForAttachment: (attachment: Attachment, size: CGSize) -> URLStringConvertible = {
       (attachment: Attachment, size: CGSize) -> URLStringConvertible in
       return attachment.thumbnail
@@ -45,8 +43,11 @@ public class Config {
     public var comment = Comment()
 
     public struct Post {
+      public var horizontalPadding: CGFloat = 10
+      public var verticalPadding: CGFloat = 10
       public var backgroundColor = UIColor.whiteColor()
       public var header = Header()
+      public var title = Title()
       public var attachments = Attachments()
       public var text = Text()
       public var footer = Footer()
@@ -121,6 +122,19 @@ public class Config {
             NSForegroundColorAttributeName: UIColor.grayColor()
           ]
         }
+      }
+
+      public struct Title {
+        public var enabled = false
+        public var textAttributes = [
+          NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
+          NSForegroundColorAttributeName: UIColor.blackColor(),
+          NSParagraphStyleAttributeName: {
+            var style = NSMutableParagraphStyle()
+            style.alignment = .Center
+            return style
+            }()
+        ]
       }
 
       public struct Attachments {

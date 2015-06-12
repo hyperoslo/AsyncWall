@@ -1,7 +1,7 @@
 import UIKit
 import AsyncDisplayKit
 
-public class PostActionBarNode: ASCellNode {
+public class PostActionBarNode: ASDisplayNode {
 
   let config: Config
   let width: CGFloat
