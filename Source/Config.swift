@@ -29,8 +29,6 @@ public class Config {
   }
 
   public struct Wall {
-    public var padding: CGFloat = 10
-
     public var thumbnailForAttachment: (attachment: Attachment, size: CGSize) -> URLStringConvertible = {
       (attachment: Attachment, size: CGSize) -> URLStringConvertible in
       return attachment.thumbnail
@@ -45,6 +43,8 @@ public class Config {
     public var comment = Comment()
 
     public struct Post {
+      public var horizontalPadding: CGFloat = 10
+      public var verticalPadding: CGFloat = 10
       public var backgroundColor = UIColor.whiteColor()
       public var header = Header()
       public var title = Title()

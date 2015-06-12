@@ -19,7 +19,7 @@ public class PostCellNode: ASCellNode {
   var contentWidth: CGFloat {
     var contentWidth = width
     if let config = delegate?.config {
-      contentWidth = width - 2 * config.wall.padding
+      contentWidth = width - 2 * config.wall.post.horizontalPadding
     }
     return contentWidth
   }
@@ -160,127 +160,130 @@ public class PostCellNode: ASCellNode {
 
   override public func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
     var height: CGFloat = 0
-    var padding: CGFloat = 0
-    var dividerHeight: CGFloat = 0
 
     if let config = config {
-      padding = config.wall.padding
-      dividerHeight = config.wall.post.divider.height
-    }
+      var verticalPadding = config.wall.post.verticalPadding
+      var dividerHeight = config.wall.post.divider.height
+      var paddingCount = 0
 
-    if let headerNode = headerNode {
-      height += headerNode.height
-    }
+      if let headerNode = headerNode {
+        height += headerNode.height
+        paddingCount++
+      }
 
-    if let titleNode = titleNode {
-      let size = titleNode.measure(CGSize(
-        width: contentWidth,
-        height: CGFloat(FLT_MAX)))
-      height += size.height + padding
-    }
+      if let titleNode = titleNode {
+        let size = titleNode.measure(CGSize(
+          width: contentWidth,
+          height: CGFloat(FLT_MAX)))
+        height += size.height
+        paddingCount++
+      }
 
-    if let attachmentGridNode = attachmentGridNode {
-      height += attachmentGridNode.height + 2 * padding
-    }
+      if let attachmentGridNode = attachmentGridNode {
+        height += attachmentGridNode.height
+        paddingCount++
+      }
 
-    if let textNode = textNode {
-      let size = textNode.measure(CGSize(
-        width: contentWidth,
-        height: CGFloat(FLT_MAX)))
-      height += size.height + padding
-    }
+      if let textNode = textNode {
+        let size = textNode.measure(CGSize(
+          width: contentWidth,
+          height: CGFloat(FLT_MAX)))
+        height += size.height
+        paddingCount++
+      }
 
-    if let footerNode = footerNode {
-      height += footerNode.height
-    } else {
-      height += padding
-    }
+      if let footerNode = footerNode {
+        height += footerNode.height
+      } else {
+        paddingCount++
+      }
 
-    if let actionBarNode = actionBarNode {
-      height += actionBarNode.height
-    }
+      if let actionBarNode = actionBarNode {
+        height += actionBarNode.height
+      }
 
-    if let divider = divider {
-      height += dividerHeight
+      if let divider = divider {
+        height += dividerHeight
+      }
+
+      height += CGFloat(paddingCount) * verticalPadding
     }
 
     return CGSizeMake(width, height)
   }
 
   override public func layout() {
-    var padding: CGFloat = 0
-    var dividerHeight: CGFloat = 0
-
     if let config = config {
-      padding = config.wall.padding
-      dividerHeight = config.wall.post.divider.height
-    }
+      var horizontalPadding = config.wall.post.horizontalPadding
+      var verticalPadding = config.wall.post.verticalPadding
+      var dividerHeight = config.wall.post.divider.height
 
-    var y = padding
+      var y = verticalPadding
 
-    if let headerNode = headerNode {
-      headerNode.frame = CGRect(
-        x: padding,
-        y: y,
-        width: headerNode.width,
-        height: headerNode.height)
-      y += headerNode.height
-    }
+      if let headerNode = headerNode {
+        headerNode.frame = CGRect(
+          x: horizontalPadding,
+          y: y,
+          width: headerNode.width,
+          height: headerNode.height)
+        y += headerNode.height + verticalPadding
+      }
 
-    if let titleNode = titleNode {
-      let size = titleNode.calculatedSize
-      titleNode.frame = CGRect(
-        origin: CGPoint(x: padding, y: y),
-        size: CGSize(width: contentWidth, height: size.height))
+      if let titleNode = titleNode {
+        let size = titleNode.calculatedSize
+        titleNode.frame = CGRect(
+          origin: CGPoint(x: horizontalPadding, y: y),
+          size: CGSize(width: contentWidth, height: size.height))
 
-      y += size.height
-    }
+        y += size.height + verticalPadding
+      }
 
-    if let attachmentGridNode = attachmentGridNode {
-      attachmentGridNode.frame = CGRect(
-        x: padding,
-        y: y + padding,
-        width: attachmentGridNode.width,
-        height: attachmentGridNode.height)
+      if let attachmentGridNode = attachmentGridNode {
+        attachmentGridNode.frame = CGRect(
+          x: horizontalPadding,
+          y: y,
+          width: attachmentGridNode.width,
+          height: attachmentGridNode.height)
 
-      y += attachmentGridNode.height + padding * 2
-    }
+        y += attachmentGridNode.height + verticalPadding
+      }
 
-    if let textNode = textNode {
-      let size = textNode.calculatedSize
-      textNode.frame = CGRect(
-        origin: CGPoint(x: padding, y: y),
-        size: size)
+      if let textNode = textNode {
+        let size = textNode.calculatedSize
+        textNode.frame = CGRect(
+          origin: CGPoint(x: horizontalPadding, y: y),
+          size: size)
 
-      y += size.height
-    }
+        y += size.height + verticalPadding
+      }
 
-    if let footerNode = footerNode {
-      footerNode.frame = CGRect(
-        x: padding,
-        y: y,
-        width: footerNode.width,
-        height: footerNode.height)
-      y += footerNode.height
-    } else {
-      y += padding
-    }
+      if let footerNode = footerNode {
+        footerNode.frame = CGRect(
+          x: horizontalPadding,
+          y: y,
+          width: footerNode.width,
+          height: footerNode.height)
+        y += footerNode.height
+      } else {
+        y += verticalPadding
+      }
 
-    if let actionBarNode = actionBarNode {
-      actionBarNode.frame = CGRect(
-        x: padding,
-        y: y,
-        width: contentWidth,
-        height: actionBarNode.height)
-      y += actionBarNode.height
-    }
+      if let actionBarNode = actionBarNode {
+        actionBarNode.frame = CGRect(
+          x: horizontalPadding,
+          y: y,
+          width: contentWidth,
+          height: actionBarNode.height)
+        y += actionBarNode.height
+      }
 
-    if let divider = divider {
-      divider.frame = CGRect(
-        x: padding,
-        y: y,
-        width: contentWidth,
-        height: dividerHeight)
+      if let divider = divider {
+        divider.frame = CGRect(
+          x: horizontalPadding,
+          y: y,
+          width: contentWidth,
+          height: dividerHeight)
+      }
     }
   }
 }
