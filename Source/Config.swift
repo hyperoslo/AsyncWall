@@ -139,8 +139,13 @@ public class Config {
       }
 
       public struct Attachments {
+        public enum GridType {
+          case Regular, FullWidth, SingleFullWidth
+        }
+
         public var ratio: CGFloat = 3 / 2
         public var padding: CGFloat = 10
+        public var gridType = GridType.Regular
         public var counter = Counter()
 
         public struct Counter {
