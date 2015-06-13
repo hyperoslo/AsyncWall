@@ -50,7 +50,7 @@ public class PostCellNode: ASCellNode {
         if let title = post.title {
           titleNode = ASTextNode()
           titleNode!.attributedString = NSAttributedString(
-            string: postConfig.title.capitalized ? title.capitalizedString : title,
+            string: postConfig.title.uppercase ? title.uppercaseString : title,
             attributes: config.wall.post.title.textAttributes)
           titleNode!.userInteractionEnabled = true
 
