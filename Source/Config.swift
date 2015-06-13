@@ -22,7 +22,7 @@ public class Config {
   }
 
   public struct Wall {
-    
+
     public lazy var dateFormatter: NSDateFormatter = {
       let dateFormatter = NSDateFormatter()
       dateFormatter.dateFormat = "MM-dd"
@@ -126,6 +126,7 @@ public class Config {
 
       public struct Title {
         public var enabled = false
+        public var capitalized = false
         public var textAttributes = [
           NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
           NSForegroundColorAttributeName: UIColor.blackColor(),
