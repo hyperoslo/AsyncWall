@@ -59,10 +59,17 @@ public class PostCellNode: ASCellNode {
       }
 
       if let attachments = post.attachments where attachments.count > 0 {
+        var gridWidth = contentWidth
+        if postConfig.attachments.gridType == .FullWidth {
+          gridWidth = width
+        } else if postConfig.attachments.gridType == .SingleFullWidth {
+          gridWidth = attachments.count > 1 ? contentWidth : width
+        }
+
         attachmentGridNode = AttachmentGridNode(
           config: config,
           attachments: attachments,
-          width: contentWidth)
+          width: gridWidth)
         attachmentGridNode!.userInteractionEnabled = true
 
         addSubnode(attachmentGridNode)
