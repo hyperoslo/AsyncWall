@@ -126,7 +126,7 @@ public class Config {
 
       public struct Title {
         public var enabled = false
-        public var capitalized = false
+        public var uppercase = false
         public var textAttributes = [
           NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
           NSForegroundColorAttributeName: UIColor.blackColor(),

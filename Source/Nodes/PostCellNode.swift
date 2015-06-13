@@ -50,7 +50,7 @@ public class PostCellNode: ASCellNode {
         if let title = post.title {
           titleNode = ASTextNode()
           titleNode!.attributedString = NSAttributedString(
-            string: postConfig.title.capitalized ? title.capitalizedString : title,
+            string: postConfig.title.uppercase ? title.uppercaseString : title,
             attributes: config.wall.post.title.textAttributes)
           titleNode!.userInteractionEnabled = true
 
@@ -59,12 +59,7 @@ public class PostCellNode: ASCellNode {
       }
 
       if let attachments = post.attachments where attachments.count > 0 {
-        var gridWidth = contentWidth
-        if postConfig.attachments.gridType == .FullWidth {
-          gridWidth = width
-        } else if postConfig.attachments.gridType == .SingleFullWidth {
-          gridWidth = attachments.count > 1 ? contentWidth : width
-        }
+        var gridWidth = gridWidthForAttachmentCount(attachments.count)
 
         attachmentGridNode = AttachmentGridNode(
           config: config,
@@ -247,7 +242,7 @@ public class PostCellNode: ASCellNode {
 
       if let attachmentGridNode = attachmentGridNode {
         attachmentGridNode.frame = CGRect(
-          x: horizontalPadding,
+          x: attachmentGridNode.width < width ? horizontalPadding : 0,
           y: y,
           width: attachmentGridNode.width,
           height: attachmentGridNode.height)
@@ -292,5 +287,23 @@ public class PostCellNode: ASCellNode {
           height: dividerHeight)
       }
     }
+  }
+
+  // MARK: - Helper Methods
+
+  private func gridWidthForAttachmentCount(count: Int) -> CGFloat {
+    var gridWidth = contentWidth
+
+    if let config = config {
+      let gridType = config.wall.post.attachments.gridType
+
+      if gridType == .FullWidth {
+        gridWidth = width
+      } else if gridType == .SingleFullWidth {
+        gridWidth = count > 1 ? contentWidth : width
+      }
+    }
+
+    return gridWidth
   }
 }
