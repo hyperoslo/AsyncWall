@@ -150,9 +150,7 @@ public class Config {
 
         public struct Counter {
           public var enabled = true
-          public var padding: CGFloat = 3
-          public var boxSize = CGSize(width: 40.0, height: 30.0)
-          public var boxGap: CGFloat = 3
+          public var backgroundColor = UIColor(white: 0, alpha: 0.6)
           public var textAttributes = [
             NSFontAttributeName: UIFont.systemFontOfSize(14),
             NSForegroundColorAttributeName: UIColor.grayColor()
