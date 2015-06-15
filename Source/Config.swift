@@ -150,10 +150,10 @@ public class Config {
 
         public struct Counter {
           public var enabled = true
-          public var backgroundColor = UIColor(white: 0, alpha: 0.6)
+          public var backgroundColor = UIColor(white: 0, alpha: 0.5)
           public var textAttributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(14),
-            NSForegroundColorAttributeName: UIColor.grayColor()
+            NSFontAttributeName: UIFont.systemFontOfSize(34),
+            NSForegroundColorAttributeName: UIColor.whiteColor()
           ]
         }
       }
