@@ -27,7 +27,7 @@ public class CounterNode: ASDisplayNode {
     paragraphStyle.alignment = .Center
     var attributes = counterConfig.textAttributes
     attributes[NSParagraphStyleAttributeName] = paragraphStyle
-    let text = "\(count)/\(totalCount)"
+    let text = "+\(totalCount - count)"
 
     textNode.attributedString = NSAttributedString(
       string: text,
