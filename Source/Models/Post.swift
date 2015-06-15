@@ -11,6 +11,7 @@ public class Post: NSObject {
   public var attachments: [Attachment]?
   public var likes: Int = 0
   public var seen: Int = 0
+  public var read = false
   public var parent: Post?
   public var comments = [Post]()
 
