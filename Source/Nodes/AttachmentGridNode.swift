@@ -36,6 +36,7 @@ public class AttachmentGridNode: ASControlNode {
 
     super.init()
 
+    var lastImageSize: CGSize?
     for (index, attachment) in enumerate(self.attachments) {
       let imageNode = ASImageNode()
       imageNode.backgroundColor = .grayColor()
@@ -47,11 +48,21 @@ public class AttachmentGridNode: ASControlNode {
           height: imageSize.height)).url)
       imageNodes.append(imageNode)
       addSubnode(imageNode)
+
+      if index == 2 {
+        lastImageSize = imageSize
+      }
     }
 
     if attachmentsConfig.counter.enabled && totalCount > 3 {
-      counterNode = CounterNode(config: config, count: imageNodes.count, totalCount: totalCount)
-      addSubnode(counterNode)
+      if let lastImageSize = lastImageSize {
+        counterNode = CounterNode(
+          config: config,
+          size: lastImageSize,
+          count: imageNodes.count,
+          totalCount: totalCount)
+        addSubnode(counterNode)
+      }
     }
   }
 
