@@ -1,4 +1,4 @@
 public protocol Attachment {
 
-  var thumbnail: URLStringConvertible { get }
+  var thumbnail: URLStringConvertible? { get }
 }

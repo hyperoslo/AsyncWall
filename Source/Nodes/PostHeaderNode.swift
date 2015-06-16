@@ -32,13 +32,15 @@ public class PostHeaderNode: ASDisplayNode {
 
     if headerConfig.author.enabled {
       if let author = post.author {
-        authorNameNode = ASTextNode()
-        authorNameNode!.attributedString = NSAttributedString(
-          string: author.name,
-          attributes: headerConfig.author.textAttributes)
-        authorNameNode!.userInteractionEnabled = true
+        if let name = author.name {
+          authorNameNode = ASTextNode()
+          authorNameNode!.attributedString = NSAttributedString(
+            string: name,
+            attributes: headerConfig.author.textAttributes)
+          authorNameNode!.userInteractionEnabled = true
 
-        addSubnode(authorNameNode)
+          addSubnode(authorNameNode)
+        }
 
         if headerConfig.author.avatar.enabled {
           if let avatar = author.avatar {
@@ -53,10 +55,11 @@ public class PostHeaderNode: ASDisplayNode {
             }
             authorAvatarNode!.userInteractionEnabled = true
 
-            authorAvatarNode?.fetchImage(
-              config.wall.thumbnailForAttachment(
-                attachment: avatar,
-                size: CGSize(width: imageSize, height: imageSize)).url)
+            if let thumbnail = config.wall.thumbnailForAttachment(
+              attachment: avatar,
+              size: CGSize(width: imageSize, height: imageSize)) {
+                authorAvatarNode?.fetchImage(thumbnail.url)
+            }
 
             addSubnode(authorAvatarNode)
           }
@@ -88,13 +91,15 @@ public class PostHeaderNode: ASDisplayNode {
 
     if headerConfig.location.enabled {
       if let location = post.location {
-        locationNode = ASTextNode()
-        locationNode!.attributedString = NSAttributedString(
-          string: location.name,
-          attributes: headerConfig.location.textAttributes)
-        locationNode!.userInteractionEnabled = true
+        if let name = location.name {
+          locationNode = ASTextNode()
+          locationNode!.attributedString = NSAttributedString(
+            string: name,
+            attributes: headerConfig.location.textAttributes)
+          locationNode!.userInteractionEnabled = true
 
-        addSubnode(locationNode)
+          addSubnode(locationNode)
+        }
 
         if headerConfig.location.icon.enabled {
           locationIconNode = ASImageNode()

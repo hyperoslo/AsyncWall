@@ -41,11 +41,15 @@ public class AttachmentGridNode: ASControlNode {
       let imageNode = ASImageNode()
       imageNode.backgroundColor = .grayColor()
       let imageSize = sizeForThumbnailAtIndex(index)
-      imageNode.fetchImage(config.wall.thumbnailForAttachment(
+
+      if let thumbnail = config.wall.thumbnailForAttachment(
         attachment: attachment,
         size: CGSize(
           width: imageSize.width,
-          height: imageSize.height)).url)
+          height: imageSize.height)) {
+            imageNode.fetchImage(thumbnail.url)
+      }
+
       imageNodes.append(imageNode)
       addSubnode(imageNode)
 
