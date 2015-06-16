@@ -15,12 +15,12 @@ class ImageSpec: QuickSpec {
 
       describe("#thumbnail") {
         it("has the correct source") {
-          expect(image.thumbnail.string).to(equal(source))
+          expect(image.thumbnail?.string).to(equal(source))
         }
 
         it("has the correct source URL") {
-          expect(image.thumbnail.url).to(equal(source.url))
-          expect(image.thumbnail.url).to(beAKindOf(NSURL.classForCoder()))
+          expect(image.thumbnail?.url).to(equal(source.url))
+          expect(image.thumbnail?.url).to(beAKindOf(NSURL.classForCoder()))
         }
       }
     }
