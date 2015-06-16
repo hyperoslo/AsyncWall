@@ -1,9 +1,9 @@
 public struct Coordinate {
 
-  public let latitude: Double
-  public let longitude: Double
+  public var latitude: Double?
+  public var longitude: Double?
 
-  public init(latitude: Double, longitude: Double) {
+  public init(latitude: Double? = nil, longitude: Double? = nil) {
     self.latitude = latitude
     self.longitude = longitude
   }
