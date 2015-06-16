@@ -29,8 +29,8 @@ public class Config {
       return dateFormatter
       }()
 
-    public var thumbnailForAttachment: (attachment: Attachment, size: CGSize) -> URLStringConvertible = {
-      (attachment: Attachment, size: CGSize) -> URLStringConvertible in
+    public var thumbnailForAttachment: (attachment: Attachment, size: CGSize) -> URLStringConvertible? = {
+      (attachment: Attachment, size: CGSize) -> URLStringConvertible? in
       return attachment.thumbnail
     }
 
