@@ -23,8 +23,8 @@ class GroupSpec: QuickSpec {
           }
 
           it("has the correct source URL") {
-            expect(group.image!.thumbnail.string).to(equal(url))
-            expect(group.image!.thumbnail.url).to(beAKindOf(NSURL.classForCoder()))
+            expect(group.image!.thumbnail?.string).to(equal(url))
+            expect(group.image!.thumbnail?.url).to(beAKindOf(NSURL.classForCoder()))
           }
         }
 

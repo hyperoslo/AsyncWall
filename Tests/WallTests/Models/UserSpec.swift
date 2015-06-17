@@ -25,8 +25,8 @@ class UserSpec: QuickSpec {
           }
 
           it("has the correct source URL") {
-            expect(user.avatar!.thumbnail.string).to(equal(url))
-            expect(user.avatar!.thumbnail.url).to(beAKindOf(NSURL.classForCoder()))
+            expect(user.avatar!.thumbnail?.string).to(equal(url))
+            expect(user.avatar!.thumbnail?.url).to(beAKindOf(NSURL.classForCoder()))
           }
         }
 
