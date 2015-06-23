@@ -10,7 +10,7 @@ public class WallController: UIViewController {
   private var scrollingState: InfiniteScrolling = .Stopped
 
   public var post: Post?
-  public var delegate: AnyObject?
+  weak public var delegate: AnyObject?
   public var config = Config()
 
   public lazy var collectionView: ASCollectionView = { [unowned self] in
