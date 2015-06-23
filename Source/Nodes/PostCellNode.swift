@@ -4,7 +4,7 @@ import AsyncDisplayKit
 public class PostCellNode: ASCellNode {
 
   public let width: CGFloat
-  public var delegate: PostCellNodeDelegate?
+  weak public var delegate: PostCellNodeDelegate?
   public var post: Post
   public var config: Config?
 

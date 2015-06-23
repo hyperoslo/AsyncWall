@@ -3,7 +3,7 @@ import AsyncDisplayKit
 
 public class WallDataSource: NSObject, ASCollectionViewDataSource {
 
-  public var delegate: AnyObject?
+  weak public var delegate: AnyObject?
 
   lazy public var data = { return [Post]() }()
 
