@@ -3,10 +3,10 @@ import AsyncDisplayKit
 
 public class CounterNode: ASDisplayNode {
 
-  let config: Config
+  public let config: Config
 
-  var size: CGSize
-  var textNode: ASTextNode
+  public var size: CGSize
+  public var textNode: ASTextNode
 
   private var counterConfig: Config.Wall.Post.Attachments.Counter {
     return config.wall.post.attachments.counter
