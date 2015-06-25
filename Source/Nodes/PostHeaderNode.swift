@@ -3,18 +3,18 @@ import AsyncDisplayKit
 
 public class PostHeaderNode: ASDisplayNode {
 
-  let config: Config
-  let width: CGFloat
+  public let config: Config
+  public let width: CGFloat
 
-  var authorNameNode: ASTextNode?
-  var authorAvatarNode: ASImageNode?
-  var groupNode: ASTextNode?
-  var groupDivider: ASTextNode?
-  var locationIconNode: ASImageNode?
-  var locationNode: ASTextNode?
-  var dateNode: ASTextNode?
+  public var authorNameNode: ASTextNode?
+  public var authorAvatarNode: ASImageNode?
+  public var groupNode: ASTextNode?
+  public var groupDivider: ASTextNode?
+  public var locationIconNode: ASImageNode?
+  public var locationNode: ASTextNode?
+  public var dateNode: ASTextNode?
 
-  var height: CGFloat {
+  public var height: CGFloat {
     return headerConfig.height
   }
 
