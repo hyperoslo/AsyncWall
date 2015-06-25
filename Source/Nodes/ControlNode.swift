@@ -3,13 +3,13 @@ import AsyncDisplayKit
 
 public class ControlNode: ASControlNode {
 
-  let config: Config
+  public let config: Config
 
-  var contentNode: ASDisplayNode
-  var titleNode: ASTextNode?
-  var imageNode: ASImageNode?
+  public var contentNode: ASDisplayNode
+  public var titleNode: ASTextNode?
+  public var imageNode: ASImageNode?
 
-  var size: CGSize {
+  public var size: CGSize {
     return controlConfig.size
   }
 
