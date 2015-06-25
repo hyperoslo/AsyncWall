@@ -3,22 +3,22 @@ import AsyncDisplayKit
 
 public class AttachmentGridNode: ASControlNode {
 
-  let config: Config
-  let width: CGFloat
-  let attachments: [Attachment]
+  public let config: Config
+  public let width: CGFloat
+  public let attachments: [Attachment]
 
-  var imageNodes = [ASImageNode]()
-  var counterNode: CounterNode?
+  public var imageNodes = [ASImageNode]()
+  public var counterNode: CounterNode?
 
-  var height: CGFloat {
+  public var height: CGFloat {
     return width / attachmentsConfig.ratio
   }
 
-  var contentWidth: CGFloat {
+  public var contentWidth: CGFloat {
     return width - attachmentsConfig.padding
   }
 
-  var contentHeight: CGFloat {
+  public var contentHeight: CGFloat {
     return height - attachmentsConfig.padding
   }
 
