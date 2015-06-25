@@ -3,14 +3,14 @@ import AsyncDisplayKit
 
 public class PostActionBarNode: ASDisplayNode {
 
-  let config: Config
-  let width: CGFloat
+  public let config: Config
+  public let width: CGFloat
 
-  var likeControlNode: ControlNode?
-  var commentControlNode: ControlNode?
-  var divider: ASDisplayNode?
+  public var likeControlNode: ControlNode?
+  public var commentControlNode: ControlNode?
+  public var divider: ASDisplayNode?
 
-  var height: CGFloat {
+  public var height: CGFloat {
     return actionBarConfig.height
   }
 
