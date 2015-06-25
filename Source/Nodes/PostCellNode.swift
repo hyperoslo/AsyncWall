@@ -8,15 +8,15 @@ public class PostCellNode: ASCellNode {
   public var post: Post
   public var config: Config?
 
-  var headerNode: PostHeaderNode?
-  var titleNode: ASTextNode?
-  var attachmentGridNode: AttachmentGridNode?
-  var textNode: ASTextNode?
-  var footerNode: PostFooterNode?
-  var actionBarNode: PostActionBarNode?
-  var divider: ASDisplayNode?
+  public var headerNode: PostHeaderNode?
+  public var titleNode: ASTextNode?
+  public var attachmentGridNode: AttachmentGridNode?
+  public var textNode: ASTextNode?
+  public var footerNode: PostFooterNode?
+  public var actionBarNode: PostActionBarNode?
+  public var divider: ASDisplayNode?
 
-  var contentWidth: CGFloat {
+  public var contentWidth: CGFloat {
     var contentWidth = width
     if let config = delegate?.config {
       contentWidth = width - 2 * config.wall.post.horizontalPadding
