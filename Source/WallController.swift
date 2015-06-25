@@ -30,7 +30,8 @@ public class WallController: UIViewController {
     }()
 
   public lazy var flowLayout: UICollectionViewFlowLayout = {
-    return UICollectionViewFlowLayout()
+    let layout = UICollectionViewFlowLayout()
+    return layout
     }()
 
   public var posts: [Post] = [] {
@@ -43,7 +44,8 @@ public class WallController: UIViewController {
   }
 
   public lazy var dataSource: WallDataSource = {
-    return WallDataSource(delegate: self)
+    let dataSource = WallDataSource(delegate: self)
+    return dataSource
     }()
 
   // MARK: - Initialization
