@@ -5,7 +5,7 @@ public class WallDataSource: NSObject, ASCollectionViewDataSource {
 
   weak public var delegate: AnyObject?
 
-  lazy public var data = { return [Post]() }()
+  public var data = [Post]()
 
   public convenience init(delegate: AnyObject?) {
     self.init()

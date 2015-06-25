@@ -3,19 +3,19 @@ import AsyncDisplayKit
 
 public class PostFooterNode: ASDisplayNode {
 
-  let width: CGFloat
-  let config: Config
+  public let width: CGFloat
+  public let config: Config
 
-  var likesNode: ASTextNode?
-  var commentsNode: ASTextNode?
-  var seenNode: ASTextNode?
+  public var likesNode: ASTextNode?
+  public var commentsNode: ASTextNode?
+  public var seenNode: ASTextNode?
 
-  var footerConfig: Config.Wall.Post.Footer {
-    return config.wall.post.footer
+  public var height: CGFloat {
+    return footerConfig.height
   }
 
-  var height: CGFloat {
-    return footerConfig.height
+  private var footerConfig: Config.Wall.Post.Footer {
+    return config.wall.post.footer
   }
 
   // MARK: - Initialization
