@@ -55,8 +55,8 @@ class PostSpec: QuickSpec {
           it("sets author") {
             expect(post.author).notTo(beNil())
             expect(post.author?.name).to(equal(user.name))
-            expect(post.author?.avatar?.thumbnail?.string).to(
-              equal(user.avatar?.thumbnail?.string))
+            expect(post.author?.avatar?.source?.string).to(
+              equal(user.avatar?.source?.string))
           }
 
           it("sets attachments") {
