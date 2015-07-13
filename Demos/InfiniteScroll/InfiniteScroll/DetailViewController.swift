@@ -1,6 +1,7 @@
 import Foundation
 import Wall
 import Faker
+import Sugar
 
 class DetailViewController: WallController {
 

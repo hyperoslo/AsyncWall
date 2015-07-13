@@ -1,6 +1,7 @@
 import UIKit
 import Wall
 import Faker
+import Sugar
 
 class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
 
