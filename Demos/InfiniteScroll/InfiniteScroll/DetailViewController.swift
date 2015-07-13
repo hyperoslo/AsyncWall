@@ -11,6 +11,16 @@ class DetailViewController: WallController {
 
     title = post!.text
     collectionView.backgroundColor = config.wall.comment.backgroundColor
+    config.wall.thumbnailForAttachment = {
+      (attachment: Attachment, size: CGSize) -> URLStringConvertible? in
+      var string: URLStringConvertible?
+
+      if let thumbnail = attachment.thumbnail {
+        string = String(format: thumbnail.string, Int(size.width), Int(size.height))
+      }
+
+      return string
+    }
 
     if let comments = post?.comments {
       let delayTime = dispatch_time(DISPATCH_TIME_NOW,
