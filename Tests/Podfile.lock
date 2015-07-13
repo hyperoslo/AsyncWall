@@ -7,6 +7,7 @@ PODS:
   - HanekeSwift (0.9.1)
   - Nimble (1.0.0-rc.1)
   - Quick (0.3.1)
+  - Sugar (0.1.0)
   - SwiftyJSON (2.2.0)
 
 DEPENDENCIES:
@@ -15,15 +16,22 @@ DEPENDENCIES:
   - HanekeSwift (= 0.9.1)
   - Nimble (= 1.0.0-rc.1)
   - Quick (= 0.3.1)
+  - Sugar (from `https://github.com/hyperoslo/Sugar`, branch `add/urlstringconvertible`)
 
 EXTERNAL SOURCES:
   Faker:
     :git: https://github.com/vadymmarkov/Faker
+  Sugar:
+    :branch: add/urlstringconvertible
+    :git: https://github.com/hyperoslo/Sugar
 
 CHECKOUT OPTIONS:
   Faker:
     :commit: b24d4ed16d1c47976e76d64d450af60c468a9544
     :git: https://github.com/vadymmarkov/Faker
+  Sugar:
+    :commit: 50dc92ae36839464d1f75436f85dbd3a01dbf440
+    :git: https://github.com/hyperoslo/Sugar
 
 SPEC CHECKSUMS:
   AsyncDisplayKit: 32d5b9112b8c1b6644b54429e0cda4fbf6563781
@@ -31,6 +39,7 @@ SPEC CHECKSUMS:
   HanekeSwift: 50d37bfbc4432edc649167e538c259feccb4a2bb
   Nimble: 23f1dbddf1706172c7d740430858e5dfa93d997a
   Quick: 824572d3d198d51e52cf4aa722cebf7e59952a35
+  Sugar: d33f2a3ae10e40c14eb49a2e859f12e82e614817
   SwiftyJSON: 0b3e6c07af17ff745e77e8e9984097b55c956e5c
 
 COCOAPODS: 0.37.2
