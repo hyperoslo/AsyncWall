@@ -5,6 +5,7 @@ PODS:
   - Faker (0.1.0):
     - SwiftyJSON (~> 2.2.0)
   - HanekeSwift (0.9.1)
+  - Sugar (0.1.0)
   - SwiftyJSON (2.2.0)
   - Wall (0.1.0):
     - AsyncDisplayKit (~> 1.2)
@@ -12,23 +13,30 @@ PODS:
 
 DEPENDENCIES:
   - Faker (from `https://github.com/vadymmarkov/Faker`)
+  - Sugar (from `https://github.com/hyperoslo/Sugar`)
   - Wall (from `../../`)
 
 EXTERNAL SOURCES:
   Faker:
     :git: https://github.com/vadymmarkov/Faker
+  Sugar:
+    :git: https://github.com/hyperoslo/Sugar
   Wall:
-    :path: "../../"
+    :path: ../../
 
 CHECKOUT OPTIONS:
   Faker:
     :commit: b24d4ed16d1c47976e76d64d450af60c468a9544
     :git: https://github.com/vadymmarkov/Faker
+  Sugar:
+    :commit: 13010b47b8045aa58eb976dda20d1ebc56d726a3
+    :git: https://github.com/hyperoslo/Sugar
 
 SPEC CHECKSUMS:
   AsyncDisplayKit: 32d5b9112b8c1b6644b54429e0cda4fbf6563781
   Faker: ec2361307c261ae4b26c8da20b127d416faf0ebd
   HanekeSwift: 50d37bfbc4432edc649167e538c259feccb4a2bb
+  Sugar: d33f2a3ae10e40c14eb49a2e859f12e82e614817
   SwiftyJSON: 0b3e6c07af17ff745e77e8e9984097b55c956e5c
   Wall: 098034ecd27eb4b8532c0920489caef0d644751d
 
