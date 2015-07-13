@@ -16,13 +16,12 @@ DEPENDENCIES:
   - HanekeSwift (= 0.9.1)
   - Nimble (= 1.0.0-rc.1)
   - Quick (= 0.3.1)
-  - Sugar (from `https://github.com/hyperoslo/Sugar`, branch `add/urlstringconvertible`)
+  - Sugar (from `https://github.com/hyperoslo/Sugar`)
 
 EXTERNAL SOURCES:
   Faker:
     :git: https://github.com/vadymmarkov/Faker
   Sugar:
-    :branch: add/urlstringconvertible
     :git: https://github.com/hyperoslo/Sugar
 
 CHECKOUT OPTIONS:
@@ -30,7 +29,7 @@ CHECKOUT OPTIONS:
     :commit: b24d4ed16d1c47976e76d64d450af60c468a9544
     :git: https://github.com/vadymmarkov/Faker
   Sugar:
-    :commit: 50dc92ae36839464d1f75436f85dbd3a01dbf440
+    :commit: 13010b47b8045aa58eb976dda20d1ebc56d726a3
     :git: https://github.com/hyperoslo/Sugar
 
 SPEC CHECKSUMS:
