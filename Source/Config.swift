@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 import Haneke
+import Sugar
 
 public class Config {
   public var cache = Cache()

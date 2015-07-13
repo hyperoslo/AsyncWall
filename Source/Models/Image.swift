@@ -1,3 +1,5 @@
+import Sugar
+
 public class Image: Attachment {
 
   public var thumbnail: URLStringConvertible?

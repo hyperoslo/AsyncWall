@@ -1,3 +1,5 @@
+import Sugar
+
 public class Video: Attachment {
 
   public var source: URLStringConvertible?
