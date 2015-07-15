@@ -35,6 +35,31 @@ class User: Profileable {
   }
 }
 
+class Post: Postable {
+
+  var id = 0
+  var publishDate: NSDate?
+  var text: String?
+  var liked = false
+  var seen = false
+  var likeCount = 0
+  var seenCount = 0
+  var commentCount = 0
+  var author: Profileable?
+  var group: Groupable?
+  var location: Location?
+  var parent: Postable?
+  var attachments = [Attachable]()
+
+  init(text: String? = nil, date: NSDate? = nil, author: Profileable? = nil,
+    attachments: [Attachable] = []) {
+      self.text = text
+      self.publishDate = date
+      self.author = author
+      self.attachments = attachments
+  }
+}
+
 struct SpecHelper {
 
   static var post: Post {
@@ -56,8 +81,8 @@ struct SpecHelper {
 
     post.group = Group(name: faker.team.name())
     post.location = Location(name: faker.address.city(), coordinate: coordinate)
-    post.likes = 10
-    post.seen = 10
+    post.likeCount = 10
+    post.seenCount = 10
 
     return post
   }

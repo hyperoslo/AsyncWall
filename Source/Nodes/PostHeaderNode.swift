@@ -24,7 +24,7 @@ public class PostHeaderNode: ASDisplayNode {
 
   // MARK: - Initialization
 
-  public init(config: Config, post: Post, width: CGFloat) {
+  public init(config: Config, post: Postable, width: CGFloat) {
     self.config = config
     self.width = width
 
@@ -112,7 +112,7 @@ public class PostHeaderNode: ASDisplayNode {
     }
 
     if headerConfig.date.enabled {
-      if let date = post.date {
+      if let date = post.publishDate {
         dateNode = ASTextNode()
         dateNode!.attributedString = NSAttributedString(
           string: config.wall.stringFromPostDate(date: date),

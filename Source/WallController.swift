@@ -9,7 +9,7 @@ public class WallController: UIViewController {
 
   private var scrollingState: InfiniteScrolling = .Stopped
 
-  public var post: Post?
+  public var post: Postable?
   weak public var delegate: AnyObject?
   public var config = Config()
 
@@ -34,7 +34,7 @@ public class WallController: UIViewController {
     return layout
     }()
 
-  public var posts: [Post] = [] {
+  public var posts: [Postable] = [] {
     willSet {
       dataSource.data = newValue
       dispatch_async(dispatch_get_main_queue(), { _ in
@@ -50,7 +50,7 @@ public class WallController: UIViewController {
 
   // MARK: - Initialization
 
-  public convenience init(post: Post) {
+  public convenience init(post: Postable) {
     self.init()
 
     self.post = post
@@ -72,7 +72,7 @@ public class WallController: UIViewController {
 
   // MARK: - Public Methods
 
-  public func postAtIndex(index: Int) -> Post? {
+  public func postAtIndex(index: Int) -> Postable? {
     return dataSource.data[index]
   }
 }
