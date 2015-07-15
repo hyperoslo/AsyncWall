@@ -1,29 +1,14 @@
 import UIKit
 import AsyncDisplayKit
 
-public class WallDataSource: NSObject, ASCollectionViewDataSource {
-
-  weak public var delegate: AnyObject?
-
-  public var data = [Post]()
-
-  public convenience init(delegate: AnyObject?) {
-    self.init()
-
-    self.delegate = delegate
-  }
-}
-
-// MARK: - ASCollectionViewDataSource
-
-extension WallDataSource: ASCollectionViewDataSource {
-
-  public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return data.count
-  }
+extension WallController: ASCollectionViewDataSource {
 
   public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
     return 1
+  }
+
+  public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return posts.count
   }
 
   public func collectionView(collectionView: ASCollectionView!, nodeForItemAtIndexPath indexPath: NSIndexPath!) -> ASCellNode! {
@@ -32,15 +17,21 @@ extension WallDataSource: ASCollectionViewDataSource {
     if let delegate = delegate as? WallController,
       post = delegate.post {
         if indexPath.row > 0 {
-          cellNode = CommentCellNode(post: data[indexPath.row],
-            width: collectionView.frame.width, delegate)
+          cellNode = CommentCellNode(
+            post: posts[indexPath.row],
+            width: collectionView.frame.width,
+            delegate: self)
         } else {
-          cellNode = PostCellNode(post: data[indexPath.row],
-            width: collectionView.frame.width, delegate)
+          cellNode = PostCellNode(
+            post: posts[indexPath.row],
+            width: collectionView.frame.width,
+            delegate: self)
         }
     } else {
-      cellNode = PostCellNode(post: data[indexPath.row],
-        width: collectionView.frame.width, delegate)
+      cellNode = PostCellNode(
+        post: posts[indexPath.row],
+        width: collectionView.frame.width,
+        delegate: self)
     }
 
     return cellNode

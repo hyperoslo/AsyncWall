@@ -23,7 +23,7 @@ public class WallController: UIViewController {
     collectionView.autoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth
     collectionView.backgroundColor = .whiteColor()
     collectionView.bounces = true
-    collectionView.asyncDataSource = self.dataSource
+    collectionView.asyncDataSource = self
     collectionView.asyncDelegate = self
 
     return collectionView
@@ -36,17 +36,11 @@ public class WallController: UIViewController {
 
   public var posts: [Postable] = [] {
     willSet {
-      dataSource.data = newValue
       dispatch_async(dispatch_get_main_queue(), { _ in
         self.collectionView.reloadData()
       })
     }
   }
-
-  public lazy var dataSource: WallDataSource = {
-    let dataSource = WallDataSource(delegate: self)
-    return dataSource
-    }()
 
   // MARK: - Initialization
 
@@ -73,7 +67,7 @@ public class WallController: UIViewController {
   // MARK: - Public Methods
 
   public func postAtIndex(index: Int) -> Postable? {
-    return dataSource.data[index]
+    return posts[index]
   }
 }
 
@@ -83,7 +77,7 @@ extension WallController: PostCellNodeDelegate {
 
   public func cellNodeElementWasTapped(elementType: TappedElement, sender: PostCellNode) {
     if let delegate = delegate as? WallTapDelegate,
-      index = find(dataSource.data, sender.post) {
+      index = find(posts, sender.post) {
         delegate.wallPostWasTapped(elementType, index: index)
     }
   }

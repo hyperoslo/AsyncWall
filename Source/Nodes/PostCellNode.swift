@@ -25,7 +25,7 @@ public class PostCellNode: ASCellNode {
 
   // MARK: - Initialization
 
-  public init(post: Postable, width: CGFloat, _ delegate: AnyObject? = nil) {
+  public init(post: Postable, width: CGFloat, delegate: AnyObject? = nil) {
     self.post = post
     self.width = width
     self.delegate = delegate as? PostCellNodeDelegate
