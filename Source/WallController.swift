@@ -10,8 +10,10 @@ public class WallController: UIViewController {
   private var scrollingState: InfiniteScrolling = .Stopped
 
   public var post: Postable?
-  weak public var delegate: AnyObject?
   public var config = Config()
+
+  public var tapDelegate: WallTapDelegate?
+  public var scrolldelegate: WallScrollDelegate?
 
   public lazy var collectionView: ASCollectionView = { [unowned self] in
     var frame = self.view.bounds
@@ -50,7 +52,7 @@ public class WallController: UIViewController {
     self.post = post
   }
 
-  // MARK: - View lifecycle
+  // MARK: - View Lifecycle
 
   public override func viewDidLoad() {
     super.viewDidLoad()
@@ -76,9 +78,7 @@ public class WallController: UIViewController {
 extension WallController: PostCellNodeDelegate {
 
   public func cellNodeElementWasTapped(elementType: TappedElement, sender: PostCellNode) {
-    if let delegate = delegate as? WallTapDelegate {
-      delegate.wallPostWasTapped(elementType, index: sender.index)
-    }
+    tapDelegate?.wallPostWasTapped(elementType, index: sender.index)
   }
 }
 
@@ -89,11 +89,9 @@ extension WallController: ASCollectionViewDelegate {
   public func collectionView(collectionView: ASCollectionView!,
     willBeginBatchFetchWithContext context: ASBatchContext!) {
       scrollingState = .Loading
-      if let delegate = delegate as? WallScrollDelegate {
-        delegate.wallDidScrollToEnd {
-          context.completeBatchFetching(true)
-          self.scrollingState = .Stopped
-        }
+      scrolldelegate?.wallDidScrollToEnd {
+        context.completeBatchFetching(true)
+        self.scrollingState = .Stopped
       }
   }
 }
