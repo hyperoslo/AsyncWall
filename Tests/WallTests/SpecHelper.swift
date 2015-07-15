@@ -1,5 +1,16 @@
 import Faker
 
+class Group: Groupable {
+  var name: String?
+  var image: Image?
+
+  init(name: String? = nil, image: Image? = nil) {
+    self.name = name
+    self.image = image
+  }
+}
+
+
 struct SpecHelper {
 
   static var post: Post {

@@ -15,8 +15,7 @@
 		BDA23F531B1F759700595C31 /* LocationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA23F521B1F759700595C31 /* LocationSpec.swift */; };
 		BDA23F551B218A9200595C31 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA23F541B218A9200595C31 /* Coordinate.swift */; };
 		BDA23F571B218F3B00595C31 /* CoordinateSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA23F561B218F3B00595C31 /* CoordinateSpec.swift */; };
-		BDF029EE1B2192C900C5027C /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF029ED1B2192C900C5027C /* Group.swift */; };
-		BDF029F01B2192F100C5027C /* GroupSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF029EF1B2192F100C5027C /* GroupSpec.swift */; };
+		BDF029EE1B2192C900C5027C /* Groupable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF029ED1B2192C900C5027C /* Groupable.swift */; };
 		D50502201B1E688A003044FD /* PostSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D505021F1B1E688A003044FD /* PostSpec.swift */; };
 		D52CF6C31B17090A002B4A5A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CF6C21B17090A002B4A5A /* Config.swift */; };
 		D52CF6C51B170B06002B4A5A /* WallDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CF6C41B170B06002B4A5A /* WallDelegate.swift */; };
@@ -56,8 +55,7 @@
 		BDA23F521B1F759700595C31 /* LocationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSpec.swift; sourceTree = "<group>"; };
 		BDA23F541B218A9200595C31 /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		BDA23F561B218F3B00595C31 /* CoordinateSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinateSpec.swift; sourceTree = "<group>"; };
-		BDF029ED1B2192C900C5027C /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
-		BDF029EF1B2192F100C5027C /* GroupSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupSpec.swift; sourceTree = "<group>"; };
+		BDF029ED1B2192C900C5027C /* Groupable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Groupable.swift; sourceTree = "<group>"; };
 		D505021F1B1E688A003044FD /* PostSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostSpec.swift; sourceTree = "<group>"; };
 		D52CF6C21B17090A002B4A5A /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		D52CF6C41B170B06002B4A5A /* WallDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallDelegate.swift; sourceTree = "<group>"; };
@@ -200,7 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				D54B82011B175FCE00FB0197 /* Attachable.swift */,
-				BDF029ED1B2192C900C5027C /* Group.swift */,
+				BDF029ED1B2192C900C5027C /* Groupable.swift */,
 				BDA23F541B218A9200595C31 /* Coordinate.swift */,
 				D54B82021B175FCE00FB0197 /* Image.swift */,
 				BDA23F501B1F755000595C31 /* Location.swift */,
@@ -225,7 +223,6 @@
 			isa = PBXGroup;
 			children = (
 				BDA23F561B218F3B00595C31 /* CoordinateSpec.swift */,
-				BDF029EF1B2192F100C5027C /* GroupSpec.swift */,
 				D5FE39CC1B1DA2FE0034CD25 /* ImageSpec.swift */,
 				BDA23F521B1F759700595C31 /* LocationSpec.swift */,
 				D505021F1B1E688A003044FD /* PostSpec.swift */,
@@ -351,7 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDF029EE1B2192C900C5027C /* Group.swift in Sources */,
+				BDF029EE1B2192C900C5027C /* Groupable.swift in Sources */,
 				D54B82091B175FCE00FB0197 /* User.swift in Sources */,
 				D5A787B71B27AF2500472D32 /* PostActionBarNode.swift in Sources */,
 				D5FE39CF1B1DA2FE0034CD25 /* UserSpec.swift in Sources */,
@@ -365,7 +362,6 @@
 				D50502201B1E688A003044FD /* PostSpec.swift in Sources */,
 				D54B81D81B17147700FB0197 /* PostCellNode.swift in Sources */,
 				D54B82061B175FCE00FB0197 /* Attachable.swift in Sources */,
-				BDF029F01B2192F100C5027C /* GroupSpec.swift in Sources */,
 				D52CF6C31B17090A002B4A5A /* Config.swift in Sources */,
 				D54B820C1B18647500FB0197 /* ASCellNode+Wall.swift in Sources */,
 				D5A787B51B27AED700472D32 /* PostActionBarNodeSpec.swift in Sources */,
