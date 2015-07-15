@@ -13,7 +13,7 @@ class PostSpec: QuickSpec {
         avatar: Image(Faker().internet.url()))
       let group = Faker().team.name()
       let location = Faker().address.city()
-      let attachments: [Attachment] = [Image("http://lorempixel.com/300/200/")]
+      let attachments: [Attachable] = [Image("http://lorempixel.com/300/200/")]
 
       var post: Post!
 

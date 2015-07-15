@@ -1,6 +1,6 @@
 import Sugar
 
-public protocol Attachment {
+public protocol Attachable {
 
   var thumbnail: URLStringConvertible? { get }
   var source: URLStringConvertible? { get }

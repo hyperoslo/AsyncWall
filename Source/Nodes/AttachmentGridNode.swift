@@ -5,7 +5,7 @@ public class AttachmentGridNode: ASControlNode {
 
   public let config: Config
   public let width: CGFloat
-  public let attachments: [Attachment]
+  public let attachments: [Attachable]
 
   public var imageNodes = [ASImageNode]()
   public var counterNode: CounterNode?
@@ -28,7 +28,7 @@ public class AttachmentGridNode: ASControlNode {
 
   // MARK: - Initialization
 
-  public init(config: Config, attachments: [Attachment], width: CGFloat) {
+  public init(config: Config, attachments: [Attachable], width: CGFloat) {
     self.config = config
     let totalCount = attachments.count
     self.attachments = totalCount < 4 ? attachments : Array(attachments[0..<3])

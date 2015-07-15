@@ -1,6 +1,6 @@
 import Sugar
 
-public class Image: Attachment {
+public class Image: Attachable {
 
   public var thumbnail: URLStringConvertible?
   public var source: URLStringConvertible?
