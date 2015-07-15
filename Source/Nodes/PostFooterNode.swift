@@ -55,7 +55,7 @@ public class PostFooterNode: ASDisplayNode {
     }
 
     if footerConfig.seen.enabled {
-      let string = "\(footerConfig.seen.text) \(post.seen)"
+      let string = "\(footerConfig.seen.text) \(post.seenCount)"
 
       seenNode = ASTextNode()
       seenNode!.attributedString = NSAttributedString(

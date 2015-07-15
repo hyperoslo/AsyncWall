@@ -33,14 +33,14 @@ class ViewController: WallController {
   }
 
   func generatePosts(from: Int, to: Int) -> [Postable] {
-    var posts = [Post]()
+    var posts = [Postable]()
     var startFrom = self.posts.count
     for i in from...to {
       let user = User(
         fullName: faker.name.name(),
         avatar: Image("http://lorempixel.com/%d/%d?type=avatar&id=\(i)"))
       var attachments = [Attachable]()
-      var comments = [Post]()
+      var comments = [Postable]()
       var attachmentCount = 0
       var likes = 0
       var commentCount = 0
@@ -92,7 +92,9 @@ class ViewController: WallController {
           date: NSDate(timeIntervalSinceNow: -4),
           author: commentUser
         )
+        comments.append(comment)
       }
+      post.comments = comments
 
       posts.append(post)
     }
