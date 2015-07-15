@@ -1,8 +1,21 @@
 import Faker
+import Sugar
+
+class Image: Displayable {
+
+  var source: URLStringConvertible?
+  var thumbnail: URLStringConvertible?
+
+  init(_ source: URLStringConvertible?, _ thumbnail: URLStringConvertible? = nil) {
+    self.source = source
+    self.thumbnail = thumbnail
+  }
+}
+
 
 class Group: Groupable {
   var name: String?
-  var image: Image?
+  var image: Displayable?
 
   init(name: String? = nil, image: Image? = nil) {
     self.name = name
