@@ -14,13 +14,7 @@ class DetailViewController: WallController {
     collectionView.backgroundColor = config.wall.comment.backgroundColor
     config.wall.thumbnailForAttachment = {
       (attachment: Attachable, size: CGSize) -> URLStringConvertible? in
-      var string: URLStringConvertible?
-
-      if let thumbnail = attachment.thumbnail {
-        string = String(format: thumbnail.string, Int(size.width), Int(size.height))
-      }
-
-      return string
+      return String(format: attachment.source.string, Int(size.width), Int(size.height))
     }
 
     if let comments = post?.comments {

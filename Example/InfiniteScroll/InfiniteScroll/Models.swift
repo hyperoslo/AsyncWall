@@ -3,10 +3,10 @@ import Sugar
 
 class Image: Displayable {
 
-  var source: URLStringConvertible?
+  var source: URLStringConvertible
   var thumbnail: URLStringConvertible?
 
-  init(_ source: URLStringConvertible?, _ thumbnail: URLStringConvertible? = nil) {
+  init(_ source: URLStringConvertible, _ thumbnail: URLStringConvertible? = nil) {
     self.source = source
     self.thumbnail = thumbnail
   }
@@ -14,10 +14,10 @@ class Image: Displayable {
 
 class Group: Groupable {
 
-  var name: String?
+  var name: String
   var image: Displayable?
 
-  init(name: String? = nil, image: Image? = nil) {
+  init(name: String, image: Image? = nil) {
     self.name = name
     self.image = image
   }
@@ -25,10 +25,10 @@ class Group: Groupable {
 
 class User: Profileable {
 
-  var fullName: String?
+  var fullName: String
   var avatar: Displayable?
 
-  init(fullName: String? = nil, avatar: Displayable? = nil) {
+  init(fullName: String, avatar: Displayable? = nil) {
     self.fullName = fullName
     self.avatar = avatar
   }
@@ -37,8 +37,8 @@ class User: Profileable {
 class Post: Postable {
 
   var id = 0
-  var publishDate: NSDate?
-  var text: String?
+  var publishDate = NSDate()
+  var text = ""
   var liked = false
   var seen = false
   var likeCount = 0
@@ -51,7 +51,7 @@ class Post: Postable {
   var attachments = [Attachable]()
   var comments = [Postable]()
 
-  init(text: String? = nil, date: NSDate? = nil, author: Profileable? = nil,
+  init(text: String = "", date: NSDate = NSDate(), author: Profileable? = nil,
     attachments: [Attachable] = []) {
       self.text = text
       self.publishDate = date
