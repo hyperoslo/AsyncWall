@@ -3,10 +3,12 @@ import AsyncDisplayKit
 
 public class PostCellNode: ASCellNode {
 
-  public let width: CGFloat
-  weak public var delegate: PostCellNodeDelegate?
   public var post: Postable
+  public let index: Int
+  public let width: CGFloat
   public var config: Config?
+
+  weak public var delegate: PostCellNodeDelegate?
 
   public var headerNode: PostHeaderNode?
   public var attachmentGridNode: AttachmentGridNode?
@@ -25,8 +27,9 @@ public class PostCellNode: ASCellNode {
 
   // MARK: - Initialization
 
-  public init(post: Postable, width: CGFloat, delegate: AnyObject? = nil) {
+  public init(post: Postable, index: Int, width: CGFloat, delegate: AnyObject? = nil) {
     self.post = post
+    self.index = index
     self.width = width
     self.delegate = delegate as? PostCellNodeDelegate
     self.config = self.delegate?.config

@@ -76,9 +76,8 @@ public class WallController: UIViewController {
 extension WallController: PostCellNodeDelegate {
 
   public func cellNodeElementWasTapped(elementType: TappedElement, sender: PostCellNode) {
-    if let delegate = delegate as? WallTapDelegate,
-      index = find(posts, sender.post) {
-        delegate.wallPostWasTapped(elementType, index: index)
+    if let delegate = delegate as? WallTapDelegate {
+      delegate.wallPostWasTapped(elementType, index: sender.index)
     }
   }
 }

@@ -19,17 +19,20 @@ extension WallController: ASCollectionViewDataSource {
         if indexPath.row > 0 {
           cellNode = CommentCellNode(
             post: posts[indexPath.row],
+            index: indexPath.row - 1,
             width: collectionView.frame.width,
             delegate: self)
         } else {
           cellNode = PostCellNode(
             post: posts[indexPath.row],
+            index: 0,
             width: collectionView.frame.width,
             delegate: self)
         }
     } else {
       cellNode = PostCellNode(
         post: posts[indexPath.row],
+        index: indexPath.row,
         width: collectionView.frame.width,
         delegate: self)
     }
