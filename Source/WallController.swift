@@ -13,7 +13,7 @@ public class WallController: UIViewController {
   public var config = Config()
 
   public var tapDelegate: WallTapDelegate?
-  public var scrolldelegate: WallScrollDelegate?
+  public var scrollDelegate: WallScrollDelegate?
 
   public lazy var collectionView: ASCollectionView = { [unowned self] in
     var frame = self.view.bounds
@@ -89,7 +89,7 @@ extension WallController: ASCollectionViewDelegate {
   public func collectionView(collectionView: ASCollectionView!,
     willBeginBatchFetchWithContext context: ASBatchContext!) {
       scrollingState = .Loading
-      scrolldelegate?.wallDidScrollToEnd {
+      scrollDelegate?.wallDidScrollToEnd {
         context.completeBatchFetching(true)
         self.scrollingState = .Stopped
       }

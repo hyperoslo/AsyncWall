@@ -14,5 +14,7 @@ public protocol Postable {
   var group: Groupable? { get }
   var location: Location? { get }
   var parent: Postable? { get }
+
+  var comments: [Postable] { get }
   var attachments: [Attachable] { get }
 }

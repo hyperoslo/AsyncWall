@@ -1,8 +1,9 @@
 import UIKit
 import Wall
 import Faker
+import Sugar
 
-class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
+class ViewController: WallController {
 
   let faker = Faker()
 
@@ -11,10 +12,9 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
 
     title = "Infinite Scroll"
 
-    config.wall.post.title.enabled = true
     config.wall.post.text.textAttributes[NSForegroundColorAttributeName] = UIColor.darkTextColor()
     config.wall.thumbnailForAttachment = {
-      (attachment: Attachment, size: CGSize) -> URLStringConvertible? in
+      (attachment: Attachable, size: CGSize) -> URLStringConvertible? in
       var string: URLStringConvertible?
       
       if let thumbnail = attachment.thumbnail {
@@ -24,22 +24,22 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
       return string
     }
 
-    self.delegate = self
-    let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-      Int64(0.1 * Double(NSEC_PER_SEC)))
-    dispatch_after(delayTime, dispatch_get_main_queue()) {
+    self.tapDelegate = self
+    self.scrollDelegate = self
+
+    delay(0.1) {
       self.posts = self.generatePosts(1, to: 50)
     }
   }
 
-  func generatePosts(from: Int, to: Int) -> [Post] {
+  func generatePosts(from: Int, to: Int) -> [Postable] {
     var posts = [Post]()
     var startFrom = self.posts.count
     for i in from...to {
       let user = User(
-        name: faker.name.name(),
+        fullName: faker.name.name(),
         avatar: Image("http://lorempixel.com/%d/%d?type=avatar&id=\(i)"))
-      var attachments = [Attachment]()
+      var attachments = [Attachable]()
       var comments = [Post]()
       var attachmentCount = 0
       var likes = 0
@@ -47,14 +47,12 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
       var seen = 0
       var group = Group(name: faker.team.name())
       var location = Location(name:faker.address.city())
-      var title: String?
 
       if i % 4 == 0 {
         attachmentCount = 4
         commentCount = 3
         likes = 3
         seen = 4
-        title = faker.lorem.word()
       } else if i % 3 == 0 {
         attachmentCount = 2
         commentCount = 1
@@ -78,24 +76,22 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
         author: user,
         attachments: attachments
       )
-      if let title = title {
-        post.title = title
-      }
+
       post.group = group
       post.location = location
-      post.likes = likes
-      post.seen = seen
+      post.likeCount = likes
+      post.seenCount = seen
+      post.commentCount = commentCount
 
       for x in 0..<commentCount {
         let commentUser = User(
-          name: faker.name.name(),
+          fullName: faker.name.name(),
           avatar: Image("http://lorempixel.com/%d/%d/?type=avatar&id=\(i)\(x)"))
         var comment = Post(
           text: faker.lorem.sentences(amount: sencenceCount),
           date: NSDate(timeIntervalSinceNow: -4),
           author: commentUser
         )
-        post.comments.append(comment)
       }
 
       posts.append(post)
@@ -103,6 +99,9 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
 
     return posts
   }
+}
+
+extension ViewController: WallTapDelegate {
 
   func wallPostWasTapped(element: TappedElement, index: Int?) {
     let post = self.postAtIndex(index!)
@@ -112,6 +111,9 @@ class ViewController: WallController, WallTapDelegate, WallScrollDelegate {
       self.navigationController?.pushViewController(detailView, animated: true)
     }
   }
+}
+
+extension ViewController: WallScrollDelegate {
 
   func wallDidScrollToEnd(completion: () -> Void) {
     var newPosts = generatePosts(0, to: 20)

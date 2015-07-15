@@ -1,6 +1,7 @@
 import Foundation
 import Wall
 import Faker
+import Sugar
 
 class DetailViewController: WallController {
 
@@ -12,7 +13,7 @@ class DetailViewController: WallController {
     title = post!.text
     collectionView.backgroundColor = config.wall.comment.backgroundColor
     config.wall.thumbnailForAttachment = {
-      (attachment: Attachment, size: CGSize) -> URLStringConvertible? in
+      (attachment: Attachable, size: CGSize) -> URLStringConvertible? in
       var string: URLStringConvertible?
 
       if let thumbnail = attachment.thumbnail {
@@ -26,7 +27,7 @@ class DetailViewController: WallController {
       let delayTime = dispatch_time(DISPATCH_TIME_NOW,
         Int64(0.1 * Double(NSEC_PER_SEC)))
       dispatch_after(delayTime, dispatch_get_main_queue()) {
-        var posts = [Post]()
+        var posts = [Postable]()
         posts.append(self.post!)
         comments.map { posts.append($0) }
         self.posts = posts
