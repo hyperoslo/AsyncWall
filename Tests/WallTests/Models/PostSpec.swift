@@ -9,7 +9,7 @@ class PostSpec: QuickSpec {
       let text = Faker().lorem.paragraph(sentencesAmount: 5)
       let date = NSDate()
       let user = User(
-        name: Faker().name.name(),
+        fullName: Faker().name.name(),
         avatar: Image(Faker().internet.url()))
       let group = Faker().team.name()
       let location = Faker().address.city()
@@ -54,7 +54,7 @@ class PostSpec: QuickSpec {
         context("with all parameters") {
           it("sets author") {
             expect(post.author).notTo(beNil())
-            expect(post.author?.name).to(equal(user.name))
+            expect(post.author?.fullName).to(equal(user.fullName))
             expect(post.author?.avatar?.source?.string).to(
               equal(user.avatar?.source?.string))
           }

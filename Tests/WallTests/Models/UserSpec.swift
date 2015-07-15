@@ -15,13 +15,13 @@ class UserSpec: QuickSpec {
       var user: User!
 
       beforeEach {
-        user = User(name: name, avatar: avatar)
+        user = User(fullName: name, avatar: avatar)
       }
 
       describe("#init") {
         context("with avatar") {
           it("sets a name") {
-            expect(user.name).to(equal(name))
+            expect(user.fullName).to(equal(name))
           }
 
           it("has the correct source URL") {
@@ -32,11 +32,11 @@ class UserSpec: QuickSpec {
 
         context("without avatar") {
           beforeEach {
-            user = User(name: name)
+            user = User(fullName: name)
           }
 
           it("sets a name") {
-            expect(user.name).to(equal(name))
+            expect(user.fullName).to(equal(name))
           }
 
           it("has no avatar") {

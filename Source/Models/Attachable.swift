@@ -7,4 +7,5 @@ public protocol Attachable {
 }
 
 public protocol Displayable: Attachable { }
+
 public protocol Playable: Attachable { }

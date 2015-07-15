@@ -32,7 +32,7 @@ public class PostHeaderNode: ASDisplayNode {
 
     if headerConfig.author.enabled {
       if let author = post.author {
-        if let name = author.name {
+        if let name = author.fullName {
           authorNameNode = ASTextNode()
           authorNameNode!.attributedString = NSAttributedString(
             string: name,

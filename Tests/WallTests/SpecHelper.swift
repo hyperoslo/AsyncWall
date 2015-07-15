@@ -14,6 +14,7 @@ class Image: Displayable {
 
 
 class Group: Groupable {
+
   var name: String?
   var image: Displayable?
 
@@ -23,6 +24,16 @@ class Group: Groupable {
   }
 }
 
+class User: Profileable {
+
+  var fullName: String?
+  var avatar: Displayable?
+
+  init(fullName: String? = nil, avatar: Displayable? = nil) {
+    self.fullName = fullName
+    self.avatar = avatar
+  }
+}
 
 struct SpecHelper {
 
@@ -30,7 +41,7 @@ struct SpecHelper {
     let faker = Faker()
 
     let user = User(
-      name: faker.name.name(),
+      fullName: faker.name.name(),
       avatar: Image(faker.internet.url()))
 
     let coordinate = Coordinate(
