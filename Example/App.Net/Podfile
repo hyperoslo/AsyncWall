@@ -6,4 +6,6 @@ use_frameworks!
 inhibit_all_warnings!
 
 pod 'Sync'
+pod 'Sugar', git: 'https://github.com/hyperoslo/Sugar'
+
 pod 'Wall', path: '../../'
