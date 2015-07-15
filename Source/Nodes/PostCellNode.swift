@@ -3,13 +3,14 @@ import AsyncDisplayKit
 
 public class PostCellNode: ASCellNode {
 
+  public var post: Postable
+  public let index: Int
   public let width: CGFloat
-  weak public var delegate: PostCellNodeDelegate?
-  public var post: Post
   public var config: Config?
 
+  weak public var delegate: PostCellNodeDelegate?
+
   public var headerNode: PostHeaderNode?
-  public var titleNode: ASTextNode?
   public var attachmentGridNode: AttachmentGridNode?
   public var textNode: ASTextNode?
   public var footerNode: PostFooterNode?
@@ -26,10 +27,11 @@ public class PostCellNode: ASCellNode {
 
   // MARK: - Initialization
 
-  public init(post: Post, width: CGFloat, _ delegate: AnyObject? = nil) {
+  public init(post: Postable, index: Int, width: CGFloat, delegate: PostCellNodeDelegate? = nil) {
     self.post = post
+    self.index = index
     self.width = width
-    self.delegate = delegate as? PostCellNodeDelegate
+    self.delegate = delegate
     self.config = self.delegate?.config
 
     super.init()
@@ -46,24 +48,12 @@ public class PostCellNode: ASCellNode {
         addSubnode(headerNode)
       }
 
-      if postConfig.title.enabled {
-        if let title = post.title {
-          titleNode = ASTextNode()
-          titleNode!.attributedString = NSAttributedString(
-            string: postConfig.title.uppercase ? title.uppercaseString : title,
-            attributes: config.wall.post.title.textAttributes)
-          titleNode!.userInteractionEnabled = true
-
-          addSubnode(titleNode)
-        }
-      }
-
-      if let attachments = post.attachments where attachments.count > 0 {
-        var gridWidth = gridWidthForAttachmentCount(attachments.count)
+      if post.attachments.count > 0 {
+        var gridWidth = gridWidthForAttachmentCount(post.attachments.count)
 
         attachmentGridNode = AttachmentGridNode(
           config: config,
-          attachments: attachments,
+          attachments: post.attachments,
           width: gridWidth)
         attachmentGridNode!.userInteractionEnabled = true
 
@@ -173,14 +163,6 @@ public class PostCellNode: ASCellNode {
         paddingCount++
       }
 
-      if let titleNode = titleNode {
-        let size = titleNode.measure(CGSize(
-          width: contentWidth,
-          height: CGFloat(FLT_MAX)))
-        height += size.height
-        paddingCount++
-      }
-
       if let attachmentGridNode = attachmentGridNode {
         height += attachmentGridNode.height
         paddingCount++
@@ -229,15 +211,6 @@ public class PostCellNode: ASCellNode {
           width: headerNode.width,
           height: headerNode.height)
         y += headerNode.height + verticalPadding
-      }
-
-      if let titleNode = titleNode {
-        let size = titleNode.calculatedSize
-        titleNode.frame = CGRect(
-          origin: CGPoint(x: horizontalPadding, y: y),
-          size: CGSize(width: contentWidth, height: size.height))
-
-        y += size.height + verticalPadding
       }
 
       if let attachmentGridNode = attachmentGridNode {

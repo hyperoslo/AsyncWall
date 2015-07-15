@@ -9,9 +9,11 @@ public class WallController: UIViewController {
 
   private var scrollingState: InfiniteScrolling = .Stopped
 
-  public var post: Post?
-  weak public var delegate: AnyObject?
+  public var post: Postable?
   public var config = Config()
+
+  public var tapDelegate: WallTapDelegate?
+  public var scrollDelegate: WallScrollDelegate?
 
   public lazy var collectionView: ASCollectionView = { [unowned self] in
     var frame = self.view.bounds
@@ -23,7 +25,7 @@ public class WallController: UIViewController {
     collectionView.autoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth
     collectionView.backgroundColor = .whiteColor()
     collectionView.bounces = true
-    collectionView.asyncDataSource = self.dataSource
+    collectionView.asyncDataSource = self
     collectionView.asyncDelegate = self
 
     return collectionView
@@ -34,29 +36,23 @@ public class WallController: UIViewController {
     return layout
     }()
 
-  public var posts: [Post] = [] {
+  public var posts: [Postable] = [] {
     willSet {
-      dataSource.data = newValue
       dispatch_async(dispatch_get_main_queue(), { _ in
         self.collectionView.reloadData()
       })
     }
   }
 
-  public lazy var dataSource: WallDataSource = {
-    let dataSource = WallDataSource(delegate: self)
-    return dataSource
-    }()
-
   // MARK: - Initialization
 
-  public convenience init(post: Post) {
+  public convenience init(post: Postable) {
     self.init()
 
     self.post = post
   }
 
-  // MARK: - View lifecycle
+  // MARK: - View Lifecycle
 
   public override func viewDidLoad() {
     super.viewDidLoad()
@@ -72,8 +68,8 @@ public class WallController: UIViewController {
 
   // MARK: - Public Methods
 
-  public func postAtIndex(index: Int) -> Post? {
-    return dataSource.data[index]
+  public func postAtIndex(index: Int) -> Postable? {
+    return posts[index]
   }
 }
 
@@ -82,10 +78,7 @@ public class WallController: UIViewController {
 extension WallController: PostCellNodeDelegate {
 
   public func cellNodeElementWasTapped(elementType: TappedElement, sender: PostCellNode) {
-    if let delegate = delegate as? WallTapDelegate,
-      index = find(dataSource.data, sender.post) {
-        delegate.wallPostWasTapped(elementType, index: index)
-    }
+    tapDelegate?.wallPostWasTapped(elementType, index: sender.index)
   }
 }
 
@@ -96,11 +89,9 @@ extension WallController: ASCollectionViewDelegate {
   public func collectionView(collectionView: ASCollectionView!,
     willBeginBatchFetchWithContext context: ASBatchContext!) {
       scrollingState = .Loading
-      if let delegate = delegate as? WallScrollDelegate {
-        delegate.wallDidScrollToEnd {
-          context.completeBatchFetching(true)
-          self.scrollingState = .Stopped
-        }
+      scrollDelegate?.wallDidScrollToEnd {
+        context.completeBatchFetching(true)
+        self.scrollingState = .Stopped
       }
   }
 }

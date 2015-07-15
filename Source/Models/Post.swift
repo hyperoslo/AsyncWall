@@ -1,25 +1,20 @@
 import Foundation
 
-public class Post: NSObject {
+public protocol Postable {
 
-  public var author: User?
-  public var date: NSDate?
-  public var group: Group?
-  public var location: Location?
-  public var title: String?
-  public var text: String?
-  public var attachments: [Attachment]?
-  public var likes: Int = 0
-  public var seen: Int = 0
-  public var read = false
-  public var parent: Post?
-  public var comments = [Post]()
+  var id: Int { get }
+  var publishDate: NSDate? { get }
+  var text: String? { get }
+  var liked: Bool { get }
+  var seen: Bool { get }
+  var likeCount: Int { get }
+  var seenCount: Int { get }
+  var commentCount: Int { get }
+  var author: Profileable? { get }
+  var group: Groupable? { get }
+  var location: Location? { get }
+  var parent: Postable? { get }
 
-  public init(text: String? = nil, date: NSDate? = nil, author: User? = nil,
-    attachments: [Attachment]? = nil) {
-      self.text = text
-      self.date = date
-      self.author = author
-      self.attachments = attachments
-  }
+  var comments: [Postable] { get }
+  var attachments: [Attachable] { get }
 }

@@ -13,6 +13,7 @@
 		BDF241101B16439D00D571F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDF2410F1B16439D00D571F6 /* Images.xcassets */; };
 		BDF241291B1643E000D571F6 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = BDF241281B1643E000D571F6 /* Podfile */; };
 		BDFD40F61B18A2B800A8A55D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFD40F51B18A2B800A8A55D /* DetailViewController.swift */; };
+		D59C465E1B5697BE002300B1 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59C465D1B5697BE002300B1 /* Models.swift */; };
 		D5B7714C1B170310008CC3B3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5B7714B1B170310008CC3B3 /* LaunchScreen.xib */; };
 		D5D9C6E71B265F4B00871872 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = D5D9C6E91B265F4B00871872 /* Localizable.stringsdict */; };
 		D5D9C6ED1B265F7F00871872 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5D9C6EF1B265F7F00871872 /* Localizable.strings */; };
@@ -31,6 +32,7 @@
 		BDF241281B1643E000D571F6 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BDFD40F51B18A2B800A8A55D /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C9CA9B2940F1605E016CD681 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		D59C465D1B5697BE002300B1 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		D5B7714B1B170310008CC3B3 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		D5D9C6E81B265F4B00871872 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Base; path = Base.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		D5D9C6EA1B265F4C00871872 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
@@ -83,8 +85,9 @@
 			children = (
 				BDF241281B1643E000D571F6 /* Podfile */,
 				BDF241081B16439D00D571F6 /* AppDelegate.swift */,
-				BDFD40F51B18A2B800A8A55D /* DetailViewController.swift */,
+				D59C465D1B5697BE002300B1 /* Models.swift */,
 				BDF2410A1B16439D00D571F6 /* ViewController.swift */,
+				BDFD40F51B18A2B800A8A55D /* DetailViewController.swift */,
 				BDF2410F1B16439D00D571F6 /* Images.xcassets */,
 				BDF241061B16439D00D571F6 /* Supporting Files */,
 			);
@@ -239,6 +242,7 @@
 				BDFD40F61B18A2B800A8A55D /* DetailViewController.swift in Sources */,
 				BDF2410B1B16439D00D571F6 /* ViewController.swift in Sources */,
 				BDF241091B16439D00D571F6 /* AppDelegate.swift in Sources */,
+				D59C465E1B5697BE002300B1 /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

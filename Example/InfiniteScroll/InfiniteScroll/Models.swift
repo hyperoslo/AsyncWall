@@ -1,4 +1,4 @@
-import Faker
+import Wall
 import Sugar
 
 class Image: Displayable {
@@ -11,7 +11,6 @@ class Image: Displayable {
     self.thumbnail = thumbnail
   }
 }
-
 
 class Group: Groupable {
 
@@ -58,33 +57,5 @@ class Post: Postable {
       self.publishDate = date
       self.author = author
       self.attachments = attachments
-  }
-}
-
-struct SpecHelper {
-
-  static var post: Post {
-    let faker = Faker()
-
-    let user = User(
-      fullName: faker.name.name(),
-      avatar: Image(faker.internet.url()))
-
-    let coordinate = Coordinate(
-      latitude: faker.address.latitude(),
-      longitude: faker.address.longitude())
-
-    var post = Post(
-      text: faker.lorem.paragraph(sentencesAmount: 5),
-      date: NSDate(),
-      author: user,
-      attachments: [Image(faker.internet.url())])
-
-    post.group = Group(name: faker.team.name())
-    post.location = Location(name: faker.address.city(), coordinate: coordinate)
-    post.likeCount = 10
-    post.seenCount = 10
-
-    return post
   }
 }

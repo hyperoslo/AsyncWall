@@ -30,8 +30,8 @@ public class Config {
       return dateFormatter
       }()
 
-    public var thumbnailForAttachment: (attachment: Attachment, size: CGSize) -> URLStringConvertible? = {
-      (attachment: Attachment, size: CGSize) -> URLStringConvertible? in
+    public var thumbnailForAttachment: (attachment: Attachable, size: CGSize) -> URLStringConvertible? = {
+      (attachment: Attachable, size: CGSize) -> URLStringConvertible? in
       return attachment.thumbnail
     }
 
@@ -48,7 +48,6 @@ public class Config {
       public var verticalPadding: CGFloat = 10
       public var backgroundColor = UIColor.whiteColor()
       public var header = Header()
-      public var title = Title()
       public var attachments = Attachments()
       public var text = Text()
       public var footer = Footer()
@@ -123,20 +122,6 @@ public class Config {
             NSForegroundColorAttributeName: UIColor.grayColor()
           ]
         }
-      }
-
-      public struct Title {
-        public var enabled = false
-        public var uppercase = false
-        public var textAttributes = [
-          NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
-          NSForegroundColorAttributeName: UIColor.blackColor(),
-          NSParagraphStyleAttributeName: {
-            var style = NSMutableParagraphStyle()
-            style.alignment = .Center
-            return style
-            }()
-        ]
       }
 
       public struct Attachments {

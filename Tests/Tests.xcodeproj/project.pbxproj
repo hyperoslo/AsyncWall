@@ -15,17 +15,13 @@
 		BDA23F531B1F759700595C31 /* LocationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA23F521B1F759700595C31 /* LocationSpec.swift */; };
 		BDA23F551B218A9200595C31 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA23F541B218A9200595C31 /* Coordinate.swift */; };
 		BDA23F571B218F3B00595C31 /* CoordinateSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA23F561B218F3B00595C31 /* CoordinateSpec.swift */; };
-		BDF029EE1B2192C900C5027C /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF029ED1B2192C900C5027C /* Group.swift */; };
-		BDF029F01B2192F100C5027C /* GroupSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF029EF1B2192F100C5027C /* GroupSpec.swift */; };
-		D50502201B1E688A003044FD /* PostSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D505021F1B1E688A003044FD /* PostSpec.swift */; };
+		BDF029EE1B2192C900C5027C /* Groupable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF029ED1B2192C900C5027C /* Groupable.swift */; };
 		D52CF6C31B17090A002B4A5A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CF6C21B17090A002B4A5A /* Config.swift */; };
 		D52CF6C51B170B06002B4A5A /* WallDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CF6C41B170B06002B4A5A /* WallDelegate.swift */; };
 		D54B81D81B17147700FB0197 /* PostCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B81D71B17147700FB0197 /* PostCellNode.swift */; };
-		D54B82061B175FCE00FB0197 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B82011B175FCE00FB0197 /* Attachment.swift */; };
-		D54B82071B175FCE00FB0197 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B82021B175FCE00FB0197 /* Image.swift */; };
+		D54B82061B175FCE00FB0197 /* Attachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B82011B175FCE00FB0197 /* Attachable.swift */; };
 		D54B82081B175FCE00FB0197 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B82031B175FCE00FB0197 /* Post.swift */; };
 		D54B82091B175FCE00FB0197 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B82041B175FCE00FB0197 /* User.swift */; };
-		D54B820A1B175FCE00FB0197 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B82051B175FCE00FB0197 /* Video.swift */; };
 		D54B820C1B18647500FB0197 /* ASCellNode+Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B820B1B18647500FB0197 /* ASCellNode+Wall.swift */; };
 		D54B820E1B1868B400FB0197 /* PostCellNodeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B820D1B1868B400FB0197 /* PostCellNodeDelegate.swift */; };
 		D558ECA51B1B48B00072D719 /* AttachmentGridNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D558ECA41B1B48B00072D719 /* AttachmentGridNode.swift */; };
@@ -40,8 +36,6 @@
 		D5F318E51B21B92600DE9899 /* SpecHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F318E41B21B92600DE9899 /* SpecHelper.swift */; };
 		D5FB99FB1B283BF600121BCC /* CGSize+Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FB99FA1B283BF600121BCC /* CGSize+Wall.swift */; };
 		D5FE39CA1B1C80A20034CD25 /* PostHeaderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FE39C91B1C80A20034CD25 /* PostHeaderNode.swift */; };
-		D5FE39CE1B1DA2FE0034CD25 /* ImageSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FE39CC1B1DA2FE0034CD25 /* ImageSpec.swift */; };
-		D5FE39CF1B1DA2FE0034CD25 /* UserSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FE39CD1B1DA2FE0034CD25 /* UserSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,17 +50,13 @@
 		BDA23F521B1F759700595C31 /* LocationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSpec.swift; sourceTree = "<group>"; };
 		BDA23F541B218A9200595C31 /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		BDA23F561B218F3B00595C31 /* CoordinateSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinateSpec.swift; sourceTree = "<group>"; };
-		BDF029ED1B2192C900C5027C /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
-		BDF029EF1B2192F100C5027C /* GroupSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupSpec.swift; sourceTree = "<group>"; };
-		D505021F1B1E688A003044FD /* PostSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostSpec.swift; sourceTree = "<group>"; };
+		BDF029ED1B2192C900C5027C /* Groupable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Groupable.swift; sourceTree = "<group>"; };
 		D52CF6C21B17090A002B4A5A /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		D52CF6C41B170B06002B4A5A /* WallDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallDelegate.swift; sourceTree = "<group>"; };
 		D54B81D71B17147700FB0197 /* PostCellNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCellNode.swift; sourceTree = "<group>"; };
-		D54B82011B175FCE00FB0197 /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
-		D54B82021B175FCE00FB0197 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		D54B82011B175FCE00FB0197 /* Attachable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachable.swift; sourceTree = "<group>"; };
 		D54B82031B175FCE00FB0197 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D54B82041B175FCE00FB0197 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		D54B82051B175FCE00FB0197 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		D54B820B1B18647500FB0197 /* ASCellNode+Wall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ASCellNode+Wall.swift"; sourceTree = "<group>"; };
 		D54B820D1B1868B400FB0197 /* PostCellNodeDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCellNodeDelegate.swift; sourceTree = "<group>"; };
 		D558ECA41B1B48B00072D719 /* AttachmentGridNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentGridNode.swift; sourceTree = "<group>"; };
@@ -81,8 +71,6 @@
 		D5F318E41B21B92600DE9899 /* SpecHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecHelper.swift; sourceTree = "<group>"; };
 		D5FB99FA1B283BF600121BCC /* CGSize+Wall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+Wall.swift"; sourceTree = "<group>"; };
 		D5FE39C91B1C80A20034CD25 /* PostHeaderNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostHeaderNode.swift; sourceTree = "<group>"; };
-		D5FE39CC1B1DA2FE0034CD25 /* ImageSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSpec.swift; sourceTree = "<group>"; };
-		D5FE39CD1B1DA2FE0034CD25 /* UserSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSpec.swift; sourceTree = "<group>"; };
 		F2EED1A0EBE4A097B1FDD549 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,14 +187,12 @@
 		D54B82001B175FCE00FB0197 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D54B82011B175FCE00FB0197 /* Attachment.swift */,
-				BDF029ED1B2192C900C5027C /* Group.swift */,
+				D54B82011B175FCE00FB0197 /* Attachable.swift */,
+				BDF029ED1B2192C900C5027C /* Groupable.swift */,
 				BDA23F541B218A9200595C31 /* Coordinate.swift */,
-				D54B82021B175FCE00FB0197 /* Image.swift */,
 				BDA23F501B1F755000595C31 /* Location.swift */,
 				D54B82031B175FCE00FB0197 /* Post.swift */,
 				D54B82041B175FCE00FB0197 /* User.swift */,
-				D54B82051B175FCE00FB0197 /* Video.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -225,11 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				BDA23F561B218F3B00595C31 /* CoordinateSpec.swift */,
-				BDF029EF1B2192F100C5027C /* GroupSpec.swift */,
-				D5FE39CC1B1DA2FE0034CD25 /* ImageSpec.swift */,
 				BDA23F521B1F759700595C31 /* LocationSpec.swift */,
-				D505021F1B1E688A003044FD /* PostSpec.swift */,
-				D5FE39CD1B1DA2FE0034CD25 /* UserSpec.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -263,7 +245,7 @@
 		BD8E43CD1AEC2B5700BC0631 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0640;
 				TargetAttributes = {
 					BD8E43D61AEC2B7700BC0631 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -351,21 +333,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDF029EE1B2192C900C5027C /* Group.swift in Sources */,
+				BDF029EE1B2192C900C5027C /* Groupable.swift in Sources */,
 				D54B82091B175FCE00FB0197 /* User.swift in Sources */,
 				D5A787B71B27AF2500472D32 /* PostActionBarNode.swift in Sources */,
-				D5FE39CF1B1DA2FE0034CD25 /* UserSpec.swift in Sources */,
 				BD8E43E51AEC2B8200BC0631 /* WallController.swift in Sources */,
 				BDA23F551B218A9200595C31 /* Coordinate.swift in Sources */,
 				D54B82081B175FCE00FB0197 /* Post.swift in Sources */,
 				BDA23F531B1F759700595C31 /* LocationSpec.swift in Sources */,
-				D54B820A1B175FCE00FB0197 /* Video.swift in Sources */,
 				D5F318E01B21B44D00DE9899 /* PostFooterNode.swift in Sources */,
 				D5FB99FB1B283BF600121BCC /* CGSize+Wall.swift in Sources */,
-				D50502201B1E688A003044FD /* PostSpec.swift in Sources */,
 				D54B81D81B17147700FB0197 /* PostCellNode.swift in Sources */,
-				D54B82061B175FCE00FB0197 /* Attachment.swift in Sources */,
-				BDF029F01B2192F100C5027C /* GroupSpec.swift in Sources */,
+				D54B82061B175FCE00FB0197 /* Attachable.swift in Sources */,
 				D52CF6C31B17090A002B4A5A /* Config.swift in Sources */,
 				D54B820C1B18647500FB0197 /* ASCellNode+Wall.swift in Sources */,
 				D5A787B51B27AED700472D32 /* PostActionBarNodeSpec.swift in Sources */,
@@ -379,10 +357,8 @@
 				D52CF6C51B170B06002B4A5A /* WallDelegate.swift in Sources */,
 				D5F318E31B21B4EB00DE9899 /* PostFooterNodeSpec.swift in Sources */,
 				BDA23F571B218F3B00595C31 /* CoordinateSpec.swift in Sources */,
-				D54B82071B175FCE00FB0197 /* Image.swift in Sources */,
 				D5FE39CA1B1C80A20034CD25 /* PostHeaderNode.swift in Sources */,
 				D577C33A1B1B83C1002D8C3B /* CounterNode.swift in Sources */,
-				D5FE39CE1B1DA2FE0034CD25 /* ImageSpec.swift in Sources */,
 				D558ECA71B1B48C50072D719 /* CommentCellNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,6 +369,7 @@
 		BD8E43D11AEC2B5700BC0631 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
 			};
 			name = Debug;
 		};

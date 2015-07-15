@@ -15,6 +15,7 @@
 		BDFA3DD21AEC307300F03397 /* Networking.swift in Resources */ = {isa = PBXBuildFile; fileRef = BDFA3DD11AEC307300F03397 /* Networking.swift */; };
 		BDFA3DD31AEC30A200F03397 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFA3DD11AEC307300F03397 /* Networking.swift */; };
 		D520B06E1B0F7590006CE9D3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D520B06D1B0F7590006CE9D3 /* LaunchScreen.xib */; };
+		D59C46601B569C6A002300B1 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59C465F1B569C6A002300B1 /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		BD8E43CB1AEBDAC600BC0631 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BDFA3DD11AEC307300F03397 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D520B06D1B0F7590006CE9D3 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		D59C465F1B569C6A002300B1 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F55885F39E7C54F9E76A2DD0 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				BD8E43AA1AEBDA0F00BC0631 /* AppDelegate.swift */,
+				D59C465F1B569C6A002300B1 /* Post.swift */,
 				BD8E43AF1AEBDA0F00BC0631 /* ViewController.swift */,
 				BD8E43B41AEBDA0F00BC0631 /* Images.xcassets */,
 				BD8E43AC1AEBDA0F00BC0631 /* App_Net.xcdatamodeld */,
@@ -228,6 +231,7 @@
 				BD8E43B01AEBDA0F00BC0631 /* ViewController.swift in Sources */,
 				BD8E43AB1AEBDA0F00BC0631 /* AppDelegate.swift in Sources */,
 				BD8E43AE1AEBDA0F00BC0631 /* App_Net.xcdatamodeld in Sources */,
+				D59C46601B569C6A002300B1 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

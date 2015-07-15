@@ -20,7 +20,7 @@ public class PostFooterNode: ASDisplayNode {
 
   // MARK: - Initialization
 
-  public init(config: Config, post: Post, width: CGFloat) {
+  public init(config: Config, post: Postable, width: CGFloat) {
     self.width = width
     self.config = config
 
@@ -29,7 +29,7 @@ public class PostFooterNode: ASDisplayNode {
     if footerConfig.likes.enabled {
       let string = String.localizedStringWithFormat(
         NSLocalizedString("%d like(s)", comment: ""),
-        post.likes)
+        post.likeCount)
 
       likesNode = ASTextNode()
       likesNode!.attributedString = NSAttributedString(
@@ -43,7 +43,7 @@ public class PostFooterNode: ASDisplayNode {
     if footerConfig.comments.enabled {
       let string = String.localizedStringWithFormat(
         NSLocalizedString("%d comment(s)", comment: ""),
-        post.comments.count)
+        post.commentCount)
 
       commentsNode = ASTextNode()
       commentsNode!.attributedString = NSAttributedString(
@@ -55,7 +55,7 @@ public class PostFooterNode: ASDisplayNode {
     }
 
     if footerConfig.seen.enabled {
-      let string = "\(footerConfig.seen.text) \(post.seen)"
+      let string = "\(footerConfig.seen.text) \(post.seenCount)"
 
       seenNode = ASTextNode()
       seenNode!.attributedString = NSAttributedString(

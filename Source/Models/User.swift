@@ -1,10 +1,5 @@
-public struct User {
+public protocol Profileable {
 
-  public var name: String?
-  public var avatar: Image?
-
-  public init(name: String? = nil, avatar: Image? = nil) {
-    self.name = name
-    self.avatar = avatar
-  }
+  var fullName: String? { get }
+  var avatar: Displayable? { get }
 }

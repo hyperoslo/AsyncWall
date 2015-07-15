@@ -30,7 +30,7 @@ class PostFooterNodeSpec: QuickSpec {
           it("adds the node with the number of likes ") {
             let string = String.localizedStringWithFormat(
               NSLocalizedString("%d like(s)", comment: ""),
-              post.likes)
+              post.likeCount)
 
             expect(node.likesNode).notTo(beNil())
             expect(node.likesNode!.attributedString).to(equal(
@@ -45,7 +45,7 @@ class PostFooterNodeSpec: QuickSpec {
           it("adds the node with the number of comments") {
             let string = String.localizedStringWithFormat(
               NSLocalizedString("%d comment(s)", comment: ""),
-              post.comments.count)
+              post.commentCount)
 
             expect(node.commentsNode).notTo(beNil())
             expect(node.commentsNode!.attributedString).to(equal(
