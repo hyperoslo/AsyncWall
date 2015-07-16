@@ -1,5 +1,15 @@
-public protocol Groupable {
+public protocol GroupConvertible {
 
-  var name: String { get }
-  var image: Displayable? { get }
+  func toGroup() -> Group
+}
+
+public struct Group {
+
+  public var name: String
+  public var image: Image?
+
+  public init(name: String, image: Image? = nil) {
+    self.name = name
+    self.image = image
+  }
 }

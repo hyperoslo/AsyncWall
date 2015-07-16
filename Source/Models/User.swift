@@ -1,5 +1,15 @@
-public protocol Profileable {
+public protocol UserConvertible {
 
-  var fullName: String { get }
-  var avatar: Displayable? { get }
+  func toUser() -> User
+}
+
+public struct User {
+
+  public var name: String
+  public var avatar: Image?
+
+  public init(name: String, avatar: Image? = nil) {
+    self.name = name
+    self.avatar = avatar
+  }
 }
