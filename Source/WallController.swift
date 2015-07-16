@@ -10,8 +10,8 @@ public class WallController: UIViewController {
   public var config = Config()
   public var tapDelegate: WallTapDelegate?
   public var scrollDelegate: WallScrollDelegate?
+  public var post: PostConvertible?
 
-  var post: Post?
   private var scrollingState: InfiniteScrolling = .Stopped
 
   public var posts: [PostConvertible] = [] {
@@ -48,7 +48,7 @@ public class WallController: UIViewController {
   public convenience init(post: PostConvertible) {
     self.init()
 
-    self.post = post.wallModel
+    self.post = post
   }
 
   // MARK: - View Lifecycle
