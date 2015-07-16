@@ -16,7 +16,7 @@ struct SpecHelper {
 
     var post = Post(
       text: faker.lorem.paragraph(sentencesAmount: 5),
-      date: NSDate(),
+      publishDate: NSDate(),
       author: user,
       attachments: [Image(faker.internet.url())])
 

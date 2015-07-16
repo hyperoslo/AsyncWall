@@ -22,10 +22,10 @@ public class Post {
   public var attachments = [Attachable]()
   public var comments = [PostConvertible]()
 
-  public init(text: String = "", date: NSDate, author: UserConvertible? = nil,
+  public init(text: String = "", publishDate: NSDate, author: UserConvertible? = nil,
     attachments: [Attachable] = []) {
       self.text = text
-      self.publishDate = date
+      self.publishDate = publishDate
       self.author = author
       self.attachments = attachments
   }
