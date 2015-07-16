@@ -13,7 +13,7 @@ public class Image: Attachable {
   }
 }
 
-// MARK: - GroupConvertible
+// MARK: - AttachmentConvertible
 
 extension Image: AttachmentConvertible {
 
