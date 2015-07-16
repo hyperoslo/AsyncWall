@@ -60,10 +60,10 @@ public class PostCellNode: ASCellNode {
         addSubnode(attachmentGridNode)
       }
 
-      if let text = post.text {
+      if !post.text.isEmpty {
         textNode = ASTextNode()
         textNode!.attributedString = NSAttributedString(
-          string: text,
+          string: post.text,
           attributes: config.wall.post.text.textAttributes)
         textNode!.userInteractionEnabled = true
 

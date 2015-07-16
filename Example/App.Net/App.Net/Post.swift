@@ -4,8 +4,8 @@ import Sugar
 class Post: Postable {
 
   var id = 0
-  var publishDate: NSDate?
-  var text: String?
+  var publishDate = NSDate()
+  var text = ""
   var liked = false
   var seen = false
   var likeCount = 0
@@ -18,7 +18,7 @@ class Post: Postable {
   var attachments = [Attachable]()
   var comments = [Postable]()
 
-  init(text: String? = nil, date: NSDate? = nil) {
+  init(text: String = "", date: NSDate = NSDate()) {
     self.text = text
     self.publishDate = date
   }

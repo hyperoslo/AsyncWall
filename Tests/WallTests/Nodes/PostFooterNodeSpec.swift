@@ -58,7 +58,7 @@ class PostFooterNodeSpec: QuickSpec {
           }
 
           it("adds the node with the number of views") {
-            let string = "\(footerConfig.seen.text) \(post.seen)"
+            let string = "\(footerConfig.seen.text) \(post.seenCount)"
 
             expect(node.seenNode).notTo(beNil())
             expect(node.seenNode!.attributedString).to(equal(

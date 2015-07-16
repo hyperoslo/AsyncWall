@@ -15,13 +15,7 @@ class ViewController: WallController {
     config.wall.post.text.textAttributes[NSForegroundColorAttributeName] = UIColor.darkTextColor()
     config.wall.thumbnailForAttachment = {
       (attachment: Attachable, size: CGSize) -> URLStringConvertible? in
-      var string: URLStringConvertible?
-      
-      if let thumbnail = attachment.thumbnail {
-        string = String(format: thumbnail.string, Int(size.width), Int(size.height))
-      }
-
-      return string
+      return String(format: attachment.source.string, Int(size.width), Int(size.height))
     }
 
     self.tapDelegate = self

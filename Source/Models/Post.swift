@@ -3,8 +3,8 @@ import Foundation
 public protocol Postable {
 
   var id: Int { get }
-  var publishDate: NSDate? { get }
-  var text: String? { get }
+  var publishDate: NSDate { get }
+  var text: String { get }
   var liked: Bool { get }
   var seen: Bool { get }
   var likeCount: Int { get }

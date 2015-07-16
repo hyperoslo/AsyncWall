@@ -6,7 +6,7 @@ public class PostHeaderNode: ASDisplayNode {
   public let config: Config
   public let width: CGFloat
 
-  public var authorNameNode: ASTextNode?
+  public var authorNameNode = ASTextNode()
   public var authorAvatarNode: ASImageNode?
   public var groupNode: ASTextNode?
   public var groupDivider: ASTextNode?
@@ -22,6 +22,10 @@ public class PostHeaderNode: ASDisplayNode {
     return config.wall.post.header
   }
 
+  private var secondRowY: CGFloat {
+    return height / 2 + headerConfig.author.verticalPadding
+  }
+
   // MARK: - Initialization
 
   public init(config: Config, post: Postable, width: CGFloat) {
@@ -32,15 +36,12 @@ public class PostHeaderNode: ASDisplayNode {
 
     if headerConfig.author.enabled {
       if let author = post.author {
-        if let name = author.fullName {
-          authorNameNode = ASTextNode()
-          authorNameNode!.attributedString = NSAttributedString(
-            string: name,
-            attributes: headerConfig.author.textAttributes)
-          authorNameNode!.userInteractionEnabled = true
+        authorNameNode.attributedString = NSAttributedString(
+          string: author.fullName,
+          attributes: headerConfig.author.textAttributes)
+        authorNameNode.userInteractionEnabled = true
 
-          addSubnode(authorNameNode)
-        }
+        addSubnode(authorNameNode)
 
         if headerConfig.author.avatar.enabled {
           if let avatar = author.avatar {
@@ -71,7 +72,7 @@ public class PostHeaderNode: ASDisplayNode {
       if let group = post.group {
         groupNode = ASTextNode()
         groupNode!.attributedString = NSAttributedString(
-          string: group.name!,
+          string: group.name,
           attributes: headerConfig.group.textAttributes)
         groupNode!.userInteractionEnabled = true
 
@@ -91,15 +92,13 @@ public class PostHeaderNode: ASDisplayNode {
 
     if headerConfig.location.enabled {
       if let location = post.location {
-        if let name = location.name {
-          locationNode = ASTextNode()
-          locationNode!.attributedString = NSAttributedString(
-            string: name,
-            attributes: headerConfig.location.textAttributes)
-          locationNode!.userInteractionEnabled = true
+        locationNode = ASTextNode()
+        locationNode!.attributedString = NSAttributedString(
+          string: location.name,
+          attributes: headerConfig.location.textAttributes)
+        locationNode!.userInteractionEnabled = true
 
-          addSubnode(locationNode)
-        }
+        addSubnode(locationNode)
 
         if headerConfig.location.icon.enabled {
           locationIconNode = ASImageNode()
@@ -112,15 +111,13 @@ public class PostHeaderNode: ASDisplayNode {
     }
 
     if headerConfig.date.enabled {
-      if let date = post.publishDate {
-        dateNode = ASTextNode()
-        dateNode!.attributedString = NSAttributedString(
-          string: config.wall.stringFromPostDate(date: date),
-          attributes: headerConfig.date.textAttributes)
-        dateNode!.userInteractionEnabled = true
+      dateNode = ASTextNode()
+      dateNode!.attributedString = NSAttributedString(
+        string: config.wall.stringFromPostDate(date: post.publishDate),
+        attributes: headerConfig.date.textAttributes)
+      dateNode!.userInteractionEnabled = true
 
-        addSubnode(dateNode)
-      }
+      addSubnode(dateNode)
     }
   }
 
@@ -147,17 +144,16 @@ public class PostHeaderNode: ASDisplayNode {
     }
 
     var authorNameX = x
-    if let authorNameNode = authorNameNode {
-      let size = authorNameNode.measure(
-        CGSize(
-          width: CGFloat(FLT_MAX),
-          height: height))
 
-      authorNameNode.frame = CGRect(
-        origin: CGPoint(x: x, y: firstRowY(size.height)),
-        size: size)
-      x += size.width + authorConfig.horizontalPadding
-    }
+    let size = authorNameNode.measure(
+      CGSize(
+        width: CGFloat(FLT_MAX),
+        height: height))
+
+    authorNameNode.frame = CGRect(
+      origin: CGPoint(x: x, y: firstRowY(size.height)),
+      size: size)
+    x += size.width + authorConfig.horizontalPadding
 
     if let dateNode = dateNode {
       let size = dateNode.measure(
@@ -211,7 +207,7 @@ public class PostHeaderNode: ASDisplayNode {
           width: CGFloat(FLT_MAX),
           height: height))
 
-      let rowY = secondRowY(size.height)
+      let rowY = secondRowY
       if let locationIconNode = locationIconNode {
         let iconConfig = headerConfig.location.icon
 
@@ -230,19 +226,13 @@ public class PostHeaderNode: ASDisplayNode {
 
   // MARK: - Private Methods
 
-  func centerY(height: CGFloat) -> CGFloat {
+  private func centerY(height: CGFloat) -> CGFloat {
     return (self.height - height) / 2
   }
 
-  func firstRowY(height: CGFloat) -> CGFloat {
+  private func firstRowY(height: CGFloat) -> CGFloat {
     return self.locationNode != nil ?
       self.height / 2 - height - headerConfig.author.verticalPadding :
-      centerY(height)
-  }
-
-  func secondRowY(height: CGFloat) -> CGFloat {
-    return self.authorNameNode != nil ?
-      self.height / 2 + headerConfig.author.verticalPadding :
       centerY(height)
   }
 }
