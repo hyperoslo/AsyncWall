@@ -6,9 +6,9 @@ public protocol GroupConvertible {
 public struct Group {
 
   public var name: String
-  public var image: Image?
+  public var image: AttachmentConvertible?
 
-  public init(name: String, image: Image? = nil) {
+  public init(name: String, image: AttachmentConvertible? = nil) {
     self.name = name
     self.image = image
   }
