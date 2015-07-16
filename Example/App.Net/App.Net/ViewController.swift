@@ -13,7 +13,7 @@ class ViewController: WallController {
 
     Networking.fetchPosts { (json, error) -> Void in
       if (json != nil && error == nil) {
-        var posts = [Postable]()
+        var posts = [PostConvertible]()
 
         for postData in json! as Array {
           if let text = postData["text"] as? String {

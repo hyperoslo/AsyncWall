@@ -10,23 +10,20 @@ class DetailViewController: WallController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    title = post!.text
+    title = post!.wallModel.text
     collectionView.backgroundColor = config.wall.comment.backgroundColor
     config.wall.thumbnailForAttachment = {
       (attachment: Attachable, size: CGSize) -> URLStringConvertible? in
       return String(format: attachment.source.string, Int(size.width), Int(size.height))
     }
 
-    if let comments = post?.comments {
-      let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-        Int64(0.1 * Double(NSEC_PER_SEC)))
-      dispatch_after(delayTime, dispatch_get_main_queue()) {
-        var posts = [Postable]()
+    if let comments = post?.wallModel.comments {
+      delay(0.1) {
+        var posts = [PostConvertible]()
         posts.append(self.post!)
         comments.map { posts.append($0) }
         self.posts = posts
       }
     }
   }
-
 }

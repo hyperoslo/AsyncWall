@@ -3,7 +3,7 @@ import AsyncDisplayKit
 
 public class PostCellNode: ASCellNode {
 
-  public var post: Postable
+  public var post: Post
   public let index: Int
   public let width: CGFloat
   public var config: Config?
@@ -27,7 +27,7 @@ public class PostCellNode: ASCellNode {
 
   // MARK: - Initialization
 
-  public init(post: Postable, index: Int, width: CGFloat, delegate: PostCellNodeDelegate? = nil) {
+  public init(post: Post, index: Int, width: CGFloat, delegate: PostCellNodeDelegate? = nil) {
     self.post = post
     self.index = index
     self.width = width

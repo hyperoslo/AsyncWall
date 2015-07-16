@@ -26,15 +26,15 @@ class ViewController: WallController {
     }
   }
 
-  func generatePosts(from: Int, to: Int) -> [Postable] {
-    var posts = [Postable]()
+  func generatePosts(from: Int, to: Int) -> [PostConvertible] {
+    var posts = [PostConvertible]()
     var startFrom = self.posts.count
     for i in from...to {
       let user = User(
-        fullName: faker.name.name(),
+        name: faker.name.name(),
         avatar: Image("http://lorempixel.com/%d/%d?type=avatar&id=\(i)"))
       var attachments = [Attachable]()
-      var comments = [Postable]()
+      var comments = [PostConvertible]()
       var attachmentCount = 0
       var likes = 0
       var commentCount = 0
@@ -66,7 +66,7 @@ class ViewController: WallController {
       let sencenceCount = Int(arc4random_uniform(8) + 1)
       let post = Post(
         text: faker.lorem.sentences(amount: sencenceCount),
-        date: NSDate(timeIntervalSinceNow: -Double(arc4random_uniform(60000))),
+        publishDate: NSDate(timeIntervalSinceNow: -Double(arc4random_uniform(60000))),
         author: user,
         attachments: attachments
       )
@@ -79,11 +79,11 @@ class ViewController: WallController {
 
       for x in 0..<commentCount {
         let commentUser = User(
-          fullName: faker.name.name(),
+          name: faker.name.name(),
           avatar: Image("http://lorempixel.com/%d/%d/?type=avatar&id=\(i)\(x)"))
         var comment = Post(
           text: faker.lorem.sentences(amount: sencenceCount),
-          date: NSDate(timeIntervalSinceNow: -4),
+          publishDate: NSDate(timeIntervalSinceNow: -4),
           author: commentUser
         )
         comments.append(comment)

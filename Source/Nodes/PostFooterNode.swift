@@ -20,7 +20,7 @@ public class PostFooterNode: ASDisplayNode {
 
   // MARK: - Initialization
 
-  public init(config: Config, post: Postable, width: CGFloat) {
+  public init(config: Config, post: Post, width: CGFloat) {
     self.width = width
     self.config = config
 
