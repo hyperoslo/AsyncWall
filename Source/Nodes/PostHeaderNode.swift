@@ -47,7 +47,7 @@ public class PostHeaderNode: ASDisplayNode {
         addSubnode(authorNameNode)
 
         if headerConfig.author.avatar.enabled {
-          if let avatar = user.avatar {
+          if let avatar = user.image {
             let avatarConfig = headerConfig.author.avatar
             let imageSize = avatarConfig.size
 

@@ -19,11 +19,11 @@ public class Post {
   public var location: Location?
   public var parent: PostConvertible?
 
-  public var attachments = [Attachable]()
+  public var attachments = [AttachmentConvertible]()
   public var comments = [PostConvertible]()
 
   public init(text: String = "", publishDate: NSDate, author: UserConvertible? = nil,
-    attachments: [Attachable] = []) {
+    attachments: [AttachmentConvertible] = []) {
       self.text = text
       self.publishDate = publishDate
       self.author = author

@@ -33,7 +33,7 @@ class ViewController: WallController {
       let user = User(
         name: faker.name.name(),
         avatar: Image("http://lorempixel.com/%d/%d?type=avatar&id=\(i)"))
-      var attachments = [Attachable]()
+      var attachments = [AttachmentConvertible]()
       var comments = [PostConvertible]()
       var attachmentCount = 0
       var likes = 0
