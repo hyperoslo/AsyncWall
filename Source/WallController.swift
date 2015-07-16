@@ -45,10 +45,10 @@ public class WallController: UIViewController {
 
   // MARK: - Initialization
 
-  public convenience init(postConvertible: PostConvertible) {
+  public convenience init(post: PostConvertible) {
     self.init()
 
-    self.post = postConvertible.wallModel
+    self.post = post.wallModel
   }
 
   // MARK: - View Lifecycle
