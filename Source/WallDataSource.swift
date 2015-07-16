@@ -17,20 +17,20 @@ extension WallController: ASCollectionViewDataSource {
     if let post = post {
       if indexPath.row > 0 {
         cellNode = CommentCellNode(
-          post: posts[indexPath.row],
+          post: posts[indexPath.row].wallModel,
           index: indexPath.row - 1,
           width: collectionView.frame.width,
           delegate: self)
       } else {
         cellNode = PostCellNode(
-          post: posts[indexPath.row],
+          post: posts[indexPath.row].wallModel,
           index: 0,
           width: collectionView.frame.width,
           delegate: self)
       }
     } else {
       cellNode = PostCellNode(
-        post: posts[indexPath.row],
+        post: posts[indexPath.row].wallModel,
         index: indexPath.row,
         width: collectionView.frame.width,
         delegate: self)
