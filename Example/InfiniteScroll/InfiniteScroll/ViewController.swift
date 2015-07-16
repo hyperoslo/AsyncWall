@@ -26,15 +26,15 @@ class ViewController: WallController {
     }
   }
 
-  func generatePosts(from: Int, to: Int) -> [Postable] {
-    var posts = [Postable]()
+  func generatePosts(from: Int, to: Int) -> [PostConvertible] {
+    var posts = [PostConvertible]()
     var startFrom = self.posts.count
     for i in from...to {
       let user = User(
-        fullName: faker.name.name(),
+        name: faker.name.name(),
         avatar: Image("http://lorempixel.com/%d/%d?type=avatar&id=\(i)"))
       var attachments = [Attachable]()
-      var comments = [Postable]()
+      var comments = [PostConvertible]()
       var attachmentCount = 0
       var likes = 0
       var commentCount = 0
@@ -79,7 +79,7 @@ class ViewController: WallController {
 
       for x in 0..<commentCount {
         let commentUser = User(
-          fullName: faker.name.name(),
+          name: faker.name.name(),
           avatar: Image("http://lorempixel.com/%d/%d/?type=avatar&id=\(i)\(x)"))
         var comment = Post(
           text: faker.lorem.sentences(amount: sencenceCount),
