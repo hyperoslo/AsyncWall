@@ -4,7 +4,7 @@ public protocol PostConvertible {
   func toPost() -> Post
 }
 
-public class Post {
+public struct Post {
 
   public var id = 0
   public var publishDate = NSDate()
@@ -28,5 +28,14 @@ public class Post {
       self.publishDate = date
       self.author = author
       self.attachments = attachments
+  }
+}
+
+// MARK: - PostConvertible
+
+extension Post: PostConvertible {
+
+  public func toPost() -> Post {
+    return self
   }
 }

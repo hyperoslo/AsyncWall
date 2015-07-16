@@ -13,3 +13,12 @@ public struct Group {
     self.image = image
   }
 }
+
+// MARK: - GroupConvertible
+
+extension Group: GroupConvertible {
+
+  public func toGroup() -> Group {
+    return self
+  }
+}

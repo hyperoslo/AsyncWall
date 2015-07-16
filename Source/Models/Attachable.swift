@@ -14,7 +14,7 @@ public class Image: Attachable {
     return source
   }
 
-  public init(source: URLStringConvertible) {
+  public init(_ source: URLStringConvertible) {
     self.source = source
   }
 }

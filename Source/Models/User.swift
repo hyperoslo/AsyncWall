@@ -13,3 +13,12 @@ public struct User {
     self.avatar = avatar
   }
 }
+
+// MARK: - UserConvertible
+
+extension User: UserConvertible {
+
+  public func toUser() -> User {
+    return self
+  }
+}
