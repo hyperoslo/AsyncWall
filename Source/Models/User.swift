@@ -1,6 +1,6 @@
 public protocol UserConvertible {
 
-  func toWallModel() -> User
+  var wallModel: User { get }
 }
 
 public struct User {
@@ -18,7 +18,7 @@ public struct User {
 
 extension User: UserConvertible {
 
-  public func toWallModel() -> User {
+  public var wallModel: User {
     return self
   }
 }

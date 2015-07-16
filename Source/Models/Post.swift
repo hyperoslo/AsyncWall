@@ -1,7 +1,7 @@
 import Foundation
 
 public protocol PostConvertible {
-  func toWallModel() -> Post
+  var wallModel: Post { get }
 }
 
 public class Post {
@@ -34,7 +34,8 @@ public class Post {
 // MARK: - PostConvertible
 
 extension Post: PostConvertible {
-  public func toWallModel() -> Post {
+
+  public var wallModel: Post {
     return self
   }
 }
