@@ -1,10 +1,10 @@
 import Foundation
 
 public protocol PostConvertible {
-  func toPost() -> Post
+  func toWallModel() -> Post
 }
 
-public struct Post {
+public class Post {
 
   public var id = 0
   public var publishDate = NSDate()
@@ -34,8 +34,7 @@ public struct Post {
 // MARK: - PostConvertible
 
 extension Post: PostConvertible {
-
-  public func toPost() -> Post {
+  public func toWallModel() -> Post {
     return self
   }
 }

@@ -1,6 +1,6 @@
 public protocol GroupConvertible {
 
-  func toGroup() -> Group
+  func toWallModel() -> Group
 }
 
 public struct Group {
@@ -18,7 +18,7 @@ public struct Group {
 
 extension Group: GroupConvertible {
 
-  public func toGroup() -> Group {
+  public func toWallModel() -> Group {
     return self
   }
 }
