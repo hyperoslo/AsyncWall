@@ -66,7 +66,7 @@ class ViewController: WallController {
       let sencenceCount = Int(arc4random_uniform(8) + 1)
       let post = Post(
         text: faker.lorem.sentences(amount: sencenceCount),
-        date: NSDate(timeIntervalSinceNow: -Double(arc4random_uniform(60000))),
+        publishDate: NSDate(timeIntervalSinceNow: -Double(arc4random_uniform(60000))),
         author: user,
         attachments: attachments
       )
@@ -83,7 +83,7 @@ class ViewController: WallController {
           avatar: Image("http://lorempixel.com/%d/%d/?type=avatar&id=\(i)\(x)"))
         var comment = Post(
           text: faker.lorem.sentences(amount: sencenceCount),
-          date: NSDate(timeIntervalSinceNow: -4),
+          publishDate: NSDate(timeIntervalSinceNow: -4),
           author: commentUser
         )
         comments.append(comment)
