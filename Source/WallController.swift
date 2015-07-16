@@ -7,13 +7,20 @@ public class WallController: UIViewController {
     case Triggered, Loading, Stopped
   }
 
-  private var scrollingState: InfiniteScrolling = .Stopped
-
-  public var post: Postable?
   public var config = Config()
-
   public var tapDelegate: WallTapDelegate?
   public var scrollDelegate: WallScrollDelegate?
+
+  var post: Post?
+  private var scrollingState: InfiniteScrolling = .Stopped
+
+  public var posts: [PostConvertible] = [] {
+    willSet {
+      dispatch_async(dispatch_get_main_queue(), { _ in
+        self.collectionView.reloadData()
+      })
+    }
+  }
 
   public lazy var collectionView: ASCollectionView = { [unowned self] in
     var frame = self.view.bounds
@@ -22,7 +29,7 @@ public class WallController: UIViewController {
     let collectionView = ASCollectionView(frame: CGRectZero,
       collectionViewLayout: self.flowLayout, asyncDataFetching: true)
     collectionView.alwaysBounceVertical = true
-    collectionView.autoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth
+    collectionView.autoresizingMask = .FlexibleHeight | .FlexibleWidth
     collectionView.backgroundColor = .whiteColor()
     collectionView.bounces = true
     collectionView.asyncDataSource = self
@@ -36,20 +43,12 @@ public class WallController: UIViewController {
     return layout
     }()
 
-  public var posts: [Postable] = [] {
-    willSet {
-      dispatch_async(dispatch_get_main_queue(), { _ in
-        self.collectionView.reloadData()
-      })
-    }
-  }
-
   // MARK: - Initialization
 
-  public convenience init(post: Postable) {
+  public convenience init(postConvertible: PostConvertible) {
     self.init()
 
-    self.post = post
+    self.post = postConvertible.wallModel
   }
 
   // MARK: - View Lifecycle
@@ -68,7 +67,7 @@ public class WallController: UIViewController {
 
   // MARK: - Public Methods
 
-  public func postAtIndex(index: Int) -> Postable? {
+  public func postAtIndex(index: Int) -> PostConvertible? {
     return posts[index]
   }
 }
