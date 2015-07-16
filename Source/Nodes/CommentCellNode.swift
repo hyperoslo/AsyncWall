@@ -9,7 +9,7 @@ public class CommentCellNode: PostCellNode {
 
   // MARK: - Initialization
 
-  public override init(post: Postable, index: Int, width: CGFloat, delegate: PostCellNodeDelegate? = nil) {
+  public override init(post: Post, index: Int, width: CGFloat, delegate: PostCellNodeDelegate? = nil) {
     super.init(post: post, index: index, width: width, delegate: delegate)
 
     if let config = config {

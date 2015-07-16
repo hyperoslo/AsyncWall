@@ -28,23 +28,26 @@ public class PostHeaderNode: ASDisplayNode {
 
   // MARK: - Initialization
 
-  public init(config: Config, post: Postable, width: CGFloat) {
+  public init(config: Config, post: Post, width: CGFloat) {
     self.config = config
     self.width = width
 
     super.init()
 
     if headerConfig.author.enabled {
+
       if let author = post.author {
+        let user = author.wallModel
+
         authorNameNode.attributedString = NSAttributedString(
-          string: author.fullName,
+          string: user.name,
           attributes: headerConfig.author.textAttributes)
         authorNameNode.userInteractionEnabled = true
 
         addSubnode(authorNameNode)
 
         if headerConfig.author.avatar.enabled {
-          if let avatar = author.avatar {
+          if let avatar = user.avatar {
             let avatarConfig = headerConfig.author.avatar
             let imageSize = avatarConfig.size
 
@@ -70,6 +73,8 @@ public class PostHeaderNode: ASDisplayNode {
 
     if headerConfig.group.enabled {
       if let group = post.group {
+        let group = group.wallModel
+
         groupNode = ASTextNode()
         groupNode!.attributedString = NSAttributedString(
           string: group.name,
