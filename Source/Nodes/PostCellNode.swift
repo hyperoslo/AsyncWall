@@ -1,29 +1,6 @@
 import UIKit
 import AsyncDisplayKit
 
-public protocol PostableCellNode {
-  init(post: Post, index: Int, width: CGFloat, delegate: PostCellNodeDelegate?)
-}
-
-public class WallCellNode: ASCellNode, PostableCellNode {
-
-  public var post: Post
-  public let index: Int
-  public let width: CGFloat
-  public var config: Config?
-  weak public var delegate: PostCellNodeDelegate?
-
-  public required init(post: Post, index: Int, width: CGFloat, delegate: PostCellNodeDelegate? = nil) {
-    self.post = post
-    self.index = index
-    self.width = width
-    self.delegate = delegate
-    self.config = self.delegate?.config
-
-    super.init()
-  }
-}
-
 public class PostCellNode: WallCellNode {
 
   public var headerNode: PostHeaderNode?
@@ -39,10 +16,6 @@ public class PostCellNode: WallCellNode {
       contentWidth = width - 2 * config.wall.post.horizontalPadding
     }
     return contentWidth
-  }
-
-  public var cellNode: ASCellNode {
-    return self
   }
 
   // MARK: - Initialization
