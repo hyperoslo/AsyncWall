@@ -5,14 +5,26 @@ public protocol PostableCellNode {
   init(post: Post, index: Int, width: CGFloat, delegate: PostCellNodeDelegate?)
 }
 
-public class PostCellNode: ASCellNode, PostableCellNode {
+public class WallCellNode: ASCellNode, PostableCellNode {
 
   public var post: Post
   public let index: Int
   public let width: CGFloat
   public var config: Config?
-
   weak public var delegate: PostCellNodeDelegate?
+
+  public required init(post: Post, index: Int, width: CGFloat, delegate: PostCellNodeDelegate? = nil) {
+    self.post = post
+    self.index = index
+    self.width = width
+    self.delegate = delegate
+    self.config = self.delegate?.config
+
+    super.init()
+  }
+}
+
+public class PostCellNode: WallCellNode {
 
   public var headerNode: PostHeaderNode?
   public var attachmentGridNode: AttachmentGridNode?
@@ -29,16 +41,14 @@ public class PostCellNode: ASCellNode, PostableCellNode {
     return contentWidth
   }
 
+  public var cellNode: ASCellNode {
+    return self
+  }
+
   // MARK: - Initialization
 
   public required init(post: Post, index: Int, width: CGFloat, delegate: PostCellNodeDelegate? = nil) {
-    self.post = post
-    self.index = index
-    self.width = width
-    self.delegate = delegate
-    self.config = self.delegate?.config
-
-    super.init()
+    super.init(post: post, index: index, width: width, delegate: delegate)
 
     if let config = config {
       let postConfig = config.wall.post
