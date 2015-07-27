@@ -10,7 +10,7 @@ public class Config {
   public init() {}
 
   public struct Cache {
-    
+
     public struct Thumbnails {
       public static var format = "wall-thumbnails"
       public static var storage: Haneke.Cache<UIImage> {
@@ -45,7 +45,7 @@ public class Config {
     public var comment = Comment()
 
     public struct Post {
-      public var cellClass: PostableCellNode.Type = PostCellNode.self
+      public var CellClass: WallCellNode.Type = PostCellNode.self
 
       public var horizontalPadding: CGFloat = 10
       public var verticalPadding: CGFloat = 10
@@ -231,7 +231,7 @@ public class Config {
     }
 
     public struct Comment {
-      public var cellClass: PostableCellNode.Type = CommentCellNode.self
+      public var CellClass: WallCellNode.Type = CommentCellNode.self
 
       public var backgroundColor =  UIColor(red:0.969, green:0.973, blue:0.976, alpha: 1)
       public var divider = Divider()
