@@ -46,8 +46,7 @@ public class Config {
 
     public struct Post {
       public var CellClass: WallCellNode.Type = PostCellNode.self
-
-      public var HeaderClass
+      public var HeaderClass: WallPostHeaderNode.Type = PostHeaderNode.self
 
       public var horizontalPadding: CGFloat = 10
       public var verticalPadding: CGFloat = 10

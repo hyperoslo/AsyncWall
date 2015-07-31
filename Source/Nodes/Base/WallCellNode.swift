@@ -13,6 +13,8 @@ public class WallCellNode: ASCellNode, PostableCellNode {
   public var config: Config?
   weak public var delegate: PostCellNodeDelegate?
 
+  // MARK: - Initialization
+
   public required init(post: Post, index: Int, width: CGFloat, delegate: PostCellNodeDelegate? = nil) {
     self.post = post
     self.index = index

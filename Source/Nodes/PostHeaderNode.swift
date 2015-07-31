@@ -1,10 +1,7 @@
 import UIKit
 import AsyncDisplayKit
 
-public class PostHeaderNode: ASDisplayNode {
-
-  public let config: Config
-  public let width: CGFloat
+public class PostHeaderNode: WallPostHeaderNode {
 
   public var authorNameNode = ASTextNode()
   public var authorAvatarNode: ASImageNode?
@@ -28,11 +25,8 @@ public class PostHeaderNode: ASDisplayNode {
 
   // MARK: - Initialization
 
-  public init(config: Config, post: Post, width: CGFloat) {
-    self.config = config
-    self.width = width
-
-    super.init()
+  public required init(config: Config, post: Post, width: CGFloat) {
+    super.init(config: config, post: post, width: width)
 
     if headerConfig.author.enabled {
 
