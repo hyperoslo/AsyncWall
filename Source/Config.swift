@@ -15,13 +15,13 @@ public class Config {
   public var imageCache = ImageCache()
 
   public struct Post {
-    public var CellClass: WallCellNode.Type = PostCellNode.self
-    public var HeaderClass: WallPostHeaderNode.Type = PostHeaderNode.self
-    public var FooterClass: WallPostFooterNode.Type = PostFooterNode.self
+    public var CellClass: PostCellNode.Type = CellNode.self
+    public var HeaderClass: PostComponentNode.Type = HeaderNode.self
+    public var FooterClass: PostComponentNode.Type = FooterNode.self
   }
 
   public struct Comment {
-    public var CellClass: WallCellNode.Type = PostCellNode.self
+    public var CellClass: PostCellNode.Type = CellNode.self
   }
 
   public init() {}

@@ -1,7 +1,7 @@
 import UIKit
 import AsyncDisplayKit
 
-public class PostFooterNode: WallPostFooterNode {
+public class FooterNode: PostComponentNode {
 
   // MARK: - Configuration
 

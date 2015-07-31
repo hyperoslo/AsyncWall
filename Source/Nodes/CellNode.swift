@@ -1,7 +1,7 @@
 import UIKit
 import AsyncDisplayKit
 
-public class PostCellNode: WallCellNode {
+public class CellNode: PostCellNode {
 
   // MARK: - Configuration
   
@@ -19,11 +19,11 @@ public class PostCellNode: WallCellNode {
 
   // MARK: - Nodes
 
-  public var headerNode: PostHeaderNode?
+  public var headerNode: HeaderNode?
   public var attachmentGridNode: AttachmentGridNode?
   public var textNode: ASTextNode?
-  public var footerNode: PostFooterNode?
-  public var actionBarNode: PostActionBarNode?
+  public var footerNode: FooterNode?
+  public var actionBarNode: ActionBarNode?
   public var divider: ASDisplayNode?
 
   // MARK: - Initialization
@@ -33,7 +33,7 @@ public class PostCellNode: WallCellNode {
 
     backgroundColor = .whiteColor()
 
-    headerNode = PostHeaderNode(post: post, width: contentWidth)
+    headerNode = HeaderNode(post: post, width: contentWidth)
     headerNode!.userInteractionEnabled = true
     addSubnode(headerNode)
 
@@ -41,7 +41,7 @@ public class PostCellNode: WallCellNode {
       var gridWidth = gridWidthForAttachmentCount(post.attachments.count)
 
       attachmentGridNode = AttachmentGridNode(
-        attachments: post.attachments,
+        post: post,
         width: gridWidth)
       attachmentGridNode!.userInteractionEnabled = true
 
@@ -62,14 +62,14 @@ public class PostCellNode: WallCellNode {
     }
 
     if footerEnabled {
-      footerNode = PostFooterNode(post: post, width: contentWidth)
+      footerNode = FooterNode(post: post, width: contentWidth)
       footerNode!.userInteractionEnabled = true
 
       addSubnode(footerNode)
     }
 
     if actionBarEnabled {
-      actionBarNode = PostActionBarNode(width: contentWidth)
+      actionBarNode = ActionBarNode(post: post, width: contentWidth)
       addSubnode(actionBarNode)
     }
 

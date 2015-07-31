@@ -5,7 +5,7 @@ public protocol PostableCellNode {
   init(post: Post, index: Int, width: CGFloat, delegate: PostCellNodeDelegate?)
 }
 
-public class WallCellNode: ASCellNode, PostableCellNode {
+public class PostCellNode: ASCellNode, PostableCellNode {
 
   public var post: Post
   public let index: Int

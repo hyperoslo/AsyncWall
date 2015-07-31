@@ -1,17 +1,17 @@
 import Quick
 import Nimble
 
-class PostFooterNodeSpec: QuickSpec {
+class FooterNodeSpec: QuickSpec {
 
   override func spec() {
     describe("PostFooterNode") {
       let width: CGFloat = 320
       let post = SpecHelper.post
 
-      var node: PostFooterNode!
+      var node: FooterNode!
 
       beforeEach {
-        node = PostFooterNode(post: post, width: width)
+        node = FooterNode(post: post, width: width)
       }
 
       describe("#init") {

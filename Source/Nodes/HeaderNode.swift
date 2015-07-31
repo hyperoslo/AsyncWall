@@ -1,7 +1,7 @@
 import UIKit
 import AsyncDisplayKit
 
-public class PostHeaderNode: WallPostHeaderNode {
+public class HeaderNode: PostComponentNode {
 
   struct Dimensions {
     static let avatarSize: CGFloat = 32
@@ -11,12 +11,12 @@ public class PostHeaderNode: WallPostHeaderNode {
 
   // MARK: - Configuration
 
-  public var enabled = true
   public var height: CGFloat = 40
 
   public lazy var dateFormatter: NSDateFormatter = {
     let dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "MM-dd"
+
     return dateFormatter
     }()
 

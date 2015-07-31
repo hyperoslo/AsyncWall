@@ -1,16 +1,16 @@
 import Quick
 import Nimble
 
-class PostActionBarNodeSpec: QuickSpec {
+class ActionBarNodeSpec: QuickSpec {
 
   override func spec() {
     describe("PostActionBarNode") {
-      let config = Config()
+      let post = SpecHelper.post
       let width: CGFloat = 320
-      var node: PostActionBarNode!
+      var node: ActionBarNode!
 
       beforeEach {
-        node = PostActionBarNode(width: width)
+        node = ActionBarNode(post: post, width: width)
       }
 
       describe("#init") {

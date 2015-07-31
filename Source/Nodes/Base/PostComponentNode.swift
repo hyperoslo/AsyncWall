@@ -1,11 +1,11 @@
 import UIKit
 import AsyncDisplayKit
 
-public protocol PostableHeaderCellNode {
+public protocol PostableComponentNode {
   init(post: Post, width: CGFloat)
 }
 
-public class WallPostHeaderNode: ASDisplayNode, PostableHeaderCellNode {
+public class PostComponentNode: ASControlNode, PostableComponentNode {
 
   public var post: Post
   public let width: CGFloat

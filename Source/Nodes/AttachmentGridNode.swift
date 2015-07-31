@@ -1,13 +1,12 @@
 import UIKit
 import AsyncDisplayKit
 
-public class AttachmentGridNode: ASControlNode {
+public class AttachmentGridNode: PostComponentNode {
 
   public enum GridType {
     case Regular, FullWidth, SingleFullWidth
   }
 
-  public let width: CGFloat
   public let attachments: [AttachmentConvertible]
 
   // MARK: - Configuration
@@ -36,12 +35,11 @@ public class AttachmentGridNode: ASControlNode {
 
   // MARK: - Initialization
 
-  public init(attachments: [AttachmentConvertible], width: CGFloat) {
-    let totalCount = attachments.count
-    self.attachments = totalCount < 4 ? attachments : Array(attachments[0..<3])
-    self.width = width
+  public required init(post: Post, width: CGFloat) {
+    let totalCount = post.attachments.count
+    attachments = totalCount < 4 ? post.attachments : Array(post.attachments[0..<3])
 
-    super.init()
+    super.init(post: post, width: width)
 
     var lastImageSize: CGSize?
     for (index, attachment) in enumerate(self.attachments) {

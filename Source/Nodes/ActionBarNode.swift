@@ -1,11 +1,10 @@
 import UIKit
 import AsyncDisplayKit
 
-public class PostActionBarNode: ASDisplayNode {
+public class ActionBarNode: PostComponentNode {
 
   // MARK: - Configuration
 
-  public let width: CGFloat
   public var height: CGFloat = 40
   public var dividerHeight: CGFloat = 1
 
@@ -49,9 +48,8 @@ public class PostActionBarNode: ASDisplayNode {
 
   // MARK: - Initialization
 
-  public init(width: CGFloat) {
-    self.width = width
-    super.init()
+  public required init(post: Post, width: CGFloat) {
+    super.init(post: post, width: width)
 
     [divider, likeControlNode, commentControlNode].map { self.addSubnode($0) }
   }
