@@ -29,29 +29,30 @@ public class PostCellNode: WallCellNode {
   public required init(post: Post, index: Int, width: CGFloat, delegate: PostCellNodeDelegate? = nil) {
     super.init(post: post, index: index, width: width, delegate: delegate)
 
+    headerNode = PostHeaderNode(config: config, post: post, width: contentWidth)
+    headerNode!.userInteractionEnabled = true
+    addSubnode(headerNode)
+
+    if post.attachments.count > 0 {
+      var gridWidth = gridWidthForAttachmentCount(post.attachments.count)
+
+      attachmentGridNode = AttachmentGridNode(
+        config: config,
+        attachments: post.attachments,
+        width: gridWidth)
+      attachmentGridNode!.userInteractionEnabled = true
+
+      addSubnode(attachmentGridNode)
+    }
+
     if let config = config {
       let postConfig = config.wall.post
 
       self.backgroundColor = .whiteColor()
 
-      if postConfig.header.enabled {
-        headerNode = PostHeaderNode(config: config, post: post, width: contentWidth)
-        headerNode!.userInteractionEnabled = true
 
-        addSubnode(headerNode)
-      }
 
-      if post.attachments.count > 0 {
-        var gridWidth = gridWidthForAttachmentCount(post.attachments.count)
 
-        attachmentGridNode = AttachmentGridNode(
-          config: config,
-          attachments: post.attachments,
-          width: gridWidth)
-        attachmentGridNode!.userInteractionEnabled = true
-
-        addSubnode(attachmentGridNode)
-      }
 
       if !post.text.isEmpty {
         textNode = ASTextNode()

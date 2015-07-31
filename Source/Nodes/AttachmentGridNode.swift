@@ -3,33 +3,51 @@ import AsyncDisplayKit
 
 public class AttachmentGridNode: ASControlNode {
 
-  public let config: Config
+  public enum GridType {
+    case Regular, FullWidth, SingleFullWidth
+  }
+
   public let width: CGFloat
   public let attachments: [AttachmentConvertible]
+
+  // MARK: - Configuration
+
+  public var ratio: CGFloat = 3 / 2
+  public var padding: CGFloat = 10
+  public var gridType = GridType.Regular
+  public var counterEnabled = true
+
+  public var counter = Counter()
+
+  public struct Counter {
+    public var enabled = true
+    public var backgroundColor = UIColor(white: 0, alpha: 0.5)
+    public var textAttributes = [
+      NSFontAttributeName: UIFont.systemFontOfSize(34),
+      NSForegroundColorAttributeName: UIColor.whiteColor()
+    ]
+  }
+
+  // MARK: - Nodes
 
   public var imageNodes = [ASImageNode]()
   public var counterNode: CounterNode?
 
   public var height: CGFloat {
-    return width / attachmentsConfig.ratio
+    return width / ratio
   }
 
   public var contentWidth: CGFloat {
-    return width - attachmentsConfig.padding
+    return width - padding
   }
 
   public var contentHeight: CGFloat {
-    return height - attachmentsConfig.padding
-  }
-
-  private var attachmentsConfig: Config.Wall.Post.Attachments {
-    return config.wall.post.attachments
+    return height - padding
   }
 
   // MARK: - Initialization
 
   public init(config: Config, attachments: [AttachmentConvertible], width: CGFloat) {
-    self.config = config
     let totalCount = attachments.count
     self.attachments = totalCount < 4 ? attachments : Array(attachments[0..<3])
     self.width = width
@@ -58,7 +76,7 @@ public class AttachmentGridNode: ASControlNode {
       }
     }
 
-    if attachmentsConfig.counter.enabled && totalCount > 3 {
+    if counterEnabled && totalCount > 3 {
       if let lastImageSize = lastImageSize {
         counterNode = CounterNode(
           config: config,
@@ -88,9 +106,9 @@ public class AttachmentGridNode: ASControlNode {
         width: imageSize.width,
         height: imageSize.height)
       if index == 0 {
-        x += imageSize.width + attachmentsConfig.padding
+        x += imageSize.width + padding
       } else if index == 1 {
-        y += imageSize.height + attachmentsConfig.padding
+        y += imageSize.height + padding
       }
     }
 

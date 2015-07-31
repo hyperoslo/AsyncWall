@@ -3,65 +3,107 @@ import AsyncDisplayKit
 
 public class PostHeaderNode: WallPostHeaderNode {
 
+  struct Dimensions {
+    static let avatarSize: CGFloat = 32
+    static let authorHorizontalPadding: CGFloat = 5
+    static let authorVerticalPadding: CGFloat = 1
+  }
+
+
+  // MARK: - Configuration
+
+  public struct Author {
+
+    public var avatar = Avatar()
+
+    public struct Avatar {
+      public var size: CGFloat = 32
+      public var rounded = true
+      public var placeholderColor = UIColor.lightGrayColor()
+    }
+  }
+
+  public struct Group {
+    public var textAttributes = [
+      NSFontAttributeName: UIFont.boldSystemFontOfSize(12),
+      NSForegroundColorAttributeName: UIColor.blackColor()
+    ]
+  }
+
+  public struct Location {
+    public var textAttributes = [
+      NSFontAttributeName: UIFont.systemFontOfSize(12),
+      NSForegroundColorAttributeName: UIColor.grayColor()
+    ]
+    public var icon = Icon()
+
+    public struct Icon {
+      public var enabled = true
+      public var padding: CGFloat = 3
+      public var size: CGFloat = 12
+      public var image: UIImage?
+    }
+  }
+
+  public struct Date {
+    public var enabled = true
+    public var textAttributes = [
+      NSFontAttributeName: UIFont.systemFontOfSize(12),
+      NSForegroundColorAttributeName: UIColor.grayColor()
+    ]
+  }
+
+  public var enabled = true
+  public var height: CGFloat = 40
+  public var authorConfig = Author()
+  public var groupConfig = Group()
+  public var locationConfig = Location()
+  public var dateConfig = Date()
+
+  // MARK: - Nodes
+
   public var authorNameNode = ASTextNode()
   public var authorAvatarNode: ASImageNode?
   public var groupNode: ASTextNode?
-  public var groupDivider: ASTextNode?
-  public var locationIconNode: ASImageNode?
   public var locationNode: ASTextNode?
   public var dateNode: ASTextNode?
 
-  public var height: CGFloat {
-    return headerConfig.height
-  }
-
-  private var headerConfig: Config.Wall.Post.Header {
-    return config.wall.post.header
-  }
-
   private var secondRowY: CGFloat {
-    return height / 2 + headerConfig.author.verticalPadding
+    return height / 2 + Dimensions.authorVerticalPadding
   }
 
   // MARK: - Initialization
 
-  public required init(config: Config, post: Post, width: CGFloat) {
-    super.init(config: config, post: post, width: width)
+  public required init(post: Post, width: CGFloat) {
+    super.init(post: post, width: width)
 
-    if headerConfig.author.enabled {
+    if let author = post.author {
+      let user = author.wallModel
 
-      if let author = post.author {
-        let user = author.wallModel
+      authorNameNode.attributedString = NSAttributedString(
+        string: user.name,
+        attributes: [
+          NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
+          NSForegroundColorAttributeName: UIColor.blackColor()
+        ])
+      authorNameNode.userInteractionEnabled = true
 
-        authorNameNode.attributedString = NSAttributedString(
-          string: user.name,
-          attributes: headerConfig.author.textAttributes)
-        authorNameNode.userInteractionEnabled = true
+      addSubnode(authorNameNode)
 
-        addSubnode(authorNameNode)
+      if let avatar = user.image {
+        authorAvatarNode = ASImageNode()
+        authorAvatarNode?.backgroundColor = .grayColor()
+        authorAvatarNode?.cornerRadius = Dimensions.avatarSize / 2
+        authorAvatarNode?.clipsToBounds = true
+        authorAvatarNode!.userInteractionEnabled = true
 
-        if headerConfig.author.avatar.enabled {
-          if let avatar = user.image {
-            let avatarConfig = headerConfig.author.avatar
-            let imageSize = avatarConfig.size
-
-            authorAvatarNode = ASImageNode()
-            authorAvatarNode?.backgroundColor = avatarConfig.placeholderColor
-            if avatarConfig.rounded {
-              authorAvatarNode?.cornerRadius = imageSize / 2
-              authorAvatarNode?.clipsToBounds = true
-            }
-            authorAvatarNode!.userInteractionEnabled = true
-
-            if let thumbnail = config.wall.thumbnailForAttachment(
-              attachment: avatar,
-              size: CGSize(width: imageSize, height: imageSize)) {
-                authorAvatarNode?.fetchImage(thumbnail.url)
-            }
-
-            addSubnode(authorAvatarNode)
-          }
+        if let thumbnail = Config.Wall.thumbnailForAttachment(
+          attachment: avatar,
+          size: CGSize(width: Dimensions.avatarSize, height: Dimensions.avatarSize)) {
+            authorAvatarNode?.fetchImage(thumbnail.url)
         }
+
+        addSubnode(authorAvatarNode)
       }
     }
 

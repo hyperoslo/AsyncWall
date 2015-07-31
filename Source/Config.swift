@@ -31,7 +31,7 @@ public class Config {
       return dateFormatter
       }()
 
-    public var thumbnailForAttachment: (attachment: Attachable, size: CGSize) -> URLStringConvertible? = {
+    public static var thumbnailForAttachment: (attachment: Attachable, size: CGSize) -> URLStringConvertible? = {
       (attachment: Attachable, size: CGSize) -> URLStringConvertible? in
       return attachment.thumbnail
     }
@@ -48,102 +48,12 @@ public class Config {
       public var CellClass: WallCellNode.Type = PostCellNode.self
       public var HeaderClass: WallPostHeaderNode.Type = PostHeaderNode.self
 
-      public var header = Header()
-      public var attachments = Attachments()
       public var text = Text()
       public var footer = Footer()
       public var actionBar = ActionBar()
       public var control = Control()
       public var divider = Divider()
 
-      public struct Header {
-        public var enabled = true
-        public var height: CGFloat = 40
-        public var author = Author()
-        public var group = Group()
-        public var location = Location()
-        public var date = Date()
-
-        public struct Author {
-          public var enabled = true
-          public var horizontalPadding: CGFloat = 5
-          public var verticalPadding: CGFloat = 1
-          public var textAttributes = [
-            NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
-            NSForegroundColorAttributeName: UIColor.blackColor()
-          ]
-          public var avatar = Avatar()
-
-          public struct Avatar {
-            public var enabled = true
-            public var size: CGFloat = 32
-            public var rounded = true
-            public var placeholderColor = UIColor.lightGrayColor()
-          }
-        }
-
-        public struct Group {
-          public var enabled = true
-          public var textAttributes = [
-            NSFontAttributeName: UIFont.boldSystemFontOfSize(12),
-            NSForegroundColorAttributeName: UIColor.blackColor()
-          ]
-          public var divider = Divider()
-
-          public struct Divider {
-            public var enabled = true
-            public var textAttributes = [
-              NSFontAttributeName: UIFont.systemFontOfSize(12),
-              NSForegroundColorAttributeName: UIColor.grayColor()
-            ]
-            public var text = ">"
-          }
-        }
-
-        public struct Location {
-          public var enabled = true
-          public var textAttributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(12),
-            NSForegroundColorAttributeName: UIColor.grayColor()
-          ]
-          public var icon = Icon()
-
-          public struct Icon {
-            public var enabled = true
-            public var padding: CGFloat = 3
-            public var size: CGFloat = 12
-            public var image: UIImage?
-          }
-        }
-
-        public struct Date {
-          public var enabled = true
-          public var textAttributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(12),
-            NSForegroundColorAttributeName: UIColor.grayColor()
-          ]
-        }
-      }
-
-      public struct Attachments {
-        public enum GridType {
-          case Regular, FullWidth, SingleFullWidth
-        }
-
-        public var ratio: CGFloat = 3 / 2
-        public var padding: CGFloat = 10
-        public var gridType = GridType.Regular
-        public var counter = Counter()
-
-        public struct Counter {
-          public var enabled = true
-          public var backgroundColor = UIColor(white: 0, alpha: 0.5)
-          public var textAttributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(34),
-            NSForegroundColorAttributeName: UIColor.whiteColor()
-          ]
-        }
-      }
 
       public struct Text {
         public var textAttributes = [
