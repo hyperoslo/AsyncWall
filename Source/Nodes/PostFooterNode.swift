@@ -1,11 +1,9 @@
 import UIKit
 import AsyncDisplayKit
 
-public class PostFooterNode: ASDisplayNode {
+public class PostFooterNode: WallPostFooterNode {
 
   // MARK: - Configuration
-
-  public let width: CGFloat
 
   public var height: CGFloat = 40
   public var horizontalPadding: CGFloat = 10
@@ -18,9 +16,8 @@ public class PostFooterNode: ASDisplayNode {
 
   // MARK: - Initialization
 
-  public init(post: Post, width: CGFloat) {
-    self.width = width
-    super.init()
+  public required init(post: Post, width: CGFloat) {
+    super.init(post: post, width: width)
 
     let likeCountString = String.localizedStringWithFormat(
       NSLocalizedString("%d like(s)", comment: ""),

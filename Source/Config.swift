@@ -17,6 +17,7 @@ public class Config {
   public struct Post {
     public var CellClass: WallCellNode.Type = PostCellNode.self
     public var HeaderClass: WallPostHeaderNode.Type = PostHeaderNode.self
+    public var FooterClass: WallPostFooterNode.Type = PostFooterNode.self
   }
 
   public struct Comment {

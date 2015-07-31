@@ -4,6 +4,7 @@ import AsyncDisplayKit
 public class PostCellNode: WallCellNode {
 
   // MARK: - Configuration
+  
   public var horizontalPadding: CGFloat = 10
   public var verticalPadding: CGFloat = 10
   public var dividerHeight: CGFloat = 1
@@ -11,6 +12,10 @@ public class PostCellNode: WallCellNode {
   public var footerEnabled = true
   public var actionBarEnabled = true
   public var dividerEnabled = true
+
+  public var contentWidth: CGFloat {
+    return width - 2 * horizontalPadding
+  }
 
   // MARK: - Nodes
 
@@ -20,10 +25,6 @@ public class PostCellNode: WallCellNode {
   public var footerNode: PostFooterNode?
   public var actionBarNode: PostActionBarNode?
   public var divider: ASDisplayNode?
-
-  public var contentWidth: CGFloat {
-    return width - 2 * horizontalPadding
-  }
 
   // MARK: - Initialization
 
