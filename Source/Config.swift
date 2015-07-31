@@ -40,8 +40,6 @@ public class Config {
       public var HeaderClass: WallPostHeaderNode.Type = PostHeaderNode.self
 
       public var text = Text()
-      public var actionBar = ActionBar()
-      public var control = Control()
       public var divider = Divider()
 
       public struct Text {
@@ -51,40 +49,8 @@ public class Config {
         ]
       }
 
-      public struct ActionBar {
-        public var enabled = true
-        public var dividerEnabled = true
-        public var height: CGFloat = 40
-        public var backgroundColor = UIColor.clearColor()
-        public var likeButton = LikeButton()
-        public var commentButton = CommentButton()
 
-        public struct LikeButton {
-          public var enabled = true
-          public var title: String? = NSLocalizedString("Like", comment: "")
-          public var image: UIImage?
-          public var textAttributes = [
-            NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
-            NSForegroundColorAttributeName: UIColor.lightGrayColor()
-          ]
-        }
-
-        public struct CommentButton {
-          public var enabled = true
-          public var title: String? = NSLocalizedString("Comment", comment: "")
-          public var image: UIImage?
-          public var textAttributes = [
-            NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
-            NSForegroundColorAttributeName: UIColor.lightGrayColor()
-          ]
-        }
-      }
-
-      public struct Control {
-        public var size = CGSize(width: 100.0, height: 35.0)
-        public var padding: CGFloat = 5
-        public var imageSize = CGSize(width: 22, height: 22)
-      }
+      
 
       public struct Divider {
         public var enabled = true

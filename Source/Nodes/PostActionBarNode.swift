@@ -3,66 +3,57 @@ import AsyncDisplayKit
 
 public class PostActionBarNode: ASDisplayNode {
 
-  public let config: Config
+  // MARK: - Configuration
+
   public let width: CGFloat
+  public var height: CGFloat = 40
+  public var dividerHeight: CGFloat = 1
 
-  public var likeControlNode: ControlNode?
-  public var commentControlNode: ControlNode?
-  public var divider: ASDisplayNode?
+  // MARK: - Nodes
 
-  public var height: CGFloat {
-    return actionBarConfig.height
-  }
+  public lazy var likeControlNode: ControlNode = {
+    var title = NSAttributedString(
+      string: NSLocalizedString("Like", comment: ""),
+      attributes: [
+        NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
+        NSForegroundColorAttributeName: UIColor.lightGrayColor()
+      ])
 
-  private var actionBarConfig: Config.Wall.Post.ActionBar {
-    return config.wall.post.actionBar
-  }
+    let node = ControlNode(title: title)
+    node.userInteractionEnabled = true
+
+    return node
+  }()
+
+  public lazy var commentControlNode: ControlNode = {
+    var title = NSAttributedString(
+      string: NSLocalizedString("Comment", comment: ""),
+      attributes: [
+        NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
+        NSForegroundColorAttributeName: UIColor.lightGrayColor()
+      ])
+
+    let node = ControlNode(title: title)
+    node.userInteractionEnabled = true
+
+    return node
+  }()
+
+  public lazy var divider: ASDisplayNode = {
+    let divider = ASDisplayNode()
+    divider!.backgroundColor = .lightGrayColor()
+
+    return divider
+  }()
+
 
   // MARK: - Initialization
 
-  public init(config: Config, width: CGFloat) {
+  public init(width: CGFloat) {
     self.width = width
-    self.config = config
-
     super.init()
 
-    if actionBarConfig.dividerEnabled {
-      divider = ASDisplayNode()
-      divider!.backgroundColor = config.wall.post.divider.backgroundColor
-      addSubnode(divider)
-    }
-
-    if actionBarConfig.likeButton.enabled {
-      var title: NSAttributedString?
-      var image = actionBarConfig.likeButton.image
-
-      if let controlTitle = actionBarConfig.likeButton.title {
-        title = NSAttributedString(
-          string: controlTitle,
-          attributes: actionBarConfig.likeButton.textAttributes)
-      }
-
-      likeControlNode = ControlNode(config: config, title: title, image: image)
-      likeControlNode!.userInteractionEnabled = true
-
-      addSubnode(likeControlNode)
-    }
-
-    if actionBarConfig.commentButton.enabled {
-      var title: NSAttributedString?
-      var image = actionBarConfig.commentButton.image
-
-      if let controlTitle = actionBarConfig.commentButton.title {
-        title = NSAttributedString(
-          string: controlTitle,
-          attributes: actionBarConfig.commentButton.textAttributes)
-      }
-
-      commentControlNode = ControlNode(config: config, title: title, image: image)
-      commentControlNode!.userInteractionEnabled = true
-
-      addSubnode(commentControlNode)
-    }
+    [divider, likeControlNode, commentControlNode].map { self.addSubnode($0) }
   }
 
   // MARK: - Layout
@@ -75,15 +66,13 @@ public class PostActionBarNode: ASDisplayNode {
     var x: CGFloat = 0
     let sideSize = CGSize(width: width / 2, height: height)
 
-    if let divider = divider {
-      divider.frame = CGRect(
-        x: 0,
-        y: 0,
-        width: width,
-        height: config.wall.post.divider.height)
-    }
+    divider.frame = CGRect(
+      x: 0,
+      y: 0,
+      width: width,
+      height: dividerHeight)
 
-    if let likeControlNode = likeControlNode {
+    if !likeControlNode.hidden {
       likeControlNode.frame = CGRect(
         origin: likeControlNode.size.centerInSize(sideSize),
         size: likeControlNode.size)
@@ -91,7 +80,7 @@ public class PostActionBarNode: ASDisplayNode {
       x += sideSize.width
     }
 
-    if let commentControlNode = commentControlNode {
+    if !commentControlNode.hidden {
       var origin = commentControlNode.size.centerInSize(sideSize)
       origin.x += x
       commentControlNode.frame = CGRect(

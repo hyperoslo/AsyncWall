@@ -7,6 +7,7 @@ public class PostCellNode: WallCellNode {
   public var horizontalPadding: CGFloat = 10
   public var verticalPadding: CGFloat = 10
   public var footerEnabled = true
+  public var actionBarEnabled = true
 
   // MARK: - Nodes
 
@@ -67,8 +68,8 @@ public class PostCellNode: WallCellNode {
         addSubnode(footerNode)
       }
 
-      if config.wall.post.actionBar.enabled {
-        actionBarNode = PostActionBarNode(config: config, width: contentWidth)
+      if actionBarEnabled {
+        actionBarNode = PostActionBarNode(width: contentWidth)
         addSubnode(actionBarNode)
       }
 
