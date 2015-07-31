@@ -133,7 +133,7 @@ public class PostCellNode: WallCellNode {
       }
 
       if let tappedElement = tappedElement {
-        delegate.cellNodeElementWasTapped(tappedElement, sender: self)
+        delegate.cellNodeElementWasTapped(tappedElement, index: index)
       }
     }
   }
