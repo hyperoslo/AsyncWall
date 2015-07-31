@@ -6,8 +6,11 @@ public class PostCellNode: WallCellNode {
   // MARK: - Configuration
   public var horizontalPadding: CGFloat = 10
   public var verticalPadding: CGFloat = 10
+  public var dividerHeight: CGFloat = 1
+
   public var footerEnabled = true
   public var actionBarEnabled = true
+  public var dividerEnabled = true
 
   // MARK: - Nodes
 
@@ -55,7 +58,10 @@ public class PostCellNode: WallCellNode {
         textNode = ASTextNode()
         textNode!.attributedString = NSAttributedString(
           string: post.text,
-          attributes: config.wall.post.text.textAttributes)
+          attributes: [
+            NSFontAttributeName: UIFont.systemFontOfSize(14),
+            NSForegroundColorAttributeName: UIColor.grayColor()
+        ])
         textNode!.userInteractionEnabled = true
 
         addSubnode(textNode)
@@ -94,9 +100,9 @@ public class PostCellNode: WallCellNode {
           forControlEvents: ASControlNodeEvent.TouchUpInside)
       }
 
-      if config.wall.post.divider.enabled {
+      if dividerEnabled {
         divider = ASDisplayNode()
-        divider!.backgroundColor = postConfig.divider.backgroundColor
+        divider!.backgroundColor = .lightGrayColor()
         addSubnode(divider)
       }
     }
@@ -145,7 +151,6 @@ public class PostCellNode: WallCellNode {
     var height: CGFloat = 0
 
     if let config = config {
-      var dividerHeight = config.wall.post.divider.height
       var paddingCount = 0
 
       if let headerNode = headerNode {
@@ -188,8 +193,6 @@ public class PostCellNode: WallCellNode {
 
   override public func layout() {
     if let config = config {
-      var dividerHeight = config.wall.post.divider.height
-
       var y = verticalPadding
 
       if let headerNode = headerNode {
