@@ -40,51 +40,15 @@ public class Config {
       public var HeaderClass: WallPostHeaderNode.Type = PostHeaderNode.self
 
       public var text = Text()
-      public var footer = Footer()
       public var actionBar = ActionBar()
       public var control = Control()
       public var divider = Divider()
-
 
       public struct Text {
         public var textAttributes = [
           NSFontAttributeName: UIFont.systemFontOfSize(14),
           NSForegroundColorAttributeName: UIColor.grayColor()
         ]
-      }
-
-      public struct Footer {
-        public var enabled = true
-        public var height: CGFloat = 40
-        public var horizontalPadding: CGFloat = 10
-        public var likes = Likes()
-        public var comments = Comments()
-        public var seen = Seen()
-
-        public struct Likes {
-          public var enabled = true
-          public var textAttributes = [
-            NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
-            NSForegroundColorAttributeName: UIColor.blackColor()
-          ]
-        }
-
-        public struct Comments {
-          public var enabled = true
-          public var textAttributes = [
-            NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
-            NSForegroundColorAttributeName: UIColor.blackColor()
-          ]
-        }
-
-        public struct Seen {
-          public var enabled = true
-          public var text = NSLocalizedString("Seen by", comment: "")
-          public var textAttributes = [
-            NSFontAttributeName: UIFont.italicSystemFontOfSize(12),
-            NSForegroundColorAttributeName: UIColor.grayColor()
-          ]
-        }
       }
 
       public struct ActionBar {

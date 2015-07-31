@@ -3,20 +3,19 @@ import AsyncDisplayKit
 
 public class PostFooterNode: ASDisplayNode {
 
+  // MARK: - Configuration
+
   public let width: CGFloat
   public let config: Config
 
-  public var likesNode: ASTextNode?
-  public var commentsNode: ASTextNode?
-  public var seenNode: ASTextNode?
+  public var height: CGFloat = 40
+  public var horizontalPadding: CGFloat = 10
 
-  public var height: CGFloat {
-    return footerConfig.height
-  }
+  // MARK: - Nodes
 
-  private var footerConfig: Config.Wall.Post.Footer {
-    return config.wall.post.footer
-  }
+  public lazy var likesNode = ASTextNode()
+  public var commentsNode = ASTextNode()
+  public var seenNode = ASTextNode()
 
   // MARK: - Initialization
 
@@ -26,45 +25,49 @@ public class PostFooterNode: ASDisplayNode {
 
     super.init()
 
-    if footerConfig.likes.enabled {
-      let string = String.localizedStringWithFormat(
-        NSLocalizedString("%d like(s)", comment: ""),
-        post.likeCount)
+    let likeCountString = String.localizedStringWithFormat(
+      NSLocalizedString("%d like(s)", comment: ""),
+      post.likeCount)
 
-      likesNode = ASTextNode()
-      likesNode!.attributedString = NSAttributedString(
-        string: string,
-        attributes: footerConfig.likes.textAttributes)
-      likesNode!.userInteractionEnabled = true
+    likesNode = ASTextNode()
+    likesNode.attributedString = NSAttributedString(
+      string: likeCountString,
+      attributes: [
+        NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
+        NSForegroundColorAttributeName: UIColor.blackColor()
+      ])
+    likesNode.userInteractionEnabled = true
 
-      addSubnode(likesNode)
-    }
+    addSubnode(likesNode)
 
-    if footerConfig.comments.enabled {
-      let string = String.localizedStringWithFormat(
-        NSLocalizedString("%d comment(s)", comment: ""),
-        post.commentCount)
+    let commentCountString = String.localizedStringWithFormat(
+      NSLocalizedString("%d comment(s)", comment: ""),
+      post.commentCount)
 
-      commentsNode = ASTextNode()
-      commentsNode!.attributedString = NSAttributedString(
-        string: string,
-        attributes: footerConfig.comments.textAttributes)
-      commentsNode!.userInteractionEnabled = true
+    commentsNode = ASTextNode()
+    commentsNode.attributedString = NSAttributedString(
+      string: commentCountString,
+      attributes: [
+        NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
+        NSForegroundColorAttributeName: UIColor.blackColor()
+      ])
+    commentsNode.userInteractionEnabled = true
 
-      addSubnode(commentsNode)
-    }
+    addSubnode(commentsNode)
 
-    if footerConfig.seen.enabled {
-      let string = "\(footerConfig.seen.text) \(post.seenCount)"
+    let seenString = NSLocalizedString("Seen by", comment: "")
+      + "\(post.seenCount)"
 
-      seenNode = ASTextNode()
-      seenNode!.attributedString = NSAttributedString(
-        string: string,
-        attributes: footerConfig.seen.textAttributes)
-      seenNode!.userInteractionEnabled = true
+    seenNode = ASTextNode()
+    seenNode.attributedString = NSAttributedString(
+      string: seenString,
+      attributes: [
+        NSFontAttributeName: UIFont.italicSystemFontOfSize(12),
+        NSForegroundColorAttributeName: UIColor.grayColor()
+      ])
+    seenNode.userInteractionEnabled = true
 
-      addSubnode(seenNode)
-    }
+    addSubnode(seenNode)
   }
 
   // MARK: - Layout
@@ -76,7 +79,7 @@ public class PostFooterNode: ASDisplayNode {
   override public func layout() {
     var x: CGFloat = 0
 
-    if let likesNode = likesNode {
+    if !likesNode.hidden {
       let size = likesNode.measure(
         CGSize(
           width: CGFloat(FLT_MAX),
@@ -85,10 +88,10 @@ public class PostFooterNode: ASDisplayNode {
       likesNode.frame = CGRect(
         origin: CGPoint(x: x, y: centerY(size.height)),
         size: size)
-      x += size.width + footerConfig.horizontalPadding
+      x += size.width + horizontalPadding
     }
 
-    if let commentsNode = commentsNode {
+    if !commentsNode.hidden {
       let size = commentsNode.measure(
         CGSize(
           width: CGFloat(FLT_MAX),
@@ -97,10 +100,10 @@ public class PostFooterNode: ASDisplayNode {
       commentsNode.frame = CGRect(
         origin: CGPoint(x: x, y: centerY(size.height)),
         size: size)
-      x += size.width + footerConfig.horizontalPadding
+      x += size.width + horizontalPadding
     }
 
-    if let seenNode = seenNode {
+    if !seenNode.hidden {
       let size = seenNode.measure(
         CGSize(
           width: CGFloat(FLT_MAX),

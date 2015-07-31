@@ -6,6 +6,7 @@ public class PostCellNode: WallCellNode {
   // MARK: - Configuration
   public var horizontalPadding: CGFloat = 10
   public var verticalPadding: CGFloat = 10
+  public var footerEnabled = true
 
   // MARK: - Nodes
 
@@ -49,10 +50,6 @@ public class PostCellNode: WallCellNode {
 
       self.backgroundColor = .whiteColor()
 
-
-
-
-
       if !post.text.isEmpty {
         textNode = ASTextNode()
         textNode!.attributedString = NSAttributedString(
@@ -63,7 +60,7 @@ public class PostCellNode: WallCellNode {
         addSubnode(textNode)
       }
 
-      if postConfig.footer.enabled {
+      if footerEnabled {
         footerNode = PostFooterNode(config: config, post: post, width: contentWidth)
         footerNode!.userInteractionEnabled = true
 
