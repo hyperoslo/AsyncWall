@@ -9,56 +9,16 @@ public class PostHeaderNode: WallPostHeaderNode {
     static let authorVerticalPadding: CGFloat = 1
   }
 
-
   // MARK: - Configuration
-
-  public struct Author {
-
-    public var avatar = Avatar()
-
-    public struct Avatar {
-      public var size: CGFloat = 32
-      public var rounded = true
-      public var placeholderColor = UIColor.lightGrayColor()
-    }
-  }
-
-  public struct Group {
-    public var textAttributes = [
-      NSFontAttributeName: UIFont.boldSystemFontOfSize(12),
-      NSForegroundColorAttributeName: UIColor.blackColor()
-    ]
-  }
-
-  public struct Location {
-    public var textAttributes = [
-      NSFontAttributeName: UIFont.systemFontOfSize(12),
-      NSForegroundColorAttributeName: UIColor.grayColor()
-    ]
-    public var icon = Icon()
-
-    public struct Icon {
-      public var enabled = true
-      public var padding: CGFloat = 3
-      public var size: CGFloat = 12
-      public var image: UIImage?
-    }
-  }
-
-  public struct Date {
-    public var enabled = true
-    public var textAttributes = [
-      NSFontAttributeName: UIFont.systemFontOfSize(12),
-      NSForegroundColorAttributeName: UIColor.grayColor()
-    ]
-  }
 
   public var enabled = true
   public var height: CGFloat = 40
-  public var authorConfig = Author()
-  public var groupConfig = Group()
-  public var locationConfig = Location()
-  public var dateConfig = Date()
+
+  public lazy var dateFormatter: NSDateFormatter = {
+    let dateFormatter = NSDateFormatter()
+    dateFormatter.dateFormat = "MM-dd"
+    return dateFormatter
+    }()
 
   // MARK: - Nodes
 
@@ -107,59 +67,16 @@ public class PostHeaderNode: WallPostHeaderNode {
       }
     }
 
-    if headerConfig.group.enabled {
-      if let group = post.group {
-        let group = group.wallModel
+    dateNode = ASTextNode()
+    dateNode!.attributedString = NSAttributedString(
+      string: dateFormatter.stringFromDate(post.publishDate),
+      attributes: [
+        NSFontAttributeName: UIFont.systemFontOfSize(12),
+        NSForegroundColorAttributeName: UIColor.grayColor()
+      ])
+    dateNode!.userInteractionEnabled = true
 
-        groupNode = ASTextNode()
-        groupNode!.attributedString = NSAttributedString(
-          string: group.name,
-          attributes: headerConfig.group.textAttributes)
-        groupNode!.userInteractionEnabled = true
-
-        addSubnode(groupNode)
-
-        let dividerConfig = headerConfig.group.divider
-        if dividerConfig.enabled {
-          groupDivider = ASTextNode()
-          groupDivider!.attributedString = NSAttributedString(
-            string: dividerConfig.text,
-            attributes: dividerConfig.textAttributes)
-
-          addSubnode(groupDivider)
-        }
-      }
-    }
-
-    if headerConfig.location.enabled {
-      if let location = post.location {
-        locationNode = ASTextNode()
-        locationNode!.attributedString = NSAttributedString(
-          string: location.name,
-          attributes: headerConfig.location.textAttributes)
-        locationNode!.userInteractionEnabled = true
-
-        addSubnode(locationNode)
-
-        if headerConfig.location.icon.enabled {
-          locationIconNode = ASImageNode()
-          locationIconNode?.backgroundColor = headerConfig.author.avatar.placeholderColor
-          locationIconNode?.image = headerConfig.location.icon.image
-
-          addSubnode(locationIconNode)
-        }
-      }
-    }
-
-    if headerConfig.date.enabled {
-      dateNode = ASTextNode()
-      dateNode!.attributedString = NSAttributedString(
-        string: config.wall.stringFromPostDate(date: post.publishDate),
-        attributes: headerConfig.date.textAttributes)
-      dateNode!.userInteractionEnabled = true
-
-      addSubnode(dateNode)
-    }
+    addSubnode(dateNode)
   }
 
   // MARK: - Layout
@@ -172,16 +89,13 @@ public class PostHeaderNode: WallPostHeaderNode {
     var x: CGFloat = 0
     var maxWidth = width
 
-    let avatarConfig = headerConfig.author.avatar
-    let authorConfig = headerConfig.author
-
     if let authorAvatarNode = authorAvatarNode {
       authorAvatarNode.frame = CGRect(
         x: x,
-        y: centerY(avatarConfig.size),
-        width: avatarConfig.size,
-        height: avatarConfig.size)
-      x += avatarConfig.size + authorConfig.horizontalPadding
+        y: centerY(Dimensions.avatarSize),
+        width: Dimensions.avatarSize,
+        height: Dimensions.avatarSize)
+      x += Dimensions.avatarSize + Dimensions.authorHorizontalPadding
     }
 
     var authorNameX = x
@@ -192,9 +106,9 @@ public class PostHeaderNode: WallPostHeaderNode {
         height: height))
 
     authorNameNode.frame = CGRect(
-      origin: CGPoint(x: x, y: firstRowY(size.height)),
+      origin: CGPoint(x: x, y: centerY(size.height)),
       size: size)
-    x += size.width + authorConfig.horizontalPadding
+    x += size.width + Dimensions.authorHorizontalPadding
 
     if let dateNode = dateNode {
       let size = dateNode.measure(
@@ -204,64 +118,7 @@ public class PostHeaderNode: WallPostHeaderNode {
       dateNode.frame = CGRect(
         origin: CGPoint(x: width - size.width, y: centerY(size.height)),
         size: size)
-      maxWidth -= size.width + authorConfig.horizontalPadding
-    }
-
-    if let groupNode = groupNode {
-      if let groupDivider = groupDivider {
-        let dividerSize = groupDivider.measure(
-          CGSize(
-            width: CGFloat(FLT_MAX),
-            height: height))
-
-        let groupSize = groupNode.measure(
-          CGSize(
-            width: CGFloat(FLT_MAX),
-            height: height))
-        let dividerY = firstRowY(groupSize.height) +
-          (groupSize.height - dividerSize.height) / 2
-
-        groupDivider.frame = CGRect(
-          origin: CGPoint(x: x, y: dividerY),
-          size: dividerSize)
-        x += dividerSize.width + authorConfig.horizontalPadding
-      }
-
-      maxWidth -= x
-
-      let size = groupNode.measure(
-        CGSize(
-          width: maxWidth,
-          height: height))
-      let textSize = groupNode.attributedString.size()
-      let groupY = textSize.width > size.width ? centerY(size.height) :
-        firstRowY(size.height)
-
-      groupNode.frame = CGRect(
-        origin: CGPoint(x: x, y: groupY),
-        size: size)
-    }
-
-    if let locationNode = locationNode {
-      let size = locationNode.measure(
-        CGSize(
-          width: CGFloat(FLT_MAX),
-          height: height))
-
-      let rowY = secondRowY
-      if let locationIconNode = locationIconNode {
-        let iconConfig = headerConfig.location.icon
-
-        let iconY = rowY + (size.height - iconConfig.size) / 2
-
-        locationIconNode.frame = CGRect(x: authorNameX, y: iconY,
-          width: iconConfig.size, height: iconConfig.size)
-        authorNameX += iconConfig.size + iconConfig.padding
-      }
-
-      locationNode.frame = CGRect(
-        origin: CGPoint(x: authorNameX, y: rowY),
-        size: size)
+      maxWidth -= size.width + Dimensions.authorHorizontalPadding
     }
   }
 
@@ -269,11 +126,5 @@ public class PostHeaderNode: WallPostHeaderNode {
 
   private func centerY(height: CGFloat) -> CGFloat {
     return (self.height - height) / 2
-  }
-
-  private func firstRowY(height: CGFloat) -> CGFloat {
-    return self.locationNode != nil ?
-      self.height / 2 - height - headerConfig.author.verticalPadding :
-      centerY(height)
   }
 }

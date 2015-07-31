@@ -3,30 +3,28 @@ import AsyncDisplayKit
 
 public class CounterNode: ASDisplayNode {
 
-  public let config: Config
-
   public var size: CGSize
   public var textNode: ASTextNode
 
-  private var counterConfig: Config.Wall.Post.Attachments.Counter {
-    return config.wall.post.attachments.counter
-  }
-
   // MARK: - Initialization
 
-  public init(config: Config, size: CGSize, count: Int, totalCount: Int) {
-    self.config = config
+  public init(size: CGSize, count: Int, totalCount: Int) {
     self.size = size
 
     textNode = ASTextNode()
     super.init()
 
-    backgroundColor = counterConfig.backgroundColor
+    backgroundColor = UIColor(white: 0, alpha: 0.5)
 
     let paragraphStyle = NSMutableParagraphStyle()
     paragraphStyle.alignment = .Center
-    var attributes = counterConfig.textAttributes
-    attributes[NSParagraphStyleAttributeName] = paragraphStyle
+
+    var attributes = [
+      NSFontAttributeName: UIFont.systemFontOfSize(34),
+      NSForegroundColorAttributeName: UIColor.whiteColor(),
+      NSParagraphStyleAttributeName: paragraphStyle
+    ]
+
     let text = "+\(totalCount - count)"
 
     textNode.attributedString = NSAttributedString(

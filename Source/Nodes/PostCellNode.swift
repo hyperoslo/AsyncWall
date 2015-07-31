@@ -29,7 +29,7 @@ public class PostCellNode: WallCellNode {
   public required init(post: Post, index: Int, width: CGFloat, delegate: PostCellNodeDelegate? = nil) {
     super.init(post: post, index: index, width: width, delegate: delegate)
 
-    headerNode = PostHeaderNode(config: config, post: post, width: contentWidth)
+    headerNode = PostHeaderNode(post: post, width: contentWidth)
     headerNode!.userInteractionEnabled = true
     addSubnode(headerNode)
 
@@ -37,7 +37,6 @@ public class PostCellNode: WallCellNode {
       var gridWidth = gridWidthForAttachmentCount(post.attachments.count)
 
       attachmentGridNode = AttachmentGridNode(
-        config: config,
         attachments: post.attachments,
         width: gridWidth)
       attachmentGridNode!.userInteractionEnabled = true
@@ -259,7 +258,7 @@ public class PostCellNode: WallCellNode {
     var gridWidth = contentWidth
 
     if let config = config {
-      let gridType = config.wall.post.attachments.gridType
+      let gridType = attachmentGridNode?.gridType
 
       if gridType == .FullWidth {
         gridWidth = width

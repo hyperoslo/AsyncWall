@@ -2,7 +2,7 @@ import UIKit
 import AsyncDisplayKit
 
 public protocol PostableHeaderCellNode {
-  init(config: Config, post: Post, width: CGFloat)
+  init(post: Post, width: CGFloat)
 }
 
 public class WallPostHeaderNode: ASDisplayNode, PostableHeaderCellNode {

@@ -25,20 +25,11 @@ public class Config {
 
   public struct Wall {
 
-    public lazy var dateFormatter: NSDateFormatter = {
-      let dateFormatter = NSDateFormatter()
-      dateFormatter.dateFormat = "MM-dd"
-      return dateFormatter
-      }()
+    
 
     public static var thumbnailForAttachment: (attachment: Attachable, size: CGSize) -> URLStringConvertible? = {
       (attachment: Attachable, size: CGSize) -> URLStringConvertible? in
       return attachment.thumbnail
-    }
-
-    public lazy var stringFromPostDate: (date: NSDate) -> String = {
-      (date: NSDate) -> String in
-      return self.dateFormatter.stringFromDate(date)
     }
 
     public var post = Post()

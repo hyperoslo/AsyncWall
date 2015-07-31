@@ -17,17 +17,6 @@ public class AttachmentGridNode: ASControlNode {
   public var gridType = GridType.Regular
   public var counterEnabled = true
 
-  public var counter = Counter()
-
-  public struct Counter {
-    public var enabled = true
-    public var backgroundColor = UIColor(white: 0, alpha: 0.5)
-    public var textAttributes = [
-      NSFontAttributeName: UIFont.systemFontOfSize(34),
-      NSForegroundColorAttributeName: UIColor.whiteColor()
-    ]
-  }
-
   // MARK: - Nodes
 
   public var imageNodes = [ASImageNode]()
@@ -47,7 +36,7 @@ public class AttachmentGridNode: ASControlNode {
 
   // MARK: - Initialization
 
-  public init(config: Config, attachments: [AttachmentConvertible], width: CGFloat) {
+  public init(attachments: [AttachmentConvertible], width: CGFloat) {
     let totalCount = attachments.count
     self.attachments = totalCount < 4 ? attachments : Array(attachments[0..<3])
     self.width = width
@@ -60,7 +49,7 @@ public class AttachmentGridNode: ASControlNode {
       imageNode.backgroundColor = .grayColor()
       let imageSize = sizeForThumbnailAtIndex(index)
 
-      if let thumbnail = config.wall.thumbnailForAttachment(
+      if let thumbnail = Config.Wall.thumbnailForAttachment(
         attachment: attachment.wallModel,
         size: CGSize(
           width: imageSize.width,
@@ -79,7 +68,6 @@ public class AttachmentGridNode: ASControlNode {
     if counterEnabled && totalCount > 3 {
       if let lastImageSize = lastImageSize {
         counterNode = CounterNode(
-          config: config,
           size: lastImageSize,
           count: imageNodes.count,
           totalCount: totalCount)
