@@ -12,13 +12,13 @@ extension WallController: ASCollectionViewDataSource {
   }
 
   public func collectionView(collectionView: ASCollectionView!, nodeForItemAtIndexPath indexPath: NSIndexPath!) -> ASCellNode! {
-    var CellClass = config.wall.post.CellClass
+    var CellClass = config.post.CellClass
     var index = indexPath.row
 
     if let post = post {
       CellClass = indexPath.row > 0
-        ? config.wall.comment.CellClass
-        : config.wall.post.CellClass
+        ? config.comment.CellClass
+        : config.post.CellClass
       index = indexPath.row > 0 ? indexPath.row - 1 : 0
     }
 

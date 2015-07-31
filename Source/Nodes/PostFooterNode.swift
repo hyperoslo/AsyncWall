@@ -6,7 +6,6 @@ public class PostFooterNode: ASDisplayNode {
   // MARK: - Configuration
 
   public let width: CGFloat
-  public let config: Config
 
   public var height: CGFloat = 40
   public var horizontalPadding: CGFloat = 10
@@ -19,10 +18,8 @@ public class PostFooterNode: ASDisplayNode {
 
   // MARK: - Initialization
 
-  public init(config: Config, post: Post, width: CGFloat) {
+  public init(post: Post, width: CGFloat) {
     self.width = width
-    self.config = config
-
     super.init()
 
     let likeCountString = String.localizedStringWithFormat(

@@ -10,7 +10,6 @@ public class WallCellNode: ASCellNode, PostableCellNode {
   public var post: Post
   public let index: Int
   public let width: CGFloat
-  public var config: Config?
   weak public var delegate: PostCellNodeDelegate?
 
   // MARK: - Initialization
@@ -20,7 +19,6 @@ public class WallCellNode: ASCellNode, PostableCellNode {
     self.index = index
     self.width = width
     self.delegate = delegate
-    self.config = self.delegate?.config
 
     super.init()
   }

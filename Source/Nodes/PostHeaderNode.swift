@@ -57,7 +57,7 @@ public class PostHeaderNode: WallPostHeaderNode {
         authorAvatarNode?.clipsToBounds = true
         authorAvatarNode!.userInteractionEnabled = true
 
-        if let thumbnail = Config.Wall.thumbnailForAttachment(
+        if let thumbnail = Config.thumbnailForAttachment(
           attachment: avatar,
           size: CGSize(width: Dimensions.avatarSize, height: Dimensions.avatarSize)) {
             authorAvatarNode?.fetchImage(thumbnail.url)

@@ -5,14 +5,13 @@ class PostFooterNodeSpec: QuickSpec {
 
   override func spec() {
     describe("PostFooterNode") {
-      let config = Config()
       let width: CGFloat = 320
       let post = SpecHelper.post
 
       var node: PostFooterNode!
 
       beforeEach {
-        node = PostFooterNode(config: config, post: post, width: width)
+        node = PostFooterNode(post: post, width: width)
       }
 
       describe("#init") {

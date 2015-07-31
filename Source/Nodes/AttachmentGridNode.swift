@@ -49,7 +49,7 @@ public class AttachmentGridNode: ASControlNode {
       imageNode.backgroundColor = .grayColor()
       let imageSize = sizeForThumbnailAtIndex(index)
 
-      if let thumbnail = Config.Wall.thumbnailForAttachment(
+      if let thumbnail = Config.thumbnailForAttachment(
         attachment: attachment.wallModel,
         size: CGSize(
           width: imageSize.width,
