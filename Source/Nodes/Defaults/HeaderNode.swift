@@ -3,15 +3,12 @@ import AsyncDisplayKit
 
 public class HeaderNode: PostComponentNode {
 
-  struct Dimensions {
-    static let avatarSize: CGFloat = 32
-    static let authorHorizontalPadding: CGFloat = 5
-    static let authorVerticalPadding: CGFloat = 1
-  }
-
   // MARK: - Configuration
 
   public var height: CGFloat = 40
+  public var avatarSize: CGFloat = 32
+  public var authorHorizontalPadding: CGFloat = 5
+  public var authorVerticalPadding: CGFloat = 1
 
   public lazy var dateFormatter: NSDateFormatter = {
     let dateFormatter = NSDateFormatter()
@@ -22,59 +19,63 @@ public class HeaderNode: PostComponentNode {
 
   // MARK: - Nodes
 
-  public var authorNameNode = ASTextNode()
-  public var authorAvatarNode: ASImageNode?
-  public var groupNode: ASTextNode?
-  public var locationNode: ASTextNode?
-  public var dateNode: ASTextNode?
+  public lazy var authorNameNode: ASTextNode = { [unowned self] in
+    let node = ASTextNode()
+
+    if let author = self.post.author?.wallModel {
+      node.attributedString = NSAttributedString(
+        string: author.name,
+        attributes: [
+          NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
+          NSForegroundColorAttributeName: UIColor.blackColor()
+        ])
+      node.userInteractionEnabled = true
+    }
+
+    return node
+    }()
+
+  public lazy var authorAvatarNode: ASImageNode = { [unowned self] in
+    let node = ASImageNode()
+
+    if let author = self.post.author, avatar = author.wallModel.image {
+      node.backgroundColor = .grayColor()
+      node.cornerRadius = self.avatarSize / 2
+      node.clipsToBounds = true
+      node.userInteractionEnabled = true
+
+      if let thumbnail = Config.thumbnailForAttachment(
+        attachment: avatar,
+        size: CGSize(width: self.avatarSize, height: self.avatarSize)) {
+          node.fetchImage(thumbnail.url)
+      }
+    }
+
+    return node
+    }()
+
+  public lazy var dateNode: ASTextNode = { [unowned self] in
+    let node = ASTextNode()
+
+    node.attributedString = NSAttributedString(
+      string: self.dateFormatter.stringFromDate(self.post.publishDate),
+      attributes: [
+        NSFontAttributeName: UIFont.systemFontOfSize(12),
+        NSForegroundColorAttributeName: UIColor.grayColor()
+      ])
+    node!.userInteractionEnabled = true
+
+    return node
+  }()
 
   private var secondRowY: CGFloat {
-    return height / 2 + Dimensions.authorVerticalPadding
+    return height / 2 + authorVerticalPadding
   }
 
   // MARK: - ConfigurableNode
 
   public override func configureNode() {
-    if let author = post.author {
-      let user = author.wallModel
-
-      authorNameNode.attributedString = NSAttributedString(
-        string: user.name,
-        attributes: [
-          NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
-          NSForegroundColorAttributeName: UIColor.blackColor()
-        ])
-      authorNameNode.userInteractionEnabled = true
-
-      addSubnode(authorNameNode)
-
-      if let avatar = user.image {
-        authorAvatarNode = ASImageNode()
-        authorAvatarNode?.backgroundColor = .grayColor()
-        authorAvatarNode?.cornerRadius = Dimensions.avatarSize / 2
-        authorAvatarNode?.clipsToBounds = true
-        authorAvatarNode!.userInteractionEnabled = true
-
-        if let thumbnail = Config.thumbnailForAttachment(
-          attachment: avatar,
-          size: CGSize(width: Dimensions.avatarSize, height: Dimensions.avatarSize)) {
-            authorAvatarNode?.fetchImage(thumbnail.url)
-        }
-
-        addSubnode(authorAvatarNode)
-      }
-    }
-
-    dateNode = ASTextNode()
-    dateNode!.attributedString = NSAttributedString(
-      string: dateFormatter.stringFromDate(post.publishDate),
-      attributes: [
-        NSFontAttributeName: UIFont.systemFontOfSize(12),
-        NSForegroundColorAttributeName: UIColor.grayColor()
-      ])
-    dateNode!.userInteractionEnabled = true
-    
-    addSubnode(dateNode)
+    [authorNameNode, authorAvatarNode, dateNode].map { self.addSubnode($0) }
   }
 
   // MARK: - Layout
@@ -85,39 +86,33 @@ public class HeaderNode: PostComponentNode {
 
   override public func layout() {
     var x: CGFloat = 0
-    var maxWidth = width
 
-    if let authorAvatarNode = authorAvatarNode {
-      authorAvatarNode.frame = CGRect(
-        x: x,
-        y: centerY(Dimensions.avatarSize),
-        width: Dimensions.avatarSize,
-        height: Dimensions.avatarSize)
-      x += Dimensions.avatarSize + Dimensions.authorHorizontalPadding
-    }
+    authorAvatarNode.frame = CGRect(
+      x: x,
+      y: centerY(avatarSize),
+      width: avatarSize,
+      height: avatarSize)
+    x += avatarSize + authorHorizontalPadding
 
-    var authorNameX = x
-
-    let size = authorNameNode.measure(
+    let authorNameSize = authorNameNode.measure(
       CGSize(
         width: CGFloat(FLT_MAX),
         height: height))
 
     authorNameNode.frame = CGRect(
-      origin: CGPoint(x: x, y: centerY(size.height)),
-      size: size)
-    x += size.width + Dimensions.authorHorizontalPadding
+      origin: CGPoint(x: x, y: centerY(authorNameSize.height)),
+      size: authorNameSize)
+    x += authorNameSize.width + authorHorizontalPadding
 
-    if let dateNode = dateNode {
-      let size = dateNode.measure(
-        CGSize(
-          width: CGFloat(FLT_MAX),
-          height: height))
-      dateNode.frame = CGRect(
-        origin: CGPoint(x: width - size.width, y: centerY(size.height)),
-        size: size)
-      maxWidth -= size.width + Dimensions.authorHorizontalPadding
-    }
+    let dateNodesize = dateNode.measure(
+      CGSize(
+        width: CGFloat(FLT_MAX),
+        height: height))
+    dateNode.frame = CGRect(
+      origin: CGPoint(
+        x: width - dateNodesize.width,
+        y: centerY(dateNodesize.height)),
+      size: dateNodesize)
   }
 
   // MARK: - Private Methods

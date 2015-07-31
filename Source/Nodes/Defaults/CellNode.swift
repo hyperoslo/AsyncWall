@@ -9,93 +9,102 @@ public class CellNode: PostCellNode {
   public var verticalPadding: CGFloat = 10
   public var dividerHeight: CGFloat = 1
 
-  public var footerEnabled = true
-  public var actionBarEnabled = true
-  public var dividerEnabled = true
-
   public var contentWidth: CGFloat {
     return width - 2 * horizontalPadding
   }
 
+  public var hasAttachments: Bool {
+    return post.attachments.count > 0
+  }
+
+  public var hasText: Bool {
+    return post.text.isEmpty
+  }
+
   // MARK: - Nodes
 
-  public var headerNode: HeaderNode?
-  public var attachmentGridNode: AttachmentGridNode?
-  public var textNode: ASTextNode?
-  public var footerNode: FooterNode?
-  public var actionBarNode: ActionBarNode?
-  public var divider: ASDisplayNode?
+  public lazy var headerNode: HeaderNode = { [unowned self] in
+    let node = HeaderNode(post: self.post, width: self.contentWidth)
+    node.userInteractionEnabled = true
+
+    return node
+  }()
+
+  public lazy var attachmentGridNode: AttachmentGridNode = { [unowned self] in
+    var gridWidth = self.gridWidthForAttachmentCount(self.post.attachments.count)
+
+    let node = AttachmentGridNode(
+      post: self.post,
+      width: gridWidth)
+    node.userInteractionEnabled = true
+
+    return node
+  }()
+
+  public lazy var textNode: ASTextNode = { [unowned self] in
+    let node = ASTextNode()
+
+    node.attributedString = NSAttributedString(
+      string: self.post.text,
+      attributes: [
+        NSFontAttributeName: UIFont.systemFontOfSize(14),
+        NSForegroundColorAttributeName: UIColor.grayColor()
+      ])
+    node.userInteractionEnabled = true
+
+    return node
+  }()
+
+  public lazy var footerNode: FooterNode = { [unowned self] in
+    let node = FooterNode(post: self.post, width: self.contentWidth)
+    node.userInteractionEnabled = true
+
+    return node
+  }()
+
+  public lazy var actionBarNode: ActionBarNode = { [unowned self] in
+    let node = ActionBarNode(post: self.post, width: self.contentWidth)
+    return node
+  }()
+
+  public lazy var divider: ASDisplayNode = { [unowned self] in
+    let divider = ASDisplayNode()
+    divider.backgroundColor = .lightGrayColor()
+
+    return divider
+  }()
 
   // MARK: - ConfigurableNode
 
   public override func configureNode() {
     backgroundColor = .whiteColor()
 
-    headerNode = HeaderNode(post: post, width: contentWidth)
-    headerNode!.userInteractionEnabled = true
-    addSubnode(headerNode)
+    var actionNodes = [ASControlNode?]()
 
-    if post.attachments.count > 0 {
-      var gridWidth = gridWidthForAttachmentCount(post.attachments.count)
+    [headerNode, footerNode, actionBarNode, divider].map {
+      self.addSubnode($0)
+    }
 
-      attachmentGridNode = AttachmentGridNode(
-        post: post,
-        width: gridWidth)
-      attachmentGridNode!.userInteractionEnabled = true
+    [headerNode.authorNameNode, headerNode.authorAvatarNode, headerNode.dateNode,
+      footerNode.likesNode, footerNode.commentsNode, footerNode.seenNode,
+      actionBarNode.likeControlNode, actionBarNode.commentControlNode].map {
+        actionNodes.append($0)
+    }
 
+    if hasAttachments {
       addSubnode(attachmentGridNode)
+      actionNodes.append(attachmentGridNode)
     }
 
-    if !post.text.isEmpty {
-      textNode = ASTextNode()
-      textNode!.attributedString = NSAttributedString(
-        string: post.text,
-        attributes: [
-          NSFontAttributeName: UIFont.systemFontOfSize(14),
-          NSForegroundColorAttributeName: UIColor.grayColor()
-        ])
-      textNode!.userInteractionEnabled = true
-
+    if hasText {
       addSubnode(textNode)
+      actionNodes.append(textNode)
     }
-
-    if footerEnabled {
-      footerNode = FooterNode(post: post, width: contentWidth)
-      footerNode!.userInteractionEnabled = true
-
-      addSubnode(footerNode)
-    }
-
-    if actionBarEnabled {
-      actionBarNode = ActionBarNode(post: post, width: contentWidth)
-      addSubnode(actionBarNode)
-    }
-
-    let actionNodes = [
-      headerNode?.authorNameNode,
-      headerNode?.authorAvatarNode,
-      headerNode?.groupNode,
-      headerNode?.dateNode,
-      headerNode?.locationNode,
-      attachmentGridNode,
-      textNode,
-      footerNode?.likesNode,
-      footerNode?.commentsNode,
-      footerNode?.seenNode,
-      actionBarNode?.likeControlNode,
-      actionBarNode?.commentControlNode
-    ]
 
     for actionNode in actionNodes {
       actionNode?.addTarget(self,
         action: "tapAction:",
         forControlEvents: ASControlNodeEvent.TouchUpInside)
-    }
-
-    if dividerEnabled {
-      divider = ASDisplayNode()
-      divider!.backgroundColor = .lightGrayColor()
-      addSubnode(divider)
     }
   }
 
@@ -105,28 +114,24 @@ public class CellNode: PostCellNode {
     if let delegate = delegate {
       var tappedElement: TappedElement?
 
-      if sender.isEqual(headerNode?.authorNameNode)
-        || sender.isEqual(headerNode?.authorAvatarNode) {
+      if sender.isEqual(headerNode.authorNameNode)
+        || sender.isEqual(headerNode.authorAvatarNode) {
           tappedElement = .Author
-      } else if sender.isEqual(headerNode?.groupNode) {
-        tappedElement = .Group
-      } else if sender.isEqual(headerNode?.dateNode) {
+      } else if sender.isEqual(headerNode.dateNode) {
         tappedElement = .Date
-      } else if sender.isEqual(headerNode?.locationNode) {
-        tappedElement = .Location
       } else if sender.isEqual(attachmentGridNode) {
         tappedElement = .Attachment
       } else if sender.isEqual(textNode) {
         tappedElement = .Text
-      } else if sender.isEqual(footerNode?.likesNode) {
+      } else if sender.isEqual(footerNode.likesNode) {
         tappedElement = .Likes
-      } else if sender.isEqual(footerNode?.commentsNode) {
+      } else if sender.isEqual(footerNode.commentsNode) {
         tappedElement = .Comments
-      } else if sender.isEqual(footerNode?.seenNode) {
+      } else if sender.isEqual(footerNode.seenNode) {
         tappedElement = .Seen
-      } else if sender.isEqual(actionBarNode?.likeControlNode) {
+      } else if sender.isEqual(actionBarNode.likeControlNode) {
         tappedElement = .LikeButton
-      } else if sender.isEqual(actionBarNode?.commentControlNode) {
+      } else if sender.isEqual(actionBarNode.commentControlNode) {
         tappedElement = .CommentButton
       }
 
@@ -142,36 +147,21 @@ public class CellNode: PostCellNode {
     var height: CGFloat = 0
     var paddingCount = 0
 
-    if let headerNode = headerNode {
-      height += headerNode.height
-      paddingCount++
-    }
+    height += headerNode.height + footerNode.height + actionBarNode.height + dividerHeight
+    paddingCount++
 
-    if let attachmentGridNode = attachmentGridNode {
+    if hasAttachments {
       height += attachmentGridNode.height
       paddingCount++
     }
 
-    if let textNode = textNode {
-      let size = textNode.measure(CGSize(
-        width: contentWidth,
-        height: CGFloat(FLT_MAX)))
+    if hasText {
+      let size = textNode.measure(
+        CGSize(
+          width: contentWidth,
+          height: CGFloat(FLT_MAX)))
       height += size.height
       paddingCount++
-    }
-
-    if let footerNode = footerNode {
-      height += footerNode.height
-    } else {
-      paddingCount++
-    }
-
-    if let actionBarNode = actionBarNode {
-      height += actionBarNode.height
-    }
-
-    if let divider = divider {
-      height += dividerHeight
     }
 
     height += CGFloat(paddingCount) * verticalPadding
@@ -182,16 +172,14 @@ public class CellNode: PostCellNode {
   override public func layout() {
     var y = verticalPadding
 
-    if let headerNode = headerNode {
-      headerNode.frame = CGRect(
-        x: horizontalPadding,
-        y: y,
-        width: headerNode.width,
-        height: headerNode.height)
-      y += headerNode.height + verticalPadding
-    }
+    headerNode.frame = CGRect(
+      x: horizontalPadding,
+      y: y,
+      width: headerNode.width,
+      height: headerNode.height)
+    y += headerNode.height + verticalPadding
 
-    if let attachmentGridNode = attachmentGridNode {
+    if hasAttachments {
       attachmentGridNode.frame = CGRect(
         x: attachmentGridNode.width < width ? horizontalPadding : 0,
         y: y,
@@ -201,7 +189,7 @@ public class CellNode: PostCellNode {
       y += attachmentGridNode.height + verticalPadding
     }
 
-    if let textNode = textNode {
+    if hasText {
       let size = textNode.calculatedSize
       textNode.frame = CGRect(
         origin: CGPoint(x: horizontalPadding, y: y),
@@ -210,33 +198,25 @@ public class CellNode: PostCellNode {
       y += size.height + verticalPadding
     }
 
-    if let footerNode = footerNode {
-      footerNode.frame = CGRect(
-        x: horizontalPadding,
-        y: y,
-        width: footerNode.width,
-        height: footerNode.height)
-      y += footerNode.height
-    } else {
-      y += verticalPadding
-    }
+    footerNode.frame = CGRect(
+      x: horizontalPadding,
+      y: y,
+      width: footerNode.width,
+      height: footerNode.height)
+    y += footerNode.height
 
-    if let actionBarNode = actionBarNode {
-      actionBarNode.frame = CGRect(
-        x: horizontalPadding,
-        y: y,
-        width: contentWidth,
-        height: actionBarNode.height)
-      y += actionBarNode.height
-    }
+    actionBarNode.frame = CGRect(
+      x: horizontalPadding,
+      y: y,
+      width: contentWidth,
+      height: actionBarNode.height)
+    y += actionBarNode.height
 
-    if let divider = divider {
-      divider.frame = CGRect(
-        x: horizontalPadding,
-        y: y,
-        width: contentWidth,
-        height: dividerHeight)
-    }
+    divider.frame = CGRect(
+      x: horizontalPadding,
+      y: y,
+      width: contentWidth,
+      height: dividerHeight)
   }
 
   // MARK: - Helper Methods
@@ -244,7 +224,7 @@ public class CellNode: PostCellNode {
   private func gridWidthForAttachmentCount(count: Int) -> CGFloat {
     var gridWidth = contentWidth
 
-    let gridType = attachmentGridNode?.gridType
+    let gridType = attachmentGridNode.gridType
 
     if gridType == .FullWidth {
       gridWidth = width

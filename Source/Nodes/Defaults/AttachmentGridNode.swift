@@ -74,6 +74,7 @@ public class AttachmentGridNode: PostComponentNode {
           size: lastImageSize,
           count: imageNodes.count,
           totalCount: totalCount)
+        
         addSubnode(counterNode)
       }
     }

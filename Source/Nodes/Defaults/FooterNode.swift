@@ -10,58 +10,60 @@ public class FooterNode: PostComponentNode {
 
   // MARK: - Nodes
 
-  public lazy var likesNode = ASTextNode()
-  public var commentsNode = ASTextNode()
-  public var seenNode = ASTextNode()
-
-  // MARK: - Initialization
-
-  public required init(post: Post, width: CGFloat) {
-    super.init(post: post, width: width)
-
+  public lazy var likesNode: ASTextNode = { [unowned self] in
+    let node = ASTextNode()
     let likeCountString = String.localizedStringWithFormat(
       NSLocalizedString("%d like(s)", comment: ""),
-      post.likeCount)
+      self.post.likeCount)
 
-    likesNode = ASTextNode()
-    likesNode.attributedString = NSAttributedString(
+    node.attributedString = NSAttributedString(
       string: likeCountString,
       attributes: [
         NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
         NSForegroundColorAttributeName: UIColor.blackColor()
       ])
-    likesNode.userInteractionEnabled = true
+    node.userInteractionEnabled = true
 
-    addSubnode(likesNode)
+    return node
+  }()
 
+  public lazy var commentsNode: ASTextNode = { [unowned self] in
+    let node = ASTextNode()
     let commentCountString = String.localizedStringWithFormat(
       NSLocalizedString("%d comment(s)", comment: ""),
-      post.commentCount)
+      self.post.commentCount)
 
-    commentsNode = ASTextNode()
-    commentsNode.attributedString = NSAttributedString(
+    node.attributedString = NSAttributedString(
       string: commentCountString,
       attributes: [
         NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
         NSForegroundColorAttributeName: UIColor.blackColor()
       ])
-    commentsNode.userInteractionEnabled = true
+    node.userInteractionEnabled = true
 
-    addSubnode(commentsNode)
+    return node
+  }()
 
+  public lazy var seenNode: ASTextNode = { [unowned self] in
+    let node = ASTextNode()
     let seenString = NSLocalizedString("Seen by", comment: "")
-      + "\(post.seenCount)"
+      + "\(self.post.seenCount)"
 
-    seenNode = ASTextNode()
-    seenNode.attributedString = NSAttributedString(
+    node.attributedString = NSAttributedString(
       string: seenString,
       attributes: [
         NSFontAttributeName: UIFont.italicSystemFontOfSize(12),
         NSForegroundColorAttributeName: UIColor.grayColor()
       ])
-    seenNode.userInteractionEnabled = true
+    node.userInteractionEnabled = true
 
-    addSubnode(seenNode)
+    return node
+  }()
+
+  // MARK: - ConfigurableNode
+
+  public override func configureNode() {
+    [likesNode, commentsNode, seenNode].map { self.addSubnode($0) }
   }
 
   // MARK: - Layout
