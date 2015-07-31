@@ -1,7 +1,7 @@
 PODS:
-  - AsyncDisplayKit (1.2.2):
-    - AsyncDisplayKit/ASDealloc2MainObject (= 1.2.2)
-  - AsyncDisplayKit/ASDealloc2MainObject (1.2.2)
+  - AsyncDisplayKit (1.2.3):
+    - AsyncDisplayKit/ASDealloc2MainObject (= 1.2.3)
+  - AsyncDisplayKit/ASDealloc2MainObject (1.2.3)
   - Faker (0.1.0):
     - SwiftyJSON (~> 2.2.0)
   - HanekeSwift (0.9.1)
@@ -34,11 +34,11 @@ CHECKOUT OPTIONS:
     :git: https://github.com/hyperoslo/Sugar
 
 SPEC CHECKSUMS:
-  AsyncDisplayKit: 6b943f45844558fde1d82468820dbefcc77c7271
+  AsyncDisplayKit: 5c8f38225f7478e39c48196cec0dd0d2ac3455ed
   Faker: ec2361307c261ae4b26c8da20b127d416faf0ebd
   HanekeSwift: 50d37bfbc4432edc649167e538c259feccb4a2bb
   Sugar: d33f2a3ae10e40c14eb49a2e859f12e82e614817
   SwiftyJSON: 0b3e6c07af17ff745e77e8e9984097b55c956e5c
   Wall: bd9e0a46f4826fbbd5692c68a7cc3a5adc1ae834
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.38.2

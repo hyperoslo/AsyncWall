@@ -1,14 +1,7 @@
 import UIKit
 import AsyncDisplayKit
 
-public class PostCellNode: ASCellNode {
-
-  public var post: Post
-  public let index: Int
-  public let width: CGFloat
-  public var config: Config?
-
-  weak public var delegate: PostCellNodeDelegate?
+public class PostCellNode: WallCellNode {
 
   public var headerNode: PostHeaderNode?
   public var attachmentGridNode: AttachmentGridNode?
@@ -27,14 +20,8 @@ public class PostCellNode: ASCellNode {
 
   // MARK: - Initialization
 
-  public init(post: Post, index: Int, width: CGFloat, delegate: PostCellNodeDelegate? = nil) {
-    self.post = post
-    self.index = index
-    self.width = width
-    self.delegate = delegate
-    self.config = self.delegate?.config
-
-    super.init()
+  public required init(post: Post, index: Int, width: CGFloat, delegate: PostCellNodeDelegate? = nil) {
+    super.init(post: post, index: index, width: width, delegate: delegate)
 
     if let config = config {
       let postConfig = config.wall.post

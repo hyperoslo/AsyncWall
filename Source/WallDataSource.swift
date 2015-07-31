@@ -12,30 +12,20 @@ extension WallController: ASCollectionViewDataSource {
   }
 
   public func collectionView(collectionView: ASCollectionView!, nodeForItemAtIndexPath indexPath: NSIndexPath!) -> ASCellNode! {
-    let cellNode: ASCellNode
+    var CellClass = config.wall.post.CellClass
+    var index = indexPath.row
 
     if let post = post {
-      if indexPath.row > 0 {
-        cellNode = CommentCellNode(
-          post: posts[indexPath.row].wallModel,
-          index: indexPath.row - 1,
-          width: collectionView.frame.width,
-          delegate: self)
-      } else {
-        cellNode = PostCellNode(
-          post: posts[indexPath.row].wallModel,
-          index: 0,
-          width: collectionView.frame.width,
-          delegate: self)
-      }
-    } else {
-      cellNode = PostCellNode(
-        post: posts[indexPath.row].wallModel,
-        index: indexPath.row,
-        width: collectionView.frame.width,
-        delegate: self)
+      CellClass = indexPath.row > 0
+        ? config.wall.comment.CellClass
+        : config.wall.post.CellClass
+      index = indexPath.row > 0 ? indexPath.row - 1 : 0
     }
 
-    return cellNode
+    return CellClass(
+      post: self.posts[indexPath.row].wallModel,
+      index: index,
+      width: collectionView.frame.width,
+      delegate: self)
   }
 }
