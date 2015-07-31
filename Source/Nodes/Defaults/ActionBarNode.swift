@@ -5,8 +5,11 @@ public class ActionBarNode: PostComponentNode {
 
   // MARK: - Configuration
 
-  public var height: CGFloat = 40
   public var dividerHeight: CGFloat = 1
+
+  public override var height: CGFloat {
+    return 40
+  }
 
   // MARK: - Nodes
 
@@ -44,6 +47,11 @@ public class ActionBarNode: PostComponentNode {
 
     return divider
   }()
+
+  public override var actionNodes: [TappedNode] {
+    return [(node: likeControlNode, element: .LikeButton),
+      (node: commentControlNode, element: .CommentButton)]
+  }
 
   // MARK: - ConfigurableNode
 

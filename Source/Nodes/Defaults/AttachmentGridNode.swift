@@ -14,14 +14,8 @@ public class AttachmentGridNode: PostComponentNode {
   public var ratio: CGFloat = 3 / 2
   public var padding: CGFloat = 10
   public var gridType = GridType.Regular
-  public var counterEnabled = true
 
-  // MARK: - Nodes
-
-  public var imageNodes = [ASImageNode]()
-  public var counterNode: CounterNode?
-
-  public var height: CGFloat {
+  public override var height: CGFloat {
     return width / ratio
   }
 
@@ -32,6 +26,11 @@ public class AttachmentGridNode: PostComponentNode {
   public var contentHeight: CGFloat {
     return height - padding
   }
+
+  // MARK: - Nodes
+
+  public var imageNodes = [ASImageNode]()
+  public var counterNode: CounterNode?
 
   // MARK: - Initialization
 
@@ -46,7 +45,8 @@ public class AttachmentGridNode: PostComponentNode {
 
   public override func configureNode() {
     var lastImageSize: CGSize?
-    for (index, attachment) in enumerate(self.attachments) {
+
+    for (index, attachment) in enumerate(attachments) {
       let imageNode = ASImageNode()
       imageNode.backgroundColor = .grayColor()
       let imageSize = sizeForThumbnailAtIndex(index)
@@ -68,7 +68,7 @@ public class AttachmentGridNode: PostComponentNode {
     }
 
     let totalCount = post.attachments.count
-    if counterEnabled && totalCount > 3 {
+    if totalCount > 3 {
       if let lastImageSize = lastImageSize {
         counterNode = CounterNode(
           size: lastImageSize,

@@ -1,7 +1,7 @@
 import UIKit
 
 public enum TappedElement {
-  case Author, Date, Text, Attachment,
+  case Post, Author, Date, Text, Attachment,
     Likes, Seen, Comments, LikeButton, CommentButton
 }
 

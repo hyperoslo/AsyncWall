@@ -23,8 +23,13 @@ public class CellNode: PostCellNode {
 
   // MARK: - Nodes
 
-  public lazy var headerNode: HeaderNode = { [unowned self] in
-    let node = HeaderNode(post: self.post, width: self.contentWidth)
+  public lazy var headerNode: PostComponentNode = { [unowned self] in
+    var HeaderClass: PostComponentNode.Type = HeaderNode.self
+    if let ConfigClass = self.config?.post.HeaderClass {
+      HeaderClass = ConfigClass
+    }
+
+    let node = HeaderClass(post: self.post, width: self.contentWidth)
     node.userInteractionEnabled = true
 
     return node
@@ -74,67 +79,45 @@ public class CellNode: PostCellNode {
     return divider
   }()
 
+  var actionNodes: [TappedNode] = []
+
   // MARK: - ConfigurableNode
 
   public override func configureNode() {
     backgroundColor = .whiteColor()
 
-    var actionNodes = [ASControlNode?]()
-
     [headerNode, footerNode, actionBarNode, divider].map {
       self.addSubnode($0)
     }
 
-    [headerNode.authorNameNode, headerNode.authorAvatarNode, headerNode.dateNode,
-      footerNode.likesNode, footerNode.commentsNode, footerNode.seenNode,
-      actionBarNode.likeControlNode, actionBarNode.commentControlNode].map {
-        actionNodes.append($0)
+    [headerNode, footerNode, actionBarNode].map {
+      $0.actionNodes.map {
+        self.actionNodes.append($0)
+      }
     }
 
     if hasAttachments {
       addSubnode(attachmentGridNode)
-      actionNodes.append(attachmentGridNode)
+      let tappedNode: TappedNode = (node: attachmentGridNode,
+        element: TappedElement.Attachment)
+      actionNodes.append(tappedNode)
     }
 
     if hasText {
       addSubnode(textNode)
-      actionNodes.append(textNode)
+      actionNodes.append((node: textNode, element: TappedElement.Text))
     }
 
-    for actionNode in actionNodes {
-      actionNode?.addTarget(self,
-        action: "tapAction:",
-        forControlEvents: ASControlNodeEvent.TouchUpInside)
-    }
+    actionNodes.map { $0.node.addTarget(self,
+      action: "tapAction:",
+      forControlEvents: ASControlNodeEvent.TouchUpInside) }
   }
 
   // MARK: - Actions
 
-  func tapAction(sender: ASDisplayNode) {
+  func tapAction(sender: ASControlNode) {
     if let delegate = delegate {
-      var tappedElement: TappedElement?
-
-      if sender.isEqual(headerNode.authorNameNode)
-        || sender.isEqual(headerNode.authorAvatarNode) {
-          tappedElement = .Author
-      } else if sender.isEqual(headerNode.dateNode) {
-        tappedElement = .Date
-      } else if sender.isEqual(attachmentGridNode) {
-        tappedElement = .Attachment
-      } else if sender.isEqual(textNode) {
-        tappedElement = .Text
-      } else if sender.isEqual(footerNode.likesNode) {
-        tappedElement = .Likes
-      } else if sender.isEqual(footerNode.commentsNode) {
-        tappedElement = .Comments
-      } else if sender.isEqual(footerNode.seenNode) {
-        tappedElement = .Seen
-      } else if sender.isEqual(actionBarNode.likeControlNode) {
-        tappedElement = .LikeButton
-      } else if sender.isEqual(actionBarNode.commentControlNode) {
-        tappedElement = .CommentButton
-      }
-
+      var tappedElement = actionNodes.filter({ sender.isEqual($0.node) }).first?.element
       if let tappedElement = tappedElement {
         delegate.cellNodeElementWasTapped(tappedElement, index: index)
       }

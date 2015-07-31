@@ -14,7 +14,8 @@ public class PostCellNode: ASCellNode, PostableCellNode, ConfigurableNode {
   public var post: Post
   public let index: Int
   public let width: CGFloat
-  weak public var delegate: PostCellNodeDelegate?
+  public weak var delegate: PostCellNodeDelegate?
+  public var config: Config?
 
   // MARK: - Initialization
 
@@ -23,6 +24,7 @@ public class PostCellNode: ASCellNode, PostableCellNode, ConfigurableNode {
     self.index = index
     self.width = width
     self.delegate = delegate
+    config = delegate?.config
 
     super.init()
   }

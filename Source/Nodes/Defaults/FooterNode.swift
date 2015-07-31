@@ -5,8 +5,11 @@ public class FooterNode: PostComponentNode {
 
   // MARK: - Configuration
 
-  public var height: CGFloat = 40
   public var horizontalPadding: CGFloat = 10
+
+  public override var height: CGFloat {
+    return 40
+  }
 
   // MARK: - Nodes
 
@@ -59,6 +62,12 @@ public class FooterNode: PostComponentNode {
 
     return node
   }()
+
+  public override var actionNodes: [TappedNode] {
+    return [(node: likesNode, element: .Likes),
+      (node: commentsNode, element: .Comments),
+      (node: seenNode, element: .Seen)]
+  }
 
   // MARK: - ConfigurableNode
 

@@ -5,10 +5,13 @@ public class HeaderNode: PostComponentNode {
 
   // MARK: - Configuration
 
-  public var height: CGFloat = 40
   public var avatarSize: CGFloat = 32
   public var authorHorizontalPadding: CGFloat = 5
   public var authorVerticalPadding: CGFloat = 1
+
+  public override var height: CGFloat {
+    return 40
+  }
 
   public lazy var dateFormatter: NSDateFormatter = {
     let dateFormatter = NSDateFormatter()
@@ -67,6 +70,12 @@ public class HeaderNode: PostComponentNode {
 
     return node
   }()
+
+  public override var actionNodes: [TappedNode] {
+    return [(node: authorNameNode, element: .Author),
+      (node: authorAvatarNode, element: .Author),
+      (node: dateNode, element: .Date)]
+  }
 
   private var secondRowY: CGFloat {
     return height / 2 + authorVerticalPadding
