@@ -48,9 +48,6 @@ public class Config {
       public var CellClass: WallCellNode.Type = PostCellNode.self
       public var HeaderClass: WallPostHeaderNode.Type = PostHeaderNode.self
 
-      public var horizontalPadding: CGFloat = 10
-      public var verticalPadding: CGFloat = 10
-      public var backgroundColor = UIColor.whiteColor()
       public var header = Header()
       public var attachments = Attachments()
       public var text = Text()

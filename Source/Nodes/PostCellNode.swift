@@ -3,6 +3,12 @@ import AsyncDisplayKit
 
 public class PostCellNode: WallCellNode {
 
+  // MARK: - Configuration
+  public var horizontalPadding: CGFloat = 10
+  public var verticalPadding: CGFloat = 10
+
+  // MARK: - Nodes
+
   public var headerNode: PostHeaderNode?
   public var attachmentGridNode: AttachmentGridNode?
   public var textNode: ASTextNode?
@@ -13,7 +19,7 @@ public class PostCellNode: WallCellNode {
   public var contentWidth: CGFloat {
     var contentWidth = width
     if let config = delegate?.config {
-      contentWidth = width - 2 * config.wall.post.horizontalPadding
+      contentWidth = width - 2 * horizontalPadding
     }
     return contentWidth
   }
@@ -26,7 +32,7 @@ public class PostCellNode: WallCellNode {
     if let config = config {
       let postConfig = config.wall.post
 
-      self.backgroundColor = postConfig.backgroundColor
+      self.backgroundColor = .whiteColor()
 
       if postConfig.header.enabled {
         headerNode = PostHeaderNode(config: config, post: post, width: contentWidth)
@@ -141,7 +147,6 @@ public class PostCellNode: WallCellNode {
     var height: CGFloat = 0
 
     if let config = config {
-      var verticalPadding = config.wall.post.verticalPadding
       var dividerHeight = config.wall.post.divider.height
       var paddingCount = 0
 
@@ -185,8 +190,6 @@ public class PostCellNode: WallCellNode {
 
   override public func layout() {
     if let config = config {
-      var horizontalPadding = config.wall.post.horizontalPadding
-      var verticalPadding = config.wall.post.verticalPadding
       var dividerHeight = config.wall.post.divider.height
 
       var y = verticalPadding
