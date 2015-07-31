@@ -32,11 +32,9 @@ public class HeaderNode: PostComponentNode {
     return height / 2 + Dimensions.authorVerticalPadding
   }
 
-  // MARK: - Initialization
+  // MARK: - ConfigurableNode
 
-  public required init(post: Post, width: CGFloat) {
-    super.init(post: post, width: width)
-
+  public override func configureNode() {
     if let author = post.author {
       let user = author.wallModel
 
@@ -75,7 +73,7 @@ public class HeaderNode: PostComponentNode {
         NSForegroundColorAttributeName: UIColor.grayColor()
       ])
     dateNode!.userInteractionEnabled = true
-
+    
     addSubnode(dateNode)
   }
 

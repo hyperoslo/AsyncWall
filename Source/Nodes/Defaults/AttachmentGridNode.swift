@@ -40,7 +40,11 @@ public class AttachmentGridNode: PostComponentNode {
     attachments = totalCount < 4 ? post.attachments : Array(post.attachments[0..<3])
 
     super.init(post: post, width: width)
+  }
 
+  // MARK: - ConfigurableNode
+
+  public override func configureNode() {
     var lastImageSize: CGSize?
     for (index, attachment) in enumerate(self.attachments) {
       let imageNode = ASImageNode()
@@ -63,6 +67,7 @@ public class AttachmentGridNode: PostComponentNode {
       }
     }
 
+    let totalCount = post.attachments.count
     if counterEnabled && totalCount > 3 {
       if let lastImageSize = lastImageSize {
         counterNode = CounterNode(

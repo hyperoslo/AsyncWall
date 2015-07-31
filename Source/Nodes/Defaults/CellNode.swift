@@ -26,11 +26,9 @@ public class CellNode: PostCellNode {
   public var actionBarNode: ActionBarNode?
   public var divider: ASDisplayNode?
 
-  // MARK: - Initialization
+  // MARK: - ConfigurableNode
 
-  public required init(post: Post, index: Int, width: CGFloat, delegate: PostCellNodeDelegate? = nil) {
-    super.init(post: post, index: index, width: width, delegate: delegate)
-
+  public override func configureNode() {
     backgroundColor = .whiteColor()
 
     headerNode = HeaderNode(post: post, width: contentWidth)

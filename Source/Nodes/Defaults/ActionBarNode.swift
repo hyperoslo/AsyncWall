@@ -45,12 +45,9 @@ public class ActionBarNode: PostComponentNode {
     return divider
   }()
 
+  // MARK: - ConfigurableNode
 
-  // MARK: - Initialization
-
-  public required init(post: Post, width: CGFloat) {
-    super.init(post: post, width: width)
-
+  public override func configureNode() {
     [divider, likeControlNode, commentControlNode].map { self.addSubnode($0) }
   }
 
