@@ -47,6 +47,8 @@ public class Config {
     public struct Post {
       public var CellClass: WallCellNode.Type = PostCellNode.self
 
+      public var HeaderClass
+
       public var horizontalPadding: CGFloat = 10
       public var verticalPadding: CGFloat = 10
       public var backgroundColor = UIColor.whiteColor()
