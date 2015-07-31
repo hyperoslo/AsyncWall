@@ -18,7 +18,7 @@
 		BDF029EE1B2192C900C5027C /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF029ED1B2192C900C5027C /* Group.swift */; };
 		D52CF6C31B17090A002B4A5A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CF6C21B17090A002B4A5A /* Config.swift */; };
 		D52CF6C51B170B06002B4A5A /* WallDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CF6C41B170B06002B4A5A /* WallDelegate.swift */; };
-		D535A2121B66DA95004A47B4 /* WallCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D535A2111B66DA95004A47B4 /* WallCellNode.swift */; };
+		D53A3D0B1B6BC305009602A8 /* WallCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A3D0A1B6BC305009602A8 /* WallCellNode.swift */; };
 		D54B81D81B17147700FB0197 /* PostCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B81D71B17147700FB0197 /* PostCellNode.swift */; };
 		D54B82061B175FCE00FB0197 /* Attachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B82011B175FCE00FB0197 /* Attachable.swift */; };
 		D54B82081B175FCE00FB0197 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B82031B175FCE00FB0197 /* Post.swift */; };
@@ -56,7 +56,7 @@
 		BDF029ED1B2192C900C5027C /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		D52CF6C21B17090A002B4A5A /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		D52CF6C41B170B06002B4A5A /* WallDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallDelegate.swift; sourceTree = "<group>"; };
-		D535A2111B66DA95004A47B4 /* WallCellNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallCellNode.swift; sourceTree = "<group>"; };
+		D53A3D0A1B6BC305009602A8 /* WallCellNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallCellNode.swift; sourceTree = "<group>"; };
 		D54B81D71B17147700FB0197 /* PostCellNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCellNode.swift; sourceTree = "<group>"; };
 		D54B82011B175FCE00FB0197 /* Attachable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachable.swift; sourceTree = "<group>"; };
 		D54B82031B175FCE00FB0197 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -174,9 +174,18 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		D53A3D091B6BC2CE009602A8 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				D53A3D0A1B6BC305009602A8 /* WallCellNode.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		D54B81D61B17147700FB0197 /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
+				D53A3D091B6BC2CE009602A8 /* Base */,
 				D54B820D1B1868B400FB0197 /* PostCellNodeDelegate.swift */,
 				D54B81D71B17147700FB0197 /* PostCellNode.swift */,
 				D5FE39C91B1C80A20034CD25 /* PostHeaderNode.swift */,
@@ -186,7 +195,6 @@
 				D577C3391B1B83C1002D8C3B /* CounterNode.swift */,
 				D558ECA61B1B48C50072D719 /* CommentCellNode.swift */,
 				D5A787B81B27B25E00472D32 /* ControlNode.swift */,
-				D535A2111B66DA95004A47B4 /* WallCellNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -365,7 +373,7 @@
 				D558ECA51B1B48B00072D719 /* AttachmentGridNode.swift in Sources */,
 				D5D238281B581E7B008AED97 /* Image.swift in Sources */,
 				D52CF6C51B170B06002B4A5A /* WallDelegate.swift in Sources */,
-				D535A2121B66DA95004A47B4 /* WallCellNode.swift in Sources */,
+				D53A3D0B1B6BC305009602A8 /* WallCellNode.swift in Sources */,
 				D5F318E31B21B4EB00DE9899 /* PostFooterNodeSpec.swift in Sources */,
 				BDA23F571B218F3B00595C31 /* CoordinateSpec.swift in Sources */,
 				D5D2382A1B581EBA008AED97 /* Video.swift in Sources */,
