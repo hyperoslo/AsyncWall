@@ -8,9 +8,6 @@ class ViewController: WallController {
 
     title = "app.net"
 
-    config.wall.post.footer.enabled = false
-    config.wall.post.actionBar.enabled = false
-
     Networking.fetchPosts { (json, error) -> Void in
       if (json != nil && error == nil) {
         var posts = [PostConvertible]()
