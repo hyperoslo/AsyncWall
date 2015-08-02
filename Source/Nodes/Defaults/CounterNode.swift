@@ -3,7 +3,7 @@ import AsyncDisplayKit
 
 public class CounterNode: ASDisplayNode {
 
-  public var size: CGSize
+  public let size: CGSize
   public var textNode: ASTextNode
 
   // MARK: - Initialization

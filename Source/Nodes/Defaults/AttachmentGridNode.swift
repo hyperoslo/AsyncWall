@@ -4,10 +4,11 @@ import AsyncDisplayKit
 public class AttachmentGridNode: PostComponentNode {
 
   public let attachments: [AttachmentConvertible]
-  public let ratio: CGFloat = 3 / 2
-  public let padding: CGFloat = 10
 
   // MARK: - Configuration
+
+  public var ratio: CGFloat = 3 / 2
+  public var padding: CGFloat = 10
 
   public override var height: CGFloat {
     return width / ratio
