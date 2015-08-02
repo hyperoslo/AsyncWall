@@ -85,7 +85,7 @@ public class CellNode: PostCellNode {
     return node
   }()
 
-  public lazy var divider: ASDisplayNode = { [unowned self] in
+  public lazy var divider: ASDisplayNode = {
     let divider = ASDisplayNode()
     divider.backgroundColor = .lightGrayColor()
 

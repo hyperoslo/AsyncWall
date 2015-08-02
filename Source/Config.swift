@@ -17,9 +17,9 @@ public class Config {
   public struct Post {
     public var CellClass: PostCellNode.Type = CellNode.self
     public var HeaderClass: PostComponentNode.Type = HeaderNode.self
+    public var AttachmentGridClass: PostComponentNode.Type = AttachmentGridNode.self
     public var FooterClass: PostComponentNode.Type = FooterNode.self
     public var ActionBarClass: PostComponentNode.Type = ActionBarNode.self
-    public var AttachmentGridClass: PostComponentNode.Type = AttachmentGridNode.self
   }
 
   public struct Comment {

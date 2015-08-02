@@ -9,6 +9,12 @@ public protocol PostableCellNode {
   init(post: Post, index: Int, width: CGFloat, delegate: PostCellNodeDelegate?)
 }
 
+public protocol PostCellNodeDelegate: class {
+
+  func cellNodeElementWasTapped(elementType: TappedElement, index: Int)
+  var config: Config { get }
+}
+
 public class PostCellNode: ASCellNode, PostableCellNode, ConfigurableNode {
 
   public var post: Post
