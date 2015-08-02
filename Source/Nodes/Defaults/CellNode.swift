@@ -35,12 +35,15 @@ public class CellNode: PostCellNode {
     return node
   }()
 
-  public lazy var attachmentGridNode: AttachmentGridNode = { [unowned self] in
-    var gridWidth = self.gridWidthForAttachmentCount(self.post.attachments.count)
+  public lazy var attachmentGridNode: PostComponentNode = { [unowned self] in
+    var AttachmentGridClass: PostComponentNode.Type = AttachmentGridNode.self
+    if let ConfigClass = self.config?.post.AttachmentGridClass {
+      AttachmentGridClass = ConfigClass
+    }
 
-    let node = AttachmentGridNode(
+    let node = AttachmentGridClass(
       post: self.post,
-      width: gridWidth)
+      width: self.contentWidth)
     node.userInteractionEnabled = true
 
     return node
@@ -60,15 +63,25 @@ public class CellNode: PostCellNode {
     return node
   }()
 
-  public lazy var footerNode: FooterNode = { [unowned self] in
-    let node = FooterNode(post: self.post, width: self.contentWidth)
+  public lazy var footerNode: PostComponentNode = { [unowned self] in
+    var FooterClass: PostComponentNode.Type = HeaderNode.self
+    if let ConfigClass = self.config?.post.FooterClass {
+      FooterClass = ConfigClass
+    }
+
+    let node = FooterClass(post: self.post, width: self.contentWidth)
     node.userInteractionEnabled = true
 
     return node
   }()
 
-  public lazy var actionBarNode: ActionBarNode = { [unowned self] in
-    let node = ActionBarNode(post: self.post, width: self.contentWidth)
+  public lazy var actionBarNode: PostComponentNode = { [unowned self] in
+    var ActionBarClass: PostComponentNode.Type = HeaderNode.self
+    if let ConfigClass = self.config?.post.ActionBarClass {
+      ActionBarClass = ConfigClass
+    }
+
+    let node = ActionBarClass(post: self.post, width: self.contentWidth)
     return node
   }()
 
@@ -200,21 +213,5 @@ public class CellNode: PostCellNode {
       y: y,
       width: contentWidth,
       height: dividerHeight)
-  }
-
-  // MARK: - Helper Methods
-
-  private func gridWidthForAttachmentCount(count: Int) -> CGFloat {
-    var gridWidth = contentWidth
-
-    let gridType = attachmentGridNode.gridType
-
-    if gridType == .FullWidth {
-      gridWidth = width
-    } else if gridType == .SingleFullWidth {
-      gridWidth = count > 1 ? contentWidth : width
-    }
-
-    return gridWidth
   }
 }
