@@ -11,11 +11,6 @@
 		BD63CE0E1AEC2C4A0052E95E /* Wall.podspec in Resources */ = {isa = PBXBuildFile; fileRef = BD63CE0D1AEC2C4A0052E95E /* Wall.podspec */; };
 		BD8E43E51AEC2B8200BC0631 /* WallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8E43E21AEC2B8200BC0631 /* WallController.swift */; };
 		BD8E43E61AEC2B8200BC0631 /* WallDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8E43E31AEC2B8200BC0631 /* WallDataSource.swift */; };
-		BDA23F511B1F755000595C31 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA23F501B1F755000595C31 /* Location.swift */; };
-		BDA23F531B1F759700595C31 /* LocationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA23F521B1F759700595C31 /* LocationSpec.swift */; };
-		BDA23F551B218A9200595C31 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA23F541B218A9200595C31 /* Coordinate.swift */; };
-		BDA23F571B218F3B00595C31 /* CoordinateSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA23F561B218F3B00595C31 /* CoordinateSpec.swift */; };
-		BDF029EE1B2192C900C5027C /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF029ED1B2192C900C5027C /* Group.swift */; };
 		D52CF6C31B17090A002B4A5A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CF6C21B17090A002B4A5A /* Config.swift */; };
 		D52CF6C51B170B06002B4A5A /* WallDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CF6C41B170B06002B4A5A /* WallDelegate.swift */; };
 		D53A3D1C1B6C032C009602A8 /* ActionBarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A3D131B6C032C009602A8 /* ActionBarNode.swift */; };
@@ -48,11 +43,6 @@
 		BD8E43DB1AEC2B7700BC0631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD8E43E21AEC2B8200BC0631 /* WallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallController.swift; sourceTree = "<group>"; };
 		BD8E43E31AEC2B8200BC0631 /* WallDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallDataSource.swift; sourceTree = "<group>"; };
-		BDA23F501B1F755000595C31 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		BDA23F521B1F759700595C31 /* LocationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSpec.swift; sourceTree = "<group>"; };
-		BDA23F541B218A9200595C31 /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
-		BDA23F561B218F3B00595C31 /* CoordinateSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinateSpec.swift; sourceTree = "<group>"; };
-		BDF029ED1B2192C900C5027C /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		D52CF6C21B17090A002B4A5A /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		D52CF6C41B170B06002B4A5A /* WallDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallDelegate.swift; sourceTree = "<group>"; };
 		D53A3D131B6C032C009602A8 /* ActionBarNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionBarNode.swift; sourceTree = "<group>"; };
@@ -133,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				D5F318E11B21B4BF00DE9899 /* Nodes */,
-				D5FE39CB1B1DA2FE0034CD25 /* Models */,
 				BD8E43DA1AEC2B7700BC0631 /* Supporting Files */,
 				D5F318E41B21B92600DE9899 /* SpecHelper.swift */,
 			);
@@ -200,9 +189,6 @@
 			isa = PBXGroup;
 			children = (
 				D54B82011B175FCE00FB0197 /* Attachable.swift */,
-				BDF029ED1B2192C900C5027C /* Group.swift */,
-				BDA23F541B218A9200595C31 /* Coordinate.swift */,
-				BDA23F501B1F755000595C31 /* Location.swift */,
 				D54B82031B175FCE00FB0197 /* Post.swift */,
 				D54B82041B175FCE00FB0197 /* User.swift */,
 				D5D238271B581E7B008AED97 /* Image.swift */,
@@ -219,15 +205,6 @@
 				D5A787BA1B27B51D00472D32 /* ControlNodeSpec.swift */,
 			);
 			path = Nodes;
-			sourceTree = "<group>";
-		};
-		D5FE39CB1B1DA2FE0034CD25 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				BDA23F561B218F3B00595C31 /* CoordinateSpec.swift */,
-				BDA23F521B1F759700595C31 /* LocationSpec.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,16 +324,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDF029EE1B2192C900C5027C /* Group.swift in Sources */,
 				D53A3D241B6C032C009602A8 /* PostComponentNode.swift in Sources */,
 				D53A3D1C1B6C032C009602A8 /* ActionBarNode.swift in Sources */,
 				D54B82091B175FCE00FB0197 /* User.swift in Sources */,
 				BD8E43E51AEC2B8200BC0631 /* WallController.swift in Sources */,
-				BDA23F551B218A9200595C31 /* Coordinate.swift in Sources */,
 				D54B82081B175FCE00FB0197 /* Post.swift in Sources */,
 				D53A3D231B6C032C009602A8 /* PostCellNode.swift in Sources */,
 				D53A3D201B6C032C009602A8 /* CounterNode.swift in Sources */,
-				BDA23F531B1F759700595C31 /* LocationSpec.swift in Sources */,
 				D5FB99FB1B283BF600121BCC /* CGSize+Wall.swift in Sources */,
 				D54B82061B175FCE00FB0197 /* Attachable.swift in Sources */,
 				D52CF6C31B17090A002B4A5A /* Config.swift in Sources */,
@@ -367,13 +341,11 @@
 				BD8E43E61AEC2B8200BC0631 /* WallDataSource.swift in Sources */,
 				D5F318E51B21B92600DE9899 /* SpecHelper.swift in Sources */,
 				D53A3D221B6C032C009602A8 /* HeaderNode.swift in Sources */,
-				BDA23F511B1F755000595C31 /* Location.swift in Sources */,
 				D53A3D1D1B6C032C009602A8 /* AttachmentGridNode.swift in Sources */,
 				D5D238281B581E7B008AED97 /* Image.swift in Sources */,
 				D52CF6C51B170B06002B4A5A /* WallDelegate.swift in Sources */,
 				D5F318E31B21B4EB00DE9899 /* FooterNodeSpec.swift in Sources */,
 				D53A3D1F1B6C032C009602A8 /* ControlNode.swift in Sources */,
-				BDA23F571B218F3B00595C31 /* CoordinateSpec.swift in Sources */,
 				D5D2382A1B581EBA008AED97 /* Video.swift in Sources */,
 				D53A3D1E1B6C032C009602A8 /* CellNode.swift in Sources */,
 			);
