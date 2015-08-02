@@ -6,7 +6,7 @@ public class HeaderNode: PostComponentNode {
   // MARK: - Configuration
 
   public var avatarSize: CGFloat = 32
-  public var authorHorizontalPadding: CGFloat = 5
+  public var authorHorizontalPadding: CGFloat = 10
   public var authorVerticalPadding: CGFloat = 1
 
   public override var height: CGFloat {

@@ -12,7 +12,6 @@ public class Config {
 
   public var post = Post()
   public var comment = Comment()
-  public var imageCache = ImageCache()
 
   public struct Post {
     public var CellClass: PostCellNode.Type = CellNode.self

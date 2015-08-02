@@ -33,6 +33,8 @@ public class PostCellNode: ASCellNode, PostableCellNode, ConfigurableNode {
     config = delegate?.config
 
     super.init()
+
+    configureNode()
   }
 
   // MARK: - ConfigurableNode

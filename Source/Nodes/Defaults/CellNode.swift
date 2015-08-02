@@ -18,7 +18,7 @@ public class CellNode: PostCellNode {
   }
 
   public var hasText: Bool {
-    return post.text.isEmpty
+    return !post.text.isEmpty
   }
 
   // MARK: - Nodes
@@ -140,11 +140,8 @@ public class CellNode: PostCellNode {
   // MARK: - Layout
 
   override public func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
-    var height: CGFloat = 0
-    var paddingCount = 0
-
-    height += headerNode.height + footerNode.height + actionBarNode.height + dividerHeight
-    paddingCount++
+    var height: CGFloat = headerNode.height + footerNode.height + actionBarNode.height + dividerHeight
+    var paddingCount = 2
 
     if hasAttachments {
       height += attachmentGridNode.height

@@ -40,6 +40,8 @@ public class WallController: UIViewController {
 
   public lazy var flowLayout: UICollectionViewFlowLayout = {
     let layout = UICollectionViewFlowLayout()
+    layout.minimumLineSpacing = 0
+    layout.minimumInteritemSpacing = 0
     return layout
     }()
 

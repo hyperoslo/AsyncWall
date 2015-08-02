@@ -50,7 +50,7 @@ public class FooterNode: PostComponentNode {
   public lazy var seenNode: ASTextNode = { [unowned self] in
     let node = ASTextNode()
     let seenString = NSLocalizedString("Seen by", comment: "")
-      + "\(self.post.seenCount)"
+      + " \(self.post.seenCount)"
 
     node.attributedString = NSAttributedString(
       string: seenString,
