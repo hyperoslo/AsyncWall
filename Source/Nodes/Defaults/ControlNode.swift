@@ -7,7 +7,6 @@ public class ControlNode: ASControlNode {
 
   public var size = CGSize(width: 100.0, height: 35.0)
   public var padding: CGFloat = 5
-  public var imageSize = CGSize(width: 22, height: 22)
 
   // MARK: - Nodes
 
@@ -44,8 +43,9 @@ public class ControlNode: ASControlNode {
     var contentSize = size
 
     if let imageNode = imageNode {
+      let imageSize = imageNode.image.size
       imageNode.frame = CGRect(
-        origin: CGPoint(x: x, y: size.centerInSize(size).y),
+        origin: CGPoint(x: x, y: imageSize.centerInSize(size).y),
         size: imageSize)
 
       x += imageSize.width + padding
