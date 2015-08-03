@@ -8,7 +8,7 @@ PODS:
   - Nimble (1.0.0-rc.1)
   - Quick (0.3.1)
   - Sugar (0.1.0)
-  - SwiftyJSON (2.2.0)
+  - SwiftyJSON (2.2.1)
 
 DEPENDENCIES:
   - AsyncDisplayKit (~> 1.2)
@@ -29,7 +29,7 @@ CHECKOUT OPTIONS:
     :commit: b24d4ed16d1c47976e76d64d450af60c468a9544
     :git: https://github.com/vadymmarkov/Faker
   Sugar:
-    :commit: 13010b47b8045aa58eb976dda20d1ebc56d726a3
+    :commit: 4f36650b338b2696426d518d000eec184a98d658
     :git: https://github.com/hyperoslo/Sugar
 
 SPEC CHECKSUMS:
@@ -39,6 +39,6 @@ SPEC CHECKSUMS:
   Nimble: 23f1dbddf1706172c7d740430858e5dfa93d997a
   Quick: 824572d3d198d51e52cf4aa722cebf7e59952a35
   Sugar: d33f2a3ae10e40c14eb49a2e859f12e82e614817
-  SwiftyJSON: 0b3e6c07af17ff745e77e8e9984097b55c956e5c
+  SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
 
 COCOAPODS: 0.38.2

@@ -40,7 +40,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Sugar:
-    :commit: 13010b47b8045aa58eb976dda20d1ebc56d726a3
+    :commit: 4f36650b338b2696426d518d000eec184a98d658
     :git: https://github.com/hyperoslo/Sugar
 
 SPEC CHECKSUMS:

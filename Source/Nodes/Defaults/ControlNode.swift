@@ -3,24 +3,21 @@ import AsyncDisplayKit
 
 public class ControlNode: ASControlNode {
 
-  public let config: Config
+  // MARK: - Configuration
 
-  public var contentNode: ASDisplayNode
+  public var size = CGSize(width: 100.0, height: 35.0)
+  public var padding: CGFloat = 5
+  public var imageSize = CGSize(width: 22, height: 22)
+
+  // MARK: - Nodes
+
+  public var contentNode = ASDisplayNode()
   public var titleNode: ASTextNode?
   public var imageNode: ASImageNode?
 
-  public var size: CGSize {
-    return controlConfig.size
-  }
+  // MARK: - Initialization
 
-  private var controlConfig: Config.Wall.Post.Control {
-    return config.wall.post.control
-  }
-
-  public init(config: Config, title: NSAttributedString?, image: UIImage?) {
-    self.config = config
-    contentNode = ASDisplayNode()
-
+  public init(title: NSAttributedString?, image: UIImage? = nil) {
     super.init()
 
     if let title = title {
@@ -43,32 +40,30 @@ public class ControlNode: ASControlNode {
   // MARK: - Layout
 
   override public func layout() {
-    var x: CGFloat = controlConfig.padding
+    var x: CGFloat = padding
     var contentSize = size
 
     if let imageNode = imageNode {
-      let size = controlConfig.imageSize
-
       imageNode.frame = CGRect(
-        origin: CGPoint(x: x, y: size.centerInSize(self.size).y),
-        size: size)
+        origin: CGPoint(x: x, y: size.centerInSize(size).y),
+        size: imageSize)
 
-      x += size.width + controlConfig.padding
+      x += imageSize.width + padding
     }
 
     if let titleNode = titleNode {
-      let titleHeight = self.size.height - 2 * controlConfig.padding
+      let titleHeight = size.height - 2 * padding
 
-      let size = titleNode.measure(
+      let titleSize = titleNode.measure(
         CGSize(
           width: CGFloat(FLT_MAX),
           height: titleHeight < 0 ? 0 : titleHeight))
 
       titleNode.frame = CGRect(
-        origin: CGPoint(x: x, y: size.centerInSize(self.size).y),
-        size: size)
+        origin: CGPoint(x: x, y: titleSize.centerInSize(size).y),
+        size: titleSize)
 
-      x += size.width + controlConfig.padding
+      x += titleSize.width + padding
     }
 
     contentSize.width = x

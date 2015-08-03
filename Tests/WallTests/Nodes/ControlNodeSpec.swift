@@ -9,24 +9,17 @@ class ControlNodeSpec: QuickSpec {
       let faker = Faker()
       let config = Config()
 
-      let title = NSAttributedString(
-        string: "Comment",
-        attributes: config.wall.post.actionBar.commentButton.textAttributes)
+      let title = NSAttributedString(string: "Comment")
       let url = Faker().internet.url()
       let image = UIImage()
 
       var node: ControlNode!
 
       beforeEach {
-        node = ControlNode(config: config, title: title, image: image)
+        node = ControlNode(title: title, image: image)
       }
 
       describe("#init") {
-
-        it("returns a correct size") {
-          expect(node.size).to(equal(config.wall.post.control.size))
-        }
-
         it("adds a content node") {
           expect(node.contentNode).notTo(beNil())
           expect(node.contentNode.supernode).notTo(beNil())
@@ -49,7 +42,7 @@ class ControlNodeSpec: QuickSpec {
 
         context("with no title") {
           beforeEach {
-            node = ControlNode(config: config, title: nil, image: image)
+            node = ControlNode(title: nil, image: image)
           }
 
           it("does not add a title node") {
@@ -59,7 +52,7 @@ class ControlNodeSpec: QuickSpec {
 
         context("with no image") {
           beforeEach {
-            node = ControlNode(config: config, title: title, image: nil)
+            node = ControlNode(title: title, image: nil)
           }
 
           it("does not add an image node") {

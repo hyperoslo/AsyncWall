@@ -1,48 +1,52 @@
 import UIKit
 import AsyncDisplayKit
 
-public class AttachmentGridNode: ASControlNode {
+public class AttachmentGridNode: PostComponentNode {
 
-  public let config: Config
-  public let width: CGFloat
   public let attachments: [AttachmentConvertible]
+
+  // MARK: - Configuration
+
+  public var ratio: CGFloat = 3 / 2
+  public var padding: CGFloat = 10
+
+  public override var height: CGFloat {
+    return width / ratio
+  }
+
+  public var contentWidth: CGFloat {
+    return width - padding
+  }
+
+  public var contentHeight: CGFloat {
+    return height - padding
+  }
+
+  // MARK: - Nodes
 
   public var imageNodes = [ASImageNode]()
   public var counterNode: CounterNode?
 
-  public var height: CGFloat {
-    return width / attachmentsConfig.ratio
-  }
-
-  public var contentWidth: CGFloat {
-    return width - attachmentsConfig.padding
-  }
-
-  public var contentHeight: CGFloat {
-    return height - attachmentsConfig.padding
-  }
-
-  private var attachmentsConfig: Config.Wall.Post.Attachments {
-    return config.wall.post.attachments
-  }
-
   // MARK: - Initialization
 
-  public init(config: Config, attachments: [AttachmentConvertible], width: CGFloat) {
-    self.config = config
-    let totalCount = attachments.count
-    self.attachments = totalCount < 4 ? attachments : Array(attachments[0..<3])
-    self.width = width
+  public required init(post: Post, width: CGFloat) {
+    let totalCount = post.attachments.count
+    attachments = totalCount < 4 ? post.attachments : Array(post.attachments[0..<3])
 
-    super.init()
+    super.init(post: post, width: width)
+  }
 
+  // MARK: - ConfigurableNode
+
+  public override func configureNode() {
     var lastImageSize: CGSize?
-    for (index, attachment) in enumerate(self.attachments) {
+
+    for (index, attachment) in enumerate(attachments) {
       let imageNode = ASImageNode()
       imageNode.backgroundColor = .grayColor()
       let imageSize = sizeForThumbnailAtIndex(index)
 
-      if let thumbnail = config.wall.thumbnailForAttachment(
+      if let thumbnail = Config.thumbnailForAttachment(
         attachment: attachment.wallModel,
         size: CGSize(
           width: imageSize.width,
@@ -58,13 +62,14 @@ public class AttachmentGridNode: ASControlNode {
       }
     }
 
-    if attachmentsConfig.counter.enabled && totalCount > 3 {
+    let totalCount = post.attachments.count
+    if totalCount > 3 {
       if let lastImageSize = lastImageSize {
         counterNode = CounterNode(
-          config: config,
           size: lastImageSize,
           count: imageNodes.count,
           totalCount: totalCount)
+        
         addSubnode(counterNode)
       }
     }
@@ -88,9 +93,9 @@ public class AttachmentGridNode: ASControlNode {
         width: imageSize.width,
         height: imageSize.height)
       if index == 0 {
-        x += imageSize.width + attachmentsConfig.padding
+        x += imageSize.width + padding
       } else if index == 1 {
-        y += imageSize.height + attachmentsConfig.padding
+        y += imageSize.height + padding
       }
     }
 

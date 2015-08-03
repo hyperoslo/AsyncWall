@@ -15,8 +15,6 @@ public class Post {
   public var seenCount = 0
   public var commentCount = 0
   public var author: UserConvertible?
-  public var group: GroupConvertible?
-  public var location: Location?
   public var parent: PostConvertible?
 
   public var attachments = [AttachmentConvertible]()

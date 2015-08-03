@@ -40,6 +40,8 @@ public class WallController: UIViewController {
 
   public lazy var flowLayout: UICollectionViewFlowLayout = {
     let layout = UICollectionViewFlowLayout()
+    layout.minimumLineSpacing = 0
+    layout.minimumInteritemSpacing = 0
     return layout
     }()
 
@@ -76,8 +78,8 @@ public class WallController: UIViewController {
 
 extension WallController: PostCellNodeDelegate {
 
-  public func cellNodeElementWasTapped(elementType: TappedElement, sender: PostCellNode) {
-    tapDelegate?.wallPostWasTapped(elementType, index: sender.index)
+  public func cellNodeElementWasTapped(elementType: TappedElement, index: Int) {
+    tapDelegate?.wallPostWasTapped(elementType, index: index)
   }
 }
 
