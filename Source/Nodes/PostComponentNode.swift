@@ -14,7 +14,7 @@ public protocol PostableComponentNode {
 public class PostComponentNode: ASControlNode, PostableComponentNode, ConfigurableNode, TappableNode {
 
   public var post: Post
-  public let width: CGFloat
+  public var width: CGFloat
   public var height: CGFloat {
     return 0
   }
