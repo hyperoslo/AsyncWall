@@ -120,9 +120,7 @@ public class FooterNode: PostComponentNode {
     }
   }
 
-  // MARK: - Private Methods
-
-  func centerY(height: CGFloat) -> CGFloat {
+  public func centerY(height: CGFloat) -> CGFloat {
     return (self.height - height) / 2
   }
 }
