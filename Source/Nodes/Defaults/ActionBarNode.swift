@@ -25,7 +25,7 @@ public class ActionBarNode: PostComponentNode {
     node.userInteractionEnabled = true
 
     return node
-  }()
+    }()
 
   public lazy var commentControlNode: ControlNode = {
     var title = NSAttributedString(
@@ -39,14 +39,14 @@ public class ActionBarNode: PostComponentNode {
     node.userInteractionEnabled = true
 
     return node
-  }()
+    }()
 
   public lazy var divider: ASDisplayNode = {
     let divider = ASDisplayNode()
     divider!.backgroundColor = .lightGrayColor()
 
     return divider
-  }()
+    }()
 
   public override var actionNodes: [TappedNode] {
     return [(node: likeControlNode, element: .LikeButton),

@@ -28,7 +28,7 @@ public class FooterNode: PostComponentNode {
     node.userInteractionEnabled = true
 
     return node
-  }()
+    }()
 
   public lazy var commentsNode: ASTextNode = { [unowned self] in
     let node = ASTextNode()
@@ -45,7 +45,7 @@ public class FooterNode: PostComponentNode {
     node.userInteractionEnabled = true
 
     return node
-  }()
+    }()
 
   public lazy var seenNode: ASTextNode = { [unowned self] in
     let node = ASTextNode()
@@ -61,7 +61,7 @@ public class FooterNode: PostComponentNode {
     node.userInteractionEnabled = true
 
     return node
-  }()
+    }()
 
   public override var actionNodes: [TappedNode] {
     return [(node: likesNode, element: .Likes),

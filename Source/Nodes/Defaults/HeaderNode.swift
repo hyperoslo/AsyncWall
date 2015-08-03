@@ -69,7 +69,7 @@ public class HeaderNode: PostComponentNode {
     node!.userInteractionEnabled = true
 
     return node
-  }()
+    }()
 
   public override var actionNodes: [TappedNode] {
     return [(node: authorNameNode, element: .Author),

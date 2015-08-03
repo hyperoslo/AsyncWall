@@ -33,7 +33,7 @@ public class CellNode: PostCellNode {
     node.userInteractionEnabled = true
 
     return node
-  }()
+    }()
 
   public lazy var attachmentGridNode: PostComponentNode = { [unowned self] in
     var AttachmentGridClass: PostComponentNode.Type = AttachmentGridNode.self
@@ -47,7 +47,7 @@ public class CellNode: PostCellNode {
     node.userInteractionEnabled = true
 
     return node
-  }()
+    }()
 
   public lazy var textNode: ASTextNode = { [unowned self] in
     let node = ASTextNode()
@@ -61,7 +61,7 @@ public class CellNode: PostCellNode {
     node.userInteractionEnabled = true
 
     return node
-  }()
+    }()
 
   public lazy var footerNode: PostComponentNode = { [unowned self] in
     var FooterClass: PostComponentNode.Type = HeaderNode.self
@@ -73,7 +73,7 @@ public class CellNode: PostCellNode {
     node.userInteractionEnabled = true
 
     return node
-  }()
+    }()
 
   public lazy var actionBarNode: PostComponentNode = { [unowned self] in
     var ActionBarClass: PostComponentNode.Type = HeaderNode.self
@@ -83,14 +83,14 @@ public class CellNode: PostCellNode {
 
     let node = ActionBarClass(post: self.post, width: self.contentWidth)
     return node
-  }()
+    }()
 
   public lazy var divider: ASDisplayNode = {
     let divider = ASDisplayNode()
     divider.backgroundColor = .lightGrayColor()
 
     return divider
-  }()
+    }()
 
   var actionNodes: [TappedNode] = []
 
