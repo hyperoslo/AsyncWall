@@ -11,7 +11,7 @@ class DetailViewController: WallController {
     super.viewDidLoad()
 
     title = post!.wallModel.text
-    
+
     if let comments = post?.wallModel.comments {
       delay(0.1) {
         var posts = [PostConvertible]()

@@ -5,12 +5,12 @@ public enum TappedElement {
     Likes, Seen, Comments, LikeButton, CommentButton
 }
 
-public protocol WallTapDelegate {
+public protocol WallTapDelegate: class {
 
   func wallPostWasTapped(element: TappedElement, index: Int?)
 }
 
-public protocol WallScrollDelegate {
+public protocol WallScrollDelegate: class {
 
   func wallDidScrollToEnd(completion: () -> Void)
 }
