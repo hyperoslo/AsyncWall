@@ -97,9 +97,14 @@ extension ViewController: WallTapDelegate {
   func wallPostWasTapped(element: TappedElement, index: Int?) {
     let post = self.postAtIndex(index!)
 
-    if element == .Text || element == .Attachment {
+    switch element {
+    case .Attachment:
       let detailView = DetailViewController(post: post!)
       self.navigationController?.pushViewController(detailView, animated: true)
+    case .Text:
+      let detailView = DetailViewController(post: post!)
+      self.navigationController?.pushViewController(detailView, animated: true)
+    default: break
     }
   }
 }
