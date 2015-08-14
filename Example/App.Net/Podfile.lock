@@ -36,7 +36,7 @@ EXTERNAL SOURCES:
   Sugar:
     :git: https://github.com/hyperoslo/Sugar
   Wall:
-    :path: ../../
+    :path: "../../"
 
 CHECKOUT OPTIONS:
   Sugar:
@@ -58,4 +58,4 @@ SPEC CHECKSUMS:
   Sync: 984b6dfb10cf8a7df97e7bfe22e1babb403fd4c7
   Wall: bd9e0a46f4826fbbd5692c68a7cc3a5adc1ae834
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.37.2
