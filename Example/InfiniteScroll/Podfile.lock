@@ -23,7 +23,7 @@ EXTERNAL SOURCES:
   Sugar:
     :git: https://github.com/hyperoslo/Sugar
   Wall:
-    :path: ../../
+    :path: "../../"
 
 CHECKOUT OPTIONS:
   Faker:
@@ -41,4 +41,4 @@ SPEC CHECKSUMS:
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
   Wall: bd9e0a46f4826fbbd5692c68a7cc3a5adc1ae834
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.37.2

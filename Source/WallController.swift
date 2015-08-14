@@ -8,8 +8,8 @@ public class WallController: UIViewController {
   }
 
   public var config = Config()
-  public var tapDelegate: WallTapDelegate?
-  public var scrollDelegate: WallScrollDelegate?
+  public weak var tapDelegate: WallTapDelegate?
+  public weak var scrollDelegate: WallScrollDelegate?
   public var post: PostConvertible?
 
   private var scrollingState: InfiniteScrolling = .Stopped
