@@ -1,6 +1,11 @@
 import UIKit
 import AsyncDisplayKit
 
+public protocol WallControllerDelegate: class {
+
+  func updateInterface()
+}
+
 public class WallController: UIViewController {
 
   private enum InfiniteScrolling {
@@ -10,6 +15,7 @@ public class WallController: UIViewController {
   public var config = Config()
   public weak var tapDelegate: WallTapDelegate?
   public weak var scrollDelegate: WallScrollDelegate?
+  public weak var delegate: WallControllerDelegate?
   public var post: PostConvertible?
 
   private var scrollingState: InfiniteScrolling = .Stopped
@@ -19,7 +25,9 @@ public class WallController: UIViewController {
       dispatch_async(dispatch_get_main_queue(), { _ in
         self.collectionView.performBatchAnimated(true, updates: {
           self.collectionView.reloadData()
-          }, completion: nil)
+          }, completion: { _ in
+            self.delegate?.updateInterface()
+        })
       })
     }
   }
