@@ -17,7 +17,9 @@ public class WallController: UIViewController {
   public var posts: [PostConvertible] = [] {
     willSet {
       dispatch_async(dispatch_get_main_queue(), { _ in
-        self.collectionView.reloadData()
+        self.collectionView.performBatchAnimated(true, updates: {
+          self.collectionView.reloadData()
+          }, completion: nil)
       })
     }
   }
