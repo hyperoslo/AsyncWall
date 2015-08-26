@@ -92,7 +92,7 @@ public class CellNode: PostCellNode {
     return divider
     }()
 
-  var actionNodes: [TappedNode] = []
+  public var actionNodes: [TappedNode] = []
 
   // MARK: - ConfigurableNode
 
