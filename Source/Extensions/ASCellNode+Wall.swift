@@ -2,7 +2,7 @@ import UIKit
 import AsyncDisplayKit
 import Haneke
 
-public extension ASImageNode {
+public extension ASNetworkImageNode {
 
   public func fetchImage(imageURL: NSURL) {
     let cache = Config.ImageCache.storage
