@@ -59,7 +59,6 @@ public class CellNode: PostCellNode {
         NSForegroundColorAttributeName: UIColor.grayColor()
       ])
     node.userInteractionEnabled = true
-    node.layerBacked = true
 
     return node
     }()

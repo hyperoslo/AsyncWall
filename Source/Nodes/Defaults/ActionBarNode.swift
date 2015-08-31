@@ -56,7 +56,10 @@ public class ActionBarNode: PostComponentNode {
   // MARK: - ConfigurableNode
 
   public override func configureNode() {
-    [divider, likeControlNode, commentControlNode].map { self.addSubnode($0) }
+    for node in [divider, likeControlNode, commentControlNode] {
+      node.layerBacked = true
+      addSubnode(node)
+    }
   }
 
   // MARK: - Layout

@@ -26,7 +26,6 @@ public class FooterNode: PostComponentNode {
         NSForegroundColorAttributeName: UIColor.blackColor()
       ])
     node.userInteractionEnabled = true
-    node.layerBacked = true
 
     return node
     }()
@@ -44,7 +43,6 @@ public class FooterNode: PostComponentNode {
         NSForegroundColorAttributeName: UIColor.blackColor()
       ])
     node.userInteractionEnabled = true
-    node.layerBacked = true
 
     return node
     }()
@@ -61,7 +59,6 @@ public class FooterNode: PostComponentNode {
         NSForegroundColorAttributeName: UIColor.grayColor()
       ])
     node.userInteractionEnabled = true
-    node.layerBacked = true
 
     return node
     }()
