@@ -34,6 +34,7 @@ public class WallController: UIViewController {
     let layout = UICollectionViewFlowLayout()
     layout.minimumLineSpacing = 0
     layout.minimumInteritemSpacing = 0
+
     return layout
     }()
 
@@ -84,7 +85,7 @@ extension WallController: ASCollectionViewDelegate {
       scrollingState = .Loading
       scrollDelegate?.wallDidScrollToEnd {
         context.completeBatchFetching(true)
-        self.scrollingState = .Stopped
+        scrollingState = .Stopped
       }
   }
 }
