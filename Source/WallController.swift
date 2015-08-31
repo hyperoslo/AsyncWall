@@ -15,9 +15,6 @@ public class WallController: UIViewController {
   private var scrollingState: InfiniteScrolling = .Stopped
 
   public lazy var collectionView: ASCollectionView = { [unowned self] in
-    var frame = self.view.bounds
-    frame.origin.y += 20
-
     let collectionView = ASCollectionView(frame: CGRectZero,
       collectionViewLayout: self.flowLayout, asyncDataFetching: true)
     collectionView.alwaysBounceVertical = true
@@ -85,7 +82,7 @@ extension WallController: ASCollectionViewDelegate {
       scrollingState = .Loading
       scrollDelegate?.wallDidScrollToEnd {
         context.completeBatchFetching(true)
-        scrollingState = .Stopped
+        self.scrollingState = .Stopped
       }
   }
 }

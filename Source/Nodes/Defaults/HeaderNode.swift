@@ -25,13 +25,14 @@ public class HeaderNode: PostComponentNode {
   public lazy var authorNameNode: ASTextNode = { [unowned self] in
     let node = ASTextNode()
 
-    if let author = self.post.author, avatar = author.wallModel.image {
-      node.backgroundColor = .grayColor()
-      node.cornerRadius = self.avatarSize / 2
-      node.clipsToBounds = true
+    if let author = self.post.author?.wallModel {
+      node.attributedString = NSAttributedString(
+        string: author.name,
+        attributes: [
+          NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
+          NSForegroundColorAttributeName: UIColor.blackColor()
+        ])
       node.userInteractionEnabled = true
-      node.frame.size = CGSize(width: self.avatarSize, height: self.avatarSize)
-      node.URL = avatar.thumbnail.url
     }
 
     return node
@@ -45,12 +46,8 @@ public class HeaderNode: PostComponentNode {
       node.cornerRadius = self.avatarSize / 2
       node.clipsToBounds = true
       node.userInteractionEnabled = true
-
-      if let thumbnail = Config.thumbnailForAttachment(
-        attachment: avatar,
-        size: CGSize(width: self.avatarSize, height: self.avatarSize)) {
-          node.fetchImage(thumbnail.url)
-      }
+      node.frame.size = CGSize(width: self.avatarSize, height: self.avatarSize)
+      node.URL = avatar.thumbnail.url
     }
 
     return node
