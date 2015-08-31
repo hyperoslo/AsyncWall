@@ -107,7 +107,7 @@ public class AttachmentGridNode: PostComponentNode {
 
   func sizeForThumbnailAtIndex(index: Int) -> CGSize {
     var size = CGSize(width: width, height: height)
-    
+
     switch index {
     case 0:
       if attachments.count == 2 {
