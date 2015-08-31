@@ -17,12 +17,13 @@ class ViewController: WallController {
       return String(format: attachment.source.string, Int(size.width), Int(size.height))
     }
 
-    self.tapDelegate = self
-    self.scrollDelegate = self
+    tapDelegate = self
+    scrollDelegate = self
+    posts = generatePosts(1, to: 50)
 
-    delay(0.1) {
-      self.posts = self.generatePosts(1, to: 50)
-    }
+    collectionView.performBatchAnimated(true, updates: {
+      self.collectionView.reloadData()
+      }, completion: nil)
   }
 
   func generatePosts(from: Int, to: Int) -> [PostConvertible] {
@@ -31,7 +32,7 @@ class ViewController: WallController {
     for i in from...to {
       let user = User(
         name: faker.name.name(),
-        avatar: Image("http://lorempixel.com/%d/%d?type=avatar&id=\(i)"))
+        avatar: Image("http://lorempixel.com/75/75?type=avatar&id=\(i)"))
       var attachments = [AttachmentConvertible]()
       var comments = [PostConvertible]()
       var attachmentCount = 0
@@ -57,7 +58,7 @@ class ViewController: WallController {
       }
 
       for x in 0..<attachmentCount {
-        attachments.append(Image("http://lorempixel.com/%d/%d/?type=attachment&id=\(i)\(x)"))
+        attachments.append(Image("http://lorempixel.com/250/250/?type=attachment&id=\(i)\(x)"))
       }
 
       let sencenceCount = Int(arc4random_uniform(8) + 1)
@@ -75,7 +76,7 @@ class ViewController: WallController {
       for x in 0..<commentCount {
         let commentUser = User(
           name: faker.name.name(),
-          avatar: Image("http://lorempixel.com/%d/%d/?type=avatar&id=\(i)\(x)"))
+          avatar: Image("http://lorempixel.com/75/75/?type=avatar&id=\(i)\(x)"))
         var comment = Post(
           text: faker.lorem.sentences(amount: sencenceCount),
           publishDate: NSDate(timeIntervalSinceNow: -4),
