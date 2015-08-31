@@ -14,25 +14,17 @@ public class WallController: UIViewController {
   public var posts: [PostConvertible] = []
   private var scrollingState: InfiniteScrolling = .Stopped
 
-  public lazy var collectionView: ASCollectionView = { [unowned self] in
-    let collectionView = ASCollectionView(frame: CGRectZero,
-      collectionViewLayout: self.flowLayout, asyncDataFetching: true)
-    collectionView.alwaysBounceVertical = true
-    collectionView.autoresizingMask = .FlexibleHeight | .FlexibleWidth
-    collectionView.backgroundColor = .whiteColor()
-    collectionView.bounces = true
-    collectionView.asyncDataSource = self
-    collectionView.asyncDelegate = self
+  public lazy var tableView: ASTableView = { [unowned self] in
+    let tableView = ASTableView(frame: CGRectZero,
+      style: .Plain, asyncDataFetching: true)
+    tableView.alwaysBounceVertical = true
+    tableView.autoresizingMask = .FlexibleHeight | .FlexibleWidth
+    tableView.backgroundColor = .whiteColor()
+    tableView.bounces = true
+    tableView.asyncDataSource = self
+    tableView.asyncDelegate = self
 
-    return collectionView
-    }()
-
-  public lazy var flowLayout: UICollectionViewFlowLayout = {
-    let layout = UICollectionViewFlowLayout()
-    layout.minimumLineSpacing = 0
-    layout.minimumInteritemSpacing = 0
-
-    return layout
+    return tableView
     }()
 
   // MARK: - Initialization
@@ -48,13 +40,13 @@ public class WallController: UIViewController {
   public override func viewDidLoad() {
     super.viewDidLoad()
 
-    view.addSubview(collectionView)
+    view.addSubview(tableView)
   }
 
   public override func viewWillLayoutSubviews() {
     super.viewWillLayoutSubviews()
 
-    collectionView.frame = view.bounds
+    tableView.frame = view.bounds
   }
 
   // MARK: - Public Methods
@@ -75,14 +67,14 @@ extension WallController: PostCellNodeDelegate {
 
 // MARK: - ASCollectionViewDelegate
 
-extension WallController: ASCollectionViewDelegate {
+extension WallController: ASTableViewDelegate {
 
-  public func collectionView(collectionView: ASCollectionView!,
+  public func tableView(tableView: ASTableView!,
     willBeginBatchFetchWithContext context: ASBatchContext!) {
-      scrollingState = .Loading
-      scrollDelegate?.wallDidScrollToEnd {
-        context.completeBatchFetching(true)
-        self.scrollingState = .Stopped
-      }
+    scrollingState = .Loading
+    scrollDelegate?.wallDidScrollToEnd {
+      context.completeBatchFetching(true)
+      self.scrollingState = .Stopped
+    }
   }
 }

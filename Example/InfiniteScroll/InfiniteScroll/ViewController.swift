@@ -21,9 +21,7 @@ class ViewController: WallController {
     scrollDelegate = self
     posts = generatePosts(1, to: 50)
 
-    collectionView.performBatchAnimated(true, updates: {
-      self.collectionView.reloadData()
-      }, completion: nil)
+
   }
 
   func generatePosts(from: Int, to: Int) -> [PostConvertible] {
