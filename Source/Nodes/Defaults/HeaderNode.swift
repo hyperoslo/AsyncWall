@@ -33,25 +33,23 @@ public class HeaderNode: PostComponentNode {
           NSForegroundColorAttributeName: UIColor.blackColor()
         ])
       node.userInteractionEnabled = true
+      node.layerBacked = true
     }
 
     return node
     }()
 
-  public lazy var authorAvatarNode: ASImageNode = { [unowned self] in
-    let node = ASImageNode()
+  public lazy var authorAvatarNode: ASNetworkImageNode = { [unowned self] in
+    let node = ASNetworkImageNode()
 
     if let author = self.post.author, avatar = author.wallModel.image {
       node.backgroundColor = .grayColor()
       node.cornerRadius = self.avatarSize / 2
       node.clipsToBounds = true
       node.userInteractionEnabled = true
-
-      if let thumbnail = Config.thumbnailForAttachment(
-        attachment: avatar,
-        size: CGSize(width: self.avatarSize, height: self.avatarSize)) {
-          node.fetchImage(thumbnail.url)
-      }
+      node.frame.size = CGSize(width: self.avatarSize, height: self.avatarSize)
+      node.URL = avatar.thumbnail.url
+      node.layerBacked = true
     }
 
     return node
@@ -66,7 +64,8 @@ public class HeaderNode: PostComponentNode {
         NSFontAttributeName: UIFont.systemFontOfSize(12),
         NSForegroundColorAttributeName: UIColor.grayColor()
       ])
-    node!.userInteractionEnabled = true
+    node.userInteractionEnabled = true
+    node.layerBacked = true
 
     return node
     }()

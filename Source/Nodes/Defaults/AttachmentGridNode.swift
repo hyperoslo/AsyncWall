@@ -42,23 +42,17 @@ public class AttachmentGridNode: PostComponentNode {
     var lastImageSize: CGSize?
 
     for (index, attachment) in enumerate(attachments) {
-      let imageNode = ASImageNode()
+      let imageNode = ASNetworkImageNode()
       imageNode.backgroundColor = .grayColor()
-      let imageSize = sizeForThumbnailAtIndex(index)
-
-      if let thumbnail = Config.thumbnailForAttachment(
-        attachment: attachment.wallModel,
-        size: CGSize(
-          width: imageSize.width,
-          height: imageSize.height)) {
-            imageNode.fetchImage(thumbnail.url)
-      }
+      imageNode.frame.size = sizeForThumbnailAtIndex(index)
+      imageNode.URL = attachment.wallModel.thumbnail.url
+      imageNode.layerBacked = true
 
       imageNodes.append(imageNode)
       addSubnode(imageNode)
 
       if index == 2 {
-        lastImageSize = imageSize
+        lastImageSize = sizeForThumbnailAtIndex(index)
       }
     }
 

@@ -12,7 +12,7 @@ public class ControlNode: ASControlNode {
 
   public var contentNode = ASDisplayNode()
   public var titleNode: ASTextNode?
-  public var imageNode: ASImageNode?
+  public var imageNode: ASNetworkImageNode?
 
   // MARK: - Initialization
 
@@ -27,7 +27,7 @@ public class ControlNode: ASControlNode {
     }
 
     if let image = image {
-      imageNode = ASImageNode()
+      imageNode = ASNetworkImageNode()
       imageNode?.image = image
 
       contentNode.addSubnode(imageNode)

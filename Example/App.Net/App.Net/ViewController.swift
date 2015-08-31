@@ -20,6 +20,12 @@ class ViewController: WallController {
         }
 
         self.posts = posts
+
+        dispatch_async(dispatch_get_main_queue(), { [unowned self] in
+          self.tableView.beginUpdates()
+          self.tableView.reloadData()
+          self.tableView.endUpdates()
+        })
       }
     }
   }
