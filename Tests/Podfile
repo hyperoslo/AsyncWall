@@ -6,7 +6,6 @@ use_frameworks!
 inhibit_all_warnings!
 
 pod 'AsyncDisplayKit', '~> 1.2'
-pod 'HanekeSwift', '~> 0.9.1'
 pod 'Quick', '0.3.1'
 pod 'Nimble', '1.0.0-rc.1'
 pod 'Faker', git: 'https://github.com/vadymmarkov/Faker'

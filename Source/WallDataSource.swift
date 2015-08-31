@@ -23,7 +23,7 @@ extension WallController: ASCollectionViewDataSource {
     }
 
     return CellClass(
-      post: self.posts[indexPath.row].wallModel,
+      post: posts[indexPath.row].wallModel,
       index: index,
       width: collectionView.frame.width,
       delegate: self)
