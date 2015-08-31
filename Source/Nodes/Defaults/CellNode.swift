@@ -59,6 +59,7 @@ public class CellNode: PostCellNode {
         NSForegroundColorAttributeName: UIColor.grayColor()
       ])
     node.userInteractionEnabled = true
+    node.layerBacked = true
 
     return node
     }()
@@ -82,12 +83,14 @@ public class CellNode: PostCellNode {
     }
 
     let node = ActionBarClass(post: self.post, width: self.contentWidth)
+
     return node
     }()
 
   public lazy var divider: ASDisplayNode = {
     let divider = ASDisplayNode()
     divider.backgroundColor = .lightGrayColor()
+    divider.layerBacked = true
 
     return divider
     }()

@@ -33,6 +33,7 @@ public class HeaderNode: PostComponentNode {
           NSForegroundColorAttributeName: UIColor.blackColor()
         ])
       node.userInteractionEnabled = true
+      node.layerBacked = true
     }
 
     return node
@@ -48,6 +49,7 @@ public class HeaderNode: PostComponentNode {
       node.userInteractionEnabled = true
       node.frame.size = CGSize(width: self.avatarSize, height: self.avatarSize)
       node.URL = avatar.thumbnail.url
+      node.layerBacked = true
     }
 
     return node
@@ -62,7 +64,8 @@ public class HeaderNode: PostComponentNode {
         NSFontAttributeName: UIFont.systemFontOfSize(12),
         NSForegroundColorAttributeName: UIColor.grayColor()
       ])
-    node!.userInteractionEnabled = true
+    node.userInteractionEnabled = true
+    node.layerBacked = true
 
     return node
     }()

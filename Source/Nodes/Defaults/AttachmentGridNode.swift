@@ -46,6 +46,7 @@ public class AttachmentGridNode: PostComponentNode {
       imageNode.backgroundColor = .grayColor()
       imageNode.frame.size = sizeForThumbnailAtIndex(index)
       imageNode.URL = attachment.wallModel.thumbnail.url
+      imageNode.layerBacked = true
 
       imageNodes.append(imageNode)
       addSubnode(imageNode)
