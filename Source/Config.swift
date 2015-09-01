@@ -1,6 +1,5 @@
 import Foundation
 import UIKit
-import Haneke
 import Sugar
 
 public class Config {
@@ -26,15 +25,4 @@ public class Config {
   }
 
   public init() {}
-
-  public struct ImageCache {
-    public static var format = "wall-thumbnails"
-    public static var storage: Haneke.Cache<UIImage> {
-      let cache = Shared.imageCache
-      let format = Format<UIImage>(name: self.format, diskCapacity: 20 * 1024 * 1024)
-      cache.addFormat(format)
-
-      return cache
-    }
-  }
 }
