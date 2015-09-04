@@ -18,7 +18,7 @@ public class WallController: UIViewController {
     let tableView = ASTableView(frame: CGRectZero,
       style: .Plain, asyncDataFetching: true)
     tableView.alwaysBounceVertical = true
-    tableView.autoresizingMask = .FlexibleHeight | .FlexibleWidth
+    tableView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
     tableView.backgroundColor = .whiteColor()
     tableView.bounces = true
     tableView.asyncDataSource = self

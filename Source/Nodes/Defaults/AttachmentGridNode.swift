@@ -41,7 +41,7 @@ public class AttachmentGridNode: PostComponentNode {
   public override func configureNode() {
     var lastImageSize: CGSize?
 
-    for (index, attachment) in enumerate(attachments) {
+    for (index, attachment) in attachments.enumerate() {
       let imageNode = ASNetworkImageNode()
       imageNode.backgroundColor = .grayColor()
       imageNode.frame.size = sizeForThumbnailAtIndex(index)
@@ -79,7 +79,7 @@ public class AttachmentGridNode: PostComponentNode {
     var x: CGFloat = 0
     var y: CGFloat = 0
 
-    for (index, imageNode) in enumerate(imageNodes) {
+    for (index, imageNode) in imageNodes.enumerate() {
       let imageSize = sizeForThumbnailAtIndex(index)
       imageNode.frame = CGRect(
         x: x,

@@ -72,7 +72,9 @@ public class FooterNode: PostComponentNode {
   // MARK: - ConfigurableNode
 
   public override func configureNode() {
-    [likesNode, commentsNode, seenNode].map { self.addSubnode($0) }
+    for node in [likesNode, commentsNode, seenNode] {
+      addSubnode(node)
+    }
   }
 
   // MARK: - Layout

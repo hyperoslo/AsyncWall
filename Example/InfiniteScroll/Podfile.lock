@@ -11,24 +11,25 @@ PODS:
     - Sugar
 
 DEPENDENCIES:
-  - Faker (from `https://github.com/vadymmarkov/Faker`)
+  - Faker (from `https://github.com/vadymmarkov/Faker`, branch `swift-2.0`)
   - Sugar (from `https://github.com/hyperoslo/Sugar`)
   - Wall (from `../../`)
 
 EXTERNAL SOURCES:
   Faker:
+    :branch: swift-2.0
     :git: https://github.com/vadymmarkov/Faker
   Sugar:
     :git: https://github.com/hyperoslo/Sugar
   Wall:
-    :path: ../../
+    :path: "../../"
 
 CHECKOUT OPTIONS:
   Faker:
-    :commit: b24d4ed16d1c47976e76d64d450af60c468a9544
+    :commit: 329c2c85eb14e3125a12b48599ac132172ac6f24
     :git: https://github.com/vadymmarkov/Faker
   Sugar:
-    :commit: 4f36650b338b2696426d518d000eec184a98d658
+    :commit: 816604cb30ea33d79d7ce2b7effca3f627ccba3f
     :git: https://github.com/hyperoslo/Sugar
 
 SPEC CHECKSUMS:
@@ -38,4 +39,4 @@ SPEC CHECKSUMS:
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
   Wall: 65ec0f66cb0369517e9f919796a565c1d41fed65
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.39.0.beta.4

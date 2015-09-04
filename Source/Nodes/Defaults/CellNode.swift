@@ -29,7 +29,7 @@ public class CellNode: PostCellNode {
       HeaderClass = ConfigClass
     }
 
-    let node = HeaderClass(post: self.post, width: self.contentWidth)
+    let node = HeaderClass.init(post: self.post, width: self.contentWidth)
     node.userInteractionEnabled = true
 
     return node
@@ -41,7 +41,7 @@ public class CellNode: PostCellNode {
       AttachmentGridClass = ConfigClass
     }
 
-    let node = AttachmentGridClass(
+    let node = AttachmentGridClass.init(
       post: self.post,
       width: self.contentWidth)
     node.userInteractionEnabled = true
@@ -69,7 +69,7 @@ public class CellNode: PostCellNode {
       FooterClass = ConfigClass
     }
 
-    let node = FooterClass(post: self.post, width: self.contentWidth)
+    let node = FooterClass.init(post: self.post, width: self.contentWidth)
     node.userInteractionEnabled = true
 
     return node
@@ -81,7 +81,7 @@ public class CellNode: PostCellNode {
       ActionBarClass = ConfigClass
     }
 
-    let node = ActionBarClass(post: self.post, width: self.contentWidth)
+    let node = ActionBarClass.init(post: self.post, width: self.contentWidth)
 
     return node
     }()
@@ -101,13 +101,14 @@ public class CellNode: PostCellNode {
   public override func configureNode() {
     backgroundColor = .whiteColor()
 
-    [headerNode, footerNode, actionBarNode, divider].map {
-      self.addSubnode($0)
+    for node in [headerNode, footerNode, actionBarNode, divider] {
+      addSubnode(node)
     }
 
-    [headerNode, footerNode, actionBarNode].map {
-      $0.actionNodes.map {
-        self.actionNodes.append($0)
+
+    for node in [headerNode, footerNode, actionBarNode] {
+      for actionNode in node.actionNodes {
+        self.actionNodes.append(actionNode)
       }
     }
 
@@ -123,16 +124,18 @@ public class CellNode: PostCellNode {
       actionNodes.append((node: textNode, element: TappedElement.Text))
     }
 
-    actionNodes.map { $0.node.addTarget(self,
-      action: "tapAction:",
-      forControlEvents: ASControlNodeEvent.TouchUpInside) }
+    for actionNode in actionNodes {
+      actionNode.node.addTarget(self,
+        action: "tapAction:",
+        forControlEvents: ASControlNodeEvent.TouchUpInside)
+    }
   }
 
   // MARK: - Actions
 
   func tapAction(sender: ASControlNode) {
     if let delegate = delegate {
-      var tappedElement = actionNodes.filter({ sender.isEqual($0.node) }).first?.element
+      let tappedElement = actionNodes.filter({ sender.isEqual($0.node) }).first?.element
       if let tappedElement = tappedElement {
         delegate.cellNodeElementWasTapped(tappedElement, index: index)
       }

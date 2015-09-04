@@ -80,7 +80,9 @@ public class HeaderNode: PostComponentNode {
   // MARK: - ConfigurableNode
 
   public override func configureNode() {
-    [authorNameNode, authorAvatarNode, dateNode].map { self.addSubnode($0) }
+    for node in [authorNameNode, authorAvatarNode, dateNode] {
+      addSubnode(node)
+    }
   }
 
   // MARK: - Layout
