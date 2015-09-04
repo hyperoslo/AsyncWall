@@ -19,7 +19,7 @@ public class CounterNode: ASDisplayNode {
     let paragraphStyle = NSMutableParagraphStyle()
     paragraphStyle.alignment = .Center
 
-    var attributes = [
+    let attributes = [
       NSFontAttributeName: UIFont.systemFontOfSize(34),
       NSForegroundColorAttributeName: UIColor.whiteColor(),
       NSParagraphStyleAttributeName: paragraphStyle
