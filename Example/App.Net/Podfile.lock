@@ -2,25 +2,25 @@ PODS:
   - AsyncDisplayKit (1.2.3):
     - AsyncDisplayKit/ASDealloc2MainObject (= 1.2.3)
   - AsyncDisplayKit/ASDealloc2MainObject (1.2.3)
-  - DATAFilter (0.8.1):
+  - DATAFilter (0.8.4):
     - DATAObjectIDs
   - DATAObjectIDs (0.5.0)
-  - DATAStack (3.0.4):
+  - DATAStack (3.1.0):
     - NSObject-HYPTesting (~> 1.2)
   - NSDictionary-ANDYSafeValue (0.3)
   - NSEntityDescription-SYNCPrimaryKey (0.1.0):
     - NSString-HYPNetworking
-  - NSManagedObject-HYPPropertyMapper (3.0.4):
+  - NSManagedObject-HYPPropertyMapper (3.1.0):
     - NSString-HYPNetworking (~> 0.3.2)
   - NSObject-HYPTesting (1.2)
   - NSString-HYPNetworking (0.3.2)
   - Sugar (0.1.0)
-  - Sync (1.0.5):
-    - DATAFilter (~> 0.8.1)
-    - DATAStack (~> 3.0.4)
+  - Sync (1.0.8):
+    - DATAFilter (~> 0.8.4)
+    - DATAStack (~> 3.1.0)
     - NSDictionary-ANDYSafeValue (~> 0.3)
     - NSEntityDescription-SYNCPrimaryKey (~> 0.1.0)
-    - NSManagedObject-HYPPropertyMapper (~> 3.0.4)
+    - NSManagedObject-HYPPropertyMapper (~> 3.1.0)
   - Wall (0.1.0):
     - AsyncDisplayKit (~> 1.2)
     - Sugar
@@ -34,25 +34,25 @@ EXTERNAL SOURCES:
   Sugar:
     :git: https://github.com/hyperoslo/Sugar
   Wall:
-    :path: ../../
+    :path: "../../"
 
 CHECKOUT OPTIONS:
   Sugar:
-    :commit: 4f36650b338b2696426d518d000eec184a98d658
+    :commit: 816604cb30ea33d79d7ce2b7effca3f627ccba3f
     :git: https://github.com/hyperoslo/Sugar
 
 SPEC CHECKSUMS:
   AsyncDisplayKit: 5c8f38225f7478e39c48196cec0dd0d2ac3455ed
-  DATAFilter: 3f89692f7c52dd3c3973287ee8c9bb2c0e76d344
+  DATAFilter: 3f224f9ffde5c04de4748b65cc259c6481770edf
   DATAObjectIDs: 472eae6d8d6b57109b973c837ec3dd5e78016ab6
-  DATAStack: de58e278b0487ff5a508d158cc74dd8b5e302389
+  DATAStack: 86cb614db684cf29d51fcc5de705e9d4b92cd90d
   NSDictionary-ANDYSafeValue: c15ff39a6b1b82a52ea277c64520c7b574715afc
   NSEntityDescription-SYNCPrimaryKey: 72f1f0d30a7e8eb9d93277b1ce623cbaa6e47a38
-  NSManagedObject-HYPPropertyMapper: 165dc76cc94e9a59e0c86b19aee974e20db47c36
+  NSManagedObject-HYPPropertyMapper: b559d85ecbe95dfa5c1e68330135dc7895e8ed6e
   NSObject-HYPTesting: fadde70c75061b731b313c390e20777aed0a914d
   NSString-HYPNetworking: f95766d4dc5693b45a0331ab8cf3a0b998f38cd7
   Sugar: d33f2a3ae10e40c14eb49a2e859f12e82e614817
-  Sync: 984b6dfb10cf8a7df97e7bfe22e1babb403fd4c7
+  Sync: 00d22221fef4a906003a6e91bd9da7582971459d
   Wall: 65ec0f66cb0369517e9f919796a565c1d41fed65
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.39.0.beta.4
