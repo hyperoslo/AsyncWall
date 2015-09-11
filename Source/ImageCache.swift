@@ -31,7 +31,6 @@ public class ImageCache: NSObject, ASImageDownloaderProtocol {
             })
           }
       }
-
       return task
   }
 
