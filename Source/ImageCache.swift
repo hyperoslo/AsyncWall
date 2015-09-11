@@ -2,8 +2,8 @@ import Foundation
 import AsyncDisplayKit
 import Kingfisher
 
-class ImageCache: NSObject, ASImageDownloaderProtocol {
-  func downloadImageWithURL(URL: NSURL!,
+public class ImageCache: NSObject, ASImageDownloaderProtocol {
+  public func downloadImageWithURL(URL: NSURL!,
     callbackQueue: dispatch_queue_t!,
     downloadProgressBlock: ((CGFloat) -> Void)!,
     completion: ((CGImage!, NSError!) -> Void)!) -> AnyObject! {
@@ -26,7 +26,7 @@ class ImageCache: NSObject, ASImageDownloaderProtocol {
       return task
   }
 
-  func cancelImageDownloadForIdentifier(downloadIdentifier: AnyObject!) {
+  public func cancelImageDownloadForIdentifier(downloadIdentifier: AnyObject!) {
     if let task = downloadIdentifier as? RetrieveImageTask {
       task.cancel()
     }
