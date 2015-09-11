@@ -14,15 +14,24 @@ public class ImageCache: NSObject, ASImageDownloaderProtocol {
         options: .None,
         progressBlock:
         { receivedSize, totalSize in
-          dispatch_async(callbackQueue, {
-            downloadProgressBlock(CGFloat(receivedSize / totalSize))
-          })
+          if downloadProgressBlock != nil {
+            let queue = callbackQueue != nil ?
+              callbackQueue : dispatch_get_main_queue()
+            dispatch_async(queue, {
+              downloadProgressBlock(CGFloat(receivedSize / totalSize))
+            })
+          }
         })
         { image, error, cacheType, imageURL in
-          dispatch_async(callbackQueue, {
-            completion(image!.CGImage, error)
-          })
+          if completion != nil {
+            let queue = callbackQueue != nil ?
+              callbackQueue : dispatch_get_main_queue()
+            dispatch_async(queue, {
+              completion(image!.CGImage, error)
+            })
+          }
       }
+
       return task
   }
 
