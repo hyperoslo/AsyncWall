@@ -39,7 +39,7 @@ public class HeaderNode: PostComponentNode {
     }()
 
   public lazy var authorAvatarNode: ASNetworkImageNode = { [unowned self] in
-    let node = ASNetworkImageNode(cache: nil, downloader: downloader)
+    let node = ASNetworkImageNode(cache: nil, downloader: self.downloader)
 
     if let author = self.post.author, avatar = author.wallModel.image {
       node.backgroundColor = .grayColor()
