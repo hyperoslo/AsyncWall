@@ -13,6 +13,7 @@ PODS:
 DEPENDENCIES:
   - Faker (from `https://github.com/vadymmarkov/Faker`, branch `swift-2.0`)
   - Sugar (from `https://github.com/hyperoslo/Sugar`)
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `xcode7`)
   - Wall (from `../../`)
 
 EXTERNAL SOURCES:
@@ -21,8 +22,11 @@ EXTERNAL SOURCES:
     :git: https://github.com/vadymmarkov/Faker
   Sugar:
     :git: https://github.com/hyperoslo/Sugar
+  SwiftyJSON:
+    :branch: xcode7
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
   Wall:
-    :path: "../../"
+    :path: ../../
 
 CHECKOUT OPTIONS:
   Faker:
@@ -31,6 +35,9 @@ CHECKOUT OPTIONS:
   Sugar:
     :commit: 816604cb30ea33d79d7ce2b7effca3f627ccba3f
     :git: https://github.com/hyperoslo/Sugar
+  SwiftyJSON:
+    :commit: d4df13c66146a8e9c8d96c852746a08363003d36
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
   AsyncDisplayKit: 5c8f38225f7478e39c48196cec0dd0d2ac3455ed
