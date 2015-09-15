@@ -18,7 +18,7 @@ public protocol PostCellNodeDelegate: class {
 public class PostCellNode: ASCellNode, PostableCellNode, ConfigurableNode {
 
   public var post: Post
-  public let index: Int
+  public var index: Int
   public let width: CGFloat
   public weak var delegate: PostCellNodeDelegate?
   public var config: Config?
