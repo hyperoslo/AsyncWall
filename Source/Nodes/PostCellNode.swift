@@ -18,7 +18,6 @@ public protocol PostCellNodeDelegate: class {
 public class PostCellNode: ASCellNode, PostableCellNode, ConfigurableNode {
 
   public var post: Post
-  public var index: Int
   public let width: CGFloat
   public weak var delegate: PostCellNodeDelegate?
   public var config: Config?
@@ -27,7 +26,6 @@ public class PostCellNode: ASCellNode, PostableCellNode, ConfigurableNode {
 
   public required init(post: Post, index: Int, width: CGFloat, delegate: PostCellNodeDelegate? = nil) {
     self.post = post
-    self.index = index
     self.width = width
     self.delegate = delegate
     config = delegate?.config
