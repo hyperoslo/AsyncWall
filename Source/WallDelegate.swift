@@ -7,7 +7,7 @@ public enum TappedElement {
 
 public protocol WallTapDelegate: class {
 
-  func wallPostWasTapped(element: TappedElement, index: Int?)
+  func wallPostWasTapped(element: TappedElement, postCellNode: PostCellNode)
 }
 
 public protocol WallScrollDelegate: class {

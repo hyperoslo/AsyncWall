@@ -137,7 +137,7 @@ public class CellNode: PostCellNode {
     if let delegate = delegate {
       let tappedElement = actionNodes.filter({ sender.isEqual($0.node) }).first?.element
       if let tappedElement = tappedElement {
-        delegate.cellNodeElementWasTapped(tappedElement, index: index)
+        delegate.cellNodeElementWasTapped(tappedElement, postCellNode: self)
       }
     }
   }

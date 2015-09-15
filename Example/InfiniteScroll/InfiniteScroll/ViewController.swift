@@ -93,8 +93,8 @@ class ViewController: WallController {
 
 extension ViewController: WallTapDelegate {
 
-  func wallPostWasTapped(element: TappedElement, index: Int?) {
-    let post = self.postAtIndex(index!)
+  func wallPostWasTapped(element: TappedElement, postCellNode: PostCellNode) {
+    let post = postCellNode.post
 
     switch element {
     case .Attachment:
