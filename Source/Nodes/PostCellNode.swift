@@ -11,7 +11,7 @@ public protocol PostableCellNode {
 
 public protocol PostCellNodeDelegate: class {
 
-  func cellNodeElementWasTapped(elementType: TappedElement, index: Int)
+  func cellNodeElementWasTapped(elementType: TappedElement, post: Post)
   var config: Config { get }
 }
 
