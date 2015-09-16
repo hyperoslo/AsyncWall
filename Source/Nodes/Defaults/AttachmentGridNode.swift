@@ -27,6 +27,10 @@ public class AttachmentGridNode: PostComponentNode {
   public var imageNodes = [ASImageNode]()
   public var counterNode: CounterNode?
 
+  // MARK: - Image Cache
+
+  public lazy var downloader = ImageCache()
+
   // MARK: - Initialization
 
   public required init(post: Post, width: CGFloat) {
@@ -42,7 +46,7 @@ public class AttachmentGridNode: PostComponentNode {
     var lastImageSize: CGSize?
 
     for (index, attachment) in attachments.enumerate() {
-      let imageNode = ASNetworkImageNode()
+      let imageNode = ASNetworkImageNode(cache: nil, downloader: downloader)
       imageNode.backgroundColor = .grayColor()
       imageNode.frame.size = sizeForThumbnailAtIndex(index)
       imageNode.URL = attachment.wallModel.thumbnail.url
