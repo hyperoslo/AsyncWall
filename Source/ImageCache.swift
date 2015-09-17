@@ -23,12 +23,13 @@ public class ImageCache: NSObject, ASImageDownloaderProtocol {
           }
         })
         { image, error, cacheType, imageURL in
-          if completion != nil {
-            let queue = callbackQueue != nil ?
-              callbackQueue : dispatch_get_main_queue()
-            dispatch_async(queue, {
-              completion(image!.CGImage, error)
-            })
+          if completion != nil &&
+            image != nil {
+              let queue = callbackQueue != nil ?
+                callbackQueue : dispatch_get_main_queue()
+              dispatch_async(queue, {
+                completion(image!.CGImage, error)
+              })
           }
       }
       return task
