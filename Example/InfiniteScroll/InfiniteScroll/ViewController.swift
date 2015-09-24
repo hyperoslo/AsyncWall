@@ -75,7 +75,7 @@ class ViewController: WallController {
         let commentUser = User(
           name: faker.name.name(),
           avatar: Image("http://lorempixel.com/75/75/?type=avatar&id=\(i)\(x)"))
-        var comment = Post(
+        let comment = Post(
           text: faker.lorem.sentences(amount: sencenceCount),
           publishDate: NSDate(timeIntervalSinceNow: -4),
           author: commentUser
@@ -111,7 +111,7 @@ extension ViewController: WallTapDelegate {
 extension ViewController: WallScrollDelegate {
 
   func wallDidScrollToEnd(completion: () -> Void) {
-    var newPosts = generatePosts(0, to: 20)
+    let newPosts = generatePosts(0, to: 20)
     var updatedPosts = self.posts
     updatedPosts.appendContentsOf(newPosts)
 
