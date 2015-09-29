@@ -5,6 +5,8 @@ public class AttachmentGridNode: PostComponentNode {
 
   public let attachments: [AttachmentConvertible]
 
+  public var attachmentCount = 0
+
   // MARK: - Configuration
 
   public var ratio: CGFloat = 3 / 2
@@ -34,8 +36,8 @@ public class AttachmentGridNode: PostComponentNode {
   // MARK: - Initialization
 
   public required init(post: Post, width: CGFloat) {
-    let totalCount = post.attachments.count
-    attachments = totalCount < 4 ? post.attachments : Array(post.attachments[0..<3])
+    attachments = Array(post.attachments.prefix(3))
+    attachmentCount = attachments.count
 
     super.init(post: post, width: width)
   }
