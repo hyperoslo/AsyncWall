@@ -93,15 +93,15 @@ class ViewController: WallController {
 
 extension ViewController: WallTapDelegate {
 
-  func wallPostWasTapped(element: TappedElement, index: Int?) {
-    let post = self.postAtIndex(index!)
+  func wallPostWasTapped(element: TappedElement, post: Post) {
+    guard let index = posts.indexOf( { $0.wallModel.id == post.id } ), post = posts[index] as? Post else { return }
 
     switch element {
     case .Attachment:
-      let detailView = DetailViewController(post: post!)
+      let detailView = DetailViewController(post: post)
       self.navigationController?.pushViewController(detailView, animated: true)
     case .Text:
-      let detailView = DetailViewController(post: post!)
+      let detailView = DetailViewController(post: post)
       self.navigationController?.pushViewController(detailView, animated: true)
     default: break
     }
@@ -113,7 +113,7 @@ extension ViewController: WallScrollDelegate {
   func wallDidScrollToEnd(completion: () -> Void) {
     var newPosts = generatePosts(0, to: 20)
     var updatedPosts = self.posts
-    updatedPosts.extend(newPosts)
+    updatedPosts.appendContentsOf(newPosts)
 
     self.posts = updatedPosts
 

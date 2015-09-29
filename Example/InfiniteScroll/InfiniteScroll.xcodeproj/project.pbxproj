@@ -141,6 +141,7 @@
 		BDF240FB1B16439D00D571F6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = Hyper;
 				TargetAttributes = {

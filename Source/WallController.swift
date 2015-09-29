@@ -18,7 +18,7 @@ public class WallController: UIViewController {
     let tableView = ASTableView(frame: CGRectZero,
       style: .Plain, asyncDataFetching: true)
     tableView.alwaysBounceVertical = true
-    tableView.autoresizingMask = .FlexibleHeight | .FlexibleWidth
+    tableView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
     tableView.backgroundColor = .whiteColor()
     tableView.bounces = true
     tableView.asyncDataSource = self
@@ -60,8 +60,8 @@ public class WallController: UIViewController {
 
 extension WallController: PostCellNodeDelegate {
 
-  public func cellNodeElementWasTapped(elementType: TappedElement, index: Int) {
-    tapDelegate?.wallPostWasTapped(elementType, index: index)
+  public func cellNodeElementWasTapped(elementType: TappedElement, post: Post) {
+    tapDelegate?.wallPostWasTapped(elementType, post: post)
   }
 }
 

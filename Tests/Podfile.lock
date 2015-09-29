@@ -4,30 +4,41 @@ PODS:
   - AsyncDisplayKit/ASDealloc2MainObject (1.2.3)
   - Faker (0.1.0):
     - SwiftyJSON (~> 2.2.0)
-  - HanekeSwift (0.9.1)
-  - Nimble (1.0.0-rc.1)
-  - Quick (0.3.1)
+  - Nimble (2.0.0-rc.3)
+  - Quick (0.6.0)
   - Sugar (0.1.0)
   - SwiftyJSON (2.2.1)
 
 DEPENDENCIES:
   - AsyncDisplayKit (~> 1.2)
-  - Faker (from `https://github.com/vadymmarkov/Faker`)
-  - HanekeSwift (~> 0.9.1)
-  - Nimble (= 1.0.0-rc.1)
-  - Quick (= 0.3.1)
+  - Faker (from `https://github.com/vadymmarkov/Faker`, branch `swift-2.0`)
+  - Nimble (from `https://github.com/Quick/Nimble`, branch `swift-2.0`)
+  - Quick (from `https://github.com/Quick/Quick`, branch `swift-2.0`)
   - Sugar (from `https://github.com/hyperoslo/Sugar`)
 
 EXTERNAL SOURCES:
   Faker:
+    :branch: swift-2.0
     :git: https://github.com/vadymmarkov/Faker
+  Nimble:
+    :branch: swift-2.0
+    :git: https://github.com/Quick/Nimble
+  Quick:
+    :branch: swift-2.0
+    :git: https://github.com/Quick/Quick
   Sugar:
     :git: https://github.com/hyperoslo/Sugar
 
 CHECKOUT OPTIONS:
   Faker:
-    :commit: b24d4ed16d1c47976e76d64d450af60c468a9544
+    :commit: 329c2c85eb14e3125a12b48599ac132172ac6f24
     :git: https://github.com/vadymmarkov/Faker
+  Nimble:
+    :commit: 703a7ae786b4dcb00c6eaa65156cc2da9ab4be8f
+    :git: https://github.com/Quick/Nimble
+  Quick:
+    :commit: 503f1515427d0cd2eaa19830694dcde60c46d945
+    :git: https://github.com/Quick/Quick
   Sugar:
     :commit: 4f36650b338b2696426d518d000eec184a98d658
     :git: https://github.com/hyperoslo/Sugar
@@ -35,10 +46,9 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AsyncDisplayKit: 5c8f38225f7478e39c48196cec0dd0d2ac3455ed
   Faker: ec2361307c261ae4b26c8da20b127d416faf0ebd
-  HanekeSwift: 50d37bfbc4432edc649167e538c259feccb4a2bb
-  Nimble: 23f1dbddf1706172c7d740430858e5dfa93d997a
-  Quick: 824572d3d198d51e52cf4aa722cebf7e59952a35
+  Nimble: 9dff98ee195ffe7351d3b2fb01d3a1420fd97948
+  Quick: aaa961333f0bec39bfefa4b759128e4eb39f0d0e
   Sugar: d33f2a3ae10e40c14eb49a2e859f12e82e614817
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0.beta.4

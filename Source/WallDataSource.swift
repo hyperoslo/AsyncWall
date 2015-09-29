@@ -15,14 +15,14 @@ extension WallController: ASTableViewDataSource {
     var CellClass = config.post.CellClass
     var index = indexPath.row
 
-    if let post = post {
+    if let _ = post {
       CellClass = indexPath.row > 0
         ? config.comment.CellClass
         : config.post.CellClass
       index = indexPath.row > 0 ? indexPath.row - 1 : 0
     }
 
-    return CellClass(
+    return CellClass.init(
       post: posts[indexPath.row].wallModel,
       index: index,
       width: tableView.frame.width,
