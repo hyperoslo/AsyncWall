@@ -50,7 +50,6 @@ public class AttachmentGridNode: PostComponentNode {
     for (index, attachment) in attachments.enumerate() {
       let imageNode = ASNetworkImageNode(cache: nil, downloader: downloader)
       imageNode.backgroundColor = .grayColor()
-      imageNode.frame.size = sizeForThumbnailAtIndex(index)
       imageNode.URL = attachment.wallModel.thumbnail.url
       imageNode.layerBacked = true
 
