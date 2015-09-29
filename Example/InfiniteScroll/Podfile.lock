@@ -7,7 +7,7 @@ PODS:
   - Sugar (0.1.0)
   - SwiftyJSON (2.2.1)
   - Wall (0.1.0):
-    - AsyncDisplayKit (~> 1.2.3)
+    - AsyncDisplayKit
     - Sugar
 
 DEPENDENCIES:
@@ -44,6 +44,6 @@ SPEC CHECKSUMS:
   Faker: ec2361307c261ae4b26c8da20b127d416faf0ebd
   Sugar: d33f2a3ae10e40c14eb49a2e859f12e82e614817
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
-  Wall: 20fa3e5db0b10b067dc598130da5b9d3a04e98b2
+  Wall: e935fb9b9fbdd1883ecd1b525e9579de596f502f
 
 COCOAPODS: 0.39.0.beta.4
