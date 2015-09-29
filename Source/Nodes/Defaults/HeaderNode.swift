@@ -39,7 +39,7 @@ public class HeaderNode: PostComponentNode {
     }()
 
   public lazy var authorAvatarNode: ASNetworkImageNode = { [unowned self] in
-    let node = ASNetworkImageNode()
+    let node = ASNetworkImageNode(cache: nil, downloader: self.downloader)
 
     if let author = self.post.author, avatar = author.wallModel.image {
       node.backgroundColor = .grayColor()
@@ -76,6 +76,10 @@ public class HeaderNode: PostComponentNode {
   private var secondRowY: CGFloat {
     return height / 2 + authorVerticalPadding
   }
+
+  // MARK: - Image Cache
+
+  public lazy var downloader = ImageCache()
 
   // MARK: - ConfigurableNode
 

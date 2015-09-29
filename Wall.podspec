@@ -23,6 +23,7 @@ Pod::Spec.new do |s|
 
   s.dependency 'AsyncDisplayKit'
   s.dependency 'Sugar'
+  s.dependency 'Kingfisher'
 
   s.frameworks = 'Foundation'
 end
