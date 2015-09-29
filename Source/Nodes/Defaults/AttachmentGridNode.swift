@@ -45,9 +45,8 @@ public class AttachmentGridNode: PostComponentNode {
   // MARK: - ConfigurableNode
 
   public override func configureNode() {
-    var lastImageSize: CGSize?
 
-    for (index, attachment) in attachments.enumerate() {
+    for attachment in attachments {
       let imageNode = ASNetworkImageNode(cache: nil, downloader: downloader)
       imageNode.backgroundColor = .grayColor()
       imageNode.URL = attachment.wallModel.thumbnail.url
@@ -55,22 +54,15 @@ public class AttachmentGridNode: PostComponentNode {
 
       imageNodes.append(imageNode)
       addSubnode(imageNode)
-
-      if index == 2 {
-        lastImageSize = sizeForThumbnailAtIndex(index)
-      }
     }
 
     let totalCount = post.attachments.count
     if totalCount > 3 {
-      if let lastImageSize = lastImageSize {
         counterNode = CounterNode(
-          size: lastImageSize,
           count: imageNodes.count,
           totalCount: totalCount)
         
         addSubnode(counterNode)
-      }
     }
   }
 
@@ -99,12 +91,7 @@ public class AttachmentGridNode: PostComponentNode {
     }
 
     if let counterNode = counterNode {
-      let size = counterNode.calculateSizeThatFits(counterNode.size)
-      counterNode.frame = CGRect(
-        x: width - size.width,
-        y: height - size.height,
-        width: size.width,
-        height: size.height)
+      counterNode.frame = imageNodes.last!.frame
     }
   }
 

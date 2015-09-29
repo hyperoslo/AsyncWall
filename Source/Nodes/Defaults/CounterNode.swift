@@ -3,17 +3,15 @@ import AsyncDisplayKit
 
 public class CounterNode: ASDisplayNode {
 
-  public let size: CGSize
   public var textNode: ASTextNode
 
   // MARK: - Initialization
 
-  public init(size: CGSize, count: Int, totalCount: Int) {
-    self.size = size
-
+  public init(count: Int, totalCount: Int) {
     textNode = ASTextNode()
     super.init()
 
+    shouldRasterizeDescendants = true
     backgroundColor = UIColor(white: 0, alpha: 0.5)
 
     let paragraphStyle = NSMutableParagraphStyle()
@@ -36,17 +34,11 @@ public class CounterNode: ASDisplayNode {
 
   // MARK: - Layout
 
-  override public func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
-    textNode.measure(CGSize(
-      width: size.width,
-      height: CGFloat(FLT_MAX)))
-
-    return CGSizeMake(size.width, size.height)
-  }
-
   override public func layout() {
-    let textSize = textNode.calculatedSize
-    let textOrigin = textSize.centerInSize(size)
+    let textSize = textNode.measure(CGSize(
+      width: bounds.width,
+      height: CGFloat(FLT_MAX)))
+    let textOrigin = textSize.centerInSize(bounds.size)
     textNode.frame = CGRect(
       origin: textOrigin,
       size: textSize)
