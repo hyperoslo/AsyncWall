@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Source/**/*'
 
-  s.dependency 'AsyncDisplayKit'
+  s.dependency 'AsyncDisplayKit', :branch => 'master'
   s.dependency 'Sugar'
   s.dependency 'Kingfisher'
 
