@@ -116,14 +116,14 @@ public class AttachmentGridNode: PostComponentNode {
 
     switch index {
     case 0:
-      if attachments.count == 2 {
+      if attachmentCount == 2 {
         size.width = contentWidth * 1 / 2
-      } else if attachments.count > 2 {
+      } else if attachmentCount > 2 {
         size.width = contentWidth * 2 / 3
       }
     case 1:
       size.width = contentWidth * 1 / 2
-      if attachments.count > 2 {
+      if attachmentCount > 2 {
         size.width = contentWidth * 1 / 3
         size.height = contentHeight / 2
       }
