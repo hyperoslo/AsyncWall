@@ -1,11 +1,8 @@
 import UIKit
 import Wall
-import Faker
 import Sugar
 
 class ViewController: WallController {
-
-  let faker = Faker()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -29,7 +26,7 @@ class ViewController: WallController {
     var startFrom = self.posts.count
     for i in from...to {
       let user = User(
-        name: faker.name.name(),
+        name: "ATTGCTCG",
         avatar: Image("http://lorempixel.com/75/75?type=avatar&id=\(i)"))
       var attachments = [AttachmentConvertible]()
       var comments = [PostConvertible]()
@@ -61,7 +58,7 @@ class ViewController: WallController {
 
       let sencenceCount = Int(arc4random_uniform(8) + 1)
       let post = Post(
-        text: faker.lorem.sentences(amount: sencenceCount),
+        text: "ATTGCTCGATTGCTCGATTGCTCGATTGCTCGATTGCTCGATTGCTCGATTGCTCGATTGCTCGATTGCTCGATTGCTCG",
         publishDate: NSDate(timeIntervalSinceNow: -Double(arc4random_uniform(60000))),
         author: user,
         attachments: attachments
@@ -73,10 +70,10 @@ class ViewController: WallController {
 
       for x in 0..<commentCount {
         let commentUser = User(
-          name: faker.name.name(),
+          name: "ATTGCTCG",
           avatar: Image("http://lorempixel.com/75/75/?type=avatar&id=\(i)\(x)"))
         let comment = Post(
-          text: faker.lorem.sentences(amount: sencenceCount),
+          text: "ATTGCTCGATTGCTCGATTGCTCGATTGCTCGATTGCTCGATTGCTCGATTGCTCGATTGCTCGATTGCTCGATTGCTCG",
           publishDate: NSDate(timeIntervalSinceNow: -4),
           author: commentUser
         )
@@ -97,10 +94,10 @@ extension ViewController: WallTapDelegate {
     guard let index = posts.indexOf( { $0.wallModel.id == post.id } ), post = posts[index] as? Post else { return }
 
     switch element {
-    case .Attachment:
+    case .Attachment:break
       let detailView = DetailViewController(post: post)
       self.navigationController?.pushViewController(detailView, animated: true)
-    case .Text:
+    case .Text:break
       let detailView = DetailViewController(post: post)
       self.navigationController?.pushViewController(detailView, animated: true)
     default: break

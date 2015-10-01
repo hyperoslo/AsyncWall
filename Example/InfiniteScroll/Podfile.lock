@@ -2,51 +2,32 @@ PODS:
   - AsyncDisplayKit (1.2.3):
     - AsyncDisplayKit/ASDealloc2MainObject (= 1.2.3)
   - AsyncDisplayKit/ASDealloc2MainObject (1.2.3)
-  - Faker (0.1.0):
-    - SwiftyJSON (~> 2.2.0)
   - Kingfisher (1.6.0)
   - Sugar (0.1.0)
-  - SwiftyJSON (2.2.1)
   - Wall (0.1.0):
     - AsyncDisplayKit (~> 1.2.3)
     - Kingfisher
     - Sugar
 
 DEPENDENCIES:
-  - Faker (from `https://github.com/vadymmarkov/Faker`, branch `swift-2.0`)
   - Sugar (from `https://github.com/hyperoslo/Sugar`)
-  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `xcode7`)
   - Wall (from `../../`)
 
 EXTERNAL SOURCES:
-  Faker:
-    :branch: swift-2.0
-    :git: https://github.com/vadymmarkov/Faker
   Sugar:
     :git: https://github.com/hyperoslo/Sugar
-  SwiftyJSON:
-    :branch: xcode7
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
   Wall:
     :path: "../../"
 
 CHECKOUT OPTIONS:
-  Faker:
-    :commit: 329c2c85eb14e3125a12b48599ac132172ac6f24
-    :git: https://github.com/vadymmarkov/Faker
   Sugar:
     :commit: 816604cb30ea33d79d7ce2b7effca3f627ccba3f
     :git: https://github.com/hyperoslo/Sugar
-  SwiftyJSON:
-    :commit: d4df13c66146a8e9c8d96c852746a08363003d36
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
   AsyncDisplayKit: 5c8f38225f7478e39c48196cec0dd0d2ac3455ed
-  Faker: ec2361307c261ae4b26c8da20b127d416faf0ebd
   Kingfisher: 3308d487e5c2a0fba9c1054fc3b8c45923e03c40
   Sugar: d33f2a3ae10e40c14eb49a2e859f12e82e614817
-  SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
   Wall: b18c1804366995e747b5ca456f37ef834a434937
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.37.2
