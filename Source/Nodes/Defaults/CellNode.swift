@@ -144,76 +144,22 @@ public class CellNode: PostCellNode {
 
   // MARK: - Layout
 
-  override public func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
-    var height: CGFloat = headerNode.height + footerNode.height + actionBarNode.height + dividerHeight
-    var paddingCount = 2
+    public override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec! {
+        var nodes = [headerNode, attachmentGridNode, textNode, footerNode, actionBarNode]
+        if !hasAttachments {
+            nodes.removeAtIndex(1)
+        }
 
-    if hasAttachments {
-      height += attachmentGridNode.height
-      paddingCount++
+        let stack = ASStackLayoutSpec(direction: .Vertical,
+            spacing: 0,
+            justifyContent: .Center,
+            alignItems: .Center,
+            children: nodes)
+
+        let insets = UIEdgeInsets(top: verticalPadding, left: horizontalPadding, bottom: 0, right: horizontalPadding)
+
+        let insetSpec = ASInsetLayoutSpec(insets: insets,
+            child: stack)
+        return insetSpec
     }
-
-    if hasText {
-      let size = textNode.measure(
-        CGSize(
-          width: contentWidth,
-          height: CGFloat(FLT_MAX)))
-      height += size.height
-      paddingCount++
-    }
-
-    height += CGFloat(paddingCount) * verticalPadding
-
-    return CGSizeMake(width, height)
-  }
-
-  override public func layout() {
-    var y = verticalPadding
-
-    headerNode.frame = CGRect(
-      x: horizontalPadding,
-      y: y,
-      width: headerNode.width,
-      height: headerNode.height)
-    y += headerNode.height + verticalPadding
-
-    if hasAttachments {
-      attachmentGridNode.frame = CGRect(
-        x: attachmentGridNode.width < width ? horizontalPadding : 0,
-        y: y,
-        width: attachmentGridNode.width,
-        height: attachmentGridNode.height)
-
-      y += attachmentGridNode.height + verticalPadding
-    }
-
-    if hasText {
-      let size = textNode.calculatedSize
-      textNode.frame = CGRect(
-        origin: CGPoint(x: horizontalPadding, y: y),
-        size: size)
-
-      y += size.height + verticalPadding
-    }
-
-    footerNode.frame = CGRect(
-      x: horizontalPadding,
-      y: y,
-      width: footerNode.width,
-      height: footerNode.height)
-    y += footerNode.height
-
-    actionBarNode.frame = CGRect(
-      x: horizontalPadding,
-      y: y,
-      width: contentWidth,
-      height: actionBarNode.height)
-    y += actionBarNode.height
-
-    divider.frame = CGRect(
-      x: horizontalPadding,
-      y: y,
-      width: contentWidth,
-      height: dividerHeight)
-  }
 }
