@@ -96,7 +96,7 @@ public class AttachmentGridNode: PostComponentNode {
         let inputCGImage = inputImage.CGImage
         let inputImageScale = inputImage.scale
 
-        let outputImageSizeInPoints = inputImage.size;
+        let outputImageSizeInPoints = inputImage.size
         let outputImageRectInPoints = CGRect(origin: CGPoint.zero, size: outputImageSizeInPoints)
 
         UIGraphicsBeginImageContextWithOptions(outputImageRectInPoints.size, false, inputImageScale)
@@ -113,7 +113,7 @@ public class AttachmentGridNode: PostComponentNode {
         CGContextRestoreGState(outputContext)
 
         let outputImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext();
+        UIGraphicsEndImageContext()
 
         //TODO: check if context is being end in all cases.
 

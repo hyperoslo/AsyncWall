@@ -1,0 +1,52 @@
+PODS:
+  - AsyncDisplayKit (1.2.2):
+    - AsyncDisplayKit/ASDealloc2MainObject (= 1.2.2)
+  - AsyncDisplayKit/ASDealloc2MainObject (1.2.2)
+  - Fakery (1.0.0):
+    - SwiftyJSON (~> 2.3.0)
+  - Kingfisher (1.6.0)
+  - Nimble (2.0.0)
+  - Quick (0.6.0)
+  - Sugar (0.1.0)
+  - SwiftyJSON (2.3.0)
+  - Wall (0.1.0):
+    - AsyncDisplayKit
+    - Kingfisher
+    - Sugar
+
+DEPENDENCIES:
+  - AsyncDisplayKit (from `https://github.com/facebook/AsyncDisplayKit`, branch `master`)
+  - Fakery
+  - Nimble (>= 2.0.0-rc.3)
+  - Quick
+  - Sugar (from `https://github.com/hyperoslo/Sugar`)
+  - Wall (from `../../`)
+
+EXTERNAL SOURCES:
+  AsyncDisplayKit:
+    :branch: master
+    :git: https://github.com/facebook/AsyncDisplayKit
+  Sugar:
+    :git: https://github.com/hyperoslo/Sugar
+  Wall:
+    :path: "../../"
+
+CHECKOUT OPTIONS:
+  AsyncDisplayKit:
+    :commit: 697142240c2ac3b614f220612dcc9180fffe658c
+    :git: https://github.com/facebook/AsyncDisplayKit
+  Sugar:
+    :commit: 964d31e847af1498a019e3d8a0cd94885e4c2d4d
+    :git: https://github.com/hyperoslo/Sugar
+
+SPEC CHECKSUMS:
+  AsyncDisplayKit: e560e419627381f0ff055bae96310f44a6d2a5f1
+  Fakery: a8c99f35643a6fe396ee30a14fbcd466dbd098dd
+  Kingfisher: 3308d487e5c2a0fba9c1054fc3b8c45923e03c40
+  Nimble: 472e75466819eb8c06299233e87c694a9b51328a
+  Quick: 563686dbcf0ae0f9f7401ac9cd2d786ee1b7f3d7
+  Sugar: d33f2a3ae10e40c14eb49a2e859f12e82e614817
+  SwiftyJSON: 8d6b61a70277ef2a5d710d372e06e7e2d87fb9e4
+  Wall: 0c87cb0dffc7f2a9a50b8adbad1067a9191ff2b7
+
+COCOAPODS: 0.38.2
