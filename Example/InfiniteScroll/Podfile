@@ -6,4 +6,8 @@ use_frameworks!
 inhibit_all_warnings!
 
 pod 'Sugar', git: 'https://github.com/hyperoslo/Sugar'
+pod 'Fakery'
+pod 'Nimble', '>= 2.0.0-rc.3'
+pod 'Quick'
+pod 'AsyncDisplayKit', git: 'https://github.com/facebook/AsyncDisplayKit', branch: 'master'
 pod 'Wall', path: '../../'
