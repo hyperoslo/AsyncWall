@@ -6,7 +6,8 @@ use_frameworks!
 inhibit_all_warnings!
 
 pod 'Sugar', git: 'https://github.com/hyperoslo/Sugar'
-pod 'Faker', git: 'https://github.com/vadymmarkov/Faker', branch: 'swift-2.0'
-pod 'SwiftyJSON', git: 'https://github.com/SwiftyJSON/SwiftyJSON.git', branch: 'xcode7'
-pod 'AsyncDisplayKit', git: 'https://github.com/facebook/AsyncDisplayKit'
+pod 'Fakery'
+pod 'Nimble', '>= 2.0.0-rc.3'
+pod 'Quick'
+pod 'AsyncDisplayKit', git: 'https://github.com/facebook/AsyncDisplayKit', branch: 'master'
 pod 'Wall', path: '../../'

@@ -46,7 +46,7 @@ class FooterNodeSpec: QuickSpec {
 
           it("adds the node with the number of views") {
             let string = NSLocalizedString("Seen by", comment: "")
-              + "\(post.seenCount)"
+              + " \(post.seenCount)"
 
             expect(node.seenNode).notTo(beNil())
             expect(node.seenNode.attributedString.string).to(equal(string))
