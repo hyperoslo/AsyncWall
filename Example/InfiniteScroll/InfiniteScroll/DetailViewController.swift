@@ -1,8 +1,11 @@
 import Foundation
 import Wall
+import Faker
 import Sugar
 
 class DetailViewController: WallController {
+
+  let faker = Faker()
 
   override func viewDidLoad() {
     super.viewDidLoad()
