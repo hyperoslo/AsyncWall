@@ -1,16 +1,11 @@
 import Quick
 import Nimble
-import Faker
 
 class ControlNodeSpec: QuickSpec {
 
   override func spec() {
     describe("ControlNode") {
-      let faker = Faker()
-      let config = Config()
-
       let title = NSAttributedString(string: "Comment")
-      let url = Faker().internet.url()
       let image = UIImage()
 
       var node: ControlNode!

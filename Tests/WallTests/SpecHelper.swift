@@ -1,4 +1,4 @@
-import Faker
+import Fakery
 import Sugar
 
 struct SpecHelper {
@@ -10,7 +10,7 @@ struct SpecHelper {
       name: faker.name.name(),
       avatar: Image(faker.internet.url()))
 
-    var post = Post(
+    let post = Post(
       text: faker.lorem.paragraph(sentencesAmount: 5),
       publishDate: NSDate(),
       author: user,

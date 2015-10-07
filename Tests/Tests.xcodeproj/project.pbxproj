@@ -11,6 +11,7 @@
 		BD63CE0E1AEC2C4A0052E95E /* Wall.podspec in Resources */ = {isa = PBXBuildFile; fileRef = BD63CE0D1AEC2C4A0052E95E /* Wall.podspec */; };
 		BD8E43E51AEC2B8200BC0631 /* WallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8E43E21AEC2B8200BC0631 /* WallController.swift */; };
 		BD8E43E61AEC2B8200BC0631 /* WallDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8E43E31AEC2B8200BC0631 /* WallDataSource.swift */; };
+		D51DF16B1BC5130A00EAB122 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51DF16A1BC5130A00EAB122 /* ImageCache.swift */; settings = {ASSET_TAGS = (); }; };
 		D52CF6C31B17090A002B4A5A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CF6C21B17090A002B4A5A /* Config.swift */; };
 		D52CF6C51B170B06002B4A5A /* WallDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CF6C41B170B06002B4A5A /* WallDelegate.swift */; };
 		D53A3D1C1B6C032C009602A8 /* ActionBarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53A3D131B6C032C009602A8 /* ActionBarNode.swift */; };
@@ -42,6 +43,7 @@
 		BD8E43DB1AEC2B7700BC0631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD8E43E21AEC2B8200BC0631 /* WallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallController.swift; sourceTree = "<group>"; };
 		BD8E43E31AEC2B8200BC0631 /* WallDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallDataSource.swift; sourceTree = "<group>"; };
+		D51DF16A1BC5130A00EAB122 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		D52CF6C21B17090A002B4A5A /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		D52CF6C41B170B06002B4A5A /* WallDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallDelegate.swift; sourceTree = "<group>"; };
 		D53A3D131B6C032C009602A8 /* ActionBarNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionBarNode.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 		BD8E43E11AEC2B8200BC0631 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				D51DF16A1BC5130A00EAB122 /* ImageCache.swift */,
 				D54B81D61B17147700FB0197 /* Nodes */,
 				D54B82001B175FCE00FB0197 /* Models */,
 				BDF240F51B163D7300D571F6 /* Extensions */,
@@ -235,7 +238,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0700;
 				TargetAttributes = {
 					BD8E43D61AEC2B7700BC0631 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -341,6 +344,7 @@
 				D53A3D221B6C032C009602A8 /* HeaderNode.swift in Sources */,
 				D53A3D1D1B6C032C009602A8 /* AttachmentGridNode.swift in Sources */,
 				D5D238281B581E7B008AED97 /* Image.swift in Sources */,
+				D51DF16B1BC5130A00EAB122 /* ImageCache.swift in Sources */,
 				D52CF6C51B170B06002B4A5A /* WallDelegate.swift in Sources */,
 				D5F318E31B21B4EB00DE9899 /* FooterNodeSpec.swift in Sources */,
 				D53A3D1F1B6C032C009602A8 /* ControlNode.swift in Sources */,
@@ -355,6 +359,7 @@
 		BD8E43D11AEC2B5700BC0631 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ENABLE_TESTABILITY = YES;
 				ONLY_ACTIVE_ARCH = YES;
 			};
 			name = Debug;
@@ -410,6 +415,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "no.hyper.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -454,6 +460,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "no.hyper.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
