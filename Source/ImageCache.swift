@@ -11,9 +11,8 @@ public class ImageCache: NSObject, ASImageDownloaderProtocol {
       let manager = KingfisherManager.sharedManager
 
       let task = manager.retrieveImageWithURL(URL,
-        options: .None,
-        progressBlock:
-        { receivedSize, totalSize in
+        optionsInfo: nil,
+        progressBlock: { receivedSize, totalSize in
           if downloadProgressBlock != nil {
             let queue = callbackQueue != nil ?
               callbackQueue : dispatch_get_main_queue()
@@ -21,17 +20,17 @@ public class ImageCache: NSObject, ASImageDownloaderProtocol {
               downloadProgressBlock(CGFloat(receivedSize / totalSize))
             })
           }
-        })
-        { image, error, cacheType, imageURL in
-          if completion != nil &&
-            image != nil {
-              let queue = callbackQueue != nil ?
-                callbackQueue : dispatch_get_main_queue()
-              dispatch_async(queue, {
-                completion(image!.CGImage, error)
-              })
+        },
+        completionHandler: { image, error, cacheType, imageURL in
+          if completion != nil && image != nil {
+            let queue = callbackQueue != nil ?
+              callbackQueue : dispatch_get_main_queue()
+            dispatch_async(queue, {
+              completion(image!.CGImage, error)
+            })
           }
-      }
+      })
+
       return task
   }
 

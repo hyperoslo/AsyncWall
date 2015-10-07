@@ -26,7 +26,6 @@ class ViewController: WallController {
 
   func generatePosts(from: Int, to: Int) -> [PostConvertible] {
     var posts = [PostConvertible]()
-    var startFrom = self.posts.count
     for i in from...to {
       let user = User(
         name: faker.name.name(),

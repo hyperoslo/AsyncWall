@@ -16,7 +16,7 @@ class DetailViewController: WallController {
       delay(0.1) {
         var posts = [PostConvertible]()
         posts.append(self.post!)
-        comments.map { posts.append($0) }
+        for comment in comments { posts.append(comment) }
         self.posts = posts
       }
     }

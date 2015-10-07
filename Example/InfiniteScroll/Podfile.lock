@@ -1,22 +1,27 @@
 PODS:
-  - AsyncDisplayKit (1.2.3):
-    - AsyncDisplayKit/ASDealloc2MainObject (= 1.2.3)
-  - AsyncDisplayKit/ASDealloc2MainObject (1.2.3)
+  - AsyncDisplayKit (1.2.2):
+    - AsyncDisplayKit/ASDealloc2MainObject (= 1.2.2)
+  - AsyncDisplayKit/ASDealloc2MainObject (1.2.2)
   - Faker (0.1.0):
     - SwiftyJSON (~> 2.2.0)
+  - Kingfisher (1.6.0)
   - Sugar (0.1.0)
   - SwiftyJSON (2.2.1)
   - Wall (0.1.0):
-    - AsyncDisplayKit (~> 1.2.3)
+    - AsyncDisplayKit
+    - Kingfisher
     - Sugar
 
 DEPENDENCIES:
+  - AsyncDisplayKit (from `https://github.com/facebook/AsyncDisplayKit`)
   - Faker (from `https://github.com/vadymmarkov/Faker`, branch `swift-2.0`)
   - Sugar (from `https://github.com/hyperoslo/Sugar`)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `xcode7`)
   - Wall (from `../../`)
 
 EXTERNAL SOURCES:
+  AsyncDisplayKit:
+    :git: https://github.com/facebook/AsyncDisplayKit
   Faker:
     :branch: swift-2.0
     :git: https://github.com/vadymmarkov/Faker
@@ -29,21 +34,25 @@ EXTERNAL SOURCES:
     :path: ../../
 
 CHECKOUT OPTIONS:
+  AsyncDisplayKit:
+    :commit: 697142240c2ac3b614f220612dcc9180fffe658c
+    :git: https://github.com/facebook/AsyncDisplayKit
   Faker:
-    :commit: 329c2c85eb14e3125a12b48599ac132172ac6f24
+    :commit: 5431e42b0acdfcfbabb0aa60185a4d4b4342db32
     :git: https://github.com/vadymmarkov/Faker
   Sugar:
-    :commit: 816604cb30ea33d79d7ce2b7effca3f627ccba3f
+    :commit: 964d31e847af1498a019e3d8a0cd94885e4c2d4d
     :git: https://github.com/hyperoslo/Sugar
   SwiftyJSON:
-    :commit: d4df13c66146a8e9c8d96c852746a08363003d36
+    :commit: 6eb4cda062fa09c4658e4184f92d822058f226e3
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  AsyncDisplayKit: 5c8f38225f7478e39c48196cec0dd0d2ac3455ed
+  AsyncDisplayKit: e560e419627381f0ff055bae96310f44a6d2a5f1
   Faker: ec2361307c261ae4b26c8da20b127d416faf0ebd
+  Kingfisher: 3308d487e5c2a0fba9c1054fc3b8c45923e03c40
   Sugar: d33f2a3ae10e40c14eb49a2e859f12e82e614817
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
-  Wall: 20fa3e5db0b10b067dc598130da5b9d3a04e98b2
+  Wall: 0c87cb0dffc7f2a9a50b8adbad1067a9191ff2b7
 
-COCOAPODS: 0.39.0.beta.4
+COCOAPODS: 0.39.0.beta.5
