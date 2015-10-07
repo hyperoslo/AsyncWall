@@ -82,6 +82,7 @@ public class CellNode: PostCellNode {
     }
 
     let node = ActionBarClass.init(post: self.post, width: self.contentWidth)
+    node.preferredFrameSize = CGSize(width: self.contentWidth, height: 40)
 
     return node
     }()
@@ -142,24 +143,30 @@ public class CellNode: PostCellNode {
     }
   }
 
-  // MARK: - Layout
+  //MARK: - Layout
 
-    public override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec! {
-        var nodes = [headerNode, attachmentGridNode, textNode, footerNode, actionBarNode]
-        if !hasAttachments {
-            nodes.removeAtIndex(1)
-        }
+  public override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec! {
+    var nodes = [headerNode, attachmentGridNode, textNode, footerNode, divider, actionBarNode]
 
-        let stack = ASStackLayoutSpec(direction: .Vertical,
-            spacing: 0,
-            justifyContent: .Center,
-            alignItems: .Center,
-            children: nodes)
-
-        let insets = UIEdgeInsets(top: verticalPadding, left: horizontalPadding, bottom: 0, right: horizontalPadding)
-
-        let insetSpec = ASInsetLayoutSpec(insets: insets,
-            child: stack)
-        return insetSpec
+    if !hasAttachments {
+      nodes.removeAtIndex(1)
     }
+
+    let stack = ASStackLayoutSpec(direction: .Vertical,
+      spacing: verticalPadding,
+      justifyContent: .Center,
+      alignItems: .Center,
+      children: nodes)
+
+    let insets = UIEdgeInsets(top: verticalPadding,
+      left: horizontalPadding,
+      bottom: 0,
+      right: horizontalPadding)
+
+    let insetSpec = ASInsetLayoutSpec(insets: insets,
+      child: stack)
+    insetSpec.measureWithSizeRange(constrainedSize)
+
+    return insetSpec
+  }
 }
