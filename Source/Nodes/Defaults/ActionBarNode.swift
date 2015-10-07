@@ -61,36 +61,22 @@ public class ActionBarNode: PostComponentNode {
     }
   }
 
-  // MARK: - Layout
+//   MARK: - Layout
 
-  override public func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
-    return CGSizeMake(width, height)
-  }
+  public override func calculateLayoutThatFits(constrainedSize: ASSizeRange) -> ASLayout! {
+    let size = CGSize(width: constrainedSize.max.width, height: height)
+    let dividerSize = CGSize(width: size.width, height: dividerHeight)
+    let subnodeSize = CGSize(width: size.width / 2, height: height)
 
-  override public func layout() {
-    var x: CGFloat = 0
-    let sideSize = CGSize(width: width / 2, height: height)
+    let likeOrigin = likeControlNode.size.centerInSize(subnodeSize)
+    let commentOrigin = CGPoint(x: likeOrigin.x + subnodeSize.width, y: likeOrigin.y)
 
-    divider.frame = CGRect(
-      x: 0,
-      y: 0,
-      width: width,
-      height: dividerHeight)
+    let dividerLayout = ASLayout(layoutableObject: divider, size: dividerSize, position: CGPoint.zero, sublayouts: nil)
+    let like = ASLayout(layoutableObject: likeControlNode, size: subnodeSize, position: likeOrigin, sublayouts: nil)
+    let comment = ASLayout(layoutableObject: commentControlNode, size: subnodeSize, position: commentOrigin, sublayouts: nil)
 
-    if !likeControlNode.hidden {
-      likeControlNode.frame = CGRect(
-        origin: likeControlNode.size.centerInSize(sideSize),
-        size: likeControlNode.size)
+    let layout = ASLayout(layoutableObject: self, size: size, sublayouts: [like, comment, dividerLayout])
 
-      x += sideSize.width
-    }
-
-    if !commentControlNode.hidden {
-      var origin = commentControlNode.size.centerInSize(sideSize)
-      origin.x += x
-      commentControlNode.frame = CGRect(
-        origin: origin,
-        size: commentControlNode.size)
-    }
+    return layout
   }
 }
