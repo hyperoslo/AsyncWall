@@ -146,7 +146,12 @@ public class CellNode: PostCellNode {
   //MARK: - Layout
 
   public override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec! {
-    var nodes = [headerNode, attachmentGridNode, textNode, footerNode, divider, actionBarNode]
+
+    actionBarNode.flexGrow = true
+
+    let actionBarSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0), child: actionBarNode)
+
+    var nodes = [headerNode, attachmentGridNode, textNode, footerNode, divider, actionBarSpec]
 
     if !hasText {
       nodes.removeAtIndex(2)
@@ -170,7 +175,7 @@ public class CellNode: PostCellNode {
     let insetSpec = ASInsetLayoutSpec(insets: insets,
       child: stack)
     insetSpec.measureWithSizeRange(constrainedSize)
-
+    
     return insetSpec
   }
 }
