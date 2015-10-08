@@ -164,7 +164,7 @@ public class CellNode: PostCellNode {
     let stack = ASStackLayoutSpec(direction: .Vertical,
       spacing: verticalPadding,
       justifyContent: .Center,
-      alignItems: .Center,
+      alignItems: .Start,
       children: nodes)
 
     let insets = UIEdgeInsets(top: verticalPadding,
