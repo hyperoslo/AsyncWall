@@ -29,7 +29,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   AsyncDisplayKit:
-    :commit: 697142240c2ac3b614f220612dcc9180fffe658c
+    :commit: ca5780f6f4c4310ec31840573ac7f5f555f36f84
     :git: https://github.com/facebook/AsyncDisplayKit
   Sugar:
     :commit: 964d31e847af1498a019e3d8a0cd94885e4c2d4d
