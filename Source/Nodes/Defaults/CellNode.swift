@@ -148,6 +148,10 @@ public class CellNode: PostCellNode {
   public override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec! {
     var nodes = [headerNode, attachmentGridNode, textNode, footerNode, divider, actionBarNode]
 
+    if !hasText {
+      nodes.removeAtIndex(2)
+    }
+
     if !hasAttachments {
       nodes.removeAtIndex(1)
     }
