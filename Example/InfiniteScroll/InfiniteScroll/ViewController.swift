@@ -1,6 +1,6 @@
 import UIKit
 import Wall
-import Faker
+import Fakery
 import Sugar
 
 class ViewController: WallController {

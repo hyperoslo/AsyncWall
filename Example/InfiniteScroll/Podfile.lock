@@ -2,57 +2,45 @@ PODS:
   - AsyncDisplayKit (1.2.2):
     - AsyncDisplayKit/ASDealloc2MainObject (= 1.2.2)
   - AsyncDisplayKit/ASDealloc2MainObject (1.2.2)
-  - Faker (0.1.0):
-    - SwiftyJSON (~> 2.2.0)
+  - Fakery (1.0.0):
+    - SwiftyJSON (~> 2.3.0)
   - Kingfisher (1.6.0)
   - Sugar (0.1.0)
-  - SwiftyJSON (2.2.1)
+  - SwiftyJSON (2.3.0)
   - Wall (0.1.0):
     - AsyncDisplayKit
     - Kingfisher
     - Sugar
 
 DEPENDENCIES:
-  - AsyncDisplayKit (from `https://github.com/facebook/AsyncDisplayKit`)
-  - Faker (from `https://github.com/vadymmarkov/Faker`, branch `swift-2.0`)
+  - AsyncDisplayKit (from `https://github.com/facebook/AsyncDisplayKit`, branch `master`)
+  - Fakery
   - Sugar (from `https://github.com/hyperoslo/Sugar`)
-  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `xcode7`)
   - Wall (from `../../`)
 
 EXTERNAL SOURCES:
   AsyncDisplayKit:
+    :branch: master
     :git: https://github.com/facebook/AsyncDisplayKit
-  Faker:
-    :branch: swift-2.0
-    :git: https://github.com/vadymmarkov/Faker
   Sugar:
     :git: https://github.com/hyperoslo/Sugar
-  SwiftyJSON:
-    :branch: xcode7
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
   Wall:
-    :path: ../../
+    :path: "../../"
 
 CHECKOUT OPTIONS:
   AsyncDisplayKit:
-    :commit: 697142240c2ac3b614f220612dcc9180fffe658c
+    :commit: ca5780f6f4c4310ec31840573ac7f5f555f36f84
     :git: https://github.com/facebook/AsyncDisplayKit
-  Faker:
-    :commit: 5431e42b0acdfcfbabb0aa60185a4d4b4342db32
-    :git: https://github.com/vadymmarkov/Faker
   Sugar:
     :commit: 964d31e847af1498a019e3d8a0cd94885e4c2d4d
     :git: https://github.com/hyperoslo/Sugar
-  SwiftyJSON:
-    :commit: 6eb4cda062fa09c4658e4184f92d822058f226e3
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
   AsyncDisplayKit: e560e419627381f0ff055bae96310f44a6d2a5f1
-  Faker: ec2361307c261ae4b26c8da20b127d416faf0ebd
+  Fakery: a8c99f35643a6fe396ee30a14fbcd466dbd098dd
   Kingfisher: 3308d487e5c2a0fba9c1054fc3b8c45923e03c40
   Sugar: d33f2a3ae10e40c14eb49a2e859f12e82e614817
-  SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
+  SwiftyJSON: 8d6b61a70277ef2a5d710d372e06e7e2d87fb9e4
   Wall: 0c87cb0dffc7f2a9a50b8adbad1067a9191ff2b7
 
-COCOAPODS: 0.39.0.beta.5
+COCOAPODS: 0.38.2
