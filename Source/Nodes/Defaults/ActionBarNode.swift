@@ -56,6 +56,7 @@ public class ActionBarNode: PostComponentNode {
   // MARK: - ConfigurableNode
 
   public override func configureNode() {
+
     for node in [divider, likeControlNode, commentControlNode] {
       addSubnode(node)
     }
@@ -63,20 +64,11 @@ public class ActionBarNode: PostComponentNode {
 
 //   MARK: - Layout
 
-  public override func calculateLayoutThatFits(constrainedSize: ASSizeRange) -> ASLayout! {
-    let size = CGSize(width: constrainedSize.max.width, height: height)
-    let dividerSize = CGSize(width: size.width, height: dividerHeight)
-    let subnodeSize = CGSize(width: size.width / 2, height: height)
+  public override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec! {
+    let likeSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 50), child: likeControlNode)
+    let commentSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 0, left: 50, bottom: 0, right: 0), child: commentControlNode)
 
-    let likeOrigin = likeControlNode.size.centerInSize(subnodeSize)
-    let commentOrigin = CGPoint(x: likeOrigin.x + subnodeSize.width, y: likeOrigin.y)
-
-    let dividerLayout = ASLayout(layoutableObject: divider, size: dividerSize, position: CGPoint.zero, sublayouts: nil)
-    let like = ASLayout(layoutableObject: likeControlNode, size: subnodeSize, position: likeOrigin, sublayouts: nil)
-    let comment = ASLayout(layoutableObject: commentControlNode, size: subnodeSize, position: commentOrigin, sublayouts: nil)
-
-    let layout = ASLayout(layoutableObject: self, size: size, sublayouts: [like, comment, dividerLayout])
-
-    return layout
+    let spec = ASStackLayoutSpec(direction: .Horizontal, spacing: 0, justifyContent: ASStackLayoutJustifyContent.Center, alignItems: ASStackLayoutAlignItems.Stretch, children: [likeSpec, commentSpec])
+    return spec
   }
 }
