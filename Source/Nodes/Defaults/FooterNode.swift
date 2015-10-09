@@ -81,9 +81,6 @@ public class FooterNode: PostComponentNode {
 
 
   public override func calculateLayoutThatFits(constrainedSize: ASSizeRange) -> ASLayout! {
-
-    //TODO: for loop maybe?
-
     var x: CGFloat = 0
     let likeLayout = likesNode.calculateLayoutThatFits(constrainedSize)
     likeLayout.position = CGPoint(x: x, y: centerY(likeLayout.size.height))
@@ -99,7 +96,7 @@ public class FooterNode: PostComponentNode {
     seenLayout.position = CGPoint(x: constrainedSize.max.width - seenLayout.size.width, y: centerY(seenLayout.size.height))
 
     let size = CGSize(width: constrainedSize.max.width, height: height)
-    let layout = ASLayout(layoutableObject: self, size: size, position: CGPoint(x: 10, y: 10), sublayouts: [likeLayout, commentLayout, seenLayout])
+    let layout = ASLayout(layoutableObject: self, size: size, position: CGPoint.zero, sublayouts: [likeLayout, commentLayout, seenLayout])
 
     return layout
   }
