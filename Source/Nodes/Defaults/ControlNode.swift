@@ -3,16 +3,11 @@ import AsyncDisplayKit
 
 public class ControlNode: ASControlNode {
 
-  // MARK: - Configuration
-
-  public var size = CGSize(width: 100.0, height: 35.0)
-  public var padding: CGFloat = 5
-
   // MARK: - Nodes
 
-  public var contentNode = ASDisplayNode()
   public var titleNode: ASTextNode?
   public var imageNode: ASImageNode?
+  public var nodes: [ASDisplayNode] = [ASDisplayNode]()
 
   // MARK: - Initialization
 
@@ -22,53 +17,25 @@ public class ControlNode: ASControlNode {
     if let title = title {
       titleNode = ASTextNode()
       titleNode!.attributedString = title
-
-      contentNode.addSubnode(titleNode)
+      nodes.append(titleNode!)
     }
 
     if let image = image {
       imageNode = ASImageNode()
       imageNode?.image = image
-
-      contentNode.addSubnode(imageNode)
+      nodes.append(imageNode!)
     }
-
-    addSubnode(contentNode)
+    for node in nodes {
+      addSubnode(node)
+    }
   }
 
   // MARK: - Layout
 
-  override public func layout() {
-    var x: CGFloat = padding
-    var contentSize = size
-
-    if let imageNode = imageNode {
-      let imageSize = imageNode.image.size
-      imageNode.frame = CGRect(
-        origin: CGPoint(x: x, y: imageSize.centerInSize(size).y),
-        size: imageSize)
-
-      x += imageSize.width + padding
-    }
-
-    if let titleNode = titleNode {
-      let titleHeight = size.height - 2 * padding
-
-      let titleSize = titleNode.measure(
-        CGSize(
-          width: CGFloat(FLT_MAX),
-          height: titleHeight < 0 ? 0 : titleHeight))
-
-      titleNode.frame = CGRect(
-        origin: CGPoint(x: x, y: titleSize.centerInSize(size).y),
-        size: titleSize)
-
-      x += titleSize.width + padding
-    }
-
-    contentSize.width = x
-    contentNode.frame = CGRect(
-      origin: CGPoint(x: contentSize.centerInSize(size).x, y: 0),
-      size: contentSize)
+  public override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec! {
+    return ASStackLayoutSpec(direction: .Horizontal,
+      spacing: 10, justifyContent: .Center,
+      alignItems: .Center,
+      children: nodes)
   }
 }

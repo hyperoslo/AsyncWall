@@ -56,41 +56,24 @@ public class ActionBarNode: PostComponentNode {
   // MARK: - ConfigurableNode
 
   public override func configureNode() {
+
     for node in [divider, likeControlNode, commentControlNode] {
       addSubnode(node)
     }
   }
 
-  // MARK: - Layout
+  //   MARK: - Layout
 
-  override public func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
-    return CGSizeMake(width, height)
-  }
+  public override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec! {
+    let likeSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 50), child: likeControlNode)
+    let commentSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 0, left: 50, bottom: 0, right: 0), child: commentControlNode)
 
-  override public func layout() {
-    var x: CGFloat = 0
-    let sideSize = CGSize(width: width / 2, height: height)
+    let spec = ASStackLayoutSpec(direction: .Horizontal,
+      spacing: 0,
+      justifyContent: .Center,
+      alignItems: .Stretch,
+      children: [likeSpec, commentSpec])
 
-    divider.frame = CGRect(
-      x: 0,
-      y: 0,
-      width: width,
-      height: dividerHeight)
-
-    if !likeControlNode.hidden {
-      likeControlNode.frame = CGRect(
-        origin: likeControlNode.size.centerInSize(sideSize),
-        size: likeControlNode.size)
-
-      x += sideSize.width
-    }
-
-    if !commentControlNode.hidden {
-      var origin = commentControlNode.size.centerInSize(sideSize)
-      origin.x += x
-      commentControlNode.frame = CGRect(
-        origin: origin,
-        size: commentControlNode.size)
-    }
+    return spec
   }
 }

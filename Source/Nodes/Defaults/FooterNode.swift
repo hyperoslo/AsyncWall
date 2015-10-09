@@ -79,47 +79,26 @@ public class FooterNode: PostComponentNode {
 
   // MARK: - Layout
 
-  override public func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
-    return CGSizeMake(width, height)
-  }
 
-  override public func layout() {
+  public override func calculateLayoutThatFits(constrainedSize: ASSizeRange) -> ASLayout! {
     var x: CGFloat = 0
+    let likeLayout = likesNode.calculateLayoutThatFits(constrainedSize)
+    likeLayout.position = CGPoint(x: x, y: centerY(likeLayout.size.height))
 
-    if !likesNode.hidden {
-      let size = likesNode.measure(
-        CGSize(
-          width: CGFloat(FLT_MAX),
-          height: height))
+    x += likeLayout.size.width + horizontalPadding
 
-      likesNode.frame = CGRect(
-        origin: CGPoint(x: x, y: centerY(size.height)),
-        size: size)
-      x += size.width + horizontalPadding
-    }
+    let commentLayout = commentsNode.calculateLayoutThatFits(constrainedSize)
+    commentLayout.position = CGPoint(x: x, y: centerY(commentLayout.size.height))
 
-    if !commentsNode.hidden {
-      let size = commentsNode.measure(
-        CGSize(
-          width: CGFloat(FLT_MAX),
-          height: height))
+    x += commentLayout.size.width + horizontalPadding
 
-      commentsNode.frame = CGRect(
-        origin: CGPoint(x: x, y: centerY(size.height)),
-        size: size)
-      x += size.width + horizontalPadding
-    }
+    let seenLayout = seenNode.calculateLayoutThatFits(constrainedSize)
+    seenLayout.position = CGPoint(x: constrainedSize.max.width - seenLayout.size.width, y: centerY(seenLayout.size.height))
 
-    if !seenNode.hidden {
-      let size = seenNode.measure(
-        CGSize(
-          width: CGFloat(FLT_MAX),
-          height: height))
+    let size = CGSize(width: constrainedSize.max.width, height: height)
+    let layout = ASLayout(layoutableObject: self, size: size, position: CGPoint.zero, sublayouts: [likeLayout, commentLayout, seenLayout])
 
-      seenNode.frame = CGRect(
-        origin: CGPoint(x: width - size.width, y: centerY(size.height)),
-        size: size)
-    }
+    return layout
   }
 
   public func centerY(height: CGFloat) -> CGFloat {

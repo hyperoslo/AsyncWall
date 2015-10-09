@@ -5,7 +5,7 @@ public class HeaderNode: PostComponentNode {
 
   // MARK: - Configuration
 
-  public var avatarSize: CGFloat = 32
+  public var avatarSize = CGSize(width: 32, height: 32)
   public var authorHorizontalPadding: CGFloat = 10
   public var authorVerticalPadding: CGFloat = 1
 
@@ -43,10 +43,9 @@ public class HeaderNode: PostComponentNode {
 
     if let author = self.post.author, avatar = author.wallModel.image {
       node.backgroundColor = .grayColor()
-      node.cornerRadius = self.avatarSize / 2
+      node.cornerRadius = self.avatarSize.height / 2
       node.clipsToBounds = true
       node.userInteractionEnabled = true
-      node.frame.size = CGSize(width: self.avatarSize, height: self.avatarSize)
       node.URL = avatar.thumbnail.url
     }
 
@@ -91,39 +90,24 @@ public class HeaderNode: PostComponentNode {
 
   // MARK: - Layout
 
-  override public func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
-    return CGSizeMake(width, height)
-  }
-
-  override public func layout() {
+  public override func calculateLayoutThatFits(constrainedSize: ASSizeRange) -> ASLayout! {
     var x: CGFloat = 0
+    let avatarPosition = CGPoint(x: x, y: centerY(avatarSize.height))
+    let avatarLayout = ASLayout(layoutableObject: authorAvatarNode, size: avatarSize, position: avatarPosition, sublayouts: nil)
 
-    authorAvatarNode.frame = CGRect(
-      x: x,
-      y: centerY(avatarSize),
-      width: avatarSize,
-      height: avatarSize)
-    x += avatarSize + authorHorizontalPadding
+    x += avatarSize.width + authorHorizontalPadding
 
-    let authorNameSize = authorNameNode.measure(
-      CGSize(
-        width: CGFloat(FLT_MAX),
-        height: height))
+    let authorNameLayout = authorNameNode.calculateLayoutThatFits(constrainedSize)
+    authorNameLayout.position = CGPoint(x: x, y: centerY(authorNameLayout.size.height))
 
-    authorNameNode.frame = CGRect(
-      origin: CGPoint(x: x, y: centerY(authorNameSize.height)),
-      size: authorNameSize)
-    x += authorNameSize.width + authorHorizontalPadding
+    let dateLayout = dateNode.calculateLayoutThatFits(constrainedSize)
+    dateLayout.position = CGPoint(x: constrainedSize.max.width - dateLayout.size.width, y: centerY(dateLayout.size.height))
 
-    let dateNodesize = dateNode.measure(
-      CGSize(
-        width: CGFloat(FLT_MAX),
-        height: height))
-    dateNode.frame = CGRect(
-      origin: CGPoint(
-        x: width - dateNodesize.width,
-        y: centerY(dateNodesize.height)),
-      size: dateNodesize)
+
+    let size = CGSize(width: constrainedSize.max.width, height: height)
+    let layout = ASLayout(layoutableObject: self, size: size, position: CGPoint.zero, sublayouts: [avatarLayout, authorNameLayout, dateLayout])
+
+    return layout
   }
 
   // MARK: - Private Methods

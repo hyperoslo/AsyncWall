@@ -59,6 +59,7 @@ public class CellNode: PostCellNode {
         NSForegroundColorAttributeName: UIColor.grayColor()
       ])
     node.userInteractionEnabled = true
+    node.alignSelf = .Start
 
     return node
     }()
@@ -82,6 +83,7 @@ public class CellNode: PostCellNode {
     }
 
     let node = ActionBarClass.init(post: self.post, width: self.contentWidth)
+    node.preferredFrameSize = CGSize(width: self.contentWidth, height: 40)
 
     return node
     }()
@@ -142,78 +144,39 @@ public class CellNode: PostCellNode {
     }
   }
 
-  // MARK: - Layout
+  //MARK: - Layout
 
-  override public func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
-    var height: CGFloat = headerNode.height + footerNode.height + actionBarNode.height + dividerHeight
-    var paddingCount = 2
+  public override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec! {
 
-    if hasAttachments {
-      height += attachmentGridNode.height
-      paddingCount++
+    actionBarNode.flexGrow = true
+
+    let actionBarSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0), child: actionBarNode)
+
+    var nodes = [headerNode, attachmentGridNode, textNode, footerNode, divider, actionBarSpec]
+
+    if !hasText {
+      nodes.removeAtIndex(2)
     }
 
-    if hasText {
-      let size = textNode.measure(
-        CGSize(
-          width: contentWidth,
-          height: CGFloat(FLT_MAX)))
-      height += size.height
-      paddingCount++
+    if !hasAttachments {
+      nodes.removeAtIndex(1)
     }
 
-    height += CGFloat(paddingCount) * verticalPadding
+    let stack = ASStackLayoutSpec(direction: .Vertical,
+      spacing: verticalPadding,
+      justifyContent: .Center,
+      alignItems: .Center,
+      children: nodes)
 
-    return CGSizeMake(width, height)
-  }
+    let insets = UIEdgeInsets(top: verticalPadding,
+      left: horizontalPadding,
+      bottom: 0,
+      right: horizontalPadding)
 
-  override public func layout() {
-    var y = verticalPadding
-
-    headerNode.frame = CGRect(
-      x: horizontalPadding,
-      y: y,
-      width: headerNode.width,
-      height: headerNode.height)
-    y += headerNode.height + verticalPadding
-
-    if hasAttachments {
-      attachmentGridNode.frame = CGRect(
-        x: attachmentGridNode.width < width ? horizontalPadding : 0,
-        y: y,
-        width: attachmentGridNode.width,
-        height: attachmentGridNode.height)
-
-      y += attachmentGridNode.height + verticalPadding
-    }
-
-    if hasText {
-      let size = textNode.calculatedSize
-      textNode.frame = CGRect(
-        origin: CGPoint(x: horizontalPadding, y: y),
-        size: size)
-
-      y += size.height + verticalPadding
-    }
-
-    footerNode.frame = CGRect(
-      x: horizontalPadding,
-      y: y,
-      width: footerNode.width,
-      height: footerNode.height)
-    y += footerNode.height
-
-    actionBarNode.frame = CGRect(
-      x: horizontalPadding,
-      y: y,
-      width: contentWidth,
-      height: actionBarNode.height)
-    y += actionBarNode.height
-
-    divider.frame = CGRect(
-      x: horizontalPadding,
-      y: y,
-      width: contentWidth,
-      height: dividerHeight)
+    let insetSpec = ASInsetLayoutSpec(insets: insets,
+      child: stack)
+    insetSpec.measureWithSizeRange(constrainedSize)
+    
+    return insetSpec
   }
 }
