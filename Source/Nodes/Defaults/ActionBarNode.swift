@@ -62,13 +62,18 @@ public class ActionBarNode: PostComponentNode {
     }
   }
 
-//   MARK: - Layout
+  //   MARK: - Layout
 
   public override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec! {
     let likeSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 50), child: likeControlNode)
     let commentSpec = ASInsetLayoutSpec(insets: UIEdgeInsets(top: 0, left: 50, bottom: 0, right: 0), child: commentControlNode)
 
-    let spec = ASStackLayoutSpec(direction: .Horizontal, spacing: 0, justifyContent: ASStackLayoutJustifyContent.Center, alignItems: ASStackLayoutAlignItems.Stretch, children: [likeSpec, commentSpec])
+    let spec = ASStackLayoutSpec(direction: .Horizontal,
+      spacing: 0,
+      justifyContent: .Center,
+      alignItems: .Stretch,
+      children: [likeSpec, commentSpec])
+
     return spec
   }
 }
