@@ -32,15 +32,16 @@ public class AttachmentGridNode: PostComponentNode {
   public lazy var textNode: ASTextNode = { [unowned self] in
     let node = ASTextNode()
 
+    let fontSize: CGFloat = 34
+
     let paragraphStyle = NSMutableParagraphStyle()
     paragraphStyle.alignment = .Center
 
     let attributes = [
-      NSFontAttributeName: UIFont.systemFontOfSize(34),
+      NSFontAttributeName: UIFont.systemFontOfSize(fontSize),
       NSForegroundColorAttributeName: UIColor.whiteColor(),
       NSParagraphStyleAttributeName: paragraphStyle,
-      //todo: center text in TextNode
-      NSBaselineOffsetAttributeName: -34
+      NSBaselineOffsetAttributeName: (self.sizeForThumbnailAtIndex(2).height - fontSize) / -2
     ]
 
     let text = "+\(self.postAttachmentCount - 3)"
