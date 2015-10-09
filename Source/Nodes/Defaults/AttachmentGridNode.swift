@@ -50,6 +50,7 @@ public class AttachmentGridNode: PostComponentNode {
     node.userInteractionEnabled = false
     node.layerBacked = true
     node.shouldRasterizeDescendants = true
+
     return node
   }()
 
@@ -75,7 +76,6 @@ public class AttachmentGridNode: PostComponentNode {
       imageNode.backgroundColor = .grayColor()
       imageNode.URL = attachment.wallModel.thumbnail.url
       imageNode.layerBacked = true
-//      imageNode.shouldRasterizeDescendants = true
       imageNodes.append(imageNode)
       addSubnode(imageNode)
     }
@@ -116,11 +116,9 @@ public class AttachmentGridNode: PostComponentNode {
         let outputImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
-        //TODO: check if context is being end in all cases.
-
         return outputImage
       }
-
+      nodeToDarken.shouldRasterizeDescendants = true
       addSubnode(textNode)
     }
   }
@@ -150,7 +148,7 @@ public class AttachmentGridNode: PostComponentNode {
     }
 
     return ASLayout(layoutableObject: self,
-      size: CGSize(width: constrainedSize.max.width, height: contentHeight + padding), //TODO: fix padding issue - contentheight should be real content height, make SELF red to debug
+      size: CGSize(width: constrainedSize.max.width, height: contentHeight + padding),
       position: CGPoint.zero,
       sublayouts: layouts)
   }
