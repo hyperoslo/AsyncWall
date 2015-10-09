@@ -59,6 +59,7 @@ public class CellNode: PostCellNode {
         NSForegroundColorAttributeName: UIColor.grayColor()
       ])
     node.userInteractionEnabled = true
+    node.alignSelf = .Start
 
     return node
     }()
